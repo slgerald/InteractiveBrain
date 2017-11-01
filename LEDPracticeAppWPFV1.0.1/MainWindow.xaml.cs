@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
+using System.Collections.Concurrent;
 
 namespace LEDPracticeAppWPFV1._0._1
 {
@@ -22,11 +23,21 @@ namespace LEDPracticeAppWPFV1._0._1
         SerialPort SerialPort1;
         bool isConnected = false;
         String[] ports;
+        static ConcurrentQueue<char> serialDataQueue;
         public MainWindow()
         {
-           
+
             InitializeComponent();
             getAvailableComPorts();
+            try
+            {
+                SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            serialDataQueue = new System.Collections.Concurrent.ConcurrentQueue<char>();
             foreach (string port in ports)
             {
                 comPortNumberComboBox.Items.Add(port);
@@ -37,6 +48,7 @@ namespace LEDPracticeAppWPFV1._0._1
                 }
             }
         }
+
 
         private void onButton_Click(object sender, RoutedEventArgs e)
         {
@@ -51,6 +63,7 @@ namespace LEDPracticeAppWPFV1._0._1
         private void disconnectButton_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("This is the disconnect button");
+            messageTextBox.Text = "Disconnected";
             try
             {
                 isConnected = false;
@@ -63,8 +76,9 @@ namespace LEDPracticeAppWPFV1._0._1
         private void offButton_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("This is the off button");
-            
-            try{
+
+            try
+            {
                 SerialPort1.Write("0");
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -72,24 +86,96 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void connectButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("This is the connect button");
+            string selectedPort;
+            
             try
             {
                 isConnected = true;
-                string selectedPort = comPortNumberComboBox.SelectedItem.ToString();
+                selectedPort = comPortNumberComboBox.SelectedItem.ToString();
+                Console.WriteLine("Connected to " + selectedPort);
                 SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
                 SerialPort1.Open();
                 SerialPort1.Write("#STAR\n");
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+            if (isConnected) { messageTextBox.Text = "Connected"; }
+            else { messageTextBox.Text = "Not Connected"; }
+
         }
         void getAvailableComPorts()
         {
             ports = SerialPort.GetPortNames();
         }
+        private static void DataReceivedHandler(object sender,SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = sender as SerialPort;
+            int bytesAvailable = sp.BytesToRead;
 
+            // array to store the available data    
+            char[] recBuf = new char[bytesAvailable];
+
+            try
+            {
+                // get the data
+                sp.Read(recBuf, 0, bytesAvailable);
+
+                // put data, char by char into a threadsafe FIFO queue
+                // a better aproach maybe is putting the data in a struct and enque the struct        
+                for (int index = 0; index < bytesAvailable; index++)
+                   serialDataQueue.Enqueue(recBuf[index]);
+
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        private void readSerialDataQueue()
+        {
+            char ch;
+
+            try
+            {
+                while (serialDataQueue.TryDequeue(out ch))
+                {
+                    // do something with ch, add it to a textbox 
+                    // for example to see that it actually works
+                    messageTextBox.Text += ch;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // handle ex here
+            }
+        }
+
+
+        private void middleSchoolButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void highSchoolButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void simulationButton_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void interactiveBrainButton_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void serialTestButton_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
+}
 
-
-
-    }
+    
