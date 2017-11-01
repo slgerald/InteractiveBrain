@@ -14,43 +14,13 @@
         <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" Margin="486,39,0,0" VerticalAlignment="Top" Width="204" Height="22"/>
         <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" Margin="345,35,399,0" VerticalAlignment="Top" Width="125" Height="26"/>
         <TextBox x:Name="messageTextBox" HorizontalAlignment="Left" Height="149" Margin="330,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="229"/>
-        <Label Content="Substances" HorizontalAlignment="Center" Margin="670,370,77,0" VerticalAlignment="Top" Height="27" Width="122" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.311"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Healthy Behaviors" HorizontalAlignment="Center" Margin="335,373,412,0" VerticalAlignment="Top" Height="27" Width="122" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.633"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Brain Parts" HorizontalAlignment="Center" Margin="505,373,249,0" VerticalAlignment="Top" Height="27" Width="115" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.469"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
         <StackPanel HorizontalAlignment="Left" Height="100" Margin="625,215,0,0" VerticalAlignment="Top" Width="100"/>
-        <StackPanel Height="757" Margin="0,0,609,0" VerticalAlignment="Top">
+        <StackPanel x:Name ="StackPanel1" Height="757" Margin="-25,0,609,-195" VerticalAlignment="Top">
             <Button x:Name="middleSchoolButton" Content="5th - 8th Grade" Height="75" Click="middleSchoolButton"/>
             <Button x:Name="highSchoolButton" Content="9th - 12th Grade" Height="75" Click="highSchoolButton"/>
             <Button x:Name ="simulationButton" Content="Simulation" Height="75" Click="simulationButton"/>
             <Button x:Name="interactiveBrainButton" Content="Interactive Brain" Height="75" Click="interactiveBrainButton"/>
-            <Button x:Name ="serialTestButton" Content="Serial Communications" Height="85" Click="serialTestButton"/>
+            <Button x:Name ="serialTestButton" Content="Serial Communications" Height="75" Click="serialTestButton"/>
         </StackPanel>
 
     </Grid>

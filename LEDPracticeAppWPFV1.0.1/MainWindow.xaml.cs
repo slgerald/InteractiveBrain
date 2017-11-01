@@ -29,6 +29,8 @@ namespace LEDPracticeAppWPFV1._0._1
 
             InitializeComponent();
             getAvailableComPorts();
+            StackPanel1.Height = middleSchoolButton.Height;
+
             try
             {
                 SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
@@ -154,26 +156,28 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void middleSchoolButton_Click(object sender, RoutedEventArgs e)
         {
-
+            StackPanel1.Height = middleSchoolButton.Height;
         }
 
-        private void highSchoolButton_Click_1(object sender, RoutedEventArgs e)
+        private void highSchoolButton_Click(object sender, RoutedEventArgs e)
         {
-
+            StackPanel1.Height = highSchoolButton.Height;
         }
 
-        private void simulationButton_Click_2(object sender, RoutedEventArgs e)
+        private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
-
+            StackPanel1.Height = simulationButton.Height;
+           // StackPanel1.Top = simulationButton.Top;
+            selectionInteractiveBrain.BringToFront();
         }
 
-        private void interactiveBrainButton_Click_3(object sender, RoutedEventArgs e)
+        private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
         {
-
+            StackPanel1.Height = interactiveBrainButton.Height;
         }
-        private void serialTestButton_Click_3(object sender, RoutedEventArgs e)
+        private void serialTestButton_Click(object sender, RoutedEventArgs e)
         {
-
+            StackPanel1.Height = serialTestButton.Height;
         }
     }
 }
