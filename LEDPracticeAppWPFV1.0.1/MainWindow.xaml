@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button x:Name="onButton" Content="LED ON" HorizontalAlignment="Left" Margin="79.697,48.881,0,0" VerticalAlignment="Top" Width="75" Click="onButton_Click"/>
+        <Button x:Name="offButton" Content="LED OFF" HorizontalAlignment="Left" Margin="79.697,102,0,0" VerticalAlignment="Top" Width="75" Click="offButton_Click"/>
+        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="234,102,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
+        <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="363,102,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click"/>
+        <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" Margin="234,49,0,0" VerticalAlignment="Top" Width="204"/>
+        <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" Margin="234,23,164,0" VerticalAlignment="Top" Width="119"/>
+
     </Grid>
 </Window>
