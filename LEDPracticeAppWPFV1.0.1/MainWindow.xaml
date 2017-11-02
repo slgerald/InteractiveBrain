@@ -5,23 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
         mc:Ignorable="d"
-        Title="Poe Health Center " Height="592" Width="879">
-    <Grid Margin="0,0,2,0" Height="562" VerticalAlignment="Top">
-        <Button x:Name="onButton" Content="LED ON" HorizontalAlignment="Left" Margin="625,180,0,0" VerticalAlignment="Top" Width="75" Click="onButton_Click" Height="20" RenderTransformOrigin="0.533,-2.5"/>
-        <Button x:Name="offButton" Content="LED OFF" HorizontalAlignment="Left" Margin="625,145,0,0" VerticalAlignment="Top" Width="75" Click="offButton_Click" Height="20"/>
-        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="720,39,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click" Height="20"/>
-        <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="720,80,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click" Height="20"/>
-        <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" Margin="486,39,0,0" VerticalAlignment="Top" Width="204" Height="22"/>
-        <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" Margin="345,35,399,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <TextBox x:Name="messageTextBox" HorizontalAlignment="Left" Height="149" Margin="330,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="229"/>
-        <StackPanel HorizontalAlignment="Left" Height="100" Margin="625,215,0,0" VerticalAlignment="Top" Width="100"/>
-        <StackPanel x:Name ="StackPanel1" Height="757" Margin="-25,0,609,-195" VerticalAlignment="Top">
-            <Button x:Name="middleSchoolButton" Content="5th - 8th Grade" Height="75" Click="middleSchoolButton"/>
-            <Button x:Name="highSchoolButton" Content="9th - 12th Grade" Height="75" Click="highSchoolButton"/>
-            <Button x:Name ="simulationButton" Content="Simulation" Height="75" Click="simulationButton"/>
-            <Button x:Name="interactiveBrainButton" Content="Interactive Brain" Height="75" Click="interactiveBrainButton"/>
-            <Button x:Name ="serialTestButton" Content="Serial Communications" Height="75" Click="serialTestButton"/>
+        Title="Poe Health Center " Height="592" Width="879" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="selectionInteractiveBrainViewSource" d:DesignSource="{d:DesignInstance {x:Type local:selectionInteractiveBrain}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid Canvas.ZIndex=" 0">
+        <Button x:Name="onButton" Content="LED ON" HorizontalAlignment="Left" Margin="642,341,0,0" VerticalAlignment="Top" Width="101" Click="onButton_Click" Height="48" RenderTransformOrigin="0.533,-2.5"/>
+        <Button x:Name="offButton" Content="LED OFF" HorizontalAlignment="Left" Margin="642,260,0,0" VerticalAlignment="Top" Width="101" Click="offButton_Click" Height="46"/>
+        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="769,11,-1,0" VerticalAlignment="Top" Width="101" Click="connectButton_Click" Height="47"/>
+        <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="769,107,-1,0" VerticalAlignment="Top" Width="101" Click="disconnectButton_Click" Height="48"/>
+        <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" Margin="455,11,0,0" VerticalAlignment="Top" Width="274" Height="52"/>
+        <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" Margin="265,2,435,0" VerticalAlignment="Top" Width="169" Height="61"/>
+        <TextBox x:Name="messageTextBox" HorizontalAlignment="Left" Height="350" Margin="245,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308"/>
+        <StackPanel x:Name="StackPanel1" HorizontalAlignment="Left" Height="400" VerticalAlignment="Top" Width="240">
+            <Button x:Name="interactiveBrainButton" Content="Interactive Brain" Height="80" Click="interactiveBrainButton_Click"/>
+            <Button x:Name="simulationButton" Content="Simulation" Height="80" Click="simulationButton_Click"/>
+            <Button x:Name="serialCommsButton" Content="Serial Communications Test" Height="80" Click="serialCommsButton_Click"/>
+            <Button x:Name="middleSchoolButton" Content="5th - 8th Grade" Height="80" Click="middleSchoolButton_Click"/>
+            <Button x:Name="highSchoolButton" Content="9th - 12th Grade" Height="80" Click="highSchoolButton_Click"/>
         </StackPanel>
+        <Canvas x:Name="myCanvas" Canvas.ZIndex="1" HorizontalAlignment="Left" Height="560" Margin="245,2,0,-1" VerticalAlignment="Top" Width="626" DataContext="{StaticResource selectionInteractiveBrainViewSource}"/>
+
 
     </Grid>
 </Window>

@@ -7,12 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows;
 
 namespace LEDPracticeAppWPFV1._0._1
 {
     public partial class selectionInteractiveBrain : UserControl
     {
         string selectedBrainPart;
+        private static selectionInteractiveBrain _instance;
+        public static selectionInteractiveBrain Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new selectionInteractiveBrain();
+                return _instance;
+            }
+        }
         public selectionInteractiveBrain()
         {
             InitializeComponent();

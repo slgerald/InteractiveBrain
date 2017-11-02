@@ -24,12 +24,15 @@ namespace LEDPracticeAppWPFV1._0._1
         bool isConnected = false;
         String[] ports;
         static ConcurrentQueue<char> serialDataQueue;
+      
+
         public MainWindow()
         {
 
             InitializeComponent();
             getAvailableComPorts();
-            StackPanel1.Height = middleSchoolButton.Height;
+          
+
 
             try
             {
@@ -153,31 +156,42 @@ namespace LEDPracticeAppWPFV1._0._1
             }
         }
 
+        private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
+        {
+            //LEDPracticeAppWPFV1._0._1.selectionInteractiveBrain light =  new LEDPracticeAppWPFV1._0._1.selectionInteractiveBrain();
+            var light = new LEDPracticeAppWPFV1._0._1.selectionInteractiveBrain();
+            myCanvas.Controls.Add(light);
+            myCanvas.Dispatcher.BeginInvoke(
+         new light);
+        }
+
+
+        private void simulationButton_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void serialCommsButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         private void middleSchoolButton_Click(object sender, RoutedEventArgs e)
         {
-            StackPanel1.Height = middleSchoolButton.Height;
+
         }
 
         private void highSchoolButton_Click(object sender, RoutedEventArgs e)
         {
-            StackPanel1.Height = highSchoolButton.Height;
+
         }
 
-        private void simulationButton_Click(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            StackPanel1.Height = simulationButton.Height;
-           // StackPanel1.Top = simulationButton.Top;
-            selectionInteractiveBrain.BringToFront();
-        }
 
-        private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
-        {
-            StackPanel1.Height = interactiveBrainButton.Height;
-        }
-        private void serialTestButton_Click(object sender, RoutedEventArgs e)
-        {
-            StackPanel1.Height = serialTestButton.Height;
+            System.Windows.Data.CollectionViewSource selectionInteractiveBrainViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("selectionInteractiveBrainViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // selectionInteractiveBrainViewSource.Source = [generic data source]
         }
     }
 }
