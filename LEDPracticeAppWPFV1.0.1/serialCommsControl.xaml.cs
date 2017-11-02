@@ -27,6 +27,7 @@ namespace LEDPracticeAppWPFV1._0._1
         String[] ports;
         static ConcurrentQueue<char> serialDataQueue;
         private static serialCommsControl _instance;
+        string selectedPort;
         public static serialCommsControl Instance 
         {
             get
@@ -75,21 +76,27 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void connectButton_Click(object sender, RoutedEventArgs e)
         {
-            string selectedPort;
+            
 
-            try
+           if (ports == null || ports.Length == 0)
+         {
+             messageTextBox.Text = "Could not find any available Ports";
+           }
+            else
             {
-                isConnected = true;
-                selectedPort = comPortNumberComboBox.SelectedItem.ToString();
-                Console.WriteLine("Connected to " + selectedPort);
-                SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                SerialPort1.Open();
-                SerialPort1.Write("#STAR\n");
+                try
+                {
+                    isConnected = true;
+                    selectedPort = comPortNumberComboBox.SelectedItem.ToString();
+                    Console.WriteLine("Connected to " + selectedPort);
+                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
+                    SerialPort1.Open();
+                    SerialPort1.Write("#STAR\n");
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
-
-            if (isConnected) { messageTextBox.Text = "Connected"; }
-            else { messageTextBox.Text = "Not Connected"; }
+            if (isConnected) { messageTextBox.Text = "Connected" + selectedPort ; }
+           // else { messageTextBox.Text = "Not Connected"; }
         }
 
         private void offButton_Click(object sender, RoutedEventArgs e)
@@ -106,13 +113,19 @@ namespace LEDPracticeAppWPFV1._0._1
         private void disconnectButton_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("This is the disconnect button");
-            messageTextBox.Text = "Disconnected";
-            try
+            if (isConnected)
             {
-                isConnected = false;
-                SerialPort1.Close();
+                messageTextBox.Text = "Disconnected";
+                try
+                {
+                    isConnected = false;
+                    SerialPort1.Close();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            else { messageTextBox.Text = "Was not connected yet"; }
+           
         }
 
         private void messageTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -127,8 +140,13 @@ namespace LEDPracticeAppWPFV1._0._1
 
         void getAvailableComPorts()
         {
+            
             ports = SerialPort.GetPortNames();
+            
         }
+            
+
+        
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = sender as SerialPort;
@@ -169,7 +187,7 @@ namespace LEDPracticeAppWPFV1._0._1
             }
             catch (Exception ex)
             {
-                // handle ex here
+                Console.WriteLine(ex.Message);
             }
         }
 

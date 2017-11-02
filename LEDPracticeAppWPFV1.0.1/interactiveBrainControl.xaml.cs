@@ -47,12 +47,13 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void goButton_Click(object sender, RoutedEventArgs e)
         {
-            selectionMessageBox.Text = selectedBrainPart + "was chosen. Illuminate " + selectedBrainPart + "on Brain";
+            selectionMessageBox.Text = selectedBrainPart + " was chosen. Illuminate " + selectedBrainPart + " on Brain";
         }
 
         private void brainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedBrainPart = (string) brainPartsListBox.SelectedValue;
+          
+            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
         }
     }
 }

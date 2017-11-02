@@ -42,6 +42,7 @@ namespace LEDPracticeAppWPFV1._0._1
             {
                 myCanvas.Background = Brushes.White;
                 myCanvas.Children.Remove(serialCommsControl.Instance);
+                myCanvas.Children.Remove(middleSchoolControl1.Instance);
                 myCanvas.Children.Add(interactiveBrainControl.Instance);
             }
            else
@@ -60,6 +61,7 @@ namespace LEDPracticeAppWPFV1._0._1
             {
                 myCanvas.Background = Brushes.White;
                 myCanvas.Children.Remove(interactiveBrainControl.Instance);
+                myCanvas.Children.Remove(middleSchoolControl1.Instance);
                 myCanvas.Children.Add(serialCommsControl.Instance);
             }
             else
@@ -69,7 +71,15 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void middleSchoolButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!myCanvas.Children.Contains(middleSchoolControl1.Instance))
+            {
+                myCanvas.Background = Brushes.White;
+                myCanvas.Children.Remove(interactiveBrainControl.Instance);
+                myCanvas.Children.Remove(serialCommsControl.Instance);
+                myCanvas.Children.Add(middleSchoolControl1.Instance);
+            }
+            else
+                myCanvas.Children.Add(middleSchoolControl1.Instance);
         }
 
         private void highSchoolButton_Click(object sender, RoutedEventArgs e)
