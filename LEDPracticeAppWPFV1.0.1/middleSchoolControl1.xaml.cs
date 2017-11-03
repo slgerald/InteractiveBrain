@@ -36,7 +36,28 @@ namespace LEDPracticeAppWPFV1._0._1
         public middleSchoolControl1()
         {
             InitializeComponent();
-           
+         //   foreach (var img in middleSchoolControl1.OfType<Image>())
+         //   {
+                frontalLobeBox.MouseEnter += new MouseEventHandler(frontalLobeBox_MouseEnter);
+                frontalLobeBox.MouseLeave += new MouseEventHandler(frontalLobeBox_MouseLeave);
+          //  }
+
+        }
+
+        private void frontalLobeBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            factsMessageBox.Text = "This is your Frontal Lobe";
+
+        }
+
+        private void frontalLobeBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            factsMessageBox.Text = "";
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

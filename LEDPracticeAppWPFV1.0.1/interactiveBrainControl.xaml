@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
              mc:Ignorable="d" Height="500" Width="655">
     <Grid Margin="0,0,10,0">
-        <Button x:Name="goButton" Content="Go!" HorizontalAlignment="Left" Margin="350,360,0,0" VerticalAlignment="Top" Width="75" Click="goButton_Click"/>
-        <TextBox x:Name="selectionMessageBox" HorizontalAlignment="Left" Height="40" Margin="235,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" TextChanged="selectionMessageBox_TextChanged"/>
-        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="100" Margin="150,325,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="brainPartsListBox_SelectionChanged">
+        <Button x:Name="goButton" Content="Go!" HorizontalAlignment="Left" Margin="285,435,0,0" VerticalAlignment="Top" Width="75" Click="goButton_Click"/>
+        <TextBox x:Name="selectionMessageBox" HorizontalAlignment="Left" Height="40" Margin="175,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" TextChanged="selectionMessageBox_TextChanged"/>
+        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="200" Margin="105,195,0,0" VerticalAlignment="Top" Width="105" SelectionChanged="brainPartsListBox_SelectionChanged">
             <ListBoxItem x:Name="amygdala" Content="amygdala"/>
             <ListBoxItem x:Name="cerebellum" Content="cerebellum"/>
             <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" />
@@ -19,6 +19,18 @@
             <ListBoxItem x:Name="hippocampus" Content="Hippocampus"/>
             <ListBoxItem x:Name="parietalLobe" Content="Parietal Lobe"/>
             <ListBoxItem/>
+        </ListBox>
+        <ListBox x:Name="substancesListBox" HorizontalAlignment="Left" Height="200" Margin="285,195,0,0" VerticalAlignment="Top" Width="110" SelectionChanged="substancesListBox_SelectionChanged">
+            <ListBoxItem x:Name="stimulants" Content="Stimulants"/>
+            <ListBoxItem x:Name="depressants" Content="Depressants"/>
+            <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens"/>
+            <ListBoxItem x:Name="AntiPsychotics" Content="AntiPsychotics"/>
+        </ListBox>
+        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="200" Margin="465,195,0,0" VerticalAlignment="Top" Width="130" SelectionChanged="activitiesListBox_SelectionChanged">
+            <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition"/>
+            <ListBoxItem x:Name="healthAndExercise" Content="Health and Exercise"/>
+            <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity"/>
+            <ListBoxItem x:Name="socialEngagement" Content="Social Engagement"/>
         </ListBox>
 
     </Grid>

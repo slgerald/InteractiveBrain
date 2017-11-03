@@ -22,6 +22,11 @@ namespace LEDPracticeAppWPFV1._0._1
     {
         string selectedBrainPart;
         private static interactiveBrainControl _instance;
+        string selectedSubstances;
+        string selectedActivities;
+        bool brainPart;
+        bool activity;
+        bool substance;
         public static interactiveBrainControl Instance
 
         {
@@ -38,6 +43,9 @@ namespace LEDPracticeAppWPFV1._0._1
         public interactiveBrainControl()
         {
             InitializeComponent();
+            brainPart = false;
+            activity = false;
+            substance = false;
         }
 
         private void selectionMessageBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -47,13 +55,45 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void goButton_Click(object sender, RoutedEventArgs e)
         {
-            selectionMessageBox.Text = selectedBrainPart + " was chosen. Illuminate " + selectedBrainPart + " on Brain";
+            if (brainPart)
+            {
+                selectionMessageBox.Text = selectedBrainPart + " was chosen. Illuminate " + selectedBrainPart + " on Brain";
+                brainPart = false;
+            }
+            if (substance)
+            {
+                selectionMessageBox.Text = selectedSubstances + " was chosen. Illuminate " + selectedSubstances + " on Brain";
+                brainPart = false;
+            }
+            if(activity)
+            {
+                selectionMessageBox.Text = selectedActivities + " was chosen. Illuminate " + ActivitiesSubstances + " on Brain";
+                brainPart = false;
+            }
         }
 
         private void brainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
+            brainPart = true;
+            substance = false;
+            activity = false;
             selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
+        }
+
+        private void substancesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            substance = true;
+            brainPart = false;
+            activity = false;
+            selectedSubstances = ((ListBoxItem)substancesListBox.SelectedItem).Content.ToString();
+        }
+
+        private void activitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            activity = true;
+            substance = false;
+            brainPart = false;
+            selectedActivities = ((ListBoxItem)activitiesListBox.SelectedItem).Content.ToString();
         }
     }
 }

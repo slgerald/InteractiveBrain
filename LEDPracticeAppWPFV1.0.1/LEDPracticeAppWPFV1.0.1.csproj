@@ -138,5 +138,20 @@
   <ItemGroup>
     <Resource Include="Resources\temporalLobe.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fadedCerebellum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fadedFrontalLobe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fadedOccipitalLobe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fadedParietalLobe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fadedTemporalLobe.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
          x:Class="LEDPracticeAppWPFV1._0._1.MainWindow"
         mc:Ignorable="d"
-        Title="Poe Health Center " Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
+        Title="Poe Health Center " Height="500" Width="900" SizeToContent="WidthAndHeight">
     <Window.Resources>
 
     </Window.Resources>
 
-    <Grid x:Name="panel" Panel.ZIndex=" 0" Height=" Auto" Width="Auto" Margin="0,0,0,2"  >
+    <Grid x:Name="panel" Panel.ZIndex=" 0" Height="500" Width="900" Margin="0,0,0,2"  >
+      
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -24,7 +25,7 @@
             <Button x:Name="middleSchoolButton" Content="5th - 8th Grade" Height="80" Click="middleSchoolButton_Click"/>
             <Button x:Name="highSchoolButton" Content="9th - 12th Grade" Height="80" Click="highSchoolButton_Click"/>
         </StackPanel>
-        <Canvas x:Name="myCanvas" Panel.ZIndex="1" HorizontalAlignment="Left" Height="494" Margin="0,-2,0,0" VerticalAlignment="Top" Width="510" Grid.Column="1"/>
+        <Canvas x:Name="myCanvas" Panel.ZIndex="1" HorizontalAlignment="Left" Height="494" Margin="5,10,-5,-12" VerticalAlignment="Top" Width="510" Grid.Column="1" Grid.RowSpan="2"/>
 
 
 
