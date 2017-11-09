@@ -17,18 +17,19 @@ using System.Windows.Media.Animation;
 namespace LEDPracticeAppWPFV1._0._1
 {
     /// <summary>
-    /// Interaction logic for middleSchoolControl1.xaml
+    /// The middleSchoolUserControl is used to separate the top brain from the bottom brain and 
+    /// provide information about the functions, healthy behaviors and unhealthy behaviors
     /// </summary>
     public partial class middleSchoolControl1 : UserControl
     {
-        private static middleSchoolControl1 _instance;
-        bool functionsFlag;
+        private static middleSchoolControl1 _instance; //render userControl based on button pressed
+        //flags used to determine which radio button has been used 
+        bool functionsFlag; 
         bool healthyBehaviorsFlag;
         bool unhealthyBehaviorsFlag;
-        ScaleTransform myScaleTransform;
-        DoubleAnimation animation = new DoubleAnimation();
-        
-
+        DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
+       
+        //This method allows the UserControl to be rendered when called
         public static middleSchoolControl1 Instance
         {
             get
@@ -41,60 +42,50 @@ namespace LEDPracticeAppWPFV1._0._1
 
             }
         }
+        //This function initializes the userControl with EventHandlers and other characteristics
+        //EventHandlers routed to controls in xaml file
         public middleSchoolControl1()
         {
             InitializeComponent();
-            //   foreach (var img in middleSchoolControl1.OfType<Image>())
-            //   {
             functions.IsChecked = true;
-           frontalLobeBox.MouseEnter += new MouseEventHandler(frontalLobeBox_MouseEnter);
-            frontalLobeBox.MouseLeave += new MouseEventHandler(frontalLobeBox_MouseLeave);
+            frontalLobeBox.MouseDown += new MouseButtonEventHandler(frontalLobeBox_MouseDown);
+           // frontalLobeBox.MouseLeave += new MouseEventHandler(frontalLobeBox_MouseLeave);
             temporalLobeBox.MouseDown += new MouseButtonEventHandler(temporalLobeBox_MouseLeftClick);
             temporalLobeBox.MouseLeave += new MouseEventHandler(temporalLobeBox_MouseLeave);
-
-            //  }
-
+            gotItButton.Click += new RoutedEventHandler(gotItButton_Click);
         }
 
+        //This functions determines what is down when the temporal lobe is left mouse clicked
+        //Right now it begins a glowing animation based on make the image opaque to less opaque
         private void temporalLobeBox_MouseLeftClick(object sender, MouseEventArgs e)
         {
             Image img = (Image)sender;
             animation.From = 1.0;
-            animation.To = 0.0;
-            animation.Duration = new Duration(TimeSpan.FromSeconds(5));
+            animation.To = 0.5;
+            animation.Duration = new Duration(TimeSpan.FromSeconds(1));
             animation.AutoReverse = true;
             animation.RepeatBehavior = RepeatBehavior.Forever;
-            myScaleTransform = new ScaleTransform(1.5, 1.5);
-            img.RenderTransform = myScaleTransform;
             img.BeginAnimation(OpacityProperty,animation);
              
         }
+       //This functions determines what happens when the MouseLeaves the temporal Lobe
+       //Now it ends the glowing animation
         private void temporalLobeBox_MouseLeave(object sender, MouseEventArgs e){
-
             Image img = (Image)sender;
-          //  animation.RepeatBehavior = new RepeatBehavior(1.0);
-                img.BeginAnimation(OpacityProperty, null);
+            img.BeginAnimation(OpacityProperty, null);
         }
-
-
-
-        private void frontalLobeBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-           
-
+        //This functions determines what happens when the frontalLobe box is clicked once with any 
+        //mouse button
+        private void frontalLobeBox_MouseDown(object sender, MouseEventArgs e)
+        {  //This causes the other parts of the brain to disappear
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             cerebellumBox.Visibility = System.Windows.Visibility.Hidden;
             occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
-            // Create a transform to scale the size of the button.
-        //    oldCenterPoint = TranslatePoint(oldCenterPoint, frontalLobeBox);
-        //   centerPoint = TranslatePoint(centerPoint, centerReference);
-           // translateTransform.X = oldCenterPoint.X + centerPoint.X;
-          //  translateTransform.Y = oldCenterPoint.Y + centerPoint.Y;
-        //    frontalLobeBox.RenderTransform = myTranslateTransform;
+            gotItButton.Visibility = System.Windows.Visibility.Visible;
 
-            if (functionsFlag)
+            if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
             {
                 factsMessageBox.Text = "planning, reasoning, speech, voluntary movement " +
                     "(motor cortex is in the frontal lobe), problem solving, regulating " +
@@ -102,56 +93,29 @@ namespace LEDPracticeAppWPFV1._0._1
                     "us control our emotions)";
                
             }
+            //The healthyBehaviors Flag is used to ensure functions are listed when the facts message box appears
             if (healthyBehaviorsFlag)
             {
                 factsMessageBox.Text = "Reading, Problem-Solving games, choreography (like " +
                     "for ballet, Zumba), meditation";
             }
-
         }
-
-        private void frontalLobeBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-           
-            parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-            temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-            cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-            occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
-            // Create a transform to scale the size of the button.
-            ScaleTransform myScaleTransform = new ScaleTransform();
-
-            // Set the transform to triple the scale in the Y direction.
-            myScaleTransform.ScaleY = (1/1.75);
-            myScaleTransform.ScaleX = (1/1.75);
-
-            // Create a transform to rotate the button
-            TranslateTransform myTranslateTransform = new TranslateTransform();
-
-            // Set the rotation of the transform to 45 degrees.
-            myTranslateTransform.X = 40;
-            myTranslateTransform.Y = -90;
-            factsMessageBox.Text = "";
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+      
+        //This function sets flags to true and false
         private void functions_Checked(object sender, RoutedEventArgs e)
         {
             functionsFlag = true;
             healthyBehaviorsFlag = false;
             unhealthyBehaviorsFlag = false;
         }
-
+        //This function sets flags as true and false 
         private void healthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             healthyBehaviorsFlag = true;
             functionsFlag = false;
             unhealthyBehaviorsFlag = false;
         }
-
+        //This function set flags as true and false 
         private void unhealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             unhealthyBehaviorsFlag = true;
@@ -159,15 +123,24 @@ namespace LEDPracticeAppWPFV1._0._1
             healthyBehaviorsFlag = false;
         }
 
-        private void DoubleAnimation_Completed(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void gotItButton_Click(object sender, RoutedEventArgs e)
         {
-           
-          
+            Storyboard sb = (Storyboard)this.Resources["scaling"];
+            sb.Begin(this, true);
+            sb.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.Duration);
+            sb.AutoReverse = true;
+            parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
+            temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
+            cerebellumBox.Visibility = System.Windows.Visibility.Visible;
+            occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+            factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

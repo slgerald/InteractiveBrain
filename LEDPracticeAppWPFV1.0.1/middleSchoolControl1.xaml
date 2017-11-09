@@ -5,7 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
              mc:Ignorable="d" Height="500" Width="650">
+    <!--This is where the storyboards will be housed. scaling is used for zooming in and translating animation-->
+    <UserControl.Resources>
+        <Storyboard x:Key="scaling">
+                <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="0.9" To="1.5" Duration="0:0:2"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                        />
+                <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="0.9" To="1.5" Duration="0:0:2"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+                <DoubleAnimation Storyboard.TargetName="translateTransform"
+                                         Storyboard.TargetProperty="Y"
+                                         From="175" To="200" Duration="0:0:.5"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+                <DoubleAnimation Storyboard.TargetName="translateTransform"
+                                         Storyboard.TargetProperty="X"
+                                         From="190" To="145" Duration="0:0:.5"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            </Storyboard>
+    </UserControl.Resources>
     <Grid Margin="10" RenderTransformOrigin="0.5,0.5">
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="MouseDown" SourceName="frontalLobeBox">
+                <BeginStoryboard Storyboard="{StaticResource scaling}"> </BeginStoryboard>
+            </EventTrigger> 
+        </Grid.Triggers>
+
+
+
+        <Button x:Name ="gotItButton" Content="gotItButton" HorizontalAlignment="Left" Margin="515,385,0,0" VerticalAlignment="Top" Width="75" Click="gotItButton_Click">
+        </Button>
         <Image x:Name="temporalLobeBox" HorizontalAlignment="Left" Height="160" Margin="210,170,0,0" VerticalAlignment="Top" Width="220" Source="Resources/temporalLobe.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -18,7 +53,7 @@
                 </Style>
             </Image.Style>
         </Image>
-        <TextBox x:Name="factsMessageBox" Visibility ="Hidden" HorizontalAlignment="Left" Height="280" Margin="325,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TextChanged="TextBox_TextChanged">
+        <TextBox x:Name="factsMessageBox" Visibility ="Visible" HorizontalAlignment="Left" Height="280" Margin="325,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TextChanged="TextBox_TextChanged">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </TextBox.Background>
@@ -41,35 +76,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
             <Image.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter" SourceName="frontalLobeBox">
-                    <BeginStoryboard Name="scaling">
-                        <Storyboard >
-                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                         Storyboard.TargetProperty="ScaleX"
-                                         From="0.9" To="1.5" Duration="0:0:2"
-                                         AutoReverse="True" RepeatBehavior="1"
-                                        />
-                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                         Storyboard.TargetProperty="ScaleY"
-                                         From="0.9" To="1.5" Duration="0:0:2"
-                                         AutoReverse="True" RepeatBehavior="1"
-                                             />
-                            <DoubleAnimation Storyboard.TargetName="translateTransform"
-                                         Storyboard.TargetProperty="Y"
-                                         From="175" To="200" Duration="0:0:.5"
-                                         AutoReverse="False" RepeatBehavior="1x"
-                                             />
-                            <DoubleAnimation Storyboard.TargetName="translateTransform"
-                                         Storyboard.TargetProperty="X"
-                                         From="190" To="145" Duration="0:0:.5"
-                                         AutoReverse="False" RepeatBehavior="1x"
-                                             />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave" SourceName="frontalLobeBox">
-                    <StopStoryboard BeginStoryboardName="scaling"/>
-                </EventTrigger>
+               
             </Image.Triggers>
         </Image>
         <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="120" Margin="410,175,0,0" VerticalAlignment="Top" Width="80" Source="Resources/occipitalLobe.png">
