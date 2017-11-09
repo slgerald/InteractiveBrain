@@ -6,28 +6,26 @@
         xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
          x:Class="LEDPracticeAppWPFV1._0._1.MainWindow"
         mc:Ignorable="d"
-        Title="Poe Health Center " Height="500" Width="900" SizeToContent="WidthAndHeight">
+        Title="Poe Health Center " Height="547" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip">
     <Window.Resources>
 
     </Window.Resources>
 
-    <Grid x:Name="panel" Panel.ZIndex=" 0" Height="500" Width="900" Margin="0,0,0,2"  >
-      
+    <Grid x:Name="panel" Panel.ZIndex=" 0" Width="900" Margin="0,0,-8,-3"  >
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="246"/>
+            <ColumnDefinition Width="446"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel x:Name="StackPanel1" HorizontalAlignment="Left" Height="400" VerticalAlignment="Top" Width="240">
-            <Button x:Name="interactiveBrainButton" Content="Interactive Brain" Height="80" Click="interactiveBrainButton_Click"/>
-            <Button x:Name="simulationButton" Content="Simulation" Height="80" Click="simulationButton_Click"/>
-            <Button x:Name="serialCommsButton" Content="Serial Communications Test" Height="80" Click="serialCommsButton_Click"/>
-            <Button x:Name="middleSchoolButton" Content="5th - 8th Grade" Height="80" Click="middleSchoolButton_Click"/>
-            <Button x:Name="highSchoolButton" Content="9th - 12th Grade" Height="80" Click="highSchoolButton_Click"/>
-        </StackPanel>
-        <Canvas x:Name="myCanvas" Panel.ZIndex="1" HorizontalAlignment="Left" Height="494" Margin="5,10,-5,-12" VerticalAlignment="Top" Width="510" Grid.Column="1" Grid.RowSpan="2"/>
-
-
-
+        <Canvas Grid.Column ="0" x:Name="buttonPanel" HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="220">
+            <Button x:Name="interactiveBrainButton" Content="Interactive Brain" Height="80" Click="interactiveBrainButton_Click" Width="220"/>
+            <Button x:Name="simulationButton" Content="Simulation" Height="80" Click="simulationButton_Click" Canvas.Top="80" Width="220"/>
+            <Button x:Name="serialCommsButton" Content="Serial Communications Test" Height="80" Click="serialCommsButton_Click" Width="220" Canvas.Top="400"/>
+            <Button x:Name="middleSchoolButton" Content="5th - 8th Grade" Height="80" Click="middleSchoolButton_Click" Canvas.Top="160" Width="220"/>
+            <Button x:Name="highSchoolButton" Content="9th - 12th Grade" Height="80" Click="highSchoolButton_Click" Canvas.Top="240" Width="220"/>
+            <Button x:Name="editingButton" Content ="Settings" Height="80" Click="editingButton_Click" Canvas.Top="320" Width="220"/>
+            <Label x:Name="pageMarker" Content="" Background="#FFE41212" Visibility="Hidden" Height="80" Canvas.Top="400" Width="20"/>
+        </Canvas>
+        <Canvas x:Name="myCanvas" Panel.ZIndex="1" HorizontalAlignment="Left" Height="509" Margin="0,0,-196,0" VerticalAlignment="Top" Width="643" Grid.Column="1"/>
     </Grid>
 </Window>

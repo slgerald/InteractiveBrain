@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
-             mc:Ignorable="d" Height="500" Width="655">
-    <Grid Margin="10,10,10,0" RenderTransformOrigin="0.5,0.5">
-        <Image x:Name="temporalLobeBox" HorizontalAlignment="Left" Height="160" Margin="195,120,0,0" VerticalAlignment="Top" Width="220" Source="Resources/temporalLobe.png">
+             mc:Ignorable="d" Height="500" Width="650">
+    <Grid Margin="10" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="temporalLobeBox" HorizontalAlignment="Left" Height="160" Margin="210,170,0,0" VerticalAlignment="Top" Width="220" Source="Resources/temporalLobe.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
@@ -18,8 +18,12 @@
                 </Style>
             </Image.Style>
         </Image>
-        <TextBox x:Name="factsMessageBox" HorizontalAlignment="Left" Height="55" Margin="0,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="635" TextChanged="TextBox_TextChanged"/>
-        <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="175" Margin="120,65,0,0" VerticalAlignment="Top" Width="190" Source="Resources/frontalLobe.png">
+        <TextBox x:Name="factsMessageBox" Visibility ="Hidden" HorizontalAlignment="Left" Height="280" Margin="325,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TextChanged="TextBox_TextChanged">
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </TextBox.Background>
+        </TextBox>
+        <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="170" Margin="-60,-55,0,0" VerticalAlignment="Top" Width="185" Source="Resources/frontalLobe.png" RenderTransformOrigin="0.5,0.5">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
@@ -30,8 +34,45 @@
                     </Style.Triggers>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="scaleTransform" ScaleX="1.0" ScaleY="1.0"/>
+                    <TranslateTransform x:Name="translateTransform" Y=" 175" X="190"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter" SourceName="frontalLobeBox">
+                    <BeginStoryboard Name="scaling">
+                        <Storyboard >
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="0.9" To="1.5" Duration="0:0:2"
+                                         AutoReverse="True" RepeatBehavior="1"
+                                        />
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="0.9" To="1.5" Duration="0:0:2"
+                                         AutoReverse="True" RepeatBehavior="1"
+                                             />
+                            <DoubleAnimation Storyboard.TargetName="translateTransform"
+                                         Storyboard.TargetProperty="Y"
+                                         From="175" To="200" Duration="0:0:.5"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+                            <DoubleAnimation Storyboard.TargetName="translateTransform"
+                                         Storyboard.TargetProperty="X"
+                                         From="190" To="145" Duration="0:0:.5"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave" SourceName="frontalLobeBox">
+                    <StopStoryboard BeginStoryboardName="scaling"/>
+                </EventTrigger>
+            </Image.Triggers>
         </Image>
-        <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="120" Margin="400,120,0,0" VerticalAlignment="Top" Width="80" Source="Resources/occipitalLobe.png">
+        <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="120" Margin="410,175,0,0" VerticalAlignment="Top" Width="80" Source="Resources/occipitalLobe.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
@@ -43,7 +84,7 @@
                 </Style>
             </Image.Style>
         </Image>
-        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="140" Margin="235,65,0,0" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png">
+        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="140" Margin="245,120,0,0" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
@@ -55,7 +96,7 @@
                 </Style>
             </Image.Style>
         </Image>
-        <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="85" Margin="295,220,0,0" VerticalAlignment="Top" Width="135" Source="Resources/cerebellum.png">
+        <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="75" Margin="320,275,0,0" VerticalAlignment="Top" Width="120" Source="Resources/cerebellum.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/cerebellum.png"/>
@@ -67,5 +108,9 @@
                 </Style>
             </Image.Style>
         </Image>
+        <RadioButton x:Name="functions" Content="Functions" HorizontalAlignment="Left" Margin="80,20,0,0" VerticalAlignment="Top" Checked="functions_Checked"/>
+        <RadioButton x:Name="healthyBehaviors" Content="Healthy Behaviors" HorizontalAlignment="Left" Margin="265,20,0,0" VerticalAlignment="Top" Checked="healthyBehaviors_Checked"/>
+        <RadioButton x:Name="unhealthyBehaviors" Content="Unhealthy Behaviors" HorizontalAlignment="Left" Margin="435,20,0,0" VerticalAlignment="Top" Checked="unhealthyBehaviors_Checked"/>
+        <Ellipse x:Name="centerReference" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="145,240,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-1.75,-3.25"/>
     </Grid>
 </UserControl>

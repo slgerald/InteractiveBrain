@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Collections.Concurrent;
+using System.Windows.Media.Animation;
 
 namespace LEDPracticeAppWPFV1._0._1
 {
@@ -20,15 +21,13 @@ namespace LEDPracticeAppWPFV1._0._1
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-
-
+        double buttonTopValue;
         public MainWindow()
         {
 
             InitializeComponent();
 
-            interactiveBrainButton.Tag = new interactiveBrainControl(); 
+           
 
             
         }
@@ -37,31 +36,39 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
         {
+            pageMarker.Visibility = System.Windows.Visibility.Visible;
+            
+            buttonTopValue = Canvas.GetTop(interactiveBrainButton);
+            Canvas.SetTop(pageMarker, buttonTopValue);
 
-           if(!myCanvas.Children.Contains(interactiveBrainControl.Instance))
-            {
-                myCanvas.Background = Brushes.White;
-                myCanvas.Children.Remove(serialCommsControl.Instance);
-                myCanvas.Children.Remove(middleSchoolControl1.Instance);
-                myCanvas.Children.Add(interactiveBrainControl.Instance);
-            }
-           else
+              if(!myCanvas.Children.Contains(interactiveBrainControl.Instance))
+               {
+                
+                myCanvas.Children.Clear();
+                 myCanvas.Children.Add(interactiveBrainControl.Instance);
+             }
+             else
                 myCanvas.Children.Add(interactiveBrainControl.Instance);
         }
 
 
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            pageMarker.Visibility = System.Windows.Visibility.Visible;
+            buttonTopValue = Canvas.GetTop(simulationButton);
+            Canvas.SetTop(pageMarker, buttonTopValue);
+            myCanvas.Children.Clear();
         }
 
         private void serialCommsButton_Click(object sender, RoutedEventArgs e)
         {
+           // pageMarker.Visbile = true;
+            pageMarker.Visibility  = System.Windows.Visibility.Visible;
+            buttonTopValue = Canvas.GetTop(serialCommsButton);
+            Canvas.SetTop(pageMarker, buttonTopValue);
             if (!myCanvas.Children.Contains(serialCommsControl.Instance))
             {
-                myCanvas.Background = Brushes.White;
-                myCanvas.Children.Remove(interactiveBrainControl.Instance);
-                myCanvas.Children.Remove(middleSchoolControl1.Instance);
+                myCanvas.Children.Clear();
                 myCanvas.Children.Add(serialCommsControl.Instance);
             }
             else
@@ -71,11 +78,15 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void middleSchoolButton_Click(object sender, RoutedEventArgs e)
         {
+            pageMarker.Visibility = System.Windows.Visibility.Visible;
+           
+            buttonTopValue = Canvas.GetTop(middleSchoolButton);
+            Canvas.SetTop(pageMarker, buttonTopValue);
+            myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(middleSchoolControl1.Instance))
             {
                 myCanvas.Background = Brushes.White;
-                myCanvas.Children.Remove(interactiveBrainControl.Instance);
-                myCanvas.Children.Remove(serialCommsControl.Instance);
+                
                 myCanvas.Children.Add(middleSchoolControl1.Instance);
             }
             else
@@ -84,10 +95,22 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void highSchoolButton_Click(object sender, RoutedEventArgs e)
         {
+            pageMarker.Visibility = System.Windows.Visibility.Visible;
+            
+            buttonTopValue = Canvas.GetTop(highSchoolButton);
+            Canvas.SetTop(pageMarker, buttonTopValue);
+            myCanvas.Children.Clear();
 
         }
 
-     
+        private void editingButton_Click(object sender, RoutedEventArgs e)
+        {
+            pageMarker.Visibility = System.Windows.Visibility.Visible;
+           
+            buttonTopValue = Canvas.GetTop(editingButton);
+            Canvas.SetTop(pageMarker, buttonTopValue);
+            myCanvas.Children.Clear();
+        }
     }
 }
 
