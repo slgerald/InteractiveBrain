@@ -5,92 +5,67 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
              mc:Ignorable="d" Height="500" Width="655">
-    <Grid Margin="10,10,0,10" RenderTransformOrigin="0.5,0.5">
-        <Image Name="frontalLobeBox" HorizontalAlignment="Left" Height="265" Margin="75,50,0,0" VerticalAlignment="Top" Width="300"  RenderTransformOrigin="0.433,0.453">
+    <Grid Margin="10,10,10,0" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="temporalLobeBox" HorizontalAlignment="Left" Height="160" Margin="195,120,0,0" VerticalAlignment="Top" Width="220" Source="Resources/temporalLobe.png">
             <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="Resources/fadedFrontalLobe.png"/>
-                            <Setter Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
-        <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="245" Margin="345,260,0,-25" VerticalAlignment="Top" Width="250">
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property= "Source" Value="Resources/cerebellum.png"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="Resources/fadedCerebellum.png"/>
-                            <Setter Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
-        <Image x:Name="OccipitalLobeBox" HorizontalAlignment="Left" Height="210" Margin="405,95,0,0" VerticalAlignment="Top" Width="200">
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="Resources/fadedOccipitalLobe.png"/>
-                            <Setter Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
-        <Image x:Name="temporalLobeBox" HorizontalAlignment="Left" Height="195" Margin="210,180,0,0" VerticalAlignment="Top" Width="240" >
-            <Image.Style>
-                <Style TargetType="Image">
+                <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="Resources/fadedTemporalLobe.png"/>
-                            <Setter Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
-        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="200" Margin="270,50,0,0" VerticalAlignment="Top" Width="210" >
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="Resources/fadedParietalLobe.png"/>
-                            <Setter Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="Opacity" Value="0.5"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </Image.Style>
         </Image>
         <TextBox x:Name="factsMessageBox" HorizontalAlignment="Left" Height="55" Margin="0,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="635" TextChanged="TextBox_TextChanged"/>
+        <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="175" Margin="120,65,0,0" VerticalAlignment="Top" Width="190" Source="Resources/frontalLobe.png">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="120" Margin="400,120,0,0" VerticalAlignment="Top" Width="80" Source="Resources/occipitalLobe.png">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="140" Margin="235,65,0,0" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="85" Margin="295,220,0,0" VerticalAlignment="Top" Width="135" Source="Resources/cerebellum.png">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/cerebellum.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
     </Grid>
 </UserControl>

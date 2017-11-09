@@ -124,34 +124,39 @@
     <Resource Include="poecentericon_HCM_icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\frontalLobe.png" />
+    <Resource Include="Resources\amygdala.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\brainstem.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cerebellum.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\occipitalLobe.png" />
+    <Resource Include="Resources\cutoutLowerBrain.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\frontalLobe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fullLowerBrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fullTopBrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\hippocampus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\lowerbrain copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\occipitalLobe.png" />
     <Resource Include="Resources\parietalLobe.png" />
+    <Resource Include="Resources\pituitaryGland.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\temporalLobe.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\fadedCerebellum.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\fadedFrontalLobe.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\fadedOccipitalLobe.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\fadedParietalLobe.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\fadedTemporalLobe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

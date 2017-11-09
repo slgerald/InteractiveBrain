@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace LEDPracticeAppWPFV1._0._1
 {
@@ -21,6 +22,9 @@ namespace LEDPracticeAppWPFV1._0._1
     public partial class middleSchoolControl1 : UserControl
     {
         private static middleSchoolControl1 _instance;
+        ScaleTransform myScaleTransform;
+        
+        DoubleAnimation animation = new DoubleAnimation();
         public static middleSchoolControl1 Instance
         {
             get
@@ -36,13 +40,38 @@ namespace LEDPracticeAppWPFV1._0._1
         public middleSchoolControl1()
         {
             InitializeComponent();
-         //   foreach (var img in middleSchoolControl1.OfType<Image>())
-         //   {
-                frontalLobeBox.MouseEnter += new MouseEventHandler(frontalLobeBox_MouseEnter);
-                frontalLobeBox.MouseLeave += new MouseEventHandler(frontalLobeBox_MouseLeave);
-          //  }
+            //   foreach (var img in middleSchoolControl1.OfType<Image>())
+            //   {
+        //    frontalLobeBox.MouseEnter += new MouseEventHandler(frontalLobeBox_MouseEnter);
+         //   frontalLobeBox.MouseLeave += new MouseEventHandler(frontalLobeBox_MouseLeave);
+            temporalLobeBox.MouseDown += new MouseButtonEventHandler(temporalLobeBox_MouseLeftClick);
+            temporalLobeBox.MouseLeave += new MouseEventHandler(temporalLobeBox_MouseLeave);
+
+            //  }
 
         }
+
+        private void temporalLobeBox_MouseLeftClick(object sender, MouseEventArgs e)
+        {
+            Image img = (Image)sender;
+            animation.From = 1.0;
+            animation.To = 0.0;
+            animation.Duration = new Duration(TimeSpan.FromSeconds(5));
+            animation.AutoReverse = true;
+            animation.RepeatBehavior = RepeatBehavior.Forever;
+          //  myScaleTransform = new ScaleTransform(1.5, 1.5);
+          //  img.RenderTransform = myScaleTransform;
+            img.BeginAnimation(OpacityProperty,animation);
+             
+        }
+        private void temporalLobeBox_MouseLeave(object sender, MouseEventArgs e){
+
+            Image img = (Image)sender;
+          //  animation.RepeatBehavior = new RepeatBehavior(1.0);
+                img.BeginAnimation(OpacityProperty, null);
+        }
+
+
 
         private void frontalLobeBox_MouseEnter(object sender, MouseEventArgs e)
         {

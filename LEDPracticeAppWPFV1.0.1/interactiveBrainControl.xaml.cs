@@ -58,17 +58,19 @@ namespace LEDPracticeAppWPFV1._0._1
             if (brainPart)
             {
                 selectionMessageBox.Text = selectedBrainPart + " was chosen. Illuminate " + selectedBrainPart + " on Brain";
+                activitiesListBox.SelectedItem = false;
+                substancesListBox.SelectedItem = false;
                 brainPart = false;
             }
             if (substance)
             {
-                selectionMessageBox.Text = selectedSubstances + " was chosen. Illuminate " + selectedSubstances + " on Brain";
-                brainPart = false;
+                selectionMessageBox.Text = selectedSubstances + " was chosen. Illuminate where " + selectedSubstances + " affect the Brain";
+                substance = false;
             }
             if(activity)
             {
-                selectionMessageBox.Text = selectedActivities + " was chosen. Illuminate " + ActivitiesSubstances + " on Brain";
-                brainPart = false;
+                selectionMessageBox.Text = selectedActivities + " was chosen. Illuminate where " + selectedActivities + " affect Brain";
+                activity = false;
             }
         }
 
@@ -77,6 +79,10 @@ namespace LEDPracticeAppWPFV1._0._1
             brainPart = true;
             substance = false;
             activity = false;
+            activitiesListBox.SelectedItem = false;
+            substancesListBox.SelectedItem = false;
+            //   substancesListBox.SelectedIndex = -1;
+            //   activitiesListBox.SelectedIndex = -1;
             selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
         }
 
@@ -85,6 +91,10 @@ namespace LEDPracticeAppWPFV1._0._1
             substance = true;
             brainPart = false;
             activity = false;
+            brainPartsListBox.SelectedItem = false;
+            activitiesListBox.SelectedItem = false;
+            // brainPartsListBox.SelectedIndex = -1;
+            // activitiesListBox.SelectedIndex = -1;
             selectedSubstances = ((ListBoxItem)substancesListBox.SelectedItem).Content.ToString();
         }
 
@@ -93,6 +103,11 @@ namespace LEDPracticeAppWPFV1._0._1
             activity = true;
             substance = false;
             brainPart = false;
+            brainPartsListBox.SelectedItem = false;
+            substancesListBox.SelectedItem = false;
+
+            // substancesListBox.SelectedIndex = -1;
+            // activitiesListBox.SelectedIndex = -1;
             selectedActivities = ((ListBoxItem)activitiesListBox.SelectedItem).Content.ToString();
         }
     }
