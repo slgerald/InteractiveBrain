@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Threading;
 
 namespace LEDPracticeAppWPFV1._0._1
 {
@@ -28,7 +29,8 @@ namespace LEDPracticeAppWPFV1._0._1
         bool healthyBehaviorsFlag;
         bool unhealthyBehaviorsFlag;
         DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
-       
+        Storyboard sb;
+
         //This method allows the UserControl to be rendered when called
         public static middleSchoolControl1 Instance
         {
@@ -49,10 +51,16 @@ namespace LEDPracticeAppWPFV1._0._1
             InitializeComponent();
             functions.IsChecked = true;
             frontalLobeBox.MouseDown += new MouseButtonEventHandler(frontalLobeBox_MouseDown);
-           // frontalLobeBox.MouseLeave += new MouseEventHandler(frontalLobeBox_MouseLeave);
+           // gotItButton.Click -= new RoutedEventHandler(gotItButton_Click);
+            
+           
             temporalLobeBox.MouseDown += new MouseButtonEventHandler(temporalLobeBox_MouseLeftClick);
             temporalLobeBox.MouseLeave += new MouseEventHandler(temporalLobeBox_MouseLeave);
             gotItButton.Click += new RoutedEventHandler(gotItButton_Click);
+            sb = (Storyboard)this.Resources["scaling"];
+            Console.WriteLine(" ReverseFlag: " + sb.AutoReverse);
+
+           // reverseOn(); animation woul be already complete
         }
 
         //This functions determines what is down when the temporal lobe is left mouse clicked
@@ -78,27 +86,34 @@ namespace LEDPracticeAppWPFV1._0._1
         //mouse button
         private void frontalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {  //This causes the other parts of the brain to disappear
+                if(sb.AutoReverse)
+            { reverseOn(); }
+            else { reverseOff(); }
+                //without reverseOn every other time autoreversetrue
+                Console.WriteLine(" In frontalLobeBox MouseDown ReverseFlag: " + sb.AutoReverse);
+            
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
-            temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
-            cerebellumBox.Visibility = System.Windows.Visibility.Hidden;
+                temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
+                cerebellumBox.Visibility = System.Windows.Visibility.Hidden;
             occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
-            factsMessageBox.Visibility = System.Windows.Visibility.Visible;
             gotItButton.Visibility = System.Windows.Visibility.Visible;
-
+            
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
-            {
-                factsMessageBox.Text = "planning, reasoning, speech, voluntary movement " +
-                    "(motor cortex is in the frontal lobe), problem solving, regulating " +
-                    " emotions (the frontal lobe doesn’t initiate the emotion, but it helps " +
-                    "us control our emotions)";
-               
-            }
-            //The healthyBehaviors Flag is used to ensure functions are listed when the facts message box appears
-            if (healthyBehaviorsFlag)
-            {
-                factsMessageBox.Text = "Reading, Problem-Solving games, choreography (like " +
-                    "for ballet, Zumba), meditation";
-            }
+                {
+                    factsMessageBox.Text = "planning, reasoning, speech, voluntary movement " +
+                        "(motor cortex is in the frontal lobe), problem solving, regulating " +
+                        " emotions (the frontal lobe doesn’t initiate the emotion, but it helps " +
+                        "us control our emotions)";
+
+                }
+                //The healthyBehaviors Flag is used to ensure functions are listed when the facts message box appears
+                if (healthyBehaviorsFlag)
+                {
+                    factsMessageBox.Text = "Reading, Problem-Solving games, choreography (like " +
+                        "for ballet, Zumba), meditation";
+                }
+            
+
         }
       
         //This function sets flags to true and false
@@ -123,23 +138,53 @@ namespace LEDPracticeAppWPFV1._0._1
             healthyBehaviorsFlag = false;
         }
 
-      
+        private void gotItButton_Released(object sender, MouseEventArgs e)
+        {
+        
+
+        }
+        private void reverseOff()
+       {       
+                sb.AutoReverse = false;
+              
+              Console.WriteLine("In Reverse Off. ReverseFlag: "  + sb.AutoReverse);
+           
+      }
+       private void reverseOn()
+        {
+            
+          Console.WriteLine("In Reverse On. ReverseFlag: " + sb.AutoReverse);
+           sb.Begin(this, true);
+              sb.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.Duration);
+            sb.AutoReverse = true;
+            
+            Console.WriteLine("Leaving Reverse On. ReverseFlag: "  + sb.AutoReverse);
+        }
 
         private void gotItButton_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (Storyboard)this.Resources["scaling"];
-            sb.Begin(this, true);
-            sb.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.Duration);
-            sb.AutoReverse = true;
+            Console.WriteLine("Entering ButtonClick. ReverseFlag: "  + sb.AutoReverse);
+           // if (sb.AutoReverse)
+           // { reverseOn(); }
+          //  else { reverseOff(); }
+            if (sb.AutoReverse)
+            { reverseOn(); }
+            else { reverseOff(); }
             parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-            temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-            cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-            occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
-            factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
-        }
+                temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                cerebellumBox.Visibility = System.Windows.Visibility.Visible;
+                occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
+                gotItButton.Visibility = System.Windows.Visibility.Hidden;
+            if (!sb.AutoReverse)
+            { reverseOn(); }
+            else { reverseOff(); }
 
+            Console.WriteLine("Leaving ButtonClick . ReverseFlag: "  + sb.AutoReverse);
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+           
 
         }
     }

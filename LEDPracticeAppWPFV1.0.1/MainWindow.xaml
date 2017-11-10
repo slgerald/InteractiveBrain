@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
          x:Class="LEDPracticeAppWPFV1._0._1.MainWindow"
         mc:Ignorable="d"
-        Title="Poe Health Center " Height="600" Width="904" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip">
+        Title="Poe Health Center " Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
     <Window.Resources>
 
     </Window.Resources>
-    <DockPanel>
-        <Viewbox DockPanel.Dock ="Left" Canvas.Left="0" Canvas.Top="0"  Stretch="Fill">
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Left" >
+        <Viewbox DockPanel.Dock ="Left" Canvas.Left="0" Canvas.Top="0" MaxHeight="600" MaxWidth="900" Stretch="Fill" HorizontalAlignment ="Left" VerticalAlignment="Top">
             <Canvas Margin="0,0,0,0" Height=" 600" Width="900">
                 <Viewbox Height="600" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
                     <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="470" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5">
@@ -24,10 +24,10 @@
                         <Label x:Name="pageMarker" Content="" Background="#FFE41212" Visibility="Hidden" Height="80" Canvas.Top="400" Width="20"/>
                     </Canvas>
                 </Viewbox>
-                <Viewbox Stretch="Fill" Height="600" Canvas.Left="220" Width="680">
+                <Viewbox Stretch="Fill" Height="600" Canvas.Top="0" Canvas.Left="220" Width="680">
                     <Canvas x:Name="myCanvas" Panel.ZIndex="1" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="680" RenderTransformOrigin="0.5,0.5"/>
                 </Viewbox>
             </Canvas>
         </Viewbox>
-    </DockPanel>
+    </Grid>
 </Window>
