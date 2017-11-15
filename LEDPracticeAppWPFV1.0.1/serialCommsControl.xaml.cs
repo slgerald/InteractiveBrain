@@ -66,12 +66,20 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void onButton_Click(object sender, RoutedEventArgs e)
         {
+            int n = 0;
             Console.WriteLine("This is the on button");
-            try
-            {
-                SerialPort1.Write("1");
+            if (SerialPort1.IsOpen)
+            {   while(n<100)
+                {
+                    try
+                    {
+                        SerialPort1.WriteLine("111");
+                        messageTextBox.Text = "Sending a 1";
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    n++;
+                }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
         private void connectButton_Click(object sender, RoutedEventArgs e)

@@ -32,6 +32,9 @@
             <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity"/>
             <ListBoxItem x:Name="socialEngagement" Content="Social Engagement"/>
         </ListBox>
+        <Label Content="Brain Parts" HorizontalAlignment="Left" Margin="105,160,0,0" VerticalAlignment="Top" Height="30" Width="105"/>
+        <Label Content="Substances" HorizontalAlignment="Left" Margin="285,160,0,0" VerticalAlignment="Top" Height="30" Width="105"/>
+        <Label Content="Healthy Behavirs" HorizontalAlignment="Left" Margin="465,165,0,0" VerticalAlignment="Top" Height="30" Width="105"/>
 
     </Grid>
 </UserControl>

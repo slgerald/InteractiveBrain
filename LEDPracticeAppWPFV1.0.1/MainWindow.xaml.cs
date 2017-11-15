@@ -26,25 +26,19 @@ namespace LEDPracticeAppWPFV1._0._1
         {
 
             InitializeComponent();
-
-           
-
-            
+      
         }
-
-       
 
         private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
         {
             pageMarker.Visibility = System.Windows.Visibility.Visible;
-            
             buttonTopValue = Canvas.GetTop(interactiveBrainButton);
             Canvas.SetTop(pageMarker, buttonTopValue);
-
-              if(!myCanvas.Children.Contains(interactiveBrainControl.Instance))
+            myCanvas.Children.Clear();
+            if (!myCanvas.Children.Contains(interactiveBrainControl.Instance))
                {
                 
-                myCanvas.Children.Clear();
+                 
                  myCanvas.Children.Add(interactiveBrainControl.Instance);
              }
              else
@@ -62,13 +56,14 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void serialCommsButton_Click(object sender, RoutedEventArgs e)
         {
-           // pageMarker.Visbile = true;
+           
             pageMarker.Visibility  = System.Windows.Visibility.Visible;
             buttonTopValue = Canvas.GetTop(serialCommsButton);
             Canvas.SetTop(pageMarker, buttonTopValue);
+            myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(serialCommsControl.Instance))
             {
-                myCanvas.Children.Clear();
+                
                 myCanvas.Children.Add(serialCommsControl.Instance);
             }
             else
@@ -84,9 +79,7 @@ namespace LEDPracticeAppWPFV1._0._1
             Canvas.SetTop(pageMarker, buttonTopValue);
             myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(middleSchoolControl1.Instance))
-            {
-                myCanvas.Background = Brushes.White;
-                
+            { 
                 myCanvas.Children.Add(middleSchoolControl1.Instance);
             }
             else
