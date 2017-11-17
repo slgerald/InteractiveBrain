@@ -69,10 +69,10 @@ namespace LEDPracticeAppWPFV1._0._1
             sbOL = (Storyboard)this.Resources["zoomingOL"];
             sbC = (Storyboard)this.Resources["zoomingC"];
             storyboardFlag = 0;
-   
+
         }
 
-
+        
         /*
         private void imageToCenter(object sender,double objectX, double objectY)
         {
@@ -111,8 +111,8 @@ namespace LEDPracticeAppWPFV1._0._1
         {
             storyboardFlag = 1;
             //without reverseOn every other time autoreversetrue
-            if (sbFL.AutoReverse)
-                reverseOn(1);
+            if(sbFL.AutoReverse)
+            reverseOn(1);
             else { reverseOff(1); }
 
 
@@ -130,26 +130,30 @@ namespace LEDPracticeAppWPFV1._0._1
             double objectY = Canvas.GetTop(frontalLobeBox);
             Console.WriteLine("objectX" + objectX + " , objectY" + objectY);
             */
-           
-            if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
-            {
-                factsMessageBox.Text = "planning, reasoning, speech, voluntary movement " +
-                    "(motor cortex is in the frontal lobe), problem solving, regulating " +
-                    " emotions (the frontal lobe doesn’t initiate the emotion, but it helps " +
-                    "us control our emotions)";
 
-            }
-            //The healthyBehaviors Flag is used to ensure functions are listed when the facts message box appears
-            if (healthyBehaviorsFlag)
-            {
-                factsMessageBox.Text = "Reading, Problem-Solving games, choreography (like " +
-                    "for ballet, Zumba), meditation";
-            }
-            if (unhealthyBehaviorsFlag)
-            {
+            if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
+                {
+                    factsMessageBox.Text = "planning, reasoning, speech, voluntary movement " +
+                        "(motor cortex is in the frontal lobe), problem solving, regulating " +
+                        " emotions (the frontal lobe doesn’t initiate the emotion, but it helps " +
+                        "us control our emotions)";
+                healthyBehaviors.IsEnabled = false;
+                unhealthyBehaviors.IsEnabled = false;
+                }
+                //The healthyBehaviors Flag is used to ensure functions are listed when the facts message box appears
+                if (healthyBehaviorsFlag)
+                {
+                    factsMessageBox.Text = "Reading, Problem-Solving games, choreography (like " +
+                        "for ballet, Zumba), meditation";
+                functions.IsEnabled = false;
+                unhealthyBehaviors.IsEnabled = false;
+                }
+                if(unhealthyBehaviorsFlag)
+                 {
                 factsMessageBox.Text = "unhealthy frontal";
-            }
-    
+                healthyBehaviors.IsEnabled = false;
+                functions.IsEnabled = false;
+                    }
           //  Thread.Sleep(1000);
            // imageToCenter(sender, objectX, objectY);
         }
@@ -345,11 +349,11 @@ namespace LEDPracticeAppWPFV1._0._1
 
         private void gotItButton_Click(object sender, RoutedEventArgs e)
         {     //sbFL = 1, sbTL = 2, sbPL = 3, sbOL = 4, sbC = 5
-         
-                        if (sbFL.AutoReverse && storyboardFlag ==1)
+       
+                        if (sbFL.AutoReverse)
                         { reverseOn(1); }
                         else { reverseOff(1); }
-            if (sbTL.AutoReverse && storyboardFlag == 2)
+            if (sbTL.AutoReverse)
             { reverseOn(2); }
             else { reverseOff(2); }
             if (sbPL.AutoReverse && storyboardFlag == 3)
@@ -414,6 +418,26 @@ namespace LEDPracticeAppWPFV1._0._1
             if (!sbC.AutoReverse && storyboardFlag == 5)
             { reverseOn(5); }
             else { reverseOff(5); }
+
+            //re-enables the other radio buttons
+            if (functionsFlag)
+            {
+                healthyBehaviors.IsEnabled = true;
+                unhealthyBehaviors.IsEnabled = true;
+            }
+           
+            if (healthyBehaviorsFlag)
+            {
+                functions.IsEnabled = true;
+                unhealthyBehaviors.IsEnabled = true;
+            }
+            if (unhealthyBehaviorsFlag)
+            {
+                
+                healthyBehaviors.IsEnabled = true;
+                functions.IsEnabled = true;
+            }
+
 
             storyboardFlag = 0;
             

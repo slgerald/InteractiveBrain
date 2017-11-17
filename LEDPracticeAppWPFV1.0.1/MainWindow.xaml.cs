@@ -93,7 +93,12 @@ namespace LEDPracticeAppWPFV1._0._1
             buttonTopValue = Canvas.GetTop(highSchoolButton);
             Canvas.SetTop(pageMarker, buttonTopValue);
             myCanvas.Children.Clear();
-
+            if (!myCanvas.Children.Contains(highSchoolControl.Instance))
+            {
+                myCanvas.Children.Add(highSchoolControl.Instance);
+            }
+            else
+                myCanvas.Children.Add(highSchoolControl.Instance);
         }
 
         private void editingButton_Click(object sender, RoutedEventArgs e)

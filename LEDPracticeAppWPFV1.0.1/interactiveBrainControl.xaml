@@ -4,37 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
-             mc:Ignorable="d" Height="500" Width="655">
-    <Grid Margin="0,0,10,0">
-        <Button x:Name="goButton" Content="Go!" HorizontalAlignment="Left" Margin="285,435,0,0" VerticalAlignment="Top" Width="75" Click="goButton_Click"/>
-        <TextBox x:Name="selectionMessageBox" HorizontalAlignment="Left" Height="40" Margin="175,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" TextChanged="selectionMessageBox_TextChanged"/>
-        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="200" Margin="105,195,0,0" VerticalAlignment="Top" Width="105" SelectionChanged="brainPartsListBox_SelectionChanged">
-            <ListBoxItem x:Name="amygdala" Content="amygdala"/>
-            <ListBoxItem x:Name="cerebellum" Content="cerebellum"/>
-            <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" />
-            <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe"/>
-            <ListBoxItem x:Name="frontalLobe" Content="Frontal Lobe"/>
-            <ListBoxItem x:Name="brainstem" Content="Braintstem"/>
-            <ListBoxItem x:Name="occipitalLobe" Content="Occipital Lobe"/>
-            <ListBoxItem x:Name="hippocampus" Content="Hippocampus"/>
-            <ListBoxItem x:Name="parietalLobe" Content="Parietal Lobe"/>
+             mc:Ignorable="d" Height="610" Width="685">
+    <Grid Margin="2,6,0,0">
+        <Button x:Name="goButton" Content="Go!" HorizontalAlignment="Left" Margin="320,549,0,0" VerticalAlignment="Top" Width="75" Click="goButton_Click" FontSize="20"/>
+        <TextBox x:Name="selectionMessageBox" HorizontalAlignment="Left" Height="85" Margin="135,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="405" TextChanged="selectionMessageBox_TextChanged" FontSize="24" BorderBrush="{x:Null}" Opacity="0"/>
+        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="136" Margin="50,400,0,0" VerticalAlignment="Top" Width="172" SelectionChanged="brainPartsListBox_SelectionChanged">
+            <ListBoxItem x:Name="Amygdala" Content="amygdala" FontSize="20"/>
+            <ListBoxItem x:Name="Cerebellum" Content="cerebellum" FontSize="20"/>
+            <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" />
+            <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe" FontSize="20"/>
+            <ListBoxItem x:Name="frontalLobe" Content="Frontal Lobe" FontSize="20"/>
+            <ListBoxItem x:Name="brainstem" Content="Braintstem" FontSize="20"/>
+            <ListBoxItem x:Name="occipitalLobe" Content="Occipital Lobe" FontSize="20"/>
+            <ListBoxItem x:Name="hippocampus" Content="Hippocampus" FontSize="20"/>
+            <ListBoxItem x:Name="parietalLobe" Content="Parietal Lobe" FontSize="20"/>
             <ListBoxItem/>
         </ListBox>
-        <ListBox x:Name="substancesListBox" HorizontalAlignment="Left" Height="200" Margin="285,195,0,0" VerticalAlignment="Top" Width="110" SelectionChanged="substancesListBox_SelectionChanged">
-            <ListBoxItem x:Name="stimulants" Content="Stimulants"/>
-            <ListBoxItem x:Name="depressants" Content="Depressants"/>
-            <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens"/>
-            <ListBoxItem x:Name="AntiPsychotics" Content="AntiPsychotics"/>
+        <ListBox x:Name="substancesListBox" HorizontalAlignment="Left" Height="136" Margin="275,400,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="substancesListBox_SelectionChanged">
+            <ListBoxItem x:Name="stimulants" Content="Stimulants" FontSize="20"/>
+            <ListBoxItem x:Name="depressants" Content="Depressants" FontSize="20"/>
+            <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20"/>
         </ListBox>
-        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="200" Margin="465,195,0,0" VerticalAlignment="Top" Width="130" SelectionChanged="activitiesListBox_SelectionChanged">
-            <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition"/>
-            <ListBoxItem x:Name="healthAndExercise" Content="Health and Exercise"/>
-            <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity"/>
-            <ListBoxItem x:Name="socialEngagement" Content="Social Engagement"/>
+        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="140" Margin="465,400,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="activitiesListBox_SelectionChanged">
+            <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20"/>
+            <ListBoxItem x:Name="healthAndExercise" Content="Health and Exercise" FontSize="20"/>
+            <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20"/>
+            <ListBoxItem x:Name="socialEngagement" Content="Social Engagement" FontSize="20"/>
         </ListBox>
-        <Label Content="Brain Parts" HorizontalAlignment="Left" Margin="105,160,0,0" VerticalAlignment="Top" Height="30" Width="105"/>
-        <Label Content="Substances" HorizontalAlignment="Left" Margin="285,160,0,0" VerticalAlignment="Top" Height="30" Width="105"/>
-        <Label Content="Healthy Behavirs" HorizontalAlignment="Left" Margin="465,165,0,0" VerticalAlignment="Top" Height="30" Width="105"/>
+        <Label Content="Brain Parts" HorizontalAlignment="Left" Margin="80,355,0,0" VerticalAlignment="Top" Height="40" Width="125" FontSize="24"/>
+        <Label Content="Substances" HorizontalAlignment="Left" Margin="275,355,0,0" VerticalAlignment="Top" Height="40" Width="150" FontSize="24"/>
+        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" Margin="450,350,0,0" VerticalAlignment="Top" Height="45" Width="205" FontSize="24"/>
 
     </Grid>
 </UserControl>
