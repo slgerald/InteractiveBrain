@@ -75,6 +75,12 @@
     <Compile Include="serialCommsControl.xaml.cs">
       <DependentUpon>serialCommsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="settingsUserControl.xaml.cs">
+      <DependentUpon>settingsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="simulationUserControl.xaml.cs">
+      <DependentUpon>simulationUserControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="highSchoolControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +109,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="serialCommsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="settingsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="simulationUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cutoutLowerBrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\secondBrainstem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

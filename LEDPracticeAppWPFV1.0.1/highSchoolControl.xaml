@@ -8,20 +8,50 @@
              d:DesignHeight="600" d:DesignWidth="680" AllowDrop="True">
 
     <Canvas x:Name="myCanvas"  AllowDrop="True"  >
-        <RadioButton x:Name ="functions" Content="functions" Canvas.Left="75" Canvas.Top="40"/>
-        <RadioButton x:Name ="healthyBehaviors" ScrollViewer.VerticalScrollBarVisibility="Auto" Content="healthy behaviors" Canvas.Left="285" Canvas.Top="40"/>
-        <RadioButton x:Name ="unhealthyBehaviors" Content="unhealthy behaviors" Canvas.Left="440" Canvas.Top="43"/>
-        <TextBox x:Name="factsMessageBox" Height="90" Canvas.Left="180" TextWrapping="Wrap" Text="TextBox" Canvas.Top="470" Width="325"/>
-        <Button x:Name="gotItButton" Content="GOT IT!" Canvas.Left="575" Canvas.Top="520" Width="75"/>
-        <Canvas Height="407" Width="660" Canvas.Left="10" Canvas.Top="63">
-            <Image Height="387" Width="650" Canvas.Top="10">
+        <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="80" Canvas.Top="10" Checked="functions_Checked" FontSize="18"/>
+        <RadioButton x:Name ="healthyBehaviors"  Checked="healthyBehaviors_Checked" Content="Healthy Behaviors" Canvas.Left="240" Canvas.Top="10" FontSize="18"/>
+        <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="460" Checked="unhealthyBehaviors_Checked" Canvas.Top="10" FontSize="18"/>
+        <TextBox x:Name="factsMessageBox" Visibility="Hidden" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="90" Canvas.Left="190" TextWrapping="Wrap"  Canvas.Top="495" Width="325" FontSize="18" Background="{x:Null}"/>
+        <Button x:Name="gotItButton" Content="GOT IT!" Visibility="Hidden" Canvas.Left="570" Canvas.Top="505" Width="80" Click="gotItButton_Click" Height="35" Background="#FFF92D00" FontSize="18"/>
+        <Canvas Height="407" Width="660" Canvas.Left="10" Canvas.Top="33" x:Name="pictureCanvas">
+
+
+
+            <Image Height="387" Width="650" Canvas.Top="10" x:Name="cutoutLowerBrain">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/cutoutLowerBrain.png"/>
                     </Style>
                 </Image.Style>
             </Image>
-            <Image x:Name="brainstemBox" Height="165" Canvas.Left="265" Canvas.Top="232" Width="140" AllowDrop="True">
+
+
+
+            <Image x:Name="hippocampusBox" AllowDrop="True" Source ="Resources/hippocampus.png" Height="110" Canvas.Left="270" Canvas.Top="152" Width="115" RenderTransformOrigin="0.5,0.5" >
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+                <Image.RenderTransform>
+                    <ScaleTransform 
+            CenterX="0" CenterY="0"
+            ScaleX="{Binding Value, ElementName=pictureCanvasScaler}"
+
+            ScaleY="{Binding Value, ElementName=pictureCanvasScaler}"
+
+        />
+                </Image.RenderTransform>
+            </Image>
+
+
+
+            <Image x:Name="brainstemBox" Height="155" Canvas.Left="270" Canvas.Top="237" Width="135" AllowDrop="True">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/brainstem.png"/>
@@ -33,20 +63,18 @@
                     </Style>
 
                 </Image.Style>
+                <Image.RenderTransform>
+                    <ScaleTransform 
+            CenterX="0" CenterY="0"
+            ScaleX="{Binding Value, ElementName=pictureCanvasScaler}"
+
+            ScaleY="{Binding Value, ElementName=pictureCanvasScaler}"
+
+        />
+                </Image.RenderTransform>
             </Image>
-            <Image x:Name="hippocampusBox" AllowDrop="True"  Height="130" Canvas.Left="265" Canvas.Top="142" Width="120" RenderTransformOrigin="0.5,0.5" >
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property= "Source" Value="Resources/hippocampus.png"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="0.5"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-            <Image x:Name="pituitaryGlandBox" Height="45" Canvas.Left="230" Canvas.Top="232" Width="35" AllowDrop="True">
+
+            <Image x:Name="pituitaryGlandBox" Height="45" Canvas.Left="235" Canvas.Top="242" Width="35" AllowDrop="True">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/pituitaryGland.png"/>
@@ -58,8 +86,17 @@
                     </Style>
 
                 </Image.Style>
+                <Image.RenderTransform>
+                    <ScaleTransform 
+            CenterX="0" CenterY="0"
+            ScaleX="{Binding Value, ElementName=pictureCanvasScaler}"
+
+            ScaleY="{Binding Value, ElementName=pictureCanvasScaler}"
+
+        />
+                </Image.RenderTransform>
             </Image>
-            <Image x:Name="amygdalaBox" Height="25" Canvas.Left="290" Canvas.Top="207" Width="40" AllowDrop="True">
+            <Image x:Name="amygdalaBox" Height="30" Canvas.Left="290" Canvas.Top="222" Width="40" AllowDrop="True" RenderTransformOrigin="0.362,1.6">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/amygdala.png"/>
@@ -70,8 +107,20 @@
                         </Style.Triggers>
                     </Style>
                 </Image.Style>
+                <Image.RenderTransform>
+                    <ScaleTransform 
+            CenterX="0" CenterY="0"
+            ScaleX="{Binding Value, ElementName=pictureCanvasScaler}"
+
+            ScaleY="{Binding Value, ElementName=pictureCanvasScaler}"
+
+        />
+                </Image.RenderTransform>
             </Image>
         </Canvas>
+        <Slider x:Name="pictureCanvasScaler" Value="1" Minimum="0.5" Maximum="2.5"
+ Canvas.Left="250" Canvas.Top="465" Height="25" Width="200" Visibility="Hidden"/>
+        <TextBox x:Name="brainPartsLabel" IsReadOnly="True" Canvas.Left="20" TextWrapping="Wrap" Canvas.Top="505" Height="50" Width="140" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}"/>
     </Canvas>
 
 </UserControl>

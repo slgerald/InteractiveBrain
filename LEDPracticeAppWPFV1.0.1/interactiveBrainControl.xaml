@@ -5,35 +5,110 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
              mc:Ignorable="d" Height="610" Width="685">
-    <Grid Margin="2,6,0,0">
-        <Button x:Name="goButton" Content="Go!" HorizontalAlignment="Left" Margin="320,549,0,0" VerticalAlignment="Top" Width="75" Click="goButton_Click" FontSize="20"/>
-        <TextBox x:Name="selectionMessageBox" HorizontalAlignment="Left" Height="85" Margin="135,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="405" TextChanged="selectionMessageBox_TextChanged" FontSize="24" BorderBrush="{x:Null}" Opacity="0"/>
-        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="136" Margin="50,400,0,0" VerticalAlignment="Top" Width="172" SelectionChanged="brainPartsListBox_SelectionChanged">
-            <ListBoxItem x:Name="Amygdala" Content="amygdala" FontSize="20"/>
-            <ListBoxItem x:Name="Cerebellum" Content="cerebellum" FontSize="20"/>
+    <Canvas Margin="0,0,0,0">
+        <Image Height="210" Width="285" Canvas.Top="145" x:Name="secondBrainstemImage" Canvas.Left="50">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/secondBrainstem.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Button x:Name="goButton" Content="Go!" Background="#FFF92D00" HorizontalAlignment="Left" Margin="320,549,0,0" VerticalAlignment="Top" Width="75" Click="goButton_Click" FontSize="20"/>
+        <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" TextChanged="selectionMessageBox_TextChanged" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" />
+        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="172" SelectionChanged="brainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
+            <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="20" Selected="Amygdala_Selected" />
             <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" />
             <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe" FontSize="20"/>
             <ListBoxItem x:Name="frontalLobe" Content="Frontal Lobe" FontSize="20"/>
-            <ListBoxItem x:Name="brainstem" Content="Braintstem" FontSize="20"/>
+            <ListBoxItem x:Name="brainstem" Content="Brainstem" FontSize="20"/>
             <ListBoxItem x:Name="occipitalLobe" Content="Occipital Lobe" FontSize="20"/>
             <ListBoxItem x:Name="hippocampus" Content="Hippocampus" FontSize="20"/>
             <ListBoxItem x:Name="parietalLobe" Content="Parietal Lobe" FontSize="20"/>
-            <ListBoxItem/>
+            <ListBoxItem x:Name="cerebellum" Content="Cerebellum" FontSize="20"/>
         </ListBox>
-        <ListBox x:Name="substancesListBox" HorizontalAlignment="Left" Height="136" Margin="275,400,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="substancesListBox_SelectionChanged">
-            <ListBoxItem x:Name="stimulants" Content="Stimulants" FontSize="20"/>
+        <ListBox x:Name="substancesListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="150" SelectionChanged="substancesListBox_SelectionChanged" Canvas.Left="260" Canvas.Top="400">
+            <ListBoxItem x:Name="stimulants" Content="Stimulants" FontSize="20" Selected="stimulants_Selected"/>
             <ListBoxItem x:Name="depressants" Content="Depressants" FontSize="20"/>
             <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20"/>
         </ListBox>
         <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="140" Margin="465,400,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="activitiesListBox_SelectionChanged">
-            <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20"/>
-            <ListBoxItem x:Name="healthAndExercise" Content="Health and Exercise" FontSize="20"/>
-            <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20"/>
-            <ListBoxItem x:Name="socialEngagement" Content="Social Engagement" FontSize="20"/>
+            <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20" Selected="dietAndNutrition_Selected"/>
+            <ListBoxItem x:Name="healthAndExercise" Content="Health and Exercise" FontSize="20" Selected="healthAndExercise_Selected"/>
+            <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20" Selected="cognitiveActivity_Selected"/>
+            <ListBoxItem x:Name="socialEngagement" Content="Social Engagement" FontSize="20" Selected="socialEngagement_Selected"/>
         </ListBox>
         <Label Content="Brain Parts" HorizontalAlignment="Left" Margin="80,355,0,0" VerticalAlignment="Top" Height="40" Width="125" FontSize="24"/>
         <Label Content="Substances" HorizontalAlignment="Left" Margin="275,355,0,0" VerticalAlignment="Top" Height="40" Width="150" FontSize="24"/>
-        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" Margin="450,350,0,0" VerticalAlignment="Top" Height="45" Width="205" FontSize="24"/>
-
-    </Grid>
+        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="205" FontSize="24" Canvas.Left="465" Canvas.Top="355"/>
+        <Image Height="235" Width="250" Canvas.Top="85" x:Name="cutoutLowerBrain" Canvas.Left="405">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/cutoutLowerBrain.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="83" Width="60" Canvas.Top="162" x:Name="hippocampusImage" Canvas.Left="502">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/hippocampus.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="110" Width="47" Canvas.Top="207" x:Name="brainstemImage" Canvas.Left="513">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/brainstem.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="17" Width="28" Canvas.Top="210" x:Name="amygdalaImage" Canvas.Left="507">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/amygdala.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="20" Width="22" Canvas.Top="225" x:Name="pituitaryGlandImage" Canvas.Left="480">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/pituitaryGland.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="120" Width="160" Canvas.Top="105" x:Name="frontalLobeImage" Canvas.Left="45">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="85" Width="57" Canvas.Top="140" x:Name="occipitalLobeImage" Canvas.Left="253">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="115" Width="175" Canvas.Top="140" x:Name="temporalLobeImage" Canvas.Left="100">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="135" Width="135" Canvas.Top="80" x:Name="parietalLobeImage" Canvas.Left="140">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image Height="80" Width="97" Canvas.Top="200" x:Name="cerebellumImage" Canvas.Left="183">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/cerebellum.png"/>
+                </Style>
+            </Image.Style>
+        </Image>
+    </Canvas>
 </UserControl>

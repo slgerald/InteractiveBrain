@@ -109,6 +109,7 @@ namespace LEDPracticeAppWPFV1._0._1
         //mouse button
         private void frontalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
+            brainPartsLabel.Text= "Frontal Lobe";
             storyboardFlag = 1;
             //without reverseOn every other time autoreversetrue
             if(sbFL.AutoReverse)
@@ -124,7 +125,8 @@ namespace LEDPracticeAppWPFV1._0._1
             occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Visible;
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
-
+            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
+         
             /*This was used to get location of the frontalLobeBox
              * double objectX = Canvas.GetLeft(frontalLobeBox);
             double objectY = Canvas.GetTop(frontalLobeBox);
@@ -133,7 +135,7 @@ namespace LEDPracticeAppWPFV1._0._1
 
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
                 {
-                    factsMessageBox.Text = "planning, reasoning, speech, voluntary movement " +
+                    factsMessageBox.Text = "Functions of the Frontal Lobe include: planning, reasoning, speech, voluntary movement " +
                         "(motor cortex is in the frontal lobe), problem solving, regulating " +
                         " emotions (the frontal lobe doesn’t initiate the emotion, but it helps " +
                         "us control our emotions)";
@@ -143,24 +145,23 @@ namespace LEDPracticeAppWPFV1._0._1
                 //The healthyBehaviors Flag is used to ensure functions are listed when the facts message box appears
                 if (healthyBehaviorsFlag)
                 {
-                    factsMessageBox.Text = "Reading, Problem-Solving games, choreography (like " +
+                    factsMessageBox.Text = "Healthy Behaviors that affect the Frontal Lobe: Reading, Problem-Solving games, choreography (like " +
                         "for ballet, Zumba), meditation";
                 functions.IsEnabled = false;
                 unhealthyBehaviors.IsEnabled = false;
                 }
                 if(unhealthyBehaviorsFlag)
                  {
-                factsMessageBox.Text = "unhealthy frontal";
+                factsMessageBox.Text = "Unhealthy Behaviors that affect the Frontal Lobe";
                 healthyBehaviors.IsEnabled = false;
                 functions.IsEnabled = false;
                     }
-          //  Thread.Sleep(1000);
-           // imageToCenter(sender, objectX, objectY);
         }
         //This functions determines what is down when the temporal lobe is left mouse clicked
         //Right now it begins a glowing animation based on make the image opaque to less opaque
         private void temporalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
+            brainPartsLabel.Text = "Temporal Lobe";
             storyboardFlag = 2;
             // animation.From = 1.0;
             // animation.To = 0.5;
@@ -190,16 +191,27 @@ namespace LEDPracticeAppWPFV1._0._1
             occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Visible;
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
+            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
 
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
             {
-                factsMessageBox.Text = "Hearing, processing short term memory (hippocampus located in this lobe)";
+                factsMessageBox.Text = "The functions of the temporal Lobe include: Hearing, processing short term memory (hippocampus located in this lobe)";
+            }
+            if (healthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Healthy Behaviors that affect the Temporal Lobe";
+            }
+            if (unhealthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Unhealthy Behaviors that affect the Temporal Lobe";
             }
         }
 
 
         private void parietalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
+            brainPartsLabel.Text = "Parietal Lobe";
+
             storyboardFlag = 3;
             if (sbPL.AutoReverse)
             {
@@ -216,14 +228,24 @@ namespace LEDPracticeAppWPFV1._0._1
             occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Visible;
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
+            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
 
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
             {
-                factsMessageBox.Text = "sensory processing such as temperature, pressure, touch, & pain";
+                factsMessageBox.Text = "Functions of the Parietal Lobe include: sensory processing such as temperature, pressure, touch, & pain";
+            }
+            if (healthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Healthy Behaviors that affect the Parietal Lobe"; 
+            }
+            if (unhealthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Unhealthy Behaviors that affect the Parietal Lobe";
             }
         }
         private void occipitalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
+            brainPartsLabel.Text = "Occipital Lobe";
             storyboardFlag = 4;
             if (sbOL.AutoReverse)
             {
@@ -240,14 +262,25 @@ namespace LEDPracticeAppWPFV1._0._1
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Visible;
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
+            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
 
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
             {
-                factsMessageBox.Text = "visual processing";
+                factsMessageBox.Text = "Functions of the occipital Lobe include: visual processing";
+            }
+            if (healthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Healthy Behaviors that affect the Occipital Lobe";
+
+            }
+            if (unhealthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Unhealthy Behaviors that affect the Occipital Lobe";
             }
         }
         private void cerebellumBox_MouseDown(object sender, MouseEventArgs e)
         {
+            brainPartsLabel.Text = "Cerebellum Lobe";
             storyboardFlag = 5;
             if (sbC.AutoReverse)
             {
@@ -264,10 +297,20 @@ namespace LEDPracticeAppWPFV1._0._1
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Visible;
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
+            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
 
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
             {
-                factsMessageBox.Text = "visual processing";
+                factsMessageBox.Text = "Balance & coordination";
+
+            }
+            if (healthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Healthy Behaviors positively affecting the Cerebellum include Any type of physical exercise, activities that help improve attention span";
+            }
+            if (unhealthyBehaviorsFlag)
+            {
+                factsMessageBox.Text = "Unhealthy Beaviors that affect the Cerebellum";
             }
         }
 
@@ -356,13 +399,13 @@ namespace LEDPracticeAppWPFV1._0._1
             if (sbTL.AutoReverse)
             { reverseOn(2); }
             else { reverseOff(2); }
-            if (sbPL.AutoReverse && storyboardFlag == 3)
+            if (sbPL.AutoReverse )
             { reverseOn(3); }
             else { reverseOff(3); }
-            if (sbOL.AutoReverse && storyboardFlag == 4)
+            if (sbOL.AutoReverse )
             { reverseOn(4); }
             else { reverseOff(4); }
-            if (sbC.AutoReverse && storyboardFlag == 5)
+            if (sbC.AutoReverse )
             { reverseOn(5); }
             else { reverseOff(5); }
 
@@ -401,6 +444,7 @@ namespace LEDPracticeAppWPFV1._0._1
             }
             factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Hidden;
+            brainPartsLabel.Visibility = System.Windows.Visibility.Hidden;
 
 
             if (!sbFL.AutoReverse && storyboardFlag==1)
@@ -446,6 +490,11 @@ namespace LEDPracticeAppWPFV1._0._1
         {
            
 
+        }
+
+        private void brainPartsLabel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        
         }
     }
 }

@@ -9,45 +9,45 @@
         <Storyboard x:Key="zoomingFL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformFL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformFL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <!--The translate formula is -->
             <DoubleAnimation Storyboard.TargetName="translateTransformFL"
                                          Storyboard.TargetProperty="X"
-                                         From="0" To="103" 
+                                         From="0" To="123" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformFL"
                                          Storyboard.TargetProperty="Y"
-                                           From="0" To="62" 
+                                           From="0" To="50" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
         </Storyboard>
         <Storyboard x:Key="zoomingTL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformTL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformTL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformTL"
                                          Storyboard.TargetProperty="X"
-                                         From="0.0" To="65" 
+                                         From="0.0" To="30" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformTL"
                                          Storyboard.TargetProperty="Y"
-                                           From="0.0" To="-38" 
+                                           From="0.0" To="5" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
         </Storyboard>
@@ -55,12 +55,12 @@
         <Storyboard x:Key="zoomingOL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformOL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="2" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformOL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="2" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformOL"
@@ -70,51 +70,51 @@
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformOL"
                                          Storyboard.TargetProperty="Y"
-                                           From="0.0" To="-10" 
+                                           From="0.0" To="25" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
         </Storyboard>
         <Storyboard x:Key="zoomingPL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformPL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformPL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformPL"
                                          Storyboard.TargetProperty="X"
-                                         From="0.0" To="130" 
+                                         From="0.0" To="-70" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformPL"
                                          Storyboard.TargetProperty="Y"
-                                           From="0.0" To="60" 
+                                           From="0.0" To="70" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
         </Storyboard>
         <Storyboard x:Key="zoomingC">
             <DoubleAnimation Storyboard.TargetName="scaleTransformC"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="2" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformC"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.5" Duration="0:0:2"
+                                         From="1.0" To="2" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformC"
                                          Storyboard.TargetProperty="X"
-                                         From="190" To="340" 
+                                         From="0" To="-95" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformC"
                                          Storyboard.TargetProperty="Y"
-                                           From="175" To="250" 
+                                           From="0" To="-70" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
         </Storyboard>
@@ -143,13 +143,30 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Canvas.Triggers>
-        <Button x:Name ="gotItButton" Content="Got It!" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Click="gotItButton_Click" Canvas.Left="545" Canvas.Top="485" Background="#FFF92D00" FontSize="18" Height="40" RenderTransformOrigin="0.938,2.125" Visibility="Hidden">
-        </Button>
+        <Image x:Name="temporalLobeBox" Canvas.Left="210" Canvas.Top ="175" Height="160" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="scaleTransformTL" ScaleX="1.0" ScaleY="1.0"/>
+                    <TranslateTransform x:Name="translateTransformTL" Y="0" X="0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Button x:Name ="gotItButton" Content="Got It!" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Click="gotItButton_Click" Canvas.Left="545" Canvas.Top="485" Background="#FFF92D00" FontSize="18" Height="40" RenderTransformOrigin="0.938,2.125" Visibility="Hidden"/>
         <RadioButton x:Name="functions" Content="Functions" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="functions_Checked" Width="150" Height="25" FontSize="18" Canvas.Left="35" Canvas.Top="20"/>
         <RadioButton x:Name="healthyBehaviors" Content="Healthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="healthyBehaviors_Checked" Height="25" Width="165" Canvas.Left="230" Canvas.Top="20" FontSize="18"/>
         <RadioButton x:Name="unhealthyBehaviors" Content="Unhealthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="unhealthyBehaviors_Checked" Canvas.Left="410" Canvas.Top="20" Width="185" Height="25" FontSize="18"/>
-        <Ellipse x:Name="centerReference" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5" Canvas.Left="340" Canvas.Top="250"/>
-        <TextBox x:Name="factsMessageBox" ScrollViewer.VerticalScrollBarVisibility="Auto"  Visibility ="Hidden" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TextChanged="TextBox_TextChanged" FontSize="18" Canvas.Left="90" Canvas.Top="460">
+        <Ellipse x:Name="centerReference" Visibility="Hidden" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5" Canvas.Left="340" Canvas.Top="250"/>
+        <TextBox x:Name="factsMessageBox" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Visibility ="Hidden" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TextChanged="TextBox_TextChanged" FontSize="18" Canvas.Left="90" Canvas.Top="460">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </TextBox.Background>
@@ -172,24 +189,6 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="temporalLobeBox" Canvas.Left="210" Canvas.Top ="175" Height="160" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Opacity" Value="0.5"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform x:Name="scaleTransformTL" ScaleX="1.0" ScaleY="1.0"/>
-                    <TranslateTransform x:Name="translateTransformTL" Y="0" X="0"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
         <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="120" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.5,0.5" Source="Resources/occipitalLobe.png" Canvas.Left="410" Canvas.Top="175">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -208,7 +207,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="140" Margin="245,120,0,0" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png">
+        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="140" Margin="0" Canvas.Top ="125" Canvas.Left="245" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
@@ -244,6 +243,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
+        <TextBox Visibility="Hidden" x:Name="brainPartsLabel" IsReadOnly="True" Height="30" Canvas.Left="245" TextWrapping="Wrap" Canvas.Top="70" Width="130" TextChanged="brainPartsLabel_TextChanged" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
     </Canvas>
 </UserControl>

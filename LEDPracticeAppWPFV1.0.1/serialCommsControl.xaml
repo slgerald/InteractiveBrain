@@ -13,7 +13,7 @@
         <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="369,97,0,0" VerticalAlignment="Top" Width="101" Click="disconnectButton_Click" Height="48"/>
         <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" Margin="196,24,0,0" VerticalAlignment="Top" Width="274" Height="52"/>
         <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" Margin="85,15,581,0" VerticalAlignment="Top" Width="169" Height="61"/>
-        <TextBox x:Name="messageTextBox" HorizontalAlignment="Left" Height="203" Margin="39,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
+        <TextBox x:Name="messageTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="203" Margin="39,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
 
     </Grid>
 </UserControl>

@@ -52,6 +52,13 @@ namespace LEDPracticeAppWPFV1._0._1
             buttonTopValue = Canvas.GetTop(simulationButton);
             Canvas.SetTop(pageMarker, buttonTopValue);
             myCanvas.Children.Clear();
+            if (!myCanvas.Children.Contains(simulationUserControl.Instance))
+            {
+
+                myCanvas.Children.Add(simulationUserControl.Instance);
+            }
+            else
+                myCanvas.Children.Add(simulationUserControl.Instance);
         }
 
         private void serialCommsButton_Click(object sender, RoutedEventArgs e)
@@ -108,6 +115,12 @@ namespace LEDPracticeAppWPFV1._0._1
             buttonTopValue = Canvas.GetTop(editingButton);
             Canvas.SetTop(pageMarker, buttonTopValue);
             myCanvas.Children.Clear();
+            if (!myCanvas.Children.Contains(settingsUserControl.Instance))
+            {
+                myCanvas.Children.Add(settingsUserControl.Instance);
+            }
+            else
+                myCanvas.Children.Add(settingsUserControl.Instance);
         }
     }
 }
