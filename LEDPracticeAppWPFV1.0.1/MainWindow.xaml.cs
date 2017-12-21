@@ -14,7 +14,8 @@ using System.IO.Ports;
 using System.Collections.Concurrent;
 using System.Windows.Media.Animation;
 
-namespace LEDPracticeAppWPFV1._0._1
+namespace InteractiveBrain
+
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

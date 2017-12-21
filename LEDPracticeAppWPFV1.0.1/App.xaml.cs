@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Windows;
 
-namespace LEDPracticeAppWPFV1._0._1
+namespace InteractiveBrain
 {
     /// <summary>
     /// Interaction logic for App.xaml

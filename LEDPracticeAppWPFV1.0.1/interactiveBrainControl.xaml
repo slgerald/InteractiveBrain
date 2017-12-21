@@ -1,11 +1,29 @@
-﻿<UserControl x:Class="LEDPracticeAppWPFV1._0._1.interactiveBrainControl"
+﻿<UserControl x:Class="InteractiveBrain.interactiveBrainControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
-             mc:Ignorable="d" Height="610" Width="685">
+             xmlns:local="clr-namespace:InteractiveBrain"
+             mc:Ignorable="d" Height="600" Width="680">
+
     <Canvas Margin="0,0,0,0">
+        <Popup PlacementTarget="{Binding ElementName=selectionMessageBox}" x:Name="examplesPopup" >
+            <Border BorderBrush="Black" 
+                Background="#FFF92D00"
+                BorderThickness="2" Width="150" Height="155" Canvas.Top="5">
+
+                <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Margin="-2,-2,-7,0" Width="155">
+                    <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Height="40" Canvas.Left="15" Canvas.Top="40"/>
+                    <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" VerticalAlignment="Top" Width="123" Height="30" Canvas.Left="15" Canvas.Top="10"/>
+                    <!-- <TextBlock x:Name ="titleTextBlock" FontSize="18" Text="" HorizontalAlignment="Center" Height="26" Width="150" Canvas.Left="62" Canvas.Top="10"/> 
+                    <TextBox x:Name ="listedExamples" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="62" Canvas.Top="63" Height="130" Width="150"/> -->
+                    <Button Content="Close" Click="ClosePopupClicked" HorizontalAlignment="Center" Height="27" Width="118" Canvas.Left="15" Canvas.Top="113"/>
+
+                </Canvas>
+            </Border>
+        </Popup>
+
+
         <Image Height="210" Width="285" Canvas.Top="145" x:Name="secondBrainstemImage" Canvas.Left="50">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -13,31 +31,32 @@
                 </Style>
             </Image.Style>
         </Image>
-        <Button x:Name="goButton" Content="Go!" Background="#FFF92D00" HorizontalAlignment="Left" Margin="320,549,0,0" VerticalAlignment="Top" Width="75" Click="goButton_Click" FontSize="20"/>
+        <Button x:Name="goButton" Content="Go!" Background="#FFF92D00" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="goButton_Click" FontSize="20" Canvas.Left="465" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129"/>
         <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" TextChanged="selectionMessageBox_TextChanged" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" />
-        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="172" SelectionChanged="brainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
+        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="172" SelectionChanged="brainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
             <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="20" Selected="Amygdala_Selected" />
-            <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" />
-            <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe" FontSize="20"/>
-            <ListBoxItem x:Name="frontalLobe" Content="Frontal Lobe" FontSize="20"/>
-            <ListBoxItem x:Name="brainstem" Content="Brainstem" FontSize="20"/>
-            <ListBoxItem x:Name="occipitalLobe" Content="Occipital Lobe" FontSize="20"/>
-            <ListBoxItem x:Name="hippocampus" Content="Hippocampus" FontSize="20"/>
-            <ListBoxItem x:Name="parietalLobe" Content="Parietal Lobe" FontSize="20"/>
-            <ListBoxItem x:Name="cerebellum" Content="Cerebellum" FontSize="20"/>
+            <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" Selected="pituitaryGland_Selected" />
+            <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe" FontSize="20"   Selected="temporalLobe_Selected"/>
+            <ListBoxItem x:Name="frontalLobe" Content="Frontal Lobe" FontSize="20" Selected="frontalLobe_Selected"/>
+            <ListBoxItem x:Name="brainstem" Content="Brainstem" FontSize="20" Selected="brainstem_Selected"/>
+            <ListBoxItem x:Name="occipitalLobe" Content="Occipital Lobe" FontSize="20" Selected="occipitalLobe_Selected"/>
+            <ListBoxItem x:Name="hippocampus" Content="Hippocampus" FontSize="20" Selected="hippocampus_Selected"/>
+            <ListBoxItem x:Name="parietalLobe" Content="Parietal Lobe" FontSize="20" Selected="parietalLobe_Selected"/>
+            <ListBoxItem x:Name="cerebellum" Content="Cerebellum" FontSize="20" Selected="cerebellum_Selected"/>
         </ListBox>
         <ListBox x:Name="substancesListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="150" SelectionChanged="substancesListBox_SelectionChanged" Canvas.Left="260" Canvas.Top="400">
             <ListBoxItem x:Name="stimulants" Content="Stimulants" FontSize="20" Selected="stimulants_Selected"/>
-            <ListBoxItem x:Name="depressants" Content="Depressants" FontSize="20"/>
-            <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20"/>
+            <ListBoxItem x:Name="depressants" Content="Depressants" FontSize="20" Selected="depressants_Selected"/>
+            <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20" Selected="hallucinogens_Selected"/>
+            <ListBoxItem x:Name="opioids" Content="Opioids" Selected="opioids_Selected" FontSize="20"/>
         </ListBox>
-        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="140" Margin="465,400,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="activitiesListBox_SelectionChanged">
+        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="activitiesListBox_SelectionChanged" Canvas.Left="465" Canvas.Top="400">
             <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20" Selected="dietAndNutrition_Selected"/>
             <ListBoxItem x:Name="healthAndExercise" Content="Health and Exercise" FontSize="20" Selected="healthAndExercise_Selected"/>
             <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20" Selected="cognitiveActivity_Selected"/>
             <ListBoxItem x:Name="socialEngagement" Content="Social Engagement" FontSize="20" Selected="socialEngagement_Selected"/>
         </ListBox>
-        <Label Content="Brain Parts" HorizontalAlignment="Left" Margin="80,355,0,0" VerticalAlignment="Top" Height="40" Width="125" FontSize="24"/>
+        <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="50" Canvas.Top="355"/>
         <Label Content="Substances" HorizontalAlignment="Left" Margin="275,355,0,0" VerticalAlignment="Top" Height="40" Width="150" FontSize="24"/>
         <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="205" FontSize="24" Canvas.Left="465" Canvas.Top="355"/>
         <Image Height="235" Width="250" Canvas.Top="85" x:Name="cutoutLowerBrain" Canvas.Left="405">
@@ -110,5 +129,21 @@
                 </Style>
             </Image.Style>
         </Image>
+        <Button x:Name="examplesButton" Content="Click for Examples of" Background="#FFF92D00" Canvas.Left="33" Visibility="Hidden"  Canvas.Top="559" Width="302" Height="31" FontSize="18" Click="examplesButton_Click"/>
+        <ToggleButton x:Name="toggleButton" Canvas.Left="550" Canvas.Top="559" FontSize="18" Height="31" Width="105" IsChecked="False" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" ToolTip="Use to connect to Interactive Brain" FontWeight="Bold" Foreground="#FF074D07">
+            <ToggleButton.Style>
+                <Style TargetType="{x:Type ToggleButton}">
+                    <Setter Property="Content" Value="Connect"></Setter>
+                    <Setter Property="Foreground" Value="Green"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content" Value="Disconnect"></Setter>
+                            <Setter Property="Foreground" Value="Red"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
     </Canvas>
+
 </UserControl>

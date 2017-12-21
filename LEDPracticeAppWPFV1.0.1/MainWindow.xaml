@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LEDPracticeAppWPFV1._0._1"
-         x:Class="LEDPracticeAppWPFV1._0._1.MainWindow"
+        xmlns:local="clr-namespace:InteractiveBrain"
+         x:Class="InteractiveBrain.MainWindow"
         mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
         Title="Poe Health Center " Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">

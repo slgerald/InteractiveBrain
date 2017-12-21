@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{465C5823-9BE7-471C-97C9-88D8789159A6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LEDPracticeAppWPFV1._0._1</RootNamespace>
-    <AssemblyName>LEDPracticeAppWPFV1.0.1</AssemblyName>
+    <RootNamespace>InteractiveBrain</RootNamespace>
+    <AssemblyName>InteractiveBrain</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -135,6 +135,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\LEDPracticeControlLibrary1.UserControl1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -177,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\secondBrainstem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\BluetoothManager.rd.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

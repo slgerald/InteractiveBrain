@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Threading;
 
-namespace LEDPracticeAppWPFV1._0._1
+namespace InteractiveBrain
 {
     /// <summary>
     /// The middleSchoolUserControl is used to separate the top brain from the bottom brain and 
@@ -25,19 +25,20 @@ namespace LEDPracticeAppWPFV1._0._1
     {
         private static middleSchoolControl1 _instance; //render userControl based on button pressed
         //flags used to determine which radio button has been used 
-        bool functionsFlag; 
-        bool healthyBehaviorsFlag;
-        bool unhealthyBehaviorsFlag;
+        bool functionsFlag; //The functions flag used to ensure functions are listed in the facts message box
+        bool healthyBehaviorsFlag; //The healthyBehaviorsFlag is used to ensure healthy behaviors are listed in the facts message box
+        bool unhealthyBehaviorsFlag; //The unhealthybehaviorsflag is used to ensure unhealthy behaviors are listed in the facts message box
         DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
-        Storyboard sbFL;
-        Storyboard sbTL;
-        Storyboard sbPL;
-        Storyboard sbOL;
-        Storyboard sbC;
+        Storyboard sbFL; //Storyboard for the frontal lobe
+        Storyboard sbTL; //Storyboard for the temporal lobe
+        Storyboard sbPL; // storyboard for the parietal lobe
+        Storyboard sbOL; //storyboard for the occipital lobe 
+        Storyboard sbC;  //storyboard for the cerebellum
+        //1-5 are used to determine which storyboard should be affected by the action
         //sbFL = 1, sbTL = 2, sbPL = 3, sbOL = 4, sbC = 5
         int storyboardFlag;
 
-        //This method allows the UserControl to be rendered when called
+        //This method allows the middle school UserControl to be rendered when called
         public static middleSchoolControl1 Instance
         {
             get
@@ -46,12 +47,15 @@ namespace LEDPracticeAppWPFV1._0._1
                 {
                     _instance = new middleSchoolControl1();
                 }
+                _instance = new middleSchoolControl1();
                 return _instance;
 
             }
         }
+        
         //This function initializes the userControl with EventHandlers and other characteristics
         //EventHandlers routed to controls in xaml file
+        //Bind animations for brain parts to instatiated storyboards in the xaml file 
         public middleSchoolControl1()
         {
             InitializeComponent();
@@ -61,15 +65,13 @@ namespace LEDPracticeAppWPFV1._0._1
             parietalLobeBox.MouseDown += new MouseButtonEventHandler(parietalLobeBox_MouseDown);
             occipitalLobeBox.MouseDown += new MouseButtonEventHandler(occipitalLobeBox_MouseDown);
             cerebellumBox.MouseDown += new MouseButtonEventHandler(cerebellumBox_MouseDown);
-           // temporalLobeBox.MouseLeave += new MouseEventHandler(temporalLobeBox_MouseLeave);
             gotItButton.Click += new RoutedEventHandler(gotItButton_Click);
             sbFL = (Storyboard)this.Resources["zoomingFL"];
             sbTL = (Storyboard)this.Resources["zoomingTL"];
             sbPL = (Storyboard)this.Resources["zoomingPL"];
             sbOL = (Storyboard)this.Resources["zoomingOL"];
             sbC = (Storyboard)this.Resources["zoomingC"];
-            storyboardFlag = 0;
-
+            storyboardFlag = 0; // Initiates storyboard flag at zero
         }
 
         
@@ -111,12 +113,10 @@ namespace LEDPracticeAppWPFV1._0._1
         {
             brainPartsLabel.Text= "Frontal Lobe";
             storyboardFlag = 1;
-            //without reverseOn every other time autoreversetrue
+            //without reverseOn every other time autoreverse = true
             if(sbFL.AutoReverse)
             reverseOn(1);
             else { reverseOff(1); }
-
-
 
             //Hide other parts and make facts box and go button visible
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
@@ -133,7 +133,7 @@ namespace LEDPracticeAppWPFV1._0._1
             Console.WriteLine("objectX" + objectX + " , objectY" + objectY);
             */
 
-            if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
+                if (functionsFlag)
                 {
                     factsMessageBox.Text = "Functions of the Frontal Lobe include: planning, reasoning, speech, voluntary movement " +
                         "(motor cortex is in the frontal lobe), problem solving, regulating " +
@@ -142,7 +142,6 @@ namespace LEDPracticeAppWPFV1._0._1
                 healthyBehaviors.IsEnabled = false;
                 unhealthyBehaviors.IsEnabled = false;
                 }
-                //The healthyBehaviors Flag is used to ensure functions are listed when the facts message box appears
                 if (healthyBehaviorsFlag)
                 {
                     factsMessageBox.Text = "Healthy Behaviors that affect the Frontal Lobe: Reading, Problem-Solving games, choreography (like " +
@@ -157,6 +156,7 @@ namespace LEDPracticeAppWPFV1._0._1
                 functions.IsEnabled = false;
                     }
         }
+
         //This functions determines what is down when the temporal lobe is left mouse clicked
         //Right now it begins a glowing animation based on make the image opaque to less opaque
         private void temporalLobeBox_MouseDown(object sender, MouseEventArgs e)
@@ -183,7 +183,6 @@ namespace LEDPracticeAppWPFV1._0._1
             {
                 reverseOff(2);
             }
-
             //Hide other parts and make facts box and go button visible
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
             frontalLobeBox.Visibility = System.Windows.Visibility.Hidden;
@@ -193,9 +192,9 @@ namespace LEDPracticeAppWPFV1._0._1
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
             brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
 
-            if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
+            if (functionsFlag)
             {
-                factsMessageBox.Text = "The functions of the temporal Lobe include: Hearing, processing short term memory (hippocampus located in this lobe)";
+                factsMessageBox.Text = "Functions of the Temporal Lobe include: Hearing, processing short term memory (hippocampus located in this lobe)";
             }
             if (healthyBehaviorsFlag)
             {
@@ -230,7 +229,7 @@ namespace LEDPracticeAppWPFV1._0._1
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
             brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
 
-            if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
+            if (functionsFlag)
             {
                 factsMessageBox.Text = "Functions of the Parietal Lobe include: sensory processing such as temperature, pressure, touch, & pain";
             }
@@ -266,7 +265,7 @@ namespace LEDPracticeAppWPFV1._0._1
 
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
             {
-                factsMessageBox.Text = "Functions of the occipital Lobe include: visual processing";
+                factsMessageBox.Text = "Functions of the Occipital Lobe include: visual processing";
             }
             if (healthyBehaviorsFlag)
             {
@@ -301,34 +300,39 @@ namespace LEDPracticeAppWPFV1._0._1
 
             if (functionsFlag)//The functions Flag is used to ensure functions are listed when the facts message box appears
             {
-                factsMessageBox.Text = "Balance & coordination";
+                factsMessageBox.Text = "Functions of the Cerebellum include: Balance & coordination";
 
             }
             if (healthyBehaviorsFlag)
             {
-                factsMessageBox.Text = "Healthy Behaviors positively affecting the Cerebellum include Any type of physical exercise, activities that help improve attention span";
+                factsMessageBox.Text = "Healthy Behaviors that affect the Cerebellum include Any type of physical exercise, activities that help improve attention span";
             }
             if (unhealthyBehaviorsFlag)
             {
                 factsMessageBox.Text = "Unhealthy Beaviors that affect the Cerebellum";
             }
         }
-
-        //This function sets flags to true and false
+        //When functions radio button is chosen
+        //This function sets functions flag to 
+        //true and healthyBehaviors and unhealthybehaviors to false
         private void functions_Checked(object sender, RoutedEventArgs e)
         {
             functionsFlag = true;
             healthyBehaviorsFlag = false;
             unhealthyBehaviorsFlag = false;
         }
-        //This function sets flags as true and false 
+        //When healthy behaviors radio button is chosen 
+        //This function sets healthyBehaviors flags to true 
+        //and unhealthyBehaviors and functions to false 
         private void healthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             healthyBehaviorsFlag = true;
             functionsFlag = false;
             unhealthyBehaviorsFlag = false;
         }
-        //This function set flags as true and false 
+        //When the unhealthybehaviors radio button is chosen
+        //This function set unhealthyBehaviors flags to true 
+        //and healthyBehaviors and functions flag to false 
         private void unhealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             unhealthyBehaviorsFlag = true;
@@ -336,6 +340,9 @@ namespace LEDPracticeAppWPFV1._0._1
             healthyBehaviorsFlag = false;
         }
 
+        //Depending on the brain part
+        //This functions sets the autoreverse attribute 
+        //of that brain part's storyboard false
         private void reverseOff(int storyboardFlag)
         {
             switch(storyboardFlag)
@@ -357,7 +364,9 @@ namespace LEDPracticeAppWPFV1._0._1
                     break;
             }    
         }
-
+        //Depending on the brain part
+        //This functions sets the autoreverse attribute 
+        //of that brain part's storyboard true
         private void reverseOn(int storyboardFlag)
         {
             switch (storyboardFlag)
@@ -389,13 +398,15 @@ namespace LEDPracticeAppWPFV1._0._1
                     break;
             } 
        }
-
+        //This function helps ensure the correct AutoReverse attribute of the selected brain part
+        //Which brain parts to make visible based on brain part selection
+        //Make the gotItbutton, facts message box, and brain parts label hidden
         private void gotItButton_Click(object sender, RoutedEventArgs e)
         {     //sbFL = 1, sbTL = 2, sbPL = 3, sbOL = 4, sbC = 5
-       
-                        if (sbFL.AutoReverse)
-                        { reverseOn(1); }
-                        else { reverseOff(1); }
+            //Safeguard against incorrect AutoREverse attribute of selected brain part 
+            if (sbFL.AutoReverse)
+            { reverseOn(1); }
+            else { reverseOff(1); }
             if (sbTL.AutoReverse)
             { reverseOn(2); }
             else { reverseOff(2); }
@@ -409,6 +420,8 @@ namespace LEDPracticeAppWPFV1._0._1
             { reverseOn(5); }
             else { reverseOff(5); }
 
+            //Based on the brain part selected, determines which parts
+            //should become visible again
             switch (storyboardFlag)
                 {
                 case 1:
@@ -446,7 +459,7 @@ namespace LEDPracticeAppWPFV1._0._1
             gotItButton.Visibility = System.Windows.Visibility.Hidden;
             brainPartsLabel.Visibility = System.Windows.Visibility.Hidden;
 
-
+            //Safegaurd against incorrect AutoReverse attribute of selected brain part 
             if (!sbFL.AutoReverse && storyboardFlag==1)
             { reverseOn(1); }
             else { reverseOff(1); }
@@ -483,15 +496,18 @@ namespace LEDPracticeAppWPFV1._0._1
             }
 
 
-            storyboardFlag = 0;
+            storyboardFlag = 0; //reset storyboard flag
             
         }
+        //Purposely Empty Function
+        //Means nothing is triggered by this event
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
            
 
         }
-
+        //Purposely Empty Function
+        //Means nothing is triggered by this event
         private void brainPartsLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
         

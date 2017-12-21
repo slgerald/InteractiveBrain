@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LEDPracticeAppWPFV1._0._1
+namespace InteractiveBrain
+
 {
     /// <summary>
     /// Interaction logic for settingsUserControl.xaml

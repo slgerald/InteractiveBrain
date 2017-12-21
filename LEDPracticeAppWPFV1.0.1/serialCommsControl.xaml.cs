@@ -15,7 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LEDPracticeAppWPFV1._0._1
+namespace InteractiveBrain
+
 {
     /// <summary>
     /// Interaction logic for serialCommsControl.xaml
@@ -73,7 +74,7 @@ namespace LEDPracticeAppWPFV1._0._1
                 {
                     try
                     {
-                        SerialPort1.WriteLine("111");
+                        SerialPort1.WriteLine("1");
                         messageTextBox.Text = "Sending a 1";
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -89,6 +90,7 @@ namespace LEDPracticeAppWPFV1._0._1
            if (ports == null || ports.Length == 0)
          {
              messageTextBox.Text = "Could not find any available Ports";
+                
            }
             else
             {
