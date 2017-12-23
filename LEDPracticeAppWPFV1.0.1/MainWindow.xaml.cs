@@ -23,6 +23,7 @@ namespace InteractiveBrain
     public partial class MainWindow : Window
     {
         double buttonTopValue;
+        bool defaultFlag;
         public MainWindow()
         { 
             InitializeComponent();
@@ -111,7 +112,26 @@ namespace InteractiveBrain
                 myCanvas.Children.Add(highSchoolControl.Instance);
         }
 
-      
+        private void menuButton_Checked(object sender, RoutedEventArgs e)
+        {
+            
+                ImageBrush brush1 = new ImageBrush();
+                brush1.ImageSource = new BitmapImage(new Uri("Resources/if_th-menu_216424.ico"));
+                menuButton.Background = brush1;
+           
+        }
+        private void menuButton_Unchecked(object sender, RoutedEventArgs e) { 
+            
+                ImageBrush brush1 = new ImageBrush();
+                brush1.ImageSource = new BitmapImage(new Uri("Resources/if_icon-arrow-left.ico"));
+                menuButton.Background = brush1;
+            
+        }
+
+       
+    }
+
+
         //  private void editingButton_Click(object sender, RoutedEventArgs e)
         //{
         //    pageMarker.Visibility = System.Windows.Visibility.Visible;
@@ -127,6 +147,8 @@ namespace InteractiveBrain
         //        myCanvas.Children.Add(settingsUserControl.Instance);
         // }
     }
-}
+
+
+
 
     

@@ -144,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="poecentericon_HCM_icon.ico" />
-    <Resource Include="Resources\upstairs.PNG" />
+    <Resource Include="Resources\if_icon-arrow-left.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cerebellum.png" />
@@ -200,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\downstairs.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_th-menu_216424.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
