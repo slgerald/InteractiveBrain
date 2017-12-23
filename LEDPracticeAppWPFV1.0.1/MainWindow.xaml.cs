@@ -114,16 +114,16 @@ namespace InteractiveBrain
 
         private void menuButton_Checked(object sender, RoutedEventArgs e)
         {
-            
+           
                 ImageBrush brush1 = new ImageBrush();
-                brush1.ImageSource = new BitmapImage(new Uri("Resources/if_th-menu_216424.ico"));
+                brush1.ImageSource = new BitmapImage(new Uri("Resources/images/if_menu.ico"));
                 menuButton.Background = brush1;
            
         }
         private void menuButton_Unchecked(object sender, RoutedEventArgs e) { 
             
                 ImageBrush brush1 = new ImageBrush();
-                brush1.ImageSource = new BitmapImage(new Uri("Resources/if_icon-arrow-left.ico"));
+                brush1.ImageSource = new BitmapImage(new Uri("Resources/images/if_icon-arrow-left.ico"));
                 menuButton.Background = brush1;
             
         }
