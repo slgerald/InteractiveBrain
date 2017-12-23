@@ -74,7 +74,7 @@ namespace InteractiveBrain
                 Console.WriteLine(ex.Message);
             }
             serialDataQueue = new System.Collections.Concurrent.ConcurrentQueue<char>();
-            foreach (string port in ports)
+            foreach (string port in ports) //used to list available Port Names
             {
                 comPortNumberComboBox.Items.Add(port);
                 Console.WriteLine(port);
@@ -90,6 +90,8 @@ namespace InteractiveBrain
 
         }
 
+        //This function determines what happens when the Go Button is Clicked
+        //Depending on the selection, make affected areas glow 
         private void goButton_Click(object sender, RoutedEventArgs e)
         {
             if (brainPart)
@@ -173,6 +175,13 @@ namespace InteractiveBrain
                 activity = false;
             }
         }
+        //The following code determines what happens when the selection between the three
+        //lists change
+        #region
+        //This function determines what happens when the selection of the brain Part list changes 
+        //Set brain part flag true and other flags false 
+        //Make the Examples Button Unavailable 
+        //When selection changes stop parts glowing based on the previous selection
 
         private void brainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -181,10 +190,10 @@ namespace InteractiveBrain
             activity = false;
             activitiesListBox.SelectedItem = false;
             substancesListBox.SelectedItem = false;
-            //   substancesListBox.SelectedIndex = -1;
-            //   activitiesListBox.SelectedIndex = -1;
             selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
-            Console.WriteLine(selectedBrainPart);
+
+            examplesButton.Visibility = System.Windows.Visibility.Hidden;
+
             amygdalaImage.BeginAnimation(OpacityProperty, null);
             pituitaryGlandImage.BeginAnimation(OpacityProperty, null);
             hippocampusImage.BeginAnimation(OpacityProperty, null);
@@ -194,9 +203,13 @@ namespace InteractiveBrain
             parietalLobeImage.BeginAnimation(OpacityProperty, null);
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
             cerebellumImage.BeginAnimation(OpacityProperty, null);
-            examplesButton.Visibility = System.Windows.Visibility.Hidden;
+            
         }
 
+        //This function determines what happens when the selection of the brain Part list changes 
+        //Set substance flag true and other flags false 
+        //Make the Examples Button available with appropriate examples
+        //When selection changes stop parts glowing based on the previous selection
         private void substancesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             substance = true;
@@ -204,9 +217,8 @@ namespace InteractiveBrain
             activity = false;
             brainPartsListBox.SelectedItem = false;
             activitiesListBox.SelectedItem = false;
-            // brainPartsListBox.SelectedIndex = -1;
-            // activitiesListBox.SelectedIndex = -1;
             selectedSubstances = ((ListBoxItem)substancesListBox.SelectedItem).Content.ToString();
+
             examplesButton.Content = "Click for Examples for " + selectedSubstances;
             examplesButton.Visibility = System.Windows.Visibility.Visible;
 
@@ -221,6 +233,11 @@ namespace InteractiveBrain
             cerebellumImage.BeginAnimation(OpacityProperty, null);
         }
 
+        //This function determines what happens when the selection of the brain Part list changes 
+        //Set activities flag true and other flags false 
+        //Make the Examples Button Unavailable
+        //When selection changes stop parts glowing based on the previous selection
+
         private void activitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             activity = true;
@@ -228,10 +245,8 @@ namespace InteractiveBrain
             brainPart = false;
             brainPartsListBox.SelectedItem = false;
             substancesListBox.SelectedItem = false;
-
-            // substancesListBox.SelectedIndex = -1;
-            // activitiesListBox.SelectedIndex = -1;
             selectedActivities = ((ListBoxItem)activitiesListBox.SelectedItem).Content.ToString();
+
             examplesButton.Visibility = System.Windows.Visibility.Hidden;
 
             amygdalaImage.BeginAnimation(OpacityProperty, null);
@@ -244,7 +259,10 @@ namespace InteractiveBrain
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
             cerebellumImage.BeginAnimation(OpacityProperty, null);
         }
-
+        #endregion
+        //The following code determines what is displayed in the selectionMessageBox
+        //based on the selection
+        #region
         private void Amygdala_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Amygdala light up";
@@ -458,27 +476,22 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
+        #endregion
 
+        //This function determines which substances are listed based on the substance selected
         private  void examplesButton_Click(object sender, RoutedEventArgs e)
         {  // open the Popup if it isn't open already 
-         //   if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
+           // if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
             examplesButton.Visibility = System.Windows.Visibility.Visible;
             if (lastSubstanceSelected == "stimulants")
-            {
-                
-               
-             //   titleTextBlock.Text = "Examples of Stimulants:";
-
-                MessageBox.Show("Examples of Stimulants:\r\n\r\n\u2022 Dexedrine® \r\n\u2022 Adderall® \r\n\u2022 Ritalin® \r\n\u2022 Concerta®\r\n\r\n(www.drugabuse.gov) ");
-              //  listedExamples.Text = "Dexedrine® ,\r\nAdderall®, \r\nRitalin®, \r\nConcerta® \r\n(www.drugabuse.gov) ";
-              //  Console.WriteLine(listedExamples.Text);
-                
+            {       
+              MessageBox.Show("Examples of Stimulants:\r\n\r\n\u2022 Dexedrine® \r\n\u2022 Adderall® \r\n\u2022 Ritalin® \r\n\u2022 Concerta®\r\n\r\n(www.drugabuse.gov) ");
+                //   titleTextBlock.Text = "Examples of Stimulants:";
+                //   listedExamples.Text = "Dexedrine® ,\r\nAdderall®, \r\nRitalin®, \r\nConcerta® \r\n(www.drugabuse.gov) ";                
             }
             if (lastSubstanceSelected == "depressants")
             {
-
-                examplesButton.Content = "Click for examples for Depressants";
-               
+                examplesButton.Content = "Click for examples for Depressants"; 
                 MessageBox.Show("Examples of Depressants: \r\n\r\n\u2022 Valium® \r\n\u2022 Xanax® \r\n\u2022 Halcion® \r\n\u2022 Ambien® \r\n\u2022 Lunesta® \r\n\u2022 Alcohol \r\n\r\n(www.drugabuse.gov)");
             }
             if (lastSubstanceSelected == "hallucinogens")
@@ -492,90 +505,101 @@ namespace InteractiveBrain
                 MessageBox.Show("Examples of Opioids: \r\n\r\n\u2022 Hydrocone(e.g. Vicodin®) \r\n\u2022 Oxycodone (e.g., OxyContin®, Percocet®) \r\n\u2022 Oxymorphone (e.g., Opana®) \r\n\u2022 Morphine (e.g., Kadian®, Avinza®)\r\n\u2022 Codeine, Fentanyl, and others\r\n\r\n(www.drugabuse.gov)");
             }
         }
-        // Handles the Click event on the Button inside the Popup control and 
-        // closes the Popup. 
+        // This function closes the pop up and changes the background of the connection
+        //button to show that a connection has been established 
         private void ClosePopupClicked(object sender, RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
+
             if (examplesPopup.IsOpen) { examplesPopup.IsOpen = false; }
+            ImageBrush brush1 = new ImageBrush();
+            brush1.ImageSource = new BitmapImage(new Uri("Resources/if_connect_established.ico"));
+            toggleButton.Background = brush1;
         }
 
+        //The connection button is a toggle button
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        { 
-
+        {
             ToggleButton toggle = (ToggleButton)sender;
-            
+                
+                //If there aren't any serial ports to connect to
+                //Display message not able to connect and the togglebutton doesn't
+                //become checked
                 if (ports == null || ports.Length == 0)
                 {
-
-                
-
-
-                selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-                   toggleButton.IsChecked = false;
-                
+                    selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
+                    toggleButton.IsChecked = false;
                 }
                 else
                 {
 
-                // open the Popup if it isn't open already 
-                if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
-
-                try
-                {
+                    try //Try to connect to serial port
+                    {
                         isConnected = true;
-                         selectedPort = comPortNumberComboBox.SelectedItem.ToString();
+                        selectedPort = comPortNumberComboBox.SelectedItem.ToString();
                         //selectedPort = ports[0];
                         Console.WriteLine("Connected to " + selectedPort);
                         SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
                         SerialPort1.Open();
                         SerialPort1.Write("#STAR\n");
-                       // MessageBox.Show("Connected to " + selectedPort);
-                       
-                    
-                    }
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                        // MessageBox.Show("Connected to " + selectedPort)
+
+                        // open the Popup if it isn't open already 
+                        if (!examplesPopup.IsOpen)
+                        { examplesPopup.IsOpen = true; }
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
                 }
         
         }
+
+
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(isConnected);
-                ToggleButton toggle = (ToggleButton)sender;
-           
-                Console.WriteLine("This is the disconnect button");
+                Console.WriteLine(isConnected);
+                ToggleButton toggle = (ToggleButton)sender;  
+                //If there was an established serial port connection, disconnect
                 if (isConnected)
                 {
-                MessageBox.Show("Disconnected");
+                    //MessageBox.Show("Disconnected");
                     try
                     {
                         isConnected = false;
                         SerialPort1.Close();
+                        ImageBrush brush1 = new ImageBrush();
+                        brush1.ImageSource = new BitmapImage(new Uri("Resources/if_connect_no.ico"));
+                        toggleButton.Background = brush1;
                     }
+
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
 
                 }
+
+                //If there wasn't a successful connection
                 else {
-                Console.WriteLine(ports.Length);
-                if (ports == null || ports.Length == 0)
-                {
-                    // selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-                   // MessageBox.Show("Not connected yet");
+                    Console.WriteLine(ports.Length);
+                    if (ports == null || ports.Length == 0)
+                    {
+                        selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
+                       // MessageBox.Show("Not connected yet");
+                    }
+                    else { 
+                        selectionMessageBox.Text = "Not connected yet";
+                    }
                 }
-               // else { 
-               // selectionMessageBox.Text = "Not connected yet";
-               // }
-            }
            
         }
-            void getAvailableComPorts()        {
+
+        //This function gets the available serial ports 
+        void getAvailableComPorts()
+        {
 
             ports = SerialPort.GetPortNames();
 
         }
 
-
-
+        //This function handles if data is received through the serial port 
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = sender as SerialPort;
@@ -600,6 +624,8 @@ namespace InteractiveBrain
                 Console.WriteLine(ex.Message);
             }
         }
+
+        //This function handles what to do with received data
         private void readSerialDataQueue()
         {
             char ch;
@@ -610,7 +636,7 @@ namespace InteractiveBrain
                 {
                     // do something with ch, add it to a textbox 
                     // for example to see that it actually works
-                    selectionMessageBox.Text += ch;
+                   // selectionMessageBox.Text += ch;
                 }
 
             }
@@ -618,6 +644,11 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

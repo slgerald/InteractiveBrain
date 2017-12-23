@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="poecentericon_HCM_icon.ico" />
+    <Resource Include="Resources\upstairs.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cerebellum.png" />
@@ -181,6 +182,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Properties\BluetoothManager.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_connect_established.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_connect_no.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_pensil.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\Poe-Center-Logo-KM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_Play.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\downstairs.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

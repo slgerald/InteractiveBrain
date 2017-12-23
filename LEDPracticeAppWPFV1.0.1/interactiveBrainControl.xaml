@@ -11,14 +11,12 @@
             <Border BorderBrush="Black" 
                 Background="#FFF92D00"
                 BorderThickness="2" Width="150" Height="155" Canvas.Top="5">
-
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Margin="-2,-2,-7,0" Width="155">
                     <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Height="40" Canvas.Left="15" Canvas.Top="40"/>
                     <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" VerticalAlignment="Top" Width="123" Height="30" Canvas.Left="15" Canvas.Top="10"/>
                     <!-- <TextBlock x:Name ="titleTextBlock" FontSize="18" Text="" HorizontalAlignment="Center" Height="26" Width="150" Canvas.Left="62" Canvas.Top="10"/> 
-                    <TextBox x:Name ="listedExamples" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="62" Canvas.Top="63" Height="130" Width="150"/> -->
+                    <TextBox x:Name ="listedExamples" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="62" Canvas.Top="63" Height="130" Width="150" VerticalScrollBarVisibility ="Auto"/> -->
                     <Button Content="Close" Click="ClosePopupClicked" HorizontalAlignment="Center" Height="27" Width="118" Canvas.Left="15" Canvas.Top="113"/>
-
                 </Canvas>
             </Border>
         </Popup>
@@ -31,7 +29,11 @@
                 </Style>
             </Image.Style>
         </Image>
-        <Button x:Name="goButton" Content="Go!" Background="#FFF92D00" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="goButton_Click" FontSize="20" Canvas.Left="465" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129"/>
+        <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="goButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/if_Play.ico"/>
+            </Button.Background>
+        </Button>
         <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" TextChanged="selectionMessageBox_TextChanged" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" />
         <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="172" SelectionChanged="brainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
             <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="20" Selected="Amygdala_Selected" />
@@ -129,21 +131,17 @@
                 </Style>
             </Image.Style>
         </Image>
-        <Button x:Name="examplesButton" Content="Click for Examples of" Background="#FFF92D00" Canvas.Left="33" Visibility="Hidden"  Canvas.Top="559" Width="302" Height="31" FontSize="18" Click="examplesButton_Click"/>
-        <ToggleButton x:Name="toggleButton" Canvas.Left="550" Canvas.Top="559" FontSize="18" Height="31" Width="105" IsChecked="False" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" ToolTip="Use to connect to Interactive Brain" FontWeight="Bold" Foreground="#FF074D07">
-            <ToggleButton.Style>
-                <Style TargetType="{x:Type ToggleButton}">
-                    <Setter Property="Content" Value="Connect"></Setter>
-                    <Setter Property="Foreground" Value="Green"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Content" Value="Disconnect"></Setter>
-                            <Setter Property="Foreground" Value="Red"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ToggleButton.Style>
+        <Button x:Name="examplesButton" Content="Click for Examples of" Background="#FF0072BB" Canvas.Left="33" Visibility="Hidden"  Canvas.Top="559" Width="302" Height="31" FontSize="18" Click="examplesButton_Click" BorderBrush="{x:Null}"/>
+        <ToggleButton x:Name="toggleButton" Canvas.Left="595" Canvas.Top="559" FontSize="18" Height="41" Width="40" IsChecked="False" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" ToolTip="Use to connect to Interactive Brain" FontWeight="Bold" Foreground="#FF074D07" BorderBrush="{x:Null}">
+            <ToggleButton.Background>
+                <ImageBrush ImageSource="Resources/if_connect_no.ico"/>
+            </ToggleButton.Background>
         </ToggleButton>
+        <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="559" Width="40" Height="41" Click="editButton_Click" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/if_pensil.ico"/>
+            </Button.Background>
+        </Button>
     </Canvas>
 
 </UserControl>

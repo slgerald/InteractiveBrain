@@ -8,15 +8,17 @@
              d:DesignHeight="600" d:DesignWidth="680" AllowDrop="True">
 
     <Canvas x:Name="myCanvas"  AllowDrop="True"  >
-        <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="80" Canvas.Top="10" Checked="functions_Checked" FontSize="18"/>
-        <RadioButton x:Name ="healthyBehaviors"  Checked="healthyBehaviors_Checked" Content="Healthy Behaviors" Canvas.Left="240" Canvas.Top="10" FontSize="18"/>
-        <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="460" Checked="unhealthyBehaviors_Checked" Canvas.Top="10" FontSize="18"/>
+        <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="40" Canvas.Top="15" Checked="functions_Checked" FontSize="18"/>
+        <RadioButton x:Name ="healthyBehaviors"  Checked="healthyBehaviors_Checked" Content="Healthy Behaviors" Canvas.Left="220" Canvas.Top="15" FontSize="18"/>
+        <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="459" Checked="unhealthyBehaviors_Checked" Canvas.Top="15" FontSize="18"/>
         <TextBox x:Name="factsMessageBox" Visibility="Hidden" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="90" Canvas.Left="190" TextWrapping="Wrap"  Canvas.Top="495" Width="325" FontSize="18" Background="{x:Null}"/>
-        <Button x:Name="gotItButton" Content="GOT IT!" Visibility="Hidden" Canvas.Left="570" Canvas.Top="505" Width="80" Click="gotItButton_Click" Height="35" Background="#FFF92D00" FontSize="18"/>
-        <Canvas Height="407" Width="660" Canvas.Left="10" Canvas.Top="33" x:Name="pictureCanvas">
-
-
-
+        <Button x:Name="gotItButton" Content="GOT IT!" Visibility="Hidden" Canvas.Left="570" Canvas.Top="505" Width="80" Click="gotItButton_Click" Height="35" Background="#FF0072BB" FontSize="18" BorderBrush="{x:Null}"/>
+        <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="560" Width="40" Height="40" Click="editButton_Click" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/if_pensil.ico"/>
+            </Button.Background>
+        </Button>
+        <Canvas Height="385" Width="660" Canvas.Left="10" Canvas.Top="55" x:Name="pictureCanvas">
             <Image Height="387" Width="650" Canvas.Top="10" x:Name="cutoutLowerBrain">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
@@ -24,13 +26,9 @@
                     </Style>
                 </Image.Style>
             </Image>
-
-
-
             <Image x:Name="hippocampusBox" AllowDrop="True" Source ="Resources/hippocampus.png" Height="110" Canvas.Left="270" Canvas.Top="152" Width="115" RenderTransformOrigin="0.5,0.5" >
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
-
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Opacity" Value="0.5"/>
@@ -39,8 +37,7 @@
                     </Style>
                 </Image.Style>
                 <Image.RenderTransform>
-                    <ScaleTransform 
-            CenterX="0" CenterY="0"
+                    <ScaleTransform CenterX="0" CenterY="0"
             ScaleX="{Binding Value, ElementName=pictureCanvasScaler}"
 
             ScaleY="{Binding Value, ElementName=pictureCanvasScaler}"

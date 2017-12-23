@@ -4,32 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InteractiveBrain"
+         xmlns:Properties="clr-namespace:InteractiveBrain.Properties"
          x:Class="InteractiveBrain.MainWindow"
         mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
         Title="Poe Health Center " Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
-    <Window.Resources>
 
-    </Window.Resources>
- 
-      
-        <Viewbox Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" MaxHeight="700" MaxWidth="1375">
-            <Canvas Margin="0,0,0,0" Height=" 600" Width="900">
-                <Viewbox Height="600" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
-                    <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="470" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5">
-                        <Button x:Name="interactiveBrainButton" Content="Interactive Brain" Height="80" Click="interactiveBrainButton_Click" Width="220" Canvas.Top ="0" RenderTransformOrigin="0.5,0.5" FontSize="22"/>
-                        <Button x:Name="simulationButton" Content="Simulation" Height="80" Click="simulationButton_Click" Canvas.Top="80" Width="220" FontSize="20"/>
-                        <Button x:Name="serialCommsButton" Content="Serial &#xD;&#xA;Communications Test" Height="70" Click="serialCommsButton_Click" Width="220" Canvas.Top="400" RenderTransformOrigin="0.5,0.5" FontSize="18"/>
-                        <Button x:Name="middleSchoolButton" Content="Upstairs Brain" Height="80" Click="middleSchoolButton_Click" Canvas.Top="160" Width="220" FontSize="20"/>
-                        <Button x:Name="highSchoolButton" Content="Downstairs Brain" Height="80" Click="highSchoolButton_Click" Canvas.Top="240" Width="220" FontSize="20"/>
-                        <Button x:Name="editingButton" Content ="Settings" Height="80" Click="editingButton_Click" Canvas.Top="320" Width="220" FontSize="20"/>
-                        <Label x:Name="pageMarker" Content="" Background="#FFE41212" Visibility="Hidden" Height="80" Canvas.Top="400" Width="20"/>
-                    </Canvas>
-                </Viewbox>
-                <Viewbox Stretch="Fill" Height="600" Canvas.Top="0" Canvas.Left="220" Width="680" StretchDirection="Both">
-                    <Canvas x:Name="myCanvas" Panel.ZIndex="1"  Height="600"  Width="680" RenderTransformOrigin="0.5,0.5"/>
-                </Viewbox>
-            </Canvas>
-        </Viewbox>
-  
+
+    <Viewbox Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" MaxHeight="700" MaxWidth="1375">
+        <Canvas Margin="0,0,0,0" Height=" 600" Width="900">
+            <Viewbox x:Name="buttonViewbox" Height="600" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="470" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Background="#FF0072BB">
+                    <Button x:Name="interactiveBrainButton" Foreground="#FF0E1116"  Content="Interactive Brain" Height="80" Click="interactiveBrainButton_Click" Width="220" Canvas.Top ="0" RenderTransformOrigin="0.5,0.5" FontSize="22" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center"/>
+                    <Button x:Name="simulationButton" Foreground="#FF0E1116" Content="Simulation" Height="80" Click="simulationButton_Click" Canvas.Top="80" Width="220" FontSize="22" Background="#FF0072BB" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button x:Name="serialCommsButton" Foreground="#FF0E1116" Content="Serial &#xA;Communications &#xD;&#xA;Test" Height="80" Click="serialCommsButton_Click" Width="220" Canvas.Top="320" RenderTransformOrigin="0.5,0.5" FontSize="18" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Button x:Name="middleSchoolButton" Foreground="#FF0E1116" Content="Upstairs Brain" Height="80" Click="middleSchoolButton_Click" Canvas.Top="160" Width="220" FontSize="22" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center"/>
+                    <Button x:Name="highSchoolButton"  Foreground="#FF0E1116" Content="Downstairs Brain" Height="80" Click="highSchoolButton_Click" Canvas.Top="240" Width="220" FontSize="22" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+                    <Label x:Name="pageMarker" Content="" Background="#FF0E1116" Visibility="Hidden" Height="80" Canvas.Top="240" Width="10"/>
+                </Canvas>
+            </Viewbox>
+            <Viewbox x:Name="myCanvasViewbox" Stretch="Fill" Height="600" Canvas.Top="0" Canvas.Left="220" Width="680" StretchDirection="Both">
+                <Canvas x:Name="myCanvas" Panel.ZIndex="1"  Height="600"  Width="680" RenderTransformOrigin="0.5,0.5" Background="#FFFCF7FF">
+                    <Canvas Height="306" Canvas.Left="37" Canvas.Top="84" Width="126"/>
+                </Canvas>
+            </Viewbox>
+        </Canvas>
+    </Viewbox>
+
 </Window>

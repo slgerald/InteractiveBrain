@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace InteractiveBrain
 {
     /// <summary>
-    /// Interaction logic for highSchoolControl.xaml
+    /// The High School User control is used for interaction with the downstairs brain
     /// </summary>
     /// 
 
@@ -27,8 +27,8 @@ namespace InteractiveBrain
         bool healthyBehaviorsFlag;
         bool unhealthyBehaviorsFlag;
        // System.Windows.Point MouseDownLocation;
-      //  double originalImageHeight;
-      //  double originalImageWidth;
+       // double originalImageHeight;
+       // double originalImageWidth;
         private object movingObject; //The image being dragged and dropped 
         private double firstXPos, firstYPos;
         private static highSchoolControl _instance; //render userControl based on button pressed
@@ -60,7 +60,7 @@ namespace InteractiveBrain
             amygdalaBox.PreviewMouseMove += new MouseEventHandler(img_PreviewMouseMove);
             amygdalaBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(img_PreviewMouseLeftButtonUp);
         }
-        public static highSchoolControl Instance
+        public static highSchoolControl Instance //This allows a new highSchool User Control to be instantiated 
         {
             get
             {
@@ -223,6 +223,128 @@ namespace InteractiveBrain
             }
         }
 
+        //This function determines what happens when the brainstem is left clicked 
+        private void brainstemBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            brainPartsLabel.Text = "Brainstem";
+            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
+            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
+            Console.WriteLine(sender);
+
+
+            Canvas canvas = img.Parent as Canvas;
+
+            firstXPos = e.GetPosition(img).X;
+            firstYPos = e.GetPosition(img).Y;
+
+            movingObject = sender;
+
+            // Put the image currently being dragged on top of the others
+            int top = Canvas.GetZIndex(img);
+            foreach (System.Windows.Controls.Image child in canvas.Children)
+                if (top < Canvas.GetZIndex(child))
+                    top = Canvas.GetZIndex(child);
+            Canvas.SetZIndex(img, top + 1);
+
+            Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
+
+            //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
+            if (functionsFlag)
+            {
+                healthyBehaviors.IsEnabled = false;
+                unhealthyBehaviors.IsEnabled = false;
+                factsMessageBox.Text = "The Brainstem controls flow of messages between the brain and the rest of the body.Also controls basic body function like breathing, swallowing, heartbeat(medulla), sleep regulation(pons), etc.";
+            }
+
+            if (healthyBehaviorsFlag)
+            {
+                functions.IsEnabled = false;
+                unhealthyBehaviors.IsEnabled = false;
+                factsMessageBox.Text = "Healthy Behaviors that affect the brainstem";
+
+            }
+            if (unhealthyBehaviorsFlag)
+            {
+                functions.IsEnabled = false;
+                healthyBehaviors.IsEnabled = false;
+                factsMessageBox.Text = "Unhealthy Behaviors that affect the brainstem";
+            }
+
+            factsMessageBox.Visibility = System.Windows.Visibility.Visible;
+            gotItButton.Visibility = System.Windows.Visibility.Visible;
+            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
+
+            if (e.ClickCount == 2) //What happens when the Brainstem is selected 
+            {
+                hippocampusBox.Visibility = System.Windows.Visibility.Hidden;
+                amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
+                pituitaryGlandBox.Visibility = System.Windows.Visibility.Hidden;
+                cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
+                pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
+            }
+
+        }
+
+        //This function determines what happens when the pituitary gland is left clicked 
+        private void pituitaryGlandBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            brainPartsLabel.Text = "Pituitary Gland";
+            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
+            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
+            Console.WriteLine(sender);
+
+            Canvas canvas = img.Parent as Canvas;
+
+            firstXPos = e.GetPosition(img).X;
+            firstYPos = e.GetPosition(img).Y;
+
+            movingObject = sender;
+
+            // Put the image currently being dragged on top of the others
+            int top = Canvas.GetZIndex(img);
+            foreach (System.Windows.Controls.Image child in canvas.Children)
+                if (top < Canvas.GetZIndex(child))
+                    top = Canvas.GetZIndex(child);
+            Canvas.SetZIndex(img, top + 1);
+
+            Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
+
+            //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
+
+            if (functionsFlag)
+            {
+                healthyBehaviors.IsEnabled = false;
+                unhealthyBehaviors.IsEnabled = false;
+                factsMessageBox.Text = " The pituitary gland regulates growth hormone, triggers onset of puberty. Attached to the hypothalamus, in Limbic System";
+            }
+            if (healthyBehaviorsFlag)
+            {
+                functions.IsEnabled = false;
+                unhealthyBehaviors.IsEnabled = false;
+                factsMessageBox.Text = "Healthy Behaviors that affect the pituitary gland";
+
+            }
+            if (unhealthyBehaviorsFlag)
+            {
+                functions.IsEnabled = false;
+                healthyBehaviors.IsEnabled = false;
+                factsMessageBox.Text = "Unhealthy Behaviors that affect the pituitary gland";
+            }
+
+            factsMessageBox.Visibility = System.Windows.Visibility.Visible;
+            gotItButton.Visibility = System.Windows.Visibility.Visible;
+            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
+
+            if (e.ClickCount == 2) //What happens when the pituitary gland is double clicked 
+            {
+                brainstemBox.Visibility = System.Windows.Visibility.Hidden;
+                amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
+                hippocampusBox.Visibility = System.Windows.Visibility.Hidden;
+                cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
+                pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
+            }
+        }
+
         //All images use this functions as the "drop" part of their drag and drop operation
         private void img_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -239,6 +361,7 @@ namespace InteractiveBrain
             Canvas.SetZIndex(img, top + 1);
             Mouse.Capture(null);
         }
+
         //All images use this function for their "drag" part of their drag and drop operation
         private void img_PreviewMouseMove(object sender, MouseEventArgs e)
         {
@@ -274,127 +397,17 @@ namespace InteractiveBrain
             }
         }
 
-        //This function determines what happens when the brainstem is left clicked 
-        private void brainstemBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
         {
-            brainPartsLabel.Text = "Brainstem";
-            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
-            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
-            Console.WriteLine(sender);
-
-
-            Canvas canvas = img.Parent as Canvas;
-
-            firstXPos = e.GetPosition(img).X;
-            firstYPos = e.GetPosition(img).Y;
-
-            movingObject = sender;
-
-            // Put the image currently being dragged on top of the others
-            int top = Canvas.GetZIndex(img);
-            foreach (System.Windows.Controls.Image child in canvas.Children)
-                if (top < Canvas.GetZIndex(child))
-                    top = Canvas.GetZIndex(child);
-            Canvas.SetZIndex(img, top + 1);
-
-            Mouse.Capture(img);
-            if (functionsFlag)
-            {
-                healthyBehaviors.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-                factsMessageBox.Text = "The Brainstem controls flow of messages between the brain and the rest of the body.Also controls basic body function like breathing, swallowing, heartbeat(medulla), sleep regulation(pons), etc.";
-            }
-            
-            if (healthyBehaviorsFlag)
-            {
-                functions.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-                factsMessageBox.Text = "Healthy Behaviors that affect the brainstem";
-
-            }
-            if (unhealthyBehaviorsFlag)
-            {
-                functions.IsEnabled = false;
-                healthyBehaviors.IsEnabled = false;
-                factsMessageBox.Text = "Unhealthy Behaviors that affect the brainstem";
-            }
-
-            factsMessageBox.Visibility = System.Windows.Visibility.Visible;
-            gotItButton.Visibility = System.Windows.Visibility.Visible;
-            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
-
-            if (e.ClickCount == 2)
-            {
-                hippocampusBox.Visibility = System.Windows.Visibility.Hidden;
-                amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
-                pituitaryGlandBox.Visibility = System.Windows.Visibility.Hidden;
-                cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
-                pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
-            }
 
         }
 
-        //This function determines what happens when the pituitary gland is left clicked 
-        private void pituitaryGlandBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            brainPartsLabel.Text = "Pituitary Gland";
-            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
-            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
-            Console.WriteLine(sender);
-
-
-            Canvas canvas = img.Parent as Canvas;
-
-            firstXPos = e.GetPosition(img).X;
-            firstYPos = e.GetPosition(img).Y;
-
-            movingObject = sender;
-
-            // Put the image currently being dragged on top of the others
-            int top = Canvas.GetZIndex(img);
-            foreach (System.Windows.Controls.Image child in canvas.Children)
-                if (top < Canvas.GetZIndex(child))
-                    top = Canvas.GetZIndex(child);
-            Canvas.SetZIndex(img, top + 1);
-
-            Mouse.Capture(img);
-            if (functionsFlag)
-            {
-                healthyBehaviors.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-                factsMessageBox.Text = " The pituitary gland regulates growth hormone, triggers onset of puberty. Attached to the hypothalamus, in Limbic System";
-            }
-            if (healthyBehaviorsFlag)
-            {
-                functions.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-                factsMessageBox.Text = "Healthy Behaviors that affect the pituitary gland";
-
-            }
-            if (unhealthyBehaviorsFlag)
-            {
-                functions.IsEnabled = false;
-                healthyBehaviors.IsEnabled = false;
-                factsMessageBox.Text = "Unhealthy Behaviors that affect the pituitary gland";
-            }
-            factsMessageBox.Visibility = System.Windows.Visibility.Visible;
-            gotItButton.Visibility = System.Windows.Visibility.Visible;
-            brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
-
-            if (e.ClickCount == 2)
-            {
-                brainstemBox.Visibility = System.Windows.Visibility.Hidden;
-                amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
-                hippocampusBox.Visibility = System.Windows.Visibility.Hidden;
-                cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
-                pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-       
-       //This function determines what happens when the Got It button is clicked
-       //It makes certain controls hidden and others visible. It also reenables 
-       //The radio buttons that weren't being used as well as reset the scaler to 
-       //the value of 1.0
+        //This function determines what happens when the Got It button is clicked
+        //It makes certain controls hidden and others visible. It also reenables 
+        //The radio buttons that weren't being used as well as reset the scaler to 
+        //the value of 1.0
         private void gotItButton_Click(object sender, RoutedEventArgs e)
         {
             factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
@@ -427,14 +440,7 @@ namespace InteractiveBrain
                 healthyBehaviors.IsEnabled = true;
                 functions.IsEnabled = true;
             }
-            factsMessageBox.Text = "";
-
-           
-        }
-
-
-
-       
-      
+            factsMessageBox.Text = "";     
+        }  
     }
 }

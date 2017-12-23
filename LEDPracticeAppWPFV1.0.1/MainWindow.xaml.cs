@@ -18,18 +18,20 @@ namespace InteractiveBrain
 
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// This is the entry point of the application
     /// </summary>
     public partial class MainWindow : Window
     {
         double buttonTopValue;
         public MainWindow()
-        {
-
+        { 
             InitializeComponent();
-      
         }
 
+        //There is one function for each of the buttons on the left panel
+        //It moves the page marker to highlight the button that was clicked 
+        //It clears previously instantiated user controls to make room for the
+        //button that was most recently clicked 
         private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
         {
             pageMarker.Visibility = System.Windows.Visibility.Visible;
@@ -109,20 +111,21 @@ namespace InteractiveBrain
                 myCanvas.Children.Add(highSchoolControl.Instance);
         }
 
-        private void editingButton_Click(object sender, RoutedEventArgs e)
-        {
-            pageMarker.Visibility = System.Windows.Visibility.Visible;
-           
-            buttonTopValue = Canvas.GetTop(editingButton);
-            Canvas.SetTop(pageMarker, buttonTopValue);
-            myCanvas.Children.Clear();
-            if (!myCanvas.Children.Contains(settingsUserControl.Instance))
-            {
-                myCanvas.Children.Add(settingsUserControl.Instance);
-            }
-            else
-                myCanvas.Children.Add(settingsUserControl.Instance);
-        }
+      
+        //  private void editingButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    pageMarker.Visibility = System.Windows.Visibility.Visible;
+
+        //    buttonTopValue = Canvas.GetTop(editingButton);
+        //   Canvas.SetTop(pageMarker, buttonTopValue);
+        //    myCanvas.Children.Clear();
+        //    if (!myCanvas.Children.Contains(settingsUserControl.Instance))
+        //    {
+        //        myCanvas.Children.Add(settingsUserControl.Instance);
+        //    }
+        //    else
+        //        myCanvas.Children.Add(settingsUserControl.Instance);
+        // }
     }
 }
 
