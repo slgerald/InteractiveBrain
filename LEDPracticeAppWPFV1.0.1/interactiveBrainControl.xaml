@@ -52,7 +52,7 @@
             <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20" Selected="hallucinogens_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="opioids" Content="Opioids" Selected="opioids_Selected" FontSize="20" FontFamily="Calibri"/>
         </ListBox>
-        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="activitiesListBox_SelectionChanged" Canvas.Left="465" Canvas.Top="400">
+        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="activitiesListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
             <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20" Selected="dietAndNutrition_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="healthAndExercise" Content="Health and Exercise" FontSize="20" Selected="healthAndExercise_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20" Selected="cognitiveActivity_Selected" FontFamily="Calibri"/>
@@ -60,7 +60,7 @@
         </ListBox>
         <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="50" Canvas.Top="355" FontFamily="Tahoma"/>
         <Label Content="Substances" HorizontalAlignment="Left" Margin="275,355,0,0" VerticalAlignment="Top" Height="40" Width="150" FontSize="24" FontFamily="Tahoma"/>
-        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="205" FontSize="24" Canvas.Left="465" Canvas.Top="355" FontFamily="Tahoma"/>
+        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="210" FontSize="24" Canvas.Left="455" Canvas.Top="355" FontFamily="Tahoma"/>
         <Image Height="235" Width="250" Canvas.Top="85" x:Name="cutoutLowerBrain" Canvas.Left="405">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">

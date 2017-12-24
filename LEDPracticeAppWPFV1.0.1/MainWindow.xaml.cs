@@ -23,7 +23,7 @@ namespace InteractiveBrain
     public partial class MainWindow : Window
     {
         double buttonTopValue;
-        bool defaultFlag;
+        
         public MainWindow()
         { 
             InitializeComponent();
@@ -35,9 +35,16 @@ namespace InteractiveBrain
         //button that was most recently clicked 
         private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
         {
-            pageMarker.Visibility = System.Windows.Visibility.Visible;
+          //  pageMarker.Visibility = System.Windows.Visibility.Visible;
             buttonTopValue = Canvas.GetTop(interactiveBrainButton);
-            Canvas.SetTop(pageMarker, buttonTopValue);
+            if (buttonPanel.Width != 45)
+            {
+               // Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
             myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(interactiveBrainControl.Instance))
                {
@@ -52,9 +59,16 @@ namespace InteractiveBrain
 
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
-            pageMarker.Visibility = System.Windows.Visibility.Visible;
+          //  pageMarker.Visibility = System.Windows.Visibility.Visible;
             buttonTopValue = Canvas.GetTop(simulationButton);
-            Canvas.SetTop(pageMarker, buttonTopValue);
+            if (buttonPanel.Width != 45)
+            {
+              //  Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
             myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(simulationUserControl.Instance))
             {
@@ -68,9 +82,16 @@ namespace InteractiveBrain
         private void serialCommsButton_Click(object sender, RoutedEventArgs e)
         {
            
-            pageMarker.Visibility  = System.Windows.Visibility.Visible;
+          //  pageMarker.Visibility  = System.Windows.Visibility.Visible;
             buttonTopValue = Canvas.GetTop(serialCommsButton);
-            Canvas.SetTop(pageMarker, buttonTopValue);
+            if (buttonPanel.Width != 45)
+            {
+               // Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
             myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(serialCommsControl.Instance))
             {
@@ -84,10 +105,17 @@ namespace InteractiveBrain
 
         private void middleSchoolButton_Click(object sender, RoutedEventArgs e)
         {
-            pageMarker.Visibility = System.Windows.Visibility.Visible;
+          //  pageMarker.Visibility = System.Windows.Visibility.Visible;
            
             buttonTopValue = Canvas.GetTop(middleSchoolButton);
-            Canvas.SetTop(pageMarker, buttonTopValue);
+            if (buttonPanel.Width != 45)
+            {
+              //  Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
             myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(middleSchoolControl1.Instance))
             { 
@@ -99,10 +127,17 @@ namespace InteractiveBrain
 
         private void highSchoolButton_Click(object sender, RoutedEventArgs e)
         {
-            pageMarker.Visibility = System.Windows.Visibility.Visible;
+           // pageMarker.Visibility = System.Windows.Visibility.Visible;
             
             buttonTopValue = Canvas.GetTop(highSchoolButton);
-            Canvas.SetTop(pageMarker, buttonTopValue);
+            if (buttonPanel.Width != 45)
+            {
+               // Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
             myCanvas.Children.Clear();
             if (!myCanvas.Children.Contains(highSchoolControl.Instance))
             {
@@ -112,20 +147,48 @@ namespace InteractiveBrain
                 myCanvas.Children.Add(highSchoolControl.Instance);
         }
 
-        private void menuButton_Checked(object sender, RoutedEventArgs e)
-        {
-           
-                ImageBrush brush1 = new ImageBrush();
-                brush1.ImageSource = new BitmapImage(new Uri("Resources/images/if_menu.ico"));
-                menuButton.Background = brush1;
-           
-        }
-        private void menuButton_Unchecked(object sender, RoutedEventArgs e) { 
-            
-                ImageBrush brush1 = new ImageBrush();
-                brush1.ImageSource = new BitmapImage(new Uri("Resources/images/if_icon-arrow-left.ico"));
-                menuButton.Background = brush1;
-            
+        
+        private void expandMenuButton_Click(object sender, RoutedEventArgs e) {
+
+            Thickness margin;
+            Thickness margin2;
+            if (buttonViewbox.Width == 220 && buttonViewbox.Height == 600)
+            {
+                buttonViewbox.Width = 45;
+                buttonViewbox.Height = 600;
+                myCanvasViewbox.Height = 755;
+                myCanvas.Height = 755;
+              
+                buttonPanel.Width = 45;
+                
+                margin = myCanvasViewbox.Margin;
+             //  margin2 = myCanvas.Margin;
+                margin.Left = -175;
+             //   margin2.Left = -175;
+                myCanvasViewbox.Margin = margin;
+           //    myCanvas.Margin = margin2;
+             
+                myCanvasViewbox.Width = 855;
+             //   myCanvas.Width = 855;
+                buttonViewbox.Height = 600;
+                
+
+            }
+            else
+            {
+                buttonViewbox.Width = 220;
+                buttonViewbox.Height = 600;
+                buttonPanel.Width = 220;
+                buttonViewbox.Height = 600;
+
+              //  margin = myCanvasViewbox.Margin;
+             //   margin.Left = 0;
+             //   myCanvasViewbox.Margin = margin;
+              //  myCanvasViewbox.Height = 600;
+              
+              //  myCanvasViewbox.Width = 680;
+            }
+
         }
 
        

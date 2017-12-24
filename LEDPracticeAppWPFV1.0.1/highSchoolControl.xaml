@@ -8,9 +8,9 @@
              d:DesignHeight="600" d:DesignWidth="680" AllowDrop="True">
 
     <Canvas x:Name="myCanvas"  AllowDrop="True"  >
-        <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="40" Canvas.Top="15" Checked="functions_Checked" FontSize="18"/>
-        <RadioButton x:Name ="healthyBehaviors"  Checked="healthyBehaviors_Checked" Content="Healthy Behaviors" Canvas.Left="220" Canvas.Top="15" FontSize="18"/>
-        <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="459" Checked="unhealthyBehaviors_Checked" Canvas.Top="15" FontSize="18"/>
+        <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="40" Canvas.Top="15" Checked="functions_Checked" FontSize="20" FontFamily="Calibri"/>
+        <RadioButton x:Name ="healthyBehaviors"  Checked="healthyBehaviors_Checked" Content="Healthy Behaviors" Canvas.Left="220" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
+        <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="459" Checked="unhealthyBehaviors_Checked" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
         <TextBox x:Name="factsMessageBox" Visibility="Hidden" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="90" Canvas.Left="190" TextWrapping="Wrap"  Canvas.Top="495" Width="325" FontSize="18" Background="{x:Null}"/>
         <Button x:Name="gotItButton" Content="GOT IT!" Visibility="Hidden" Canvas.Left="570" Canvas.Top="505" Width="80" Click="gotItButton_Click" Height="35" Background="#FF0072BB" FontSize="18" BorderBrush="{x:Null}"/>
         <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="560" Width="40" Height="40" Click="editButton_Click" BorderBrush="{x:Null}">

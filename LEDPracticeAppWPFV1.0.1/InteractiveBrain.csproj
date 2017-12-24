@@ -199,10 +199,28 @@
     <Resource Include="Resources\if_Play.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\downstairs.PNG" />
+    <Resource Include="Resources\if_menu.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\if_menu.ico" />
+    <Resource Include="Resources\if_exit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_video.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_Downstairs.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_Brain_Games.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_Upstairs_103047.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\if_thumbs-up_1608950.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
