@@ -33,7 +33,7 @@ namespace InteractiveBrain
         //It moves the page marker to highlight the button that was clicked 
         //It clears previously instantiated user controls to make room for the
         //button that was most recently clicked 
-        private void interactiveBrainButton_Click(object sender, RoutedEventArgs e)
+        private void InteractiveBrainButton_Click(object sender, RoutedEventArgs e)
         {
           //  pageMarker.Visibility = System.Windows.Visibility.Visible;
             buttonTopValue = Canvas.GetTop(interactiveBrainButton);
@@ -57,7 +57,7 @@ namespace InteractiveBrain
         }
 
 
-        private void simulationButton_Click(object sender, RoutedEventArgs e)
+        private void SimulationButton_Click(object sender, RoutedEventArgs e)
         {
           //  pageMarker.Visibility = System.Windows.Visibility.Visible;
             buttonTopValue = Canvas.GetTop(simulationButton);
@@ -79,7 +79,7 @@ namespace InteractiveBrain
                 myCanvas.Children.Add(simulationUserControl.Instance);
         }
 
-        private void serialCommsButton_Click(object sender, RoutedEventArgs e)
+        private void SerialCommsButton_Click(object sender, RoutedEventArgs e)
         {
            
           //  pageMarker.Visibility  = System.Windows.Visibility.Visible;
@@ -103,7 +103,7 @@ namespace InteractiveBrain
 
         }
 
-        private void middleSchoolButton_Click(object sender, RoutedEventArgs e)
+        private void MiddleSchoolButton_Click(object sender, RoutedEventArgs e)
         {
           //  pageMarker.Visibility = System.Windows.Visibility.Visible;
            
@@ -125,7 +125,7 @@ namespace InteractiveBrain
                 myCanvas.Children.Add(middleSchoolControl1.Instance);
         }
 
-        private void highSchoolButton_Click(object sender, RoutedEventArgs e)
+        private void HighSchoolButton_Click(object sender, RoutedEventArgs e)
         {
            // pageMarker.Visibility = System.Windows.Visibility.Visible;
             
@@ -148,29 +148,29 @@ namespace InteractiveBrain
         }
 
         
-        private void expandMenuButton_Click(object sender, RoutedEventArgs e) {
+        private void ExpandMenuButton_Click(object sender, RoutedEventArgs e) {
 
             Thickness margin;
-            Thickness margin2;
+            
             if (buttonViewbox.Width == 220 && buttonViewbox.Height == 600)
             {
                 buttonViewbox.Width = 45;
                 buttonViewbox.Height = 600;
+                buttonPanel.Width = 45;
+                buttonViewbox.Height = 600;
+
+                myCanvasViewbox.Width = 855;
                 myCanvasViewbox.Height = 755;
                 myCanvas.Height = 755;
               
-                buttonPanel.Width = 45;
-                
                 margin = myCanvasViewbox.Margin;
-             //  margin2 = myCanvas.Margin;
                 margin.Left = -175;
-             //   margin2.Left = -175;
                 myCanvasViewbox.Margin = margin;
-           //    myCanvas.Margin = margin2;
+           
              
-                myCanvasViewbox.Width = 855;
-             //   myCanvas.Width = 855;
-                buttonViewbox.Height = 600;
+                
+             
+                
                 
 
             }
@@ -181,12 +181,12 @@ namespace InteractiveBrain
                 buttonPanel.Width = 220;
                 buttonViewbox.Height = 600;
 
-              //  margin = myCanvasViewbox.Margin;
-             //   margin.Left = 0;
-             //   myCanvasViewbox.Margin = margin;
-              //  myCanvasViewbox.Height = 600;
-              
-              //  myCanvasViewbox.Width = 680;
+                margin = myCanvasViewbox.Margin;
+                margin.Left = 0;
+                myCanvasViewbox.Margin = margin;
+                myCanvasViewbox.Height = 600;
+                myCanvas.Height = 600;
+                myCanvasViewbox.Width = 690;
             }
 
         }

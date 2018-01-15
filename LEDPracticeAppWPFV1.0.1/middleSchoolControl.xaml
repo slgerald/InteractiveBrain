@@ -119,7 +119,7 @@
                                              />
         </Storyboard>
     </UserControl.Resources>
-    <Canvas Name ="myCanvas" RenderTransformOrigin="0.5,0.5" Margin="0,0,55,60" Width="660" Height="600">
+    <Canvas Name ="myCanvas" RenderTransformOrigin="0.5,0.5" Height="600">
         <Canvas.Triggers>
             <!-- makes it zoom out first-->
             <EventTrigger RoutedEvent="MouseDown"  SourceName="frontalLobeBox">
@@ -161,22 +161,22 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Button x:Name ="gotItButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="40" Click="gotItButton_Click" Canvas.Left="545" Canvas.Top="485" FontSize="18" Height="40" RenderTransformOrigin="0.938,2.125" Visibility="Visible" BorderBrush="{x:Null}" Background="#FF0072BB">
+        <Button x:Name ="gotItButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="40" Click="GotItButton_Click" Canvas.Left="545" Canvas.Top="485" FontSize="18" Height="40" RenderTransformOrigin="0.938,2.125" Visibility="Hidden" BorderBrush="Black" Background="{x:Null}">
             <Image Height="40" Width="40" Source="Resources/if_thumbs-up_1608950.png"/>
 
         </Button>
-        <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="560" Width="40" Height="40" Click="editButton_Click" BorderBrush="{x:Null}" RenderTransformOrigin="0.125,0.5">
+        <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="560" Width="40" Height="40" Click="EditButton_Click" BorderBrush="{x:Null}" RenderTransformOrigin="0.125,0.5">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
-        <RadioButton x:Name="functions" Content="Functions" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="functions_Checked" Width="100" Height="25" FontSize="20" Canvas.Left="40" Canvas.Top="20" FontFamily="Calibri"/>
+        <RadioButton x:Name="functions" Content="Functions" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="Functions_Checked" Width="100" Height="25" FontSize="20" Canvas.Left="40" Canvas.Top="20" FontFamily="Calibri"/>
         <Popup PlacementTarget="{Binding ElementName=functions}" x:Name="editPopup" >
-            <Border BorderBrush="#FF0E1116" 
+            <Border BorderBrush="#FF000000" 
                 Background="#FF0072BB"
                 BorderThickness="2" Width="560" Height="315" Canvas.Top="5">
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="315" Margin="-2" Width="560">
-                    <ComboBox x:Name="brainPartComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Height="30" Canvas.Left="135" Canvas.Top="20" SelectionChanged="brainPartComboBox_SelectionChanged" FontFamily="Calibri" FontSize="18" BorderBrush="Black" >
+                    <ComboBox x:Name="brainPartComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Height="30" Canvas.Left="135" Canvas.Top="20" SelectionChanged="BrainPartComboBox_SelectionChanged" FontFamily="Calibri" FontSize="18" BorderBrush="Black" >
                         <ComboBoxItem x:Name="cerebellum" Content="Cerebellum"></ComboBoxItem>
                         <ComboBoxItem x:Name="temporalLobe" Content="Temporal Lobe"></ComboBoxItem>
                         <ComboBoxItem x:Name="frontalLobe" Content="Frontal Lobe"></ComboBoxItem>
@@ -184,16 +184,16 @@
                         <ComboBoxItem x:Name="parietalLobe" Content="Parietal Lobe"></ComboBoxItem>
                     </ComboBox>
                     <Label x:Name="brainPartLabel" Content="Brain Part" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="30" Canvas.Left="30" Canvas.Top="20" FontFamily="Calibri" FontSize="20"/>
-                    <TextBox x:Name ="editingTextBox" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="editingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black"/>
+                    <TextBox x:Name ="editingTextBox" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black"/>
                     <Button x:Name="closeButton" Content="" Click="ClosePopupClicked" HorizontalAlignment="Center" Height="25" Width="25" Canvas.Left="535" Canvas.Top="290" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Close">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
                         </Button.Background>
                     </Button>
-                    <RadioButton x:Name ="editFunctionsRadioButton" Content="Functions" Canvas.Left="345" Canvas.Top="10" IsChecked="False" Checked="functionsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
-                    <RadioButton x:Name ="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="345" Canvas.Top="28" IsChecked="False" Checked="healthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
-                    <RadioButton x:Name="editUnhealthyBehaviorsRadioButton" Content="Unhealthy Behaviors" Canvas.Left="345" Canvas.Top="48" IsChecked="False" Checked="unhealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
-                    <Button Content="" Canvas.Left="475" Canvas.Top="246" Width="40" Height="40" RenderTransformOrigin="1.154,0.556" Click="saveButton_Click" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Save">
+                    <RadioButton x:Name ="editFunctionsRadioButton" Content="Functions" Canvas.Left="345" Canvas.Top="10" IsChecked="False" Checked="FunctionsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <RadioButton x:Name ="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="345" Canvas.Top="28" IsChecked="False" Checked="HealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <RadioButton x:Name="editUnhealthyBehaviorsRadioButton" Content="Unhealthy Behaviors" Canvas.Left="345" Canvas.Top="48" IsChecked="False" Checked="UnhealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <Button Content="" Canvas.Left="475" Canvas.Top="246" Width="40" Height="40" RenderTransformOrigin="1.154,0.556" Click="SaveButton_Click" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Save">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_save.ico"/>
                         </Button.Background>
@@ -202,8 +202,8 @@
                 </Canvas>
             </Border>
         </Popup>
-        <RadioButton x:Name="healthyBehaviors" Content="Healthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="healthyBehaviors_Checked" Height="25" Width="165" Canvas.Left="220" Canvas.Top="20" FontSize="20" FontFamily="Calibri"/>
-        <RadioButton x:Name="unhealthyBehaviors" Content="Unhealthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="unhealthyBehaviors_Checked" Canvas.Left="455" Canvas.Top="20" Width="185" Height="25" FontSize="20" FontFamily="Calibri"/>
+        <RadioButton x:Name="healthyBehaviors" Content="Healthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="HealthyBehaviors_Checked" Height="25" Width="165" Canvas.Left="220" Canvas.Top="20" FontSize="20" FontFamily="Calibri"/>
+        <RadioButton x:Name="unhealthyBehaviors" Content="Unhealthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="UnhealthyBehaviors_Checked" Canvas.Left="455" Canvas.Top="20" Width="185" Height="25" FontSize="20" FontFamily="Calibri"/>
         <Ellipse x:Name="centerReference" Visibility="Hidden" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5" Canvas.Left="340" Canvas.Top="250"/>
         <TextBox x:Name="factsMessageBox" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Visibility ="Hidden" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TextChanged="TextBox_TextChanged" FontSize="18" Canvas.Left="90" Canvas.Top="460">
             <TextBox.Background>
@@ -282,7 +282,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBox Visibility="Hidden" x:Name="brainPartsLabel" IsReadOnly="True" Height="30" Canvas.Left="245" TextWrapping="Wrap" Canvas.Top="70" Width="130" TextChanged="brainPartsLabel_TextChanged" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <TextBox Visibility="Hidden" x:Name="brainPartsLabel" IsReadOnly="True" Height="30" Canvas.Left="245" TextWrapping="Wrap" Canvas.Top="70" Width="130" TextChanged="BrainPartsLabel_TextChanged" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
     </Canvas>
 </UserControl>

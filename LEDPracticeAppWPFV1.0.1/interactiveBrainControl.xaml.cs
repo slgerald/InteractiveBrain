@@ -42,6 +42,10 @@ namespace InteractiveBrain
         String[] ports;
         static ConcurrentQueue<char> serialDataQueue;
         string selectedPort;
+        bool editSubstancesFlag;
+        bool editHealthyBehaviorsFlag;
+        ListBoxItem newListBoxItem = new ListBoxItem();
+        string newListBoxContentText;
 
         public static interactiveBrainControl Instance
         
@@ -64,7 +68,9 @@ namespace InteractiveBrain
             activity = false;
             substance = false;
             isConnected = false;
-            getAvailableComPorts();
+            editHealthyBehaviorsFlag = false;
+            editSubstancesFlag = false;
+            GetAvailableComPorts();
             try
             {
                 SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
@@ -85,14 +91,14 @@ namespace InteractiveBrain
             }
         }
 
-        private void selectionMessageBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void SelectionMessageBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
         //This function determines what happens when the Go Button is Clicked
         //Depending on the selection, make affected areas glow 
-        private void goButton_Click(object sender, RoutedEventArgs e)
+        private void GoButton_Click(object sender, RoutedEventArgs e)
         {
             if (brainPart)
             {
@@ -183,7 +189,7 @@ namespace InteractiveBrain
         //Make the Examples Button Unavailable 
         //When selection changes stop parts glowing based on the previous selection
 
-        private void brainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = true;
             substance = false;
@@ -210,7 +216,7 @@ namespace InteractiveBrain
         //Set substance flag true and other flags false 
         //Make the Examples Button available with appropriate examples
         //When selection changes stop parts glowing based on the previous selection
-        private void substancesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SubstancesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             substance = true;
             brainPart = false;
@@ -238,7 +244,7 @@ namespace InteractiveBrain
         //Make the Examples Button Unavailable
         //When selection changes stop parts glowing based on the previous selection
 
-        private void activitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ActivitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             activity = true;
             substance = false;
@@ -275,7 +281,7 @@ namespace InteractiveBrain
                // selectionMessageBox.Text = "Check the connection, then redo the selection";
            // }
             }
-        private void pituitaryGland_Selected(object sender, RoutedEventArgs e)
+        private void PituitaryGland_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
             //  if (SerialPort1.IsOpen)
@@ -287,7 +293,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void hippocampus_Selected(object sender, RoutedEventArgs e)
+        private void Hippocampus_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Hippocampus light up";
             //  if (SerialPort1.IsOpen)
@@ -299,7 +305,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // };
         }
-        private void cerebellum_Selected(object sender, RoutedEventArgs e)
+        private void Cerebellum_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Cerebellum light up";
             //  if (SerialPort1.IsOpen)
@@ -311,7 +317,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void parietalLobe_Selected(object sender, RoutedEventArgs e)
+        private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
             //  if (SerialPort1.IsOpen)
@@ -323,7 +329,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void temporalLobe_Selected(object sender, RoutedEventArgs e)
+        private void TemporalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
             //  if (SerialPort1.IsOpen)
@@ -335,7 +341,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void frontalLobe_Selected(object sender, RoutedEventArgs e)
+        private void FrontalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
             //  if (SerialPort1.IsOpen)
@@ -347,7 +353,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void occipitalLobe_Selected(object sender, RoutedEventArgs e)
+        private void OccipitalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
             //  if (SerialPort1.IsOpen)
@@ -359,7 +365,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void brainstem_Selected(object sender, RoutedEventArgs e)
+        private void Brainstem_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Brainstem light up";
             //  if (SerialPort1.IsOpen)
@@ -372,7 +378,7 @@ namespace InteractiveBrain
             // }
         }
 
-        private void stimulants_Selected(object sender, RoutedEventArgs e)
+        private void Stimulants_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "stimulants";
@@ -385,7 +391,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void depressants_Selected(object sender, RoutedEventArgs e)
+        private void Depressants_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "depressants";
@@ -398,7 +404,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void hallucinogens_Selected(object sender, RoutedEventArgs e)
+        private void Hallucinogens_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "hallucinogens";
@@ -411,7 +417,7 @@ namespace InteractiveBrain
             // selectionMessageBox.Text = "Check the connection, then redo the selection";
             // }
         }
-        private void opioids_Selected(object sender, RoutedEventArgs e)
+        private void Opioids_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "opioids";
@@ -425,7 +431,7 @@ namespace InteractiveBrain
             // }
         }
 
-        private void dietAndNutrition_Selected(object sender, RoutedEventArgs e)
+        private void DietAndNutrition_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             //  if (SerialPort1.IsOpen)
@@ -438,7 +444,7 @@ namespace InteractiveBrain
             // }
         }
 
-        private void healthAndExercise_Selected(object sender, RoutedEventArgs e)
+        private void HealthAndExercise_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             //  if (SerialPort1.IsOpen)
@@ -451,7 +457,7 @@ namespace InteractiveBrain
             // }
         }
 
-        private void cognitiveActivity_Selected(object sender, RoutedEventArgs e)
+        private void CognitiveActivity_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             //  if (SerialPort1.IsOpen)
@@ -464,7 +470,7 @@ namespace InteractiveBrain
             // }
         }
 
-        private void socialEngagement_Selected(object sender, RoutedEventArgs e)
+        private void SocialEngagement_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             //  if (SerialPort1.IsOpen)
@@ -479,7 +485,7 @@ namespace InteractiveBrain
         #endregion
 
         //This function determines which substances are listed based on the substance selected
-        private  void examplesButton_Click(object sender, RoutedEventArgs e)
+        private  void ExamplesButton_Click(object sender, RoutedEventArgs e)
         {  // open the Popup if it isn't open already 
            // if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
             examplesButton.Visibility = System.Windows.Visibility.Visible;
@@ -505,18 +511,7 @@ namespace InteractiveBrain
                 MessageBox.Show("Examples of Opioids: \r\n\r\n\u2022 Hydrocone(e.g. Vicodin®) \r\n\u2022 Oxycodone (e.g., OxyContin®, Percocet®) \r\n\u2022 Oxymorphone (e.g., Opana®) \r\n\u2022 Morphine (e.g., Kadian®, Avinza®)\r\n\u2022 Codeine, Fentanyl, and others\r\n\r\n(www.drugabuse.gov)");
             }
         }
-        // This function closes the pop up and changes the background of the connection
-        //button to show that a connection has been established 
-        private void ClosePopupClicked(object sender, RoutedEventArgs e)
-        {
-            // if the Popup is open, then close it 
-
-            if (examplesPopup.IsOpen) { examplesPopup.IsOpen = false; }
-            ImageBrush brush1 = new ImageBrush();
-            brush1.ImageSource = new BitmapImage(new Uri("Resources/if_connect_established.ico"));
-            toggleButton.Background = brush1;
-        }
-
+        
         //The connection button is a toggle button
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -545,8 +540,8 @@ namespace InteractiveBrain
                         // MessageBox.Show("Connected to " + selectedPort)
 
                         // open the Popup if it isn't open already 
-                        if (!examplesPopup.IsOpen)
-                        { examplesPopup.IsOpen = true; }
+                        if (!connectionPopup.IsOpen)
+                        { connectionPopup.IsOpen = true; }
 
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -567,8 +562,8 @@ namespace InteractiveBrain
                     {
                         isConnected = false;
                         SerialPort1.Close();
-                        ImageBrush brush1 = new ImageBrush();
-                        brush1.ImageSource = new BitmapImage(new Uri("Resources/if_connect_no.ico"));
+                        ImageBrush brush1 = new ImageBrush(new BitmapImage(new Uri("Resources/if_connect_no.ico")));
+                       
                         toggleButton.Background = brush1;
                     }
 
@@ -592,7 +587,7 @@ namespace InteractiveBrain
         }
 
         //This function gets the available serial ports 
-        void getAvailableComPorts()
+        void GetAvailableComPorts()
         {
 
             ports = SerialPort.GetPortNames();
@@ -626,13 +621,13 @@ namespace InteractiveBrain
         }
 
         //This function handles what to do with received data
-        private void readSerialDataQueue()
+        private void ReadSerialDataQueue()
         {
-            char ch;
+        
 
             try
             {
-                while (serialDataQueue.TryDequeue(out ch))
+                while (serialDataQueue.TryDequeue(out char ch))
                 {
                     // do something with ch, add it to a textbox 
                     // for example to see that it actually works
@@ -646,9 +641,238 @@ namespace InteractiveBrain
             }
         }
 
-        private void editButton_Click(object sender, RoutedEventArgs e)
+
+        // This function closes the pop up and changes the background of the connection
+        //button to show that a connection has been established 
+        private void ClosePopupClicked(object sender, RoutedEventArgs e)
         {
+            // if the Popup is open, then close it 
+
+            if (connectionPopup.IsOpen) { connectionPopup.IsOpen = false; }
+            ImageBrush brush1 = new ImageBrush(new BitmapImage(new Uri("Resources/if_connect_established.ico")));
+         
+            toggleButton.Background = brush1;
+        }
+
+        private void ClosePopupClicked2(object sender, RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+
+            if (editListsPopup.IsOpen) { editListsPopup.IsOpen = false; }
+            editHealthyBehaviorsFlag = false;
+            editSubstancesFlag = false;
 
         }
+
+        private void ClosePopupClicked3(object sender, RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+
+            if (contentPopup.IsOpen) { contentPopup.IsOpen = false; }
+
+
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!editListsPopup.IsOpen)
+            { editListsPopup.IsOpen = true; }
+           
+        }
+
+        private void SubstancesRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            titleTextBlock.Text = "";
+            editHealthyBehaviorsFlag = false;
+            editSubstancesFlag = true;
+            currentListBox.Items.Clear();
+            for (int i = 0; i < substancesListBox.Items.Count; i++)
+            {
+                ListBoxItem li = new ListBoxItem();
+                string item = ((ListBoxItem)substancesListBox.Items[i]).Content.ToString();
+                Console.WriteLine(item);
+                li.Content = item;
+                currentListBox.Items.Add(li);
+
+            }
+
+        }
+
+        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            titleTextBlock.Text = "";
+            editHealthyBehaviorsFlag = true;
+            editSubstancesFlag = false;
+            currentListBox.Items.Clear();
+            for (int i = 0; i < activitiesListBox.Items.Count; i++)
+            {
+                ListBoxItem li = new ListBoxItem();
+                string item = ((ListBoxItem)activitiesListBox.Items[i]).Content.ToString();
+                Console.WriteLine(item);
+                li.Content = item;
+                currentListBox.Items.Add(li);
+
+            }
+        }
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (editHealthyBehaviorsFlag || editSubstancesFlag)
+            {
+                if (!contentPopup.IsOpen)
+                {
+                    contentPopup.IsOpen = true;
+                }
+            }
+            else
+            {
+                titleTextBlock.Text = "Select Substances or Healthy Behaviors";
+            }
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            int lastIndex;
+            if (editHealthyBehaviorsFlag || editSubstancesFlag)
+            {
+                if (editHealthyBehaviorsFlag)
+                {
+                    lastIndex = activitiesListBox.SelectedIndex;
+                    currentListBox.Items.Remove(lastIndex);
+                    // activitiesListBox.Items.Remove(lastIndex);
+                }
+                if (editSubstancesFlag)
+                {
+                    lastIndex = substancesListBox.SelectedIndex;
+                    currentListBox.Items.Remove(lastIndex);
+                    // activitiesListBox.Items.Remove(lastIndex);
+                }
+            }
+
+        }
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        { int index;
+            bool effectsChecked = false;
+
+            if (editHealthyBehaviorsFlag)
+            {
+               // ListBoxItem newListBoxItem = new ListBoxItem();
+                index = activitiesListBox.Items.Count + 1;
+
+                if (editAmygdalaCheckbox.IsChecked.Value == true)
+                {
+                    effectsChecked = true;
+                    Console.WriteLine("In Amgydala edit checkbox");
+                }
+                else if (editCerebellumCheckbox.IsChecked.HasValue && editCerebellumCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editTemporalLobeCheckbox.IsChecked.HasValue && editTemporalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editPituitaryGlandCheckbox.IsChecked.HasValue && editPituitaryGlandCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editFrontalLobeCheckbox.IsChecked.HasValue && editFrontalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editParietalLobeCheckbox.IsChecked.HasValue && editParietalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editOccipitalLobeCheckbox.IsChecked.HasValue && editOccipitalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+               else  if (editBrainstemCheckbox.IsChecked.HasValue && editBrainstemCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editHippocampusCheckbox.IsChecked.HasValue && editHippocampusCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+               
+                
+            }
+            if (editSubstancesFlag)
+            {
+                ListBoxItem newListBoxItem = new ListBoxItem();
+                index = substancesListBox.Items.Count + 1;
+                if ( editAmygdalaCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                    Console.WriteLine("In Amgydala edit checkbox");
+                }
+               else  if (editCerebellumCheckbox.IsChecked.HasValue && editCerebellumCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editTemporalLobeCheckbox.IsChecked.HasValue && editTemporalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+               else  if (editPituitaryGlandCheckbox.IsChecked.HasValue && editPituitaryGlandCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editFrontalLobeCheckbox.IsChecked.HasValue && editFrontalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editParietalLobeCheckbox.IsChecked.HasValue && editParietalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editOccipitalLobeCheckbox.IsChecked.HasValue && editOccipitalLobeCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+               else  if (editBrainstemCheckbox.IsChecked.HasValue && editBrainstemCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                else if (editHippocampusCheckbox.IsChecked.HasValue && editHippocampusCheckbox.IsChecked.Value)
+                {
+                    effectsChecked = true;
+                }
+                
+               
+            }
+                if (!effectsChecked && newListBoxContentText == null)
+                {
+                    errorTextBlock.Text = "No content was inserted or effects are checked.";
+                Console.WriteLine(effectsChecked);
+                Console.WriteLine(editAmygdalaCheckbox.IsChecked.Value);
+                }
+                else if (!effectsChecked && newListBoxContentText != null)
+                {
+                    errorTextBlock.Text = "No effects are checked.";
+                Console.WriteLine(effectsChecked);
+            }
+                else if (effectsChecked && newListBoxContentText == null)
+                {
+                    errorTextBlock.Text = "No content was inserted.";
+                Console.WriteLine(effectsChecked);
+            }
+                else if (effectsChecked && newListBoxContentText != null)
+                {
+                    newListBoxItem.Content = newListBoxContentText;
+                    currentListBox.Items.Add(newListBoxItem);
+                    errorTextBlock.Text = "Saved.";
+                Console.WriteLine(effectsChecked);
+            }
+        }
+
+        private void ListBoxContent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            newListBoxContentText = listBoxContent.Text;
+        }
+
+
+       
     }
 }

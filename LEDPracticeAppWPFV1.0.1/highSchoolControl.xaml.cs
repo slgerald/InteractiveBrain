@@ -44,21 +44,21 @@ namespace InteractiveBrain
             //The following lines ensure that different Mouse Events have an effect 
             pictureCanvasScaler.MouseDoubleClick += new MouseButtonEventHandler(RestoreScalingFactor);
 
-            hippocampusBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(hippocampusBox_PreviewMouseLeftButtonDown);
-            hippocampusBox.PreviewMouseMove += new MouseEventHandler(img_PreviewMouseMove);
-            hippocampusBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(img_PreviewMouseLeftButtonUp);
+            hippocampusBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(HippocampusBox_PreviewMouseLeftButtonDown);
+            hippocampusBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
+            hippocampusBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
 
-            pituitaryGlandBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(pituitaryGlandBox_PreviewMouseLeftButtonDown);
-            pituitaryGlandBox.PreviewMouseMove += new MouseEventHandler(img_PreviewMouseMove);
-            pituitaryGlandBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(img_PreviewMouseLeftButtonUp);
+            pituitaryGlandBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(PituitaryGlandBox_PreviewMouseLeftButtonDown);
+            pituitaryGlandBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
+            pituitaryGlandBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
 
-            brainstemBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(brainstemBox_PreviewMouseLeftButtonDown);
-            brainstemBox.PreviewMouseMove += new MouseEventHandler(img_PreviewMouseMove);
-            brainstemBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(img_PreviewMouseLeftButtonUp);
+            brainstemBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(BrainstemBox_PreviewMouseLeftButtonDown);
+            brainstemBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
+            brainstemBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
 
-            amygdalaBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(amygdalaBox_PreviewMouseLeftButtonDown);
-            amygdalaBox.PreviewMouseMove += new MouseEventHandler(img_PreviewMouseMove);
-            amygdalaBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(img_PreviewMouseLeftButtonUp);
+            amygdalaBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(AmygdalaBox_PreviewMouseLeftButtonDown);
+            amygdalaBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
+            amygdalaBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
         }
         public static highSchoolControl Instance //This allows a new highSchool User Control to be instantiated 
         {
@@ -74,21 +74,21 @@ namespace InteractiveBrain
             }
         }
         //This function sets flags to true and false
-        private void functions_Checked(object sender, RoutedEventArgs e)
+        private void Functions_Checked(object sender, RoutedEventArgs e)
         {
             functionsFlag = true;
             healthyBehaviorsFlag = false;
             unhealthyBehaviorsFlag = false;
         }
         //This function sets flags as true and false 
-        private void healthyBehaviors_Checked(object sender, RoutedEventArgs e)
+        private void HealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             healthyBehaviorsFlag = true;
             functionsFlag = false;
             unhealthyBehaviorsFlag = false;
         }
         //This function set flags as true and false 
-        private void unhealthyBehaviors_Checked(object sender, RoutedEventArgs e)
+        private void UnhealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             unhealthyBehaviorsFlag = true;
             functionsFlag = false;
@@ -105,7 +105,7 @@ namespace InteractiveBrain
             cutoutLowerBrain.Visibility = System.Windows.Visibility.Visible;
         }
         //This function determines what happens when the hippocampus is clicked on with the mouse's left button
-        private void hippocampusBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void HippocampusBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             brainPartsLabel.Text = "Hippocampus"; //Label for the brain part 
             // In this event, we get the current mouse position on the control to use it in the MouseMove event.
@@ -161,7 +161,7 @@ namespace InteractiveBrain
         }
 
         //Determines what happens when the amygdala is clicked on 
-        private void amygdalaBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void AmygdalaBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             brainPartsLabel.Text = "Amygdala";
             // In this event, we get the current mouse position on the control to use it in the MouseMove event.
@@ -224,7 +224,7 @@ namespace InteractiveBrain
         }
 
         //This function determines what happens when the brainstem is left clicked 
-        private void brainstemBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void BrainstemBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             brainPartsLabel.Text = "Brainstem";
             // In this event, we get the current mouse position on the control to use it in the MouseMove event.
@@ -286,7 +286,7 @@ namespace InteractiveBrain
         }
 
         //This function determines what happens when the pituitary gland is left clicked 
-        private void pituitaryGlandBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void PituitaryGlandBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             brainPartsLabel.Text = "Pituitary Gland";
             // In this event, we get the current mouse position on the control to use it in the MouseMove event.
@@ -346,7 +346,7 @@ namespace InteractiveBrain
         }
 
         //All images use this functions as the "drop" part of their drag and drop operation
-        private void img_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Img_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
             Canvas canvas = img.Parent as Canvas;
@@ -363,7 +363,7 @@ namespace InteractiveBrain
         }
 
         //All images use this function for their "drag" part of their drag and drop operation
-        private void img_PreviewMouseMove(object sender, MouseEventArgs e)
+        private void Img_PreviewMouseMove(object sender, MouseEventArgs e)
         {
           //  double newLeft;
             if (e.LeftButton == MouseButtonState.Pressed && sender == movingObject)
@@ -399,7 +399,7 @@ namespace InteractiveBrain
 
         
 
-        private void editButton_Click(object sender, RoutedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -408,7 +408,7 @@ namespace InteractiveBrain
         //It makes certain controls hidden and others visible. It also reenables 
         //The radio buttons that weren't being used as well as reset the scaler to 
         //the value of 1.0
-        private void gotItButton_Click(object sender, RoutedEventArgs e)
+        private void GotItButton_Click(object sender, RoutedEventArgs e)
         {
             factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Hidden;

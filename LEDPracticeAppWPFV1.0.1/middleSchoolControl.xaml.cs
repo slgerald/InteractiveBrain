@@ -121,12 +121,12 @@ namespace InteractiveBrain
         {
             InitializeComponent();
             functions.IsChecked = true;
-            frontalLobeBox.MouseDown += new MouseButtonEventHandler(frontalLobeBox_MouseDown);
-            temporalLobeBox.MouseDown += new MouseButtonEventHandler(temporalLobeBox_MouseDown);
-            parietalLobeBox.MouseDown += new MouseButtonEventHandler(parietalLobeBox_MouseDown);
-            occipitalLobeBox.MouseDown += new MouseButtonEventHandler(occipitalLobeBox_MouseDown);
-            cerebellumBox.MouseDown += new MouseButtonEventHandler(cerebellumBox_MouseDown);
-            gotItButton.Click += new RoutedEventHandler(gotItButton_Click);
+            frontalLobeBox.MouseDown += new MouseButtonEventHandler(FrontalLobeBox_MouseDown);
+            temporalLobeBox.MouseDown += new MouseButtonEventHandler(TemporalLobeBox_MouseDown);
+            parietalLobeBox.MouseDown += new MouseButtonEventHandler(ParietalLobeBox_MouseDown);
+            occipitalLobeBox.MouseDown += new MouseButtonEventHandler(OccipitalLobeBox_MouseDown);
+            cerebellumBox.MouseDown += new MouseButtonEventHandler(CerebellumBox_MouseDown);
+            gotItButton.Click += new RoutedEventHandler(GotItButton_Click);
             sbFL = (Storyboard)this.Resources["zoomingFL"];
             sbTL = (Storyboard)this.Resources["zoomingTL"];
             sbPL = (Storyboard)this.Resources["zoomingPL"];
@@ -191,15 +191,15 @@ namespace InteractiveBrain
         //This functions determines what happens when the frontalLobe box is clicked once with any 
         //mouse button
         #region
-        private void frontalLobeBox_MouseDown(object sender, MouseEventArgs e)
+        private void FrontalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
             brainPartsLabel.Text = "Frontal Lobe";
             storyboardFlag = 1;
             
             //without reverseOn every other time autoreverse = true
             if (sbFL.AutoReverse)
-                reverseOn(1);
-            else { reverseOff(1); }
+                ReverseOn(1);
+            else { ReverseOff(1); }
 
             //Hide other parts and make facts box and go button visible
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
@@ -276,7 +276,7 @@ namespace InteractiveBrain
         //This functions determines what happens when the temporalLobe box is clicked once with any 
         //mouse button
         #region
-        private void temporalLobeBox_MouseDown(object sender, MouseEventArgs e)
+        private void TemporalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
             brainPartsLabel.Text = "Temporal Lobe";
             storyboardFlag = 2;
@@ -294,11 +294,11 @@ namespace InteractiveBrain
             //  imageToCenter(sender,objectX,objectY);
             if (sbTL.AutoReverse)
             {
-                reverseOn(2);
+                ReverseOn(2);
             }
             else
             {
-                reverseOff(2);
+                ReverseOff(2);
             }
             //Hide other parts and make facts box and go button visible
             parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
@@ -364,18 +364,18 @@ namespace InteractiveBrain
         //This functions determines what happens when the parietalLobe box is clicked once with any 
         //mouse button
         #region
-        private void parietalLobeBox_MouseDown(object sender, MouseEventArgs e)
+        private void ParietalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
             brainPartsLabel.Text = "Parietal Lobe";
 
             storyboardFlag = 3;
             if (sbPL.AutoReverse)
             {
-                reverseOn(3);
+                ReverseOn(3);
             }
             else
              {
-                reverseOff(3);
+                ReverseOff(3);
             }
             //Hide other parts and make facts box and go button visible
             temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
@@ -442,17 +442,17 @@ namespace InteractiveBrain
         //This functions determines what happens when the occipitalLobe box is clicked once with any 
         //mouse button
         #region
-        private void occipitalLobeBox_MouseDown(object sender, MouseEventArgs e)
+        private void OccipitalLobeBox_MouseDown(object sender, MouseEventArgs e)
         {
             brainPartsLabel.Text = "Occipital Lobe";
             storyboardFlag = 4;
             if (sbOL.AutoReverse)
             {
-                reverseOn(4);
+                ReverseOn(4);
             }
             else
             {
-                reverseOff(4);
+                ReverseOff(4);
             }
             //Hide other parts and make facts box and go button visible
             temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
@@ -517,17 +517,17 @@ namespace InteractiveBrain
         //This functions determines what happens when the cerebellum box is clicked once with any 
         //mouse button
         #region
-        private void cerebellumBox_MouseDown(object sender, MouseEventArgs e)
+        private void CerebellumBox_MouseDown(object sender, MouseEventArgs e)
         {
             brainPartsLabel.Text = "Cerebellum Lobe";
             storyboardFlag = 5;
             if (sbC.AutoReverse)
             {
-                reverseOn(5);
+                ReverseOn(5);
             }
             else
             {
-                reverseOff(5);
+                ReverseOff(5);
             }
             //Hide other parts and make facts box and go button visible
             temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
@@ -593,7 +593,7 @@ namespace InteractiveBrain
         //When functions radio button is chosen
         //This function sets functions flag to 
         //true and healthyBehaviors and unhealthybehaviors to false
-        private void functions_Checked(object sender, RoutedEventArgs e)
+        private void Functions_Checked(object sender, RoutedEventArgs e)
         {
             functionsFlag = true;
             healthyBehaviorsFlag = false;
@@ -602,7 +602,7 @@ namespace InteractiveBrain
         //When healthy behaviors radio button is chosen 
         //This function sets healthyBehaviors flags to true 
         //and unhealthyBehaviors and functions to false 
-        private void healthyBehaviors_Checked(object sender, RoutedEventArgs e)
+        private void HealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             healthyBehaviorsFlag = true;
             functionsFlag = false;
@@ -611,7 +611,7 @@ namespace InteractiveBrain
         //When the unhealthybehaviors radio button is chosen
         //This function set unhealthyBehaviors flags to true 
         //and healthyBehaviors and functions flag to false 
-        private void unhealthyBehaviors_Checked(object sender, RoutedEventArgs e)
+        private void UnhealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
             unhealthyBehaviorsFlag = true;
             functionsFlag = false;
@@ -621,7 +621,7 @@ namespace InteractiveBrain
         //Depending on the brain part
         //This functions sets the autoreverse attribute 
         //of that brain part's storyboard false
-        private void reverseOff(int storyboardFlag)
+        private void ReverseOff(int storyboardFlag)
         {
             switch (storyboardFlag)
             {
@@ -645,7 +645,7 @@ namespace InteractiveBrain
         //Depending on the brain part
         //This functions sets the autoreverse attribute 
         //of that brain part's storyboard true
-        private void reverseOn(int storyboardFlag)
+        private void ReverseOn(int storyboardFlag)
         {
             switch (storyboardFlag)
             {
@@ -680,24 +680,24 @@ namespace InteractiveBrain
         //Which brain parts to make visible based on brain part selection
         //Make the gotItbutton, facts message box, and brain parts label hidden
         #region
-        private void gotItButton_Click(object sender, RoutedEventArgs e)
+        private void GotItButton_Click(object sender, RoutedEventArgs e)
         {     //sbFL = 1, sbTL = 2, sbPL = 3, sbOL = 4, sbC = 5
             //Safeguard against incorrect AutoREverse attribute of selected brain part 
             if (sbFL.AutoReverse)
-            { reverseOn(1); }
-            else { reverseOff(1); }
+            { ReverseOn(1); }
+            else { ReverseOff(1); }
             if (sbTL.AutoReverse)
-            { reverseOn(2); }
-            else { reverseOff(2); }
+            { ReverseOn(2); }
+            else { ReverseOff(2); }
             if (sbPL.AutoReverse)
-            { reverseOn(3); }
-            else { reverseOff(3); }
+            { ReverseOn(3); }
+            else { ReverseOff(3); }
             if (sbOL.AutoReverse)
-            { reverseOn(4); }
-            else { reverseOff(4); }
+            { ReverseOn(4); }
+            else { ReverseOff(4); }
             if (sbC.AutoReverse)
-            { reverseOn(5); }
-            else { reverseOff(5); }
+            { ReverseOn(5); }
+            else { ReverseOff(5); }
 
             //Based on the brain part selected, determines which parts
             //should become visible again
@@ -740,20 +740,20 @@ namespace InteractiveBrain
 
             //Safegaurd against incorrect AutoReverse attribute of selected brain part 
             if (!sbFL.AutoReverse && storyboardFlag == 1)
-            { reverseOn(1); }
-            else { reverseOff(1); }
+            { ReverseOn(1); }
+            else { ReverseOff(1); }
             if (!sbTL.AutoReverse && storyboardFlag == 2)
-            { reverseOn(2); }
-            else { reverseOff(2); }
+            {ReverseOn(2); }
+            else { ReverseOff(2); }
             if (!sbPL.AutoReverse && storyboardFlag == 3)
-            { reverseOn(3); }
-            else { reverseOff(3); }
+            { ReverseOn(3); }
+            else { ReverseOff(3); }
             if (!sbOL.AutoReverse && storyboardFlag == 4)
-            { reverseOn(4); }
-            else { reverseOff(4); }
+            { ReverseOn(4); }
+            else { ReverseOff(4); }
             if (!sbC.AutoReverse && storyboardFlag == 5)
-            { reverseOn(5); }
-            else { reverseOff(5); }
+            { ReverseOn(5); }
+            else { ReverseOff(5); }
 
             //re-enables the other radio buttons
             if (functionsFlag)
@@ -788,12 +788,12 @@ namespace InteractiveBrain
         }
         //Purposely Empty Function
         //Means nothing is triggered by this event
-        private void brainPartsLabel_TextChanged(object sender, TextChangedEventArgs e)
+        private void BrainPartsLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void editButton_Click(object sender, RoutedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             // open the Popup if it isn't open already 
             if (!editPopup.IsOpen)
@@ -804,7 +804,7 @@ namespace InteractiveBrain
             
         }
 
-        private void editingTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void EditingTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
             changedFactsMessageBoxText = editingTextBox.Text;
@@ -812,7 +812,7 @@ namespace InteractiveBrain
 
         }
         #region
-        private void saveButton_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
 
             try
@@ -927,28 +927,28 @@ namespace InteractiveBrain
             
         }
 #endregion
-        private void functionsRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void FunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = true;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = false;
         }
 
-        private void healthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = true;
             editUnhealthyBehaviorsFlag = false;
         }
 
-        private void unhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void UnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = true;
         }
 
-        private void brainPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BrainPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
