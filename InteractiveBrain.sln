@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InteractiveBrain", "LEDPracticeAppWPFV1.0.1\InteractiveBrain.csproj", "{465C5823-9BE7-471C-97C9-88D8789159A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InteractiveBrain", "InteractiveBrain\InteractiveBrain.csproj", "{465C5823-9BE7-471C-97C9-88D8789159A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

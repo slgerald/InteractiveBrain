@@ -1,0 +1,64 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InteractiveBrain"
+         xmlns:Properties="clr-namespace:InteractiveBrain.Properties"
+         x:Class="InteractiveBrain.MainWindow"
+        mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+        Title="Poe Health Center " Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+
+    <Viewbox Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" MaxHeight="700" MaxWidth="1375">
+        <Canvas Margin="0,0,0,0" Height=" 600" Width="900">
+            <Viewbox x:Name="buttonViewbox" Height="600" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Background="#FF0072BB">
+                    <Button x:Name="interactiveBrainButton" Foreground="Black" Height="100" Click="InteractiveBrainButton_Click" Width="220" Canvas.Top ="70" RenderTransformOrigin="0.5,0.5" FontSize="24" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" FontFamily="Tahoma" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF0072BB">
+                        <DockPanel Height="100" LastChildFill="False" Width="220">
+                            <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Brain_Games.ico" ToolTip="Interactive Brain"/>
+                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Tahoma" FontSize="24" Margin="0,21" Width="175" ToolTip="" ><Run Text="    Interactive "/><LineBreak/><Run Text="        Brain"/></TextBlock>
+                        </DockPanel>
+
+                    </Button>
+                    <Button x:Name="simulationButton"  Foreground="Black"  Height="100" Click="SimulationButton_Click" Canvas.Top="170" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Tahoma" ToolTip="">
+                        <DockPanel Height="100" LastChildFill="False" Width="220">
+                            <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Video.ico" ToolTip="Simulation"/>
+                            <TextBlock Text="     Simulation" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Tahoma" FontSize="24" Margin="0,36" Width="170" ></TextBlock>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="serialCommsButton" Foreground="#FF0E1116" Content="Serial &#xA;Communications &#xD;&#xA;Test" Height="100" Click="SerialCommsButton_Click" Width="149" Canvas.Top="470" RenderTransformOrigin="0.5,0.5" FontSize="18" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Tahoma" Canvas.Left="71">
+
+                    </Button>
+                    <Button x:Name="middleSchoolButton" Foreground="Black" Height="100" Click="MiddleSchoolButton_Click" Canvas.Top="270" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" FontFamily="Tahoma" ToolTip="Upstairs Brain">
+                        <DockPanel Height="100" LastChildFill="False" Width="220">
+                            <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Upstairs_103047.png" ToolTip="Upstairs Brain"/>
+                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Tahoma" FontSize="24" Margin="0,21" Width="180" ><Run Text="      Upstairs "/><LineBreak/><Run Text="        Brain"/></TextBlock>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="highSchoolButton"  Foreground="Black"  Height="100" Click="HighSchoolButton_Click" Canvas.Top="370" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Tahoma" ToolTip="">
+                        <DockPanel Height="100" LastChildFill="False" Width="220">
+                            <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Downstairs.ico" ToolTip="Downstairs Brain"/>
+                            <TextBlock  FontFamily="Tahoma" FontSize="24" Width="180" Margin="0,23,0,19" ><Run Text="    Downstairs"/><LineBreak/><Run Text="         Brain"/></TextBlock>
+                        </DockPanel>
+                    </Button>
+                    <Label x:Name="pageMarker" Content="" Background="#FF0E1116" Visibility="Hidden" Height="100" Canvas.Top="240" Width="10"/>
+                    <Button x:Name="expandMenuButton" Visibility ="Visible" Content="" Width="45" BorderBrush="{x:Null}" Height="40" RenderTransformOrigin="0.7,0.439" Click="ExpandMenuButton_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/if_menu.ico"/>
+                        </Button.Background>
+                    </Button>
+                </Canvas>
+            </Viewbox>
+
+            <Viewbox x:Name="myCanvasViewbox" Stretch="Fill" Height="600" Canvas.Top="0" Canvas.Left="220" Width="690" StretchDirection="Both" >
+                <ScrollViewer x:Name="myCanvasScrollbar" VerticalScrollBarVisibility="Auto" Canvas.Left="220"  Width="690" Height="600">
+                    <Canvas x:Name="myCanvas" Panel.ZIndex="1"  Height="600"  Width="690" RenderTransformOrigin="0.5,0.5" Background="#FFC2C1C2" ClipToBounds="True" />
+                </ScrollViewer> 
+            </Viewbox>
+
+        </Canvas>
+    </Viewbox>
+
+</Window>

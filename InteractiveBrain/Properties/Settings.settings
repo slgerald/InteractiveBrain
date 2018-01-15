@@ -1,0 +1,52 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="InteractiveBrain.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="defaultFunctionsFrontalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">planning, reasoning, speech, voluntary movement (motor cortex is in the frontal lobe), problem solving, regulating emotions (the frontal lobe doesn’t initiate the emotion, but it helps us control our emotions)"</Value>
+    </Setting>
+    <Setting Name="defaultHealthyBehaviorsFrontalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Reading, Problem-Solving games, choreography (like for ballet, Zumba), meditation
+</Value>
+    </Setting>
+    <Setting Name="defaultUnhealthyBehaviorsFrontalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultFunctionsTemporalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hearing, processing short term memory (hippocampus located in this lobe)</Value>
+    </Setting>
+    <Setting Name="defaultHealthyBehaviorsTemporalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultUnhealthyBehaviorsTemporalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultFunctionsParietalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sensory processing such as temperature, pressure, touch, &amp; pain</Value>
+    </Setting>
+    <Setting Name="defaultHealthyBehaviorsParietalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultUnhealthyBehaviorsParietalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultFunctionsOccipitalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">visual Processing</Value>
+    </Setting>
+    <Setting Name="defaultHealthyBehaviorsOccipitalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultUnhealthyBehaviorsOccipitalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultFunctionsCerebellum" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Balance &amp; coordination</Value>
+    </Setting>
+    <Setting Name="defaultHealthyBehaviorsCerebellum" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Any type of physical exercise, activities that help improve attention span</Value>
+    </Setting>
+    <Setting Name="defaultUnhealthyBehaviorsCerebellum" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
