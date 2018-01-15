@@ -21,9 +21,9 @@ namespace InteractiveBrain
     /// The middleSchoolUserControl is used to separate the top brain from the bottom brain and 
     /// provide information about the functions, healthy behaviors and unhealthy behaviors
     /// </summary>
-    public partial class middleSchoolControl1 : UserControl
+    public partial class upstairsBrainControl: UserControl
     {
-        private static middleSchoolControl1 _instance; //render userControl based on button pressed
+        private static upstairsBrainControl _instance; //render userControl based on button pressed
         //flags used to determine which radio button has been used 
         bool functionsFlag; //The functions flag used to ensure functions are listed in the facts message box
         bool healthyBehaviorsFlag; //The healthyBehaviorsFlag is used to ensure healthy behaviors are listed in the facts message box
@@ -101,15 +101,15 @@ namespace InteractiveBrain
 
 
         //This method allows the middle school UserControl to be rendered when called
-        public static middleSchoolControl1 Instance
+        public static upstairsBrainControl Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new middleSchoolControl1();
+                    _instance = new upstairsBrainControl();
                 }
-                _instance = new middleSchoolControl1();
+                _instance = new upstairsBrainControl();
                 return _instance;
 
             }
@@ -118,7 +118,7 @@ namespace InteractiveBrain
         //This function initializes the userControl with EventHandlers and other characteristics
         //EventHandlers routed to controls in xaml file
         //Bind animations for brain parts to instatiated storyboards in the xaml file 
-        public middleSchoolControl1()
+        public upstairsBrainControl()
         {
             InitializeComponent();
             functions.IsChecked = true;

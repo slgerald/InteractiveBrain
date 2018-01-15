@@ -103,11 +103,11 @@ namespace InteractiveBrain
 
         }
 
-        private void MiddleSchoolButton_Click(object sender, RoutedEventArgs e)
+        private void UpstairsBrainButton_Click(object sender, RoutedEventArgs e)
         {
           //  pageMarker.Visibility = System.Windows.Visibility.Visible;
            
-            buttonTopValue = Canvas.GetTop(middleSchoolButton);
+            buttonTopValue = Canvas.GetTop(upstairsBrainButton);
             if (buttonPanel.Width != 45)
             {
               //  Canvas.SetTop(pageMarker, buttonTopValue);
@@ -117,19 +117,19 @@ namespace InteractiveBrain
                 pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             myCanvas.Children.Clear();
-            if (!myCanvas.Children.Contains(middleSchoolControl1.Instance))
+            if (!myCanvas.Children.Contains(upstairsBrainControl.Instance))
             { 
-                myCanvas.Children.Add(middleSchoolControl1.Instance);
+                myCanvas.Children.Add(upstairsBrainControl.Instance);
             }
             else
-                myCanvas.Children.Add(middleSchoolControl1.Instance);
+                myCanvas.Children.Add(upstairsBrainControl.Instance);
         }
 
-        private void HighSchoolButton_Click(object sender, RoutedEventArgs e)
+        private void DownstairsBrainButton_Click(object sender, RoutedEventArgs e)
         {
            // pageMarker.Visibility = System.Windows.Visibility.Visible;
             
-            buttonTopValue = Canvas.GetTop(highSchoolButton);
+            buttonTopValue = Canvas.GetTop(downstairsBrainButton);
             if (buttonPanel.Width != 45)
             {
                // Canvas.SetTop(pageMarker, buttonTopValue);
@@ -139,12 +139,12 @@ namespace InteractiveBrain
                 pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             myCanvas.Children.Clear();
-            if (!myCanvas.Children.Contains(highSchoolControl.Instance))
+            if (!myCanvas.Children.Contains(downstairsBrainControl.Instance))
             {
-                myCanvas.Children.Add(highSchoolControl.Instance);
+                myCanvas.Children.Add(downstairsBrainControl.Instance);
             }
             else
-                myCanvas.Children.Add(highSchoolControl.Instance);
+                myCanvas.Children.Add(downstairsBrainControl.Instance);
         }
 
         

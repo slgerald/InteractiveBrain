@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\App.xaml
-7-2071201550
+6-1039214589
 
-11-468333439
+10-257446287
 64-255021074
-highSchoolControl.xaml;interactiveBrainControl.xaml;MainWindow.xaml;middleSchoolControl.xaml;serialCommsControl.xaml;settingsUserControl.xaml;simulationUserControl.xaml;
+downstairsBrainControl.xaml;interactiveBrainControl.xaml;MainWindow.xaml;upstairsBrainControl.xaml;serialCommsControl.xaml;simulationUserControl.xaml;
 resources\poe-center-logo-km.png
 False
 

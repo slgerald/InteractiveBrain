@@ -31,13 +31,13 @@
                     <Button x:Name="serialCommsButton" Foreground="#FF0E1116" Content="Serial &#xA;Communications &#xD;&#xA;Test" Height="100" Click="SerialCommsButton_Click" Width="149" Canvas.Top="470" RenderTransformOrigin="0.5,0.5" FontSize="18" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Tahoma" Canvas.Left="71">
 
                     </Button>
-                    <Button x:Name="middleSchoolButton" Foreground="Black" Height="100" Click="MiddleSchoolButton_Click" Canvas.Top="270" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" FontFamily="Tahoma" ToolTip="Upstairs Brain">
+                    <Button x:Name="upstairsBrainButton" Foreground="Black" Height="100" Click="UpstairsBrainButton_Click" Canvas.Top="270" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" FontFamily="Tahoma" ToolTip="Upstairs Brain">
                         <DockPanel Height="100" LastChildFill="False" Width="220">
                             <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Upstairs_103047.png" ToolTip="Upstairs Brain"/>
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Tahoma" FontSize="24" Margin="0,21" Width="180" ><Run Text="      Upstairs "/><LineBreak/><Run Text="        Brain"/></TextBlock>
                         </DockPanel>
                     </Button>
-                    <Button x:Name="highSchoolButton"  Foreground="Black"  Height="100" Click="HighSchoolButton_Click" Canvas.Top="370" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Tahoma" ToolTip="">
+                    <Button x:Name="downstairsBrainButton"  Foreground="Black"  Height="100" Click="DownstairsBrainButton_Click" Canvas.Top="370" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Tahoma" ToolTip="">
                         <DockPanel Height="100" LastChildFill="False" Width="220">
                             <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Downstairs.ico" ToolTip="Downstairs Brain"/>
                             <TextBlock  FontFamily="Tahoma" FontSize="24" Width="180" Margin="0,23,0,19" ><Run Text="    Downstairs"/><LineBreak/><Run Text="         Brain"/></TextBlock>

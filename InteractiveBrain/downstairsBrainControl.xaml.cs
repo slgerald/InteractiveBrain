@@ -21,7 +21,7 @@ namespace InteractiveBrain
     /// </summary>
     /// 
 
-    public partial class highSchoolControl : UserControl
+    public partial class downstairsBrainControl : UserControl
     {   //These flags determine what text  to display when different radio button selections 
         bool functionsFlag;
         bool healthyBehaviorsFlag;
@@ -31,11 +31,11 @@ namespace InteractiveBrain
        // double originalImageWidth;
         private object movingObject; //The image being dragged and dropped 
         private double firstXPos, firstYPos;
-        private static highSchoolControl _instance; //render userControl based on button pressed
+        private static downstairsBrainControl _instance; //render userControl based on button pressed
 
 
         //This is the entry point for the userControl page 
-        public highSchoolControl()
+        public downstairsBrainControl()
         {
             InitializeComponent();
              
@@ -60,15 +60,15 @@ namespace InteractiveBrain
             amygdalaBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
             amygdalaBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
         }
-        public static highSchoolControl Instance //This allows a new highSchool User Control to be instantiated 
+        public static downstairsBrainControl Instance //This allows a new highSchool User Control to be instantiated 
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new highSchoolControl();
+                    _instance = new downstairsBrainControl();
                 }
-                _instance = new highSchoolControl();
+                _instance = new downstairsBrainControl();
                 return _instance;
 
             }

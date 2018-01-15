@@ -79,11 +79,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="highSchoolControl.xaml.cs">
-      <DependentUpon>highSchoolControl.xaml</DependentUpon>
+    <Compile Include="downstairsBrainControl.xaml.cs">
+      <DependentUpon>downstairsBrainControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="middleSchoolControl.xaml.cs">
-      <DependentUpon>middleSchoolControl.xaml</DependentUpon>
+    <Compile Include="upstairsBrainControl.xaml.cs">
+      <DependentUpon>upstairsBrainControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -93,13 +93,10 @@
     <Compile Include="serialCommsControl.xaml.cs">
       <DependentUpon>serialCommsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="settingsUserControl.xaml.cs">
-      <DependentUpon>settingsUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="simulationUserControl.xaml.cs">
       <DependentUpon>simulationUserControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="highSchoolControl.xaml">
+    <Page Include="downstairsBrainControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,15 +119,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="middleSchoolControl.xaml">
+    <Page Include="upstairsBrainControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="serialCommsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="settingsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
