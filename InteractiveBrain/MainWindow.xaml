@@ -8,7 +8,7 @@
          x:Class="InteractiveBrain.MainWindow"
         mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
-        Title="Poe Health Center " Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
+        Title="Poe Health Center's Interactive Brain" Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
 
 
     <Viewbox Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" MaxHeight="700" MaxWidth="1375">
