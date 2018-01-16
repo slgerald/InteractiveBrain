@@ -55,6 +55,11 @@ C:\Users\Shailicia\source\repos\InteractiveBrain\LEDPracticeAppWPFV1.0.1\obj\Deb
 C:\Users\Shailicia\source\repos\InteractiveBrain\LEDPracticeAppWPFV1.0.1\obj\Debug\InteractiveBrain.csproj.CoreCompileInputs.cache
 C:\Users\Shailicia\source\repos\InteractiveBrain\LEDPracticeAppWPFV1.0.1\obj\Debug\InteractiveBrain.exe
 C:\Users\Shailicia\source\repos\InteractiveBrain\LEDPracticeAppWPFV1.0.1\obj\Debug\InteractiveBrain.pdb
+C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\InteractiveBrain.exe.config
+C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\InteractiveBrain.exe
+C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\InteractiveBrain.pdb
+C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\System.Runtime.WindowsRuntime.dll
+C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\Windows.winmd
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\downstairsBrainControl.g.cs
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\interactiveBrainControl.g.cs
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\MainWindow.g.cs
@@ -64,11 +69,6 @@ C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\simu
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\App.g.cs
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\InteractiveBrain_MarkupCompile.cache
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\InteractiveBrain_MarkupCompile.lref
-C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\InteractiveBrain.exe.config
-C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\InteractiveBrain.exe
-C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\InteractiveBrain.pdb
-C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\System.Runtime.WindowsRuntime.dll
-C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\bin\Debug\Windows.winmd
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\downstairsBrainControl.baml
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\interactiveBrainControl.baml
 C:\Users\Shailicia\source\repos\InteractiveBrain\InteractiveBrain\obj\Debug\MainWindow.baml
