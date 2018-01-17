@@ -154,6 +154,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\amygdala.png" />
+    <Resource Include="Resources\cutoutLowerBrain.png" />
+    <Resource Include="Resources\hippocampus.png" />
     <Resource Include="Resources\if_icon-arrow-left.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -170,22 +173,11 @@
     <Resource Include="Resources\parietalLobe.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\pituitaryGland.png" />
     <Resource Include="Resources\temporalLobe.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\amygdala.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\pituitaryGland.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\hippocampus.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\brainstem.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\cutoutLowerBrain.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\secondBrainstem.png" />

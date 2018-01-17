@@ -92,13 +92,6 @@
                 </Canvas>
             </Border>
         </Popup>
-        <Image Height="210" Width="285" Canvas.Top="145" x:Name="secondBrainstemImage" Canvas.Left="50">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Setter Property= "Source" Value="Resources/secondBrainstem.png"/>
-                </Style>
-            </Image.Style>
-        </Image>
         <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_Play.ico"/>
@@ -138,63 +131,63 @@
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="83" Width="60" Canvas.Top="162" x:Name="hippocampusImage" Canvas.Left="502">
+        <Image Height="94" Width="62" Canvas.Top="158" x:Name="hippocampusImage" Canvas.Left="504">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/hippocampus.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="110" Width="47" Canvas.Top="207" x:Name="brainstemImage" Canvas.Left="513">
+        <Image Height="115" Width="47" Canvas.Top="210" x:Name="brainstemImage" Canvas.Left="519" Source="Resources/secondBrainstem.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/brainstem.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="17" Width="28" Canvas.Top="210" x:Name="amygdalaImage" Canvas.Left="507">
+        <Image Height="13" Width="20" Canvas.Top="217" x:Name="amygdalaImage" Canvas.Left="515">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/amygdala.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="20" Width="22" Canvas.Top="225" x:Name="pituitaryGlandImage" Canvas.Left="480">
+        <Image Height="21" Width="22" Canvas.Top="227" x:Name="pituitaryGlandImage" Canvas.Left="482">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/pituitaryGland.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="120" Width="160" Canvas.Top="105" x:Name="frontalLobeImage" Canvas.Left="45">
+        <Image Height="128" Width="160" Canvas.Top="97" x:Name="frontalLobeImage" Canvas.Left="45">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="85" Width="57" Canvas.Top="140" x:Name="occipitalLobeImage" Canvas.Left="253">
+        <Image Height="80" Width="57" Canvas.Top="137" x:Name="occipitalLobeImage" Canvas.Left="261">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="115" Width="175" Canvas.Top="140" x:Name="temporalLobeImage" Canvas.Left="100">
+        <Image Height="115" Width="160" Canvas.Top="137" x:Name="temporalLobeImage" Canvas.Left="115">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="135" Width="135" Canvas.Top="80" x:Name="parietalLobeImage" Canvas.Left="140">
+        <Image Height="135" Width="143" Canvas.Top="76" x:Name="parietalLobeImage" Canvas.Left="142">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
                 </Style>
             </Image.Style>
         </Image>
-        <Image Height="80" Width="97" Canvas.Top="200" x:Name="cerebellumImage" Canvas.Left="183">
+        <Image Height="87" Width="99" Canvas.Top="193" x:Name="cerebellumImage" Canvas.Left="191">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/cerebellum.png"/>

@@ -143,7 +143,7 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Canvas.Triggers>
-        <Image x:Name="temporalLobeBox" Canvas.Left="210" Canvas.Top ="175" Height="160" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png" ToolTip="Temporal Lobe">
+        <Image x:Name="temporalLobeBox" Canvas.Left="215" Canvas.Top ="173" Height="160" VerticalAlignment="Top" Width="217" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png" ToolTip="Temporal Lobe">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
@@ -161,7 +161,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Button x:Name ="gotItButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="40" Click="GotItButton_Click" Canvas.Left="545" Canvas.Top="485" FontSize="18" Height="40" RenderTransformOrigin="0.938,2.125" Visibility="Hidden" BorderBrush="Black" Background="{x:Null}">
+        <Button x:Name ="gotItButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="40" Click="GotItButton_Click" Canvas.Left="545" Canvas.Top="485" FontSize="18" Height="40" RenderTransformOrigin="0.938,2.125" Visibility="Hidden" BorderBrush="{x:Null}" Background="{x:Null}">
             <Image Height="40" Width="40" Source="Resources/if_thumbs-up_1608950.png"/>
 
         </Button>
@@ -210,7 +210,7 @@
                 <SolidColorBrush Color="White" Opacity="0"/>
             </TextBox.Background>
         </TextBox>
-        <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="185" Source="Resources/frontalLobe.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="135" Canvas.Top="125" ToolTip="Frontal Lobe" >
+        <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="185" Source="Resources/frontalLobe.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="136" Canvas.Top="123" ToolTip="Frontal Lobe" >
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
@@ -228,7 +228,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="120" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.5,0.5" Source="Resources/occipitalLobe.png" Canvas.Left="410" Canvas.Top="175" ToolTip="Occipital Lobe">
+        <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="108" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.5,0.5" Source="Resources/occipitalLobe.png" Canvas.Left="415" Canvas.Top="175" ToolTip="Occipital Lobe">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
@@ -246,7 +246,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="140" Margin="0" Canvas.Top ="125" Canvas.Left="245" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png" ToolTip="Parietal Lobe">
+        <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="142" Margin="0" Canvas.Top ="118" Canvas.Left="250" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png" ToolTip="Parietal Lobe">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
@@ -264,7 +264,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="120" Source="Resources/cerebellum.png" Canvas.Left="315" Canvas.Top="275" ToolTip="Cerebellum">
+        <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="133" Source="Resources/cerebellum.png" Canvas.Left="317" Canvas.Top="270" ToolTip="Cerebellum">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/cerebellum.png"/>
@@ -282,7 +282,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBox Visibility="Hidden" x:Name="brainPartsLabel" IsReadOnly="True" Height="30" Canvas.Left="245" TextWrapping="Wrap" Canvas.Top="70" Width="130" TextChanged="BrainPartsLabel_TextChanged" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <TextBox Visibility="Visible" x:Name="brainPartsLabel" IsReadOnly="True" Height="50" Canvas.Left="195" TextWrapping="Wrap" Canvas.Top="50" Width="300" TextChanged="BrainPartsLabel_TextChanged" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
     </Canvas>
 </UserControl>
