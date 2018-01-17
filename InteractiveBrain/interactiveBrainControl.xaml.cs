@@ -487,28 +487,28 @@ namespace InteractiveBrain
         //This function determines which substances are listed based on the substance selected
         private  void ExamplesButton_Click(object sender, RoutedEventArgs e)
         {  // open the Popup if it isn't open already 
-           // if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
+            if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
             examplesButton.Visibility = System.Windows.Visibility.Visible;
             if (lastSubstanceSelected == "stimulants")
             {       
-              MessageBox.Show("Examples of Stimulants:\r\n\r\n\u2022 Dexedrine® \r\n\u2022 Adderall® \r\n\u2022 Ritalin® \r\n\u2022 Concerta®\r\n\r\n(www.drugabuse.gov) ");
+              listedExamples.Text = "Examples of Stimulants:\r\n\r\n\u2022 Dexedrine® \r\n\u2022 Adderall® \r\n\u2022 Ritalin® \r\n\u2022 Concerta®\r\n\r\n(www.drugabuse.gov) ";
                 //   titleTextBlock.Text = "Examples of Stimulants:";
                 //   listedExamples.Text = "Dexedrine® ,\r\nAdderall®, \r\nRitalin®, \r\nConcerta® \r\n(www.drugabuse.gov) ";                
             }
             if (lastSubstanceSelected == "depressants")
             {
-                examplesButton.Content = "Click for examples for Depressants"; 
-                MessageBox.Show("Examples of Depressants: \r\n\r\n\u2022 Valium® \r\n\u2022 Xanax® \r\n\u2022 Halcion® \r\n\u2022 Ambien® \r\n\u2022 Lunesta® \r\n\u2022 Alcohol \r\n\r\n(www.drugabuse.gov)");
+                examplesButton.Content = "Click for examples of Depressants"; 
+                listedExamples.Text="Examples of Depressants: \r\n\r\n\u2022 Valium® \r\n\u2022 Xanax® \r\n\u2022 Halcion® \r\n\u2022 Ambien® \r\n\u2022 Lunesta® \r\n\u2022 Alcohol \r\n\r\n(www.drugabuse.gov)";
             }
             if (lastSubstanceSelected == "hallucinogens")
             {
-                examplesButton.Content = "Click for examples for Hallucinogens";
-                MessageBox.Show("Examples of Hallucinogens: \r\n\r\n\u2022 LSD \r\n\u2022 Phencyclidine(PCP), \r\n\u2022 Psilocybin(e.g. shrooms) \r\n\r\n(www.drugabuse.gov) ");
+                examplesButton.Content = "Click for examples of Hallucinogens";
+                listedExamples.Text= "Examples of Hallucinogens: \r\n\r\n\u2022 LSD \r\n\u2022 Phencyclidine(PCP), \r\n\u2022 Psilocybin(e.g. shrooms) \r\n\r\n(www.drugabuse.gov) ";
             }
             if(lastSubstanceSelected == "opioids")
             {
-                examplesButton.Content = "Click for examples for Opioids";
-                MessageBox.Show("Examples of Opioids: \r\n\r\n\u2022 Hydrocone(e.g. Vicodin®) \r\n\u2022 Oxycodone (e.g., OxyContin®, Percocet®) \r\n\u2022 Oxymorphone (e.g., Opana®) \r\n\u2022 Morphine (e.g., Kadian®, Avinza®)\r\n\u2022 Codeine, Fentanyl, and others\r\n\r\n(www.drugabuse.gov)");
+                examplesButton.Content = "Click for examples of Opioids";
+                listedExamples.Text="Examples of Opioids: \r\n\r\n\u2022 Hydrocone(e.g. Vicodin®) \r\n\u2022 Oxycodone (e.g., OxyContin®, Percocet®) \r\n\u2022 Oxymorphone (e.g., Opana®) \r\n\u2022 Morphine (e.g., Kadian®, Avinza®)\r\n\u2022 Codeine, Fentanyl, and others\r\n\r\n(www.drugabuse.gov)";
             }
         }
         
@@ -672,7 +672,14 @@ namespace InteractiveBrain
 
 
         }
+        private void ClosePopupClicked4(object sender, RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
 
+            if (examplesPopup.IsOpen) { examplesPopup.IsOpen = false; }
+
+
+        }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             if (!editListsPopup.IsOpen)

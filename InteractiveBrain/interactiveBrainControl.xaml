@@ -7,6 +7,7 @@
              mc:Ignorable="d" Height="600" Width="680">
 
     <Canvas Margin="0,0,0,0">
+
         <Popup PlacementTarget="{Binding ElementName=selectionMessageBox}" x:Name="connectionPopup" >
             <Border BorderBrush="Black" 
                 Background="#FF0072BB"
@@ -31,7 +32,7 @@
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="245" Margin="0,-2,-2,-2" Width="308">
                     <!-- <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Height="40" Canvas.Left="15" Canvas.Top="40"/>
                     <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" VerticalAlignment="Top" Width="123" Height="30" Canvas.Left="15" Canvas.Top="10"/>
-                     
+              
                     <TextBox x:Name ="listedExamples" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="62" Canvas.Top="63" Height="130" Width="150" VerticalScrollBarVisibility ="Auto"/> -->
                     <TextBlock x:Name ="titleTextBlock" FontSize="14" Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="26" Width="247" Canvas.Left="33" Canvas.Top="209"/>
                     <Button Click="ClosePopupClicked2" HorizontalAlignment="Center" Height="20" Width="20" Canvas.Left="288" Canvas.Top="225" BorderBrush="{x:Null}">
@@ -48,6 +49,7 @@
                 </Canvas>
             </Border>
         </Popup>
+
         <Popup PlacementTarget="{Binding ElementName=selectionMessageBox}" x:Name="contentPopup" >
             <Border BorderBrush="Black" 
                 Background="#FF0072BB"
@@ -92,6 +94,25 @@
                 </Canvas>
             </Border>
         </Popup>
+        <Popup PlacementTarget="{Binding ElementName=selectionMessageBox}" x:Name="examplesPopup" >
+            <Border BorderBrush="Black" 
+                Background="#FF0072BB"
+                BorderThickness="2" Width="315" Height="300" Canvas.Top="5">
+                <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="300" Margin="2,-2,-2,-2" Width="311">
+                    <!-- <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Height="40" Canvas.Left="15" Canvas.Top="40"/>
+                    <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" VerticalAlignment="Top" Width="123" Height="30" Canvas.Left="15" Canvas.Top="10"/>
+                     
+                    <TextBox x:Name ="listedExamples" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="62" Canvas.Top="63" Height="130" Width="150" VerticalScrollBarVisibility ="Auto"/> -->
+                    <TextBox x:Name ="listedExamples" FontSize="20"  Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="260" Width="258" Canvas.Left="25" Canvas.Top="20" VerticalScrollBarVisibility="Auto" UseLayoutRounding="False" HorizontalScrollBarVisibility="Auto"/>
+                    <Button Click="ClosePopupClicked4" HorizontalAlignment="Center" Height="20" Width="20" Canvas.Left="288" Canvas.Top="280" BorderBrush="{x:Null}" RenderTransformOrigin="0,2.5">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/if_exit.ico"/>
+                        </Button.Background>
+                    </Button>
+
+                </Canvas>
+            </Border>
+        </Popup>
         <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_Play.ico"/>
@@ -99,7 +120,7 @@
         </Button>
         <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" TextChanged="SelectionMessageBox_TextChanged" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" FontFamily="Calibri" />
         <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="172" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
-            <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="18" Selected="Amygdala_Selected" FontFamily="Calibiri" />
+            <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="20" Selected="Amygdala_Selected" FontFamily="Calibiri" />
             <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" Selected="PituitaryGland_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe" FontSize="20"   Selected="TemporalLobe_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="frontalLobe" Content="Frontal Lobe" FontSize="20" Selected="FrontalLobe_Selected" FontFamily="Calibri"/>
@@ -141,7 +162,7 @@
         <Image Height="115" Width="47" Canvas.Top="210" x:Name="brainstemImage" Canvas.Left="519" Source="Resources/secondBrainstem.png">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
-                    <Setter Property= "Source" Value="Resources/brainstem.png"/>
+                    <Setter Property= "Source" Value="Resources/secondBrainstem.png"/>
                 </Style>
             </Image.Style>
         </Image>
@@ -205,6 +226,7 @@
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
+        <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png"/>
     </Canvas>
 
 </UserControl>
