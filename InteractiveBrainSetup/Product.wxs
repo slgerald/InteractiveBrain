@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="InteractiveBrainSetup" Language="1033" Version="1.0.0.0" Manufacturer="ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:ui="http://schemas.microsoft.com/wix/UIExtension">
+	<Product Id="*" Name="InteractiveBrainSetup" Language="1033" Version="1.0.2" Manufacturer="ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
-
+		<MediaTemplate EmbedCab="yes"/>
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir" />
 		<Feature Id="ProductFeature" Title="InteractiveBrainSetup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="ProductMenuComponents" />
 		</Feature>
 	</Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
+			<Directory Id="ProgramFiles64Folder">
 				<Directory Id="INSTALLFOLDER" Name="InteractiveBrainSetup" />
 			</Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Interactive Brain"/>
+      </Directory>
 		</Directory>
 	</Fragment>
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
+      <Component Id="InteractiveBrainSetup" Win64="yes">
+        <File Id="InteractiveBrain.exe" Source="$(var.InteractiveBrain.TargetPath)" KeyPath="yes" Checksum="yes" />
+      </Component>
 		</ComponentGroup>
+    <ComponentGroup Id="ProductMenuComponents" Directory="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="{B6E07F8F-29FE-410A-ACE7-DD40F84F26FF}" >
+        <Shortcut
+            Id="ApplicationStartMenuShortcut"
+            Name="Interactive Brain"
+            Description="Interactive Brain - Designed for the Poe Health Center"
+            Target="[#InteractiveBrain.exe]"
+            WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue
+            Root="HKCU"
+            Key="Software\ECE485_TEAM16_SPRING2018\InteractiveBrain"
+            Name="installed" Type="integer" Value="1"
+            KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
 	</Fragment>
 </Wix>
