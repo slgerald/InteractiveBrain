@@ -51,7 +51,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>poecentericon_HCM_icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>InteractiveBrain.App</StartupObject>
@@ -153,7 +154,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="poecentericon_HCM_icon.ico" />
     <Resource Include="Resources\if_icon-arrow-left.ico" />
   </ItemGroup>
   <ItemGroup>
