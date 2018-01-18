@@ -48,8 +48,8 @@ namespace InteractiveBrain
         string newListBoxContentText;
         //The following array will help determine which parts should illuminate on the app and interactive brain
         //based on the selection of substances or healthy behaviors 
-        char[] determineGlowingPartsToDatabase = {'0','0','0','0','0','0','0','0','0'};
-        char[] glowingPartsArrayFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0' };
+        char[] lightingSequenceToDatabase = {'0','0','0','0','0','0','0','0','0'};
+        char[] lightingSequenceFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0' };
         public static interactiveBrainControl Instance
         
         {
@@ -566,7 +566,7 @@ namespace InteractiveBrain
                 //concatenate all the parts in a character array
                 //Send serial message for stop to turn off all the lights
                 //should i wait a few milliseconds?
-                SerialPort1.Write(new string(glowingPartsArrayFromDatabase)); //character array as string
+                SerialPort1.Write(new string(lightingSequenceFromDatabase)); //character array as string
                                                                            // Convert string to char array, because zeros may be read as nulls
                 //Sample code for character to array
                // string sentence = "Mahesh Chand";
@@ -889,56 +889,56 @@ namespace InteractiveBrain
                  if (editCerebellumCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[0] = '1';
+                    lightingSequenceToDatabase[0] = '1';
                 }
                  if (editBrainstemCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[1] = '1';
+                    lightingSequenceToDatabase[1] = '1';
                 }
                  if (editPituitaryGlandCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[2] = '1';
+                    lightingSequenceToDatabase[2] = '1';
                 }
                  if (editAmygdalaCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[3] = '1';
+                    lightingSequenceToDatabase[3] = '1';
 
 
                 }
                  if (editHippocampusCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[4] = '1';
+                    lightingSequenceToDatabase[4] = '1';
                 }
                  if (editTemporalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[5] = '1';
+                    lightingSequenceToDatabase[5] = '1';
                 }
                  if (editOccipitalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[6] = '1';
+                    lightingSequenceToDatabase[6] = '1';
                 }
                  if (editParietalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[7] = '1';
+                    lightingSequenceToDatabase[7] = '1';
                 }
                  if ( editFrontalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[8] = '1';
+                    lightingSequenceToDatabase[8] = '1';
                 }
-                
+                //Call charArrayToStringFunction
                 //Copy it into database
-              
-                
-               
-                
+
+
+
+
             }
             if (editSubstancesFlag)
             {
@@ -947,51 +947,51 @@ namespace InteractiveBrain
                 if (editCerebellumCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[0] = '1';
+                    lightingSequenceToDatabase[0] = '1';
                 }
                  if (editBrainstemCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[1] = '1';
+                    lightingSequenceToDatabase[1] = '1';
                 }
                  if (editPituitaryGlandCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[2] = '1';
+                    lightingSequenceToDatabase[2] = '1';
                 }
                  if (editAmygdalaCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[3] = '1';
+                    lightingSequenceToDatabase[3] = '1';
 
 
                 }
                  if (editHippocampusCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[4] = '1';
+                    lightingSequenceToDatabase[4] = '1';
                 }
                  if (editTemporalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[5] = '1';
+                    lightingSequenceToDatabase[5] = '1';
                 }
                  if (editOccipitalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[6] = '1';
+                    lightingSequenceToDatabase[6] = '1';
                 }
                 if (editParietalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[7] = '1';
+                    lightingSequenceToDatabase[7] = '1';
                 }
                  if (editFrontalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    determineGlowingPartsToDatabase[8] = '1';
+                    lightingSequenceToDatabase[8] = '1';
                 }
-
+                 //Call charArrayToStringFunction
                 //Copy into database
             }
                 if (!effectsChecked && newListBoxContentText == null)
