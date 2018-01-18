@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="eafa211d691949dda589947720529a5c" Name="Diagram1">
-        <EntityTypeShape EntityType="interactiveBrainModel.HealthyBehavior" Width="1.5" PointX="1" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="interactiveBrainModel.Substance" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="interactiveBrainModel.HealthyBehavior" Width="2" PointX="0.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="interactiveBrainModel.Substance" Width="2.25" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

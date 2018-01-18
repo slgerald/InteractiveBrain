@@ -40,7 +40,8 @@ namespace InteractiveBrain.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Reading, Problem-Solving games, choreography (like for ballet, Zumba), meditation" +
-            "\r\n")]
+            "\r\n, creative writing, speaking a foreign language (actual motor movements of the" +
+            " mouth)")]
         public string defaultHealthyBehaviorsFrontalLobe {
             get {
                 return ((string)(this["defaultHealthyBehaviorsFrontalLobe"]));
@@ -76,7 +77,9 @@ namespace InteractiveBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Any memory games (matching, Simon, etc), Distinguishing different instruments by " +
+            "their sounds,\r\nDistinguishing different animals by their sounds, Recognizing pat" +
+            "terns in music (auditory)\r\n")]
         public string defaultHealthyBehaviorsTemporalLobe {
             get {
                 return ((string)(this["defaultHealthyBehaviorsTemporalLobe"]));
@@ -112,7 +115,10 @@ namespace InteractiveBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Language comprehension (ie. learning definitions of words, engaging in face to fact conversation),
+Body positioning & awareness (ie. yoga, aiming a pitch), Sensory perception (ie. reading braille, 
+distinguishing coins by how the edges feel to the skin)
+")]
         public string defaultHealthyBehaviorsParietalLobe {
             get {
                 return ((string)(this["defaultHealthyBehaviorsParietalLobe"]));
@@ -136,7 +142,7 @@ namespace InteractiveBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("visual Processing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Visual Processing")]
         public string defaultFunctionsOccipitalLobe {
             get {
                 return ((string)(this["defaultFunctionsOccipitalLobe"]));
@@ -148,7 +154,8 @@ namespace InteractiveBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Visual recognition (ie. identifying faces in a yearbook, \r\ndistinguishing differe" +
+            "nt features in pictures, jigsaw puzzles, recognizing visual patterns)\r\n")]
         public string defaultHealthyBehaviorsOccipitalLobe {
             get {
                 return ((string)(this["defaultHealthyBehaviorsOccipitalLobe"]));
@@ -184,7 +191,10 @@ namespace InteractiveBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Any type of physical exercise, activities that help improve attention span")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Any type of physical exercise, activities that help improve improve balance and c" +
+            "oordination\r\nPairing physical exercise with a mental exercise (ie. dancing and s" +
+            "inging simultaneously; \r\nstanding on a balance board while reciting the alphabet" +
+            ")")]
         public string defaultHealthyBehaviorsCerebellum {
             get {
                 return ((string)(this["defaultHealthyBehaviorsCerebellum"]));

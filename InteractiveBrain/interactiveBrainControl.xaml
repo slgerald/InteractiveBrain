@@ -42,7 +42,7 @@
                     </Button>
                     <RadioButton Content="Substances" Canvas.Left="33"  Canvas.Top="10" Checked="SubstancesRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
                     <RadioButton Content="Healthy Behaviors" Canvas.Left="159" Canvas.Top="10" Checked="HealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
-                    <ListBox x:Name="currentListBox" Height="160" Canvas.Left="33" Canvas.Top="40" Width="155" BorderBrush="Black"/>
+                    <ListBox x:Name="editingListBox" Height="160" Canvas.Left="33" Canvas.Top="40" Width="155" BorderBrush="Black"/>
                     <Button x:Name="addButton" Content="Add Item" Canvas.Left="200" Canvas.Top="40" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="AddButton_Click" FontSize="14"/>
                     <Button x:Name="removeButton" Content="Remove Item" Canvas.Left="200" Canvas.Top="59" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="RemoveButton_Click" FontSize="14"/>
 
@@ -118,7 +118,7 @@
                 <ImageBrush ImageSource="Resources/if_Play.ico"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" TextChanged="SelectionMessageBox_TextChanged" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" FontFamily="Calibri" />
+        <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" FontFamily="Calibri" />
         <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="172" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
             <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="20" Selected="Amygdala_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" Selected="PituitaryGland_Selected" FontFamily="Calibri" />
@@ -136,11 +136,11 @@
             <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20" Selected="Hallucinogens_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="opioids" Content="Opioids" Selected="Opioids_Selected" FontSize="20" FontFamily="Calibri"/>
         </ListBox>
-        <ListBox x:Name="activitiesListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="ActivitiesListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
-            <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20" Selected="DietAndNutrition_Selected" FontFamily="Calibri"/>
+        <ListBox x:Name="healthyBehaviorsListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
+          <!--  <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20" Selected="DietAndNutrition_Selected" FontFamily="Calibri"/> 
             <ListBoxItem x:Name="healthAndExercise" Content="Physical Activity" FontSize="20" Selected="HealthAndExercise_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20" Selected="CognitiveActivity_Selected" FontFamily="Calibri"/>
-            <ListBoxItem x:Name="socialEngagement" Content="Social Engagement" FontSize="20" Selected="SocialEngagement_Selected" FontFamily="Calibri"/>
+            <ListBoxItem x:Name="socialEngagement" Content="Social Engagement" FontSize="20" Selected="SocialEngagement_Selected" FontFamily="Calibri"/> -->
         </ListBox>
         <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="60" Canvas.Top="355" FontFamily="Tahoma"/>
         <Label Content="Substances" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150" FontSize="24" FontFamily="Tahoma" Canvas.Left="270" Canvas.Top="355"/>
