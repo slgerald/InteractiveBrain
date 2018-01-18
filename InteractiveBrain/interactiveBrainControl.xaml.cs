@@ -566,7 +566,7 @@ namespace InteractiveBrain
                 //concatenate all the parts in a character array
                 //Send serial message for stop to turn off all the lights
                 //should i wait a few milliseconds?
-                SerialPort1.Write(new string(determineGlowingPartsFromDatabase)); //character array as string
+                SerialPort1.Write(new string(glowingPartsArrayFromDatabase)); //character array as string
                                                                            // Convert string to char array, because zeros may be read as nulls
                 //Sample code for character to array
                // string sentence = "Mahesh Chand";

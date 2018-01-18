@@ -25,12 +25,12 @@ namespace InteractiveBrain
     {
         private static upstairsBrainControl _instance; //render userControl based on button pressed
         //flags used to determine which radio button has been used 
-        bool functionsFlag; //The functions flag used to ensure functions are listed in the facts message box
-        bool healthyBehaviorsFlag; //The healthyBehaviorsFlag is used to ensure healthy behaviors are listed in the facts message box
-        bool unhealthyBehaviorsFlag; //The unhealthybehaviorsflag is used to ensure unhealthy behaviors are listed in the facts message box
-        bool editFunctionsFlag;
-        bool editHealthyBehaviorsFlag;
-        bool editUnhealthyBehaviorsFlag;
+        bool functionsFlag = false; //The functions flag used to ensure functions are listed in the facts message box
+        bool healthyBehaviorsFlag = false; //The healthyBehaviorsFlag is used to ensure healthy behaviors are listed in the facts message box
+        bool unhealthyBehaviorsFlag=false; //The unhealthybehaviorsflag is used to ensure unhealthy behaviors are listed in the facts message box
+        bool editFunctionsFlag = false;
+        bool editHealthyBehaviorsFlag = false;
+        bool editUnhealthyBehaviorsFlag = false;
         DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
         Storyboard sbFL; //Storyboard for the frontal lobe
         Storyboard sbTL; //Storyboard for the temporal lobe
@@ -147,8 +147,11 @@ namespace InteractiveBrain
             if (editPopup.IsOpen) { editPopup.IsOpen = false; }
             editingTextBox.Text = "";
             editFunctionsRadioButton.IsChecked = false;
+            editFunctionsFlag = false;
             editHealthyBehaviorsRadioButton.IsChecked = false;
+            editFunctionsFlag = false;
             editUnhealthyBehaviorsRadioButton.IsChecked = false;
+            editUnhealthyBehaviorsFlag = false;
             brainPartComboBox.SelectedItem = null;
             editingMessageBlock.Text = "";
             //Finish Reset PopUp
@@ -216,7 +219,6 @@ namespace InteractiveBrain
             double objectY = Canvas.GetTop(frontalLobeBox);
             Console.WriteLine("objectX" + objectX + " , objectY" + objectY);
             */
-            Console.WriteLine("In the frontal lobe function" + defaultFlag);
             if (functionsFlag)
             {
                 if (defaultFunctionsFLFlag)
@@ -232,6 +234,7 @@ namespace InteractiveBrain
 
                     Properties.Settings.Default.defaultFunctionsFrontalLobe = changedFunctionsFrontalLobe;
                     Properties.Settings.Default.Save();
+
                     defaultFunctionsFLFlag = true;
                 }
                 healthyBehaviors.IsEnabled = false;
@@ -816,12 +819,12 @@ namespace InteractiveBrain
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
 
-            try
-            {
-                brainPart = ((ComboBoxItem)brainPartComboBox.SelectedItem).Content.ToString();
-            }
-            catch
-            {
+          //  try
+          //  {
+          //      brainPart = ((ComboBoxItem)brainPartComboBox.SelectedItem).Content.ToString();
+          //  }
+          //  catch
+          //  {
                 if(brainPart == null && !(editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
                 {
                     editingMessageBlock.Text = "Choose Brain Part and either functions, healthy behaviors and unhealthy behaviors";
@@ -831,10 +834,12 @@ namespace InteractiveBrain
                 }
 
                 if (brainPart != null && !(editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
-                { editingMessageBlock.Text = "Choose edither functions, healthy behaviors, and unhealthy behaviors"; }
+                { editingMessageBlock.Text = "Choose either functions, healthy behaviors, and unhealthy behaviors"; }
                 if (brainPart != null && (editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
                 {
+                    
                     if (editFunctionsFlag)
+                    {
                         switch (brainPart)
                         {
                             case "Cerebellum":
@@ -854,14 +859,14 @@ namespace InteractiveBrain
                                 defaultFunctionsTLFlag = false;
                                 break;
                             case "Frontal Lobe":
-                                //editingTextBox.Text = defaultFunctionsFrontalLobe;
+                                editingTextBox.Text = defaultFunctionsFrontalLobe;
                                 changedFunctionsFrontalLobe = changedFactsMessageBoxText;
                                 defaultFunctionsFLFlag = false;
                                 Console.WriteLine("In the editing button function " + changedFunctionsFrontalLobe);
                                 break;
 
                         }
-
+                    }
 
                     if (editHealthyBehaviorsFlag)
                     {
@@ -896,7 +901,7 @@ namespace InteractiveBrain
                         switch (brainPart)
                         {
                             case "Cerebellum":
-                                editingTextBox.Text = defaultUnhealthyBehaviorsCerebellum;
+                               // editingTextBox.Text = defaultUnhealthyBehaviorsCerebellum;
                                 changedUnhealthyBehaviorsCerebellum = changedFactsMessageBoxText;
                                 defaultUHBCFlag = false;
 
@@ -921,10 +926,16 @@ namespace InteractiveBrain
 
                     }
 
-                    editingTextBox.Text = "";
+                //  editingTextBox.Text = "";
+                if (string.IsNullOrEmpty(editingTextBox.Text))
+                {
+                    editingMessageBlock.Text = "Edit textbox before saving.";
+                }
+                else {
                     editingMessageBlock.Text = "Saved.";
                 }
-            }
+                }
+           // }
             
         }
 #endregion
@@ -933,6 +944,29 @@ namespace InteractiveBrain
             editFunctionsFlag = true;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = false;
+            if (brainPart != null)
+            {
+                switch (brainPart)
+                {
+                    case "Cerebellum":
+                        editingTextBox.Text = defaultFunctionsCerebellum;
+                        break;
+                    case "Occipital Lobe":
+                        editingTextBox.Text = defaultFunctionsOccipitalLobe;
+                        break;
+                    case "Parietal Lobe":
+                        editingTextBox.Text = defaultFunctionsParietalLobe;
+                        break;
+                    case "Temporal Lobe":
+                        editingTextBox.Text = defaultFunctionsTemporalLobe;
+                        break;
+                    case "Frontal Lobe":
+                        editingTextBox.Text = defaultFunctionsFrontalLobe;
+                       
+                        break;
+
+                }
+            }
         }
 
         private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -940,15 +974,59 @@ namespace InteractiveBrain
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = true;
             editUnhealthyBehaviorsFlag = false;
-        }
+            if (brainPart != null)
+            {
+                switch (brainPart)
+                {
+                    case "Cerebellum":
+                        editingTextBox.Text = defaultHealthyBehaviorsCerebellum;
+                        break;
+                    case "Occipital Lobe":
+                        editingTextBox.Text = defaultHealthyBehaviorsOccipitalLobe;
+                        break;
+                    case "Parietal Lobe":
+                        editingTextBox.Text = defaultHealthyBehaviorsParietalLobe;
+                        break;
+                    case "Temporal Lobe":
+                        editingTextBox.Text = defaultHealthyBehaviorsTemporalLobe;
+                        break;
+                    case "Frontal Lobe":
+                        editingTextBox.Text = defaultHealthyBehaviorsFrontalLobe;
 
+                        break;
+
+                }
+            }
+        }
         private void UnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = true;
-        }
+            if (brainPart != null)
+            {
+                switch (brainPart)
+                {
+                    case "Cerebellum":
+                        editingTextBox.Text = defaultUnhealthyBehaviorsCerebellum;
+                        break;
+                    case "Occipital Lobe":
+                        editingTextBox.Text = defaultUnhealthyBehaviorsOccipitalLobe;
+                        break;
+                    case "Parietal Lobe":
+                        editingTextBox.Text = defaultUnhealthyBehaviorsParietalLobe;
+                        break;
+                    case "Temporal Lobe":
+                        editingTextBox.Text = defaultUnhealthyBehaviorsTemporalLobe;
+                        break;
+                    case "Frontal Lobe":
+                        editingTextBox.Text = defaultFunctionsFrontalLobe;
 
+                        break;
+
+                }
+            }
+        }
         private void BrainPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -957,109 +1035,7 @@ namespace InteractiveBrain
             }
             catch
             {
-                if (brainPart == null && !(editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
-                {
-                    editingMessageBlock.Text = "Choose Brain Part and either functions, healthy behaviors and unhealthy behaviors";
-                }
-                if (brainPart == null && (editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
-                {
-                    editingMessageBlock.Text = "Choose Brain Part";
-                }
-
-                if (brainPart != null && !(editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
-                { editingMessageBlock.Text = "Choose edither functions, healthy behaviors, and unhealthy behaviors"; }
-                if (brainPart != null && (editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
-                {
-                    if (editFunctionsFlag)
-                        switch (brainPart)
-                        {
-                            case "Cerebellum":
-                                changedFunctionsCerebellum = changedFactsMessageBoxText;
-                                defaultFunctionsCFlag = false;
-                                break;
-                            case "Occipital Lobe":
-                                changedFunctionsOccipitalLobe = changedFactsMessageBoxText;
-                                defaultFunctionsOLFlag = false;
-                                break;
-                            case "Parietal Lobe":
-                                changedFunctionsParietalLobe = changedFactsMessageBoxText;
-                                defaultFunctionsPLFlag = false;
-                                break;
-                            case "Temporal Lobe":
-                                changedFunctionsTemporalLobe = changedFactsMessageBoxText;
-                                defaultFunctionsTLFlag = false;
-                                break;
-                            case "Frontal Lobe":
-                                //editingTextBox.Text = defaultFunctionsFrontalLobe;
-                                changedFunctionsFrontalLobe = changedFactsMessageBoxText;
-                                defaultFunctionsFLFlag = false;
-                                Console.WriteLine("In the editing button function " + changedFunctionsFrontalLobe);
-                                break;
-
-                        }
-
-
-                    if (editHealthyBehaviorsFlag)
-                    {
-                        switch (brainPart)
-                        {
-                            case "Cerebellum":
-
-                                changedHealthyBehaviorsCerebellum = changedFactsMessageBoxText;
-                                defaultHBCFlag = false;
-                                break;
-                            case "Occipital Lobe":
-                                changedHealthyBehaviorsOccipitalLobe = changedFactsMessageBoxText;
-                                defaultHBOLFlag = false;
-                                break;
-                            case "Parietal Lobe":
-                                changedHealthyBehaviorsParietalLobe = changedFactsMessageBoxText;
-                                defaultHBPLFlag = false;
-                                break;
-                            case "Temporal Lobe":
-                                changedHealthyBehaviorsTemporalLobe = changedFactsMessageBoxText;
-                                defaultHBTLFlag = false;
-                                break;
-                            case "Frontal Lobe":
-
-                                changedHealthyBehaviorsFrontalLobe = changedFactsMessageBoxText;
-                                defaultHBFLFlag = false;
-                                break;
-                        }
-                    }
-                    if (editUnhealthyBehaviorsFlag)
-                    {
-                        switch (brainPart)
-                        {
-                            case "Cerebellum":
-                                editingTextBox.Text = defaultUnhealthyBehaviorsCerebellum;
-                                changedUnhealthyBehaviorsCerebellum = changedFactsMessageBoxText;
-                                defaultUHBCFlag = false;
-
-                                break;
-                            case "Occipital Lobe":
-                                changedUnhealthyBehaviorsOccipitalLobe = changedFactsMessageBoxText;
-                                defaultUHBOLFlag = false;
-                                break;
-                            case "Parietal Lobe":
-                                changedUnhealthyBehaviorsParietalLobe = changedFactsMessageBoxText;
-                                defaultUHBPLFlag = false;
-                                break;
-                            case "Temporal Lobe":
-                                changedUnhealthyBehaviorsTemporalLobe = changedFactsMessageBoxText;
-                                defaultUHBTLFlag = false;
-                                break;
-                            case "Frontal Lobe":
-                                changedUnhealthyBehaviorsFrontalLobe = changedFactsMessageBoxText;
-                                defaultUHBFLFlag = false;
-                                break;
-                        }
-
-                    }
-
-                    //  editingTextBox.Text = "";
-                    editingMessageBlock.Text = "Saved.";
-                }
+                
             }
         }
     }

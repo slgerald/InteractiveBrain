@@ -184,7 +184,7 @@
                         <ComboBoxItem x:Name="parietalLobe" Content="Parietal Lobe"></ComboBoxItem>
                     </ComboBox>
                     <Label x:Name="brainPartLabel" Content="Brain Part" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="30" Canvas.Left="30" Canvas.Top="20" FontFamily="Calibri" FontSize="20"/>
-                    <TextBox x:Name ="editingTextBox" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black"/>
+                    <TextBox x:Name ="editingTextBox" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black" HorizontalScrollBarVisibility="Auto"/>
                     <Button x:Name="closeButton" Content="" Click="ClosePopupClicked" HorizontalAlignment="Center" Height="25" Width="25" Canvas.Left="535" Canvas.Top="290" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Close">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
