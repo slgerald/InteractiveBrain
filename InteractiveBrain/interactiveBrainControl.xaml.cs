@@ -46,7 +46,10 @@ namespace InteractiveBrain
         bool editHealthyBehaviorsFlag;
         ListBoxItem newListBoxItem = new ListBoxItem();
         string newListBoxContentText;
-
+        //The following array will help determine which parts should illuminate on the app and interactive brain
+        //based on the selection of substances or healthy behaviors 
+        char[] determineGlowingPartsToDatabase = {'0','0','0','0','0','0','0','0','0'};
+        char[] glowingPartsArrayFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0' };
         public static interactiveBrainControl Instance
         
         {
@@ -169,7 +172,9 @@ namespace InteractiveBrain
                 activitiesListBox.SelectedItem = false;
                 brainPartsListBox.SelectedItem = false;
                 selectionMessageBox.Text = selectedSubstances + " was chosen. " + displayMessage;
+                //Call the function to determine which parts to illuminate
                 substance = false;
+                
                 examplesButton.Visibility = System.Windows.Visibility.Visible;
                
             }
@@ -178,6 +183,7 @@ namespace InteractiveBrain
                 substancesListBox.SelectedItem = false;
                 brainPartsListBox.SelectedItem = false;
                 selectionMessageBox.Text = selectedActivities + " was chosen. " + displayMessage;
+                //Call the function to determine which parts to illuminate
                 activity = false;
             }
         }
@@ -209,6 +215,11 @@ namespace InteractiveBrain
             parietalLobeImage.BeginAnimation(OpacityProperty, null);
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
             cerebellumImage.BeginAnimation(OpacityProperty, null);
+
+            if (isConnected)
+            {
+                //send serial message for stop
+            }
             
         }
 
@@ -484,6 +495,89 @@ namespace InteractiveBrain
         }
         #endregion
 
+
+        //This functions deterine which parts of the brain on the app side to illuminate based on
+        //selection of substances and healthy behaviors
+        private void whichPartsToIlluminate()
+        { char[] glowingPartsArrayFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0' };
+            //retrieve determineGlowingPartsArray from database and copy it glowingPartsArrayFromDatabase
+
+
+            if (glowingPartsArrayFromDatabase[0] == '1')
+            {
+
+                cerebellumImage.BeginAnimation(OpacityProperty, animation);
+
+            }
+            if (glowingPartsArrayFromDatabase[1] == '1')
+            {
+
+                brainstemImage.BeginAnimation(OpacityProperty, animation);
+
+            }
+            if (glowingPartsArrayFromDatabase[2] == '1')
+            {
+
+                pituitaryGlandImage.BeginAnimation(OpacityProperty, animation);
+
+            }
+            if (glowingPartsArrayFromDatabase[3] == '1')
+            {
+                amygdalaImage.BeginAnimation(OpacityProperty, animation);
+
+            }
+            if (glowingPartsArrayFromDatabase[4] == '1')
+            {
+                hippocampusImage.BeginAnimation(OpacityProperty, animation);
+            }
+             if (glowingPartsArrayFromDatabase[5] == '1')
+            {
+
+                temporalLobeImage.BeginAnimation(OpacityProperty, animation);
+
+            }
+             if (glowingPartsArrayFromDatabase[6] == '1')
+            {
+                occipitalLobeImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (glowingPartsArrayFromDatabase[7] == '1')
+            {
+
+                parietalLobeImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (glowingPartsArrayFromDatabase[8] == '1')
+            {
+                frontalLobeImage.BeginAnimation(OpacityProperty, animation);
+            } 
+            if (isConnected)
+            {
+                //Pass the array of the message to the function writing to the serial port
+            }
+        }
+
+        //This function writes the messsage to the Interactive Brain using a serial port
+        //Use passed message 
+        private void writeWhichPartsToIlluminateMessage(int[] whichBrainPartsToIlluminate)
+        {
+            if (isConnected)
+            {
+                //Add raspberrypi identifier(character array)
+                //add other parts of serial message protocol( character array)
+                //concatenate all the parts in a character array
+                //Send serial message for stop to turn off all the lights
+                //should i wait a few milliseconds?
+                SerialPort1.Write(new string(determineGlowingPartsFromDatabase)); //character array as string
+                                                                           // Convert string to char array, because zeros may be read as nulls
+                //Sample code for character to array
+               // string sentence = "Mahesh Chand";
+               // char[] charArr = sentence.ToCharArray();
+               // foreach (char ch in charArr)
+               // {
+                //
+               //     Console.WriteLine(ch);
+               // }
+            }
+        }
         //This function determines which substances are listed based on the substance selected
         private  void ExamplesButton_Click(object sender, RoutedEventArgs e)
         {  // open the Popup if it isn't open already 
@@ -743,16 +837,42 @@ namespace InteractiveBrain
             {
                 if (editHealthyBehaviorsFlag)
                 {
-                    lastIndex = activitiesListBox.SelectedIndex;
-                    currentListBox.Items.Remove(lastIndex);
+                    
+                    
+                    if (currentListBox.SelectedItem == null)
+                    {
+                        titleTextBlock.Text = "First select an item in the list";
+                    }
+                    else
+                    {
+                        //  lastIndex = activitiesListBox.SelectedIndex;
+                        lastIndex = currentListBox.SelectedIndex;
+                        Console.WriteLine(lastIndex);
+                        currentListBox.Items.RemoveAt(lastIndex);
+
+                    }
                     // activitiesListBox.Items.Remove(lastIndex);
                 }
                 if (editSubstancesFlag)
                 {
-                    lastIndex = substancesListBox.SelectedIndex;
-                    currentListBox.Items.Remove(lastIndex);
+                    
+                    if (currentListBox.SelectedItem == null)
+                    {
+                        titleTextBlock.Text = "First select an item in the list";
+                    }
+                    else
+                    {
+                        // lastIndex = substancesListBox.SelectedIndex;
+                        lastIndex = currentListBox.SelectedIndex;
+                        Console.WriteLine(lastIndex);
+                        currentListBox.Items.RemoveAt(lastIndex);
+                    }
                     // activitiesListBox.Items.Remove(lastIndex);
                 }
+            }
+            else
+            {
+                titleTextBlock.Text = "Select Substances or Healthy Behaviors";
             }
 
         }
@@ -765,43 +885,58 @@ namespace InteractiveBrain
                // ListBoxItem newListBoxItem = new ListBoxItem();
                 index = activitiesListBox.Items.Count + 1;
 
-                if (editAmygdalaCheckbox.IsChecked.Value == true)
+                
+                 if (editCerebellumCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    Console.WriteLine("In Amgydala edit checkbox");
+                    determineGlowingPartsToDatabase[0] = '1';
                 }
-                else if (editCerebellumCheckbox.IsChecked.HasValue && editCerebellumCheckbox.IsChecked.Value)
+                 if (editBrainstemCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[1] = '1';
                 }
-                else if (editTemporalLobeCheckbox.IsChecked.HasValue && editTemporalLobeCheckbox.IsChecked.Value)
+                 if (editPituitaryGlandCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[2] = '1';
                 }
-                else if (editPituitaryGlandCheckbox.IsChecked.HasValue && editPituitaryGlandCheckbox.IsChecked.Value)
+                 if (editAmygdalaCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[3] = '1';
+
+
                 }
-                else if (editFrontalLobeCheckbox.IsChecked.HasValue && editFrontalLobeCheckbox.IsChecked.Value)
+                 if (editHippocampusCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[4] = '1';
                 }
-                else if (editParietalLobeCheckbox.IsChecked.HasValue && editParietalLobeCheckbox.IsChecked.Value)
+                 if (editTemporalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[5] = '1';
                 }
-                else if (editOccipitalLobeCheckbox.IsChecked.HasValue && editOccipitalLobeCheckbox.IsChecked.Value)
+                 if (editOccipitalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[6] = '1';
                 }
-               else  if (editBrainstemCheckbox.IsChecked.HasValue && editBrainstemCheckbox.IsChecked.Value)
+                 if (editParietalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[7] = '1';
                 }
-                else if (editHippocampusCheckbox.IsChecked.HasValue && editHippocampusCheckbox.IsChecked.Value)
+                 if ( editFrontalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[8] = '1';
                 }
+                
+                //Copy it into database
+              
+                
                
                 
             }
@@ -809,45 +944,55 @@ namespace InteractiveBrain
             {
                 ListBoxItem newListBoxItem = new ListBoxItem();
                 index = substancesListBox.Items.Count + 1;
-                if ( editAmygdalaCheckbox.IsChecked.Value)
+                if (editCerebellumCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
-                    Console.WriteLine("In Amgydala edit checkbox");
+                    determineGlowingPartsToDatabase[0] = '1';
                 }
-               else  if (editCerebellumCheckbox.IsChecked.HasValue && editCerebellumCheckbox.IsChecked.Value)
+                 if (editBrainstemCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[1] = '1';
                 }
-                else if (editTemporalLobeCheckbox.IsChecked.HasValue && editTemporalLobeCheckbox.IsChecked.Value)
+                 if (editPituitaryGlandCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[2] = '1';
                 }
-               else  if (editPituitaryGlandCheckbox.IsChecked.HasValue && editPituitaryGlandCheckbox.IsChecked.Value)
+                 if (editAmygdalaCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[3] = '1';
+
+
                 }
-                else if (editFrontalLobeCheckbox.IsChecked.HasValue && editFrontalLobeCheckbox.IsChecked.Value)
+                 if (editHippocampusCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[4] = '1';
                 }
-                else if (editParietalLobeCheckbox.IsChecked.HasValue && editParietalLobeCheckbox.IsChecked.Value)
+                 if (editTemporalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[5] = '1';
                 }
-                else if (editOccipitalLobeCheckbox.IsChecked.HasValue && editOccipitalLobeCheckbox.IsChecked.Value)
+                 if (editOccipitalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[6] = '1';
                 }
-               else  if (editBrainstemCheckbox.IsChecked.HasValue && editBrainstemCheckbox.IsChecked.Value)
+                if (editParietalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[7] = '1';
                 }
-                else if (editHippocampusCheckbox.IsChecked.HasValue && editHippocampusCheckbox.IsChecked.Value)
+                 if (editFrontalLobeCheckbox.IsChecked.Value)
                 {
                     effectsChecked = true;
+                    determineGlowingPartsToDatabase[8] = '1';
                 }
-                
-               
+
+                //Copy into database
             }
                 if (!effectsChecked && newListBoxContentText == null)
                 {
