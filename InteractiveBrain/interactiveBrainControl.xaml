@@ -40,8 +40,8 @@
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
                         </Button.Background>
                     </Button>
-                    <RadioButton Content="Substances" Canvas.Left="33"  Canvas.Top="10" Checked="SubstancesRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
-                    <RadioButton Content="Healthy Behaviors" Canvas.Left="159" Canvas.Top="10" Checked="HealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
+                    <RadioButton Content="Substances" Canvas.Left="33"  Canvas.Top="10" Checked="EditSubstancesRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
+                    <RadioButton Content="Healthy Behaviors" Canvas.Left="159" Canvas.Top="10" Checked="EditHealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
                     <ListBox x:Name="editingListBox" Height="160" Canvas.Left="33" Canvas.Top="40" Width="155" BorderBrush="Black"/>
                     <Button x:Name="addButton" Content="Add Item" Canvas.Left="200" Canvas.Top="40" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="AddButton_Click" FontSize="14"/>
                     <Button x:Name="removeButton" Content="Remove Item" Canvas.Left="200" Canvas.Top="59" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="RemoveButton_Click" FontSize="14"/>
@@ -137,8 +137,8 @@
             <ListBoxItem x:Name="opioids" Content="Opioids" Selected="Opioids_Selected" FontSize="20" FontFamily="Calibri"/>
         </ListBox>
         <ListBox x:Name="healthyBehaviorsListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
-          <!--  <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20" Selected="DietAndNutrition_Selected" FontFamily="Calibri"/> 
-            <ListBoxItem x:Name="healthAndExercise" Content="Physical Activity" FontSize="20" Selected="HealthAndExercise_Selected" FontFamily="Calibri"/>
+            <!--  <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20"  FontFamily="Calibri"/>
+               <ListBoxItem x:Name="healthAndExercise" Content="Physical Activity" FontSize="20" Selected="HealthAndExercise_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20" Selected="CognitiveActivity_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="socialEngagement" Content="Social Engagement" FontSize="20" Selected="SocialEngagement_Selected" FontFamily="Calibri"/> -->
         </ListBox>

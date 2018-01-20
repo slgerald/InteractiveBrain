@@ -54,15 +54,7 @@ namespace InteractiveBrain
                 Console.WriteLine(ex.Message);
             }
             serialDataQueue = new System.Collections.Concurrent.ConcurrentQueue<char>();
-            foreach (string port in ports)
-            {
-                comPortNumberComboBox.Items.Add(port);
-                Console.WriteLine(port);
-                if (ports[0] != null)
-                {
-                    comPortNumberComboBox.SelectedItem = ports[0];
-                }
-            }
+            
         }
 
         private void onButton_Click(object sender, RoutedEventArgs e)

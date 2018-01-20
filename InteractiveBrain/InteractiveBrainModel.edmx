@@ -45,7 +45,7 @@
           <Property Name="SubstanceName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="lightingSequenceArray" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="mainEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="interactiveBrainEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="HealthyBehaviors" EntityType="Self.HealthyBehavior" />
           <EntitySet Name="Substances" EntityType="Self.Substance" />
         </EntityContainer>
@@ -54,7 +54,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="interactiveBrainModelStoreContainer" CdmEntityContainer="mainEntities">
+        <EntityContainerMapping StorageEntityContainer="interactiveBrainModelStoreContainer" CdmEntityContainer="interactiveBrainEntities">
           <EntitySetMapping Name="HealthyBehaviors">
             <EntityTypeMapping TypeName="interactiveBrainModel.HealthyBehavior">
               <MappingFragment StoreEntitySet="HealthyBehaviors">

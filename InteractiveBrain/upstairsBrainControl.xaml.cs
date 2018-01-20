@@ -44,7 +44,7 @@ namespace InteractiveBrain
         string brainPart;
 
 
-        bool defaultFlag; //used to determine if the default settings have changed for functions, healthy behaviors or unhealthy behaviors of body parts
+      //  bool defaultFlag; //used to determine if the default settings have changed for functions, healthy behaviors or unhealthy behaviors of body parts
         string changedFactsMessageBoxText;
 
         //Initialize texts for Upstairs and Downstairs Brain 
@@ -134,7 +134,7 @@ namespace InteractiveBrain
             sbOL = (Storyboard)this.Resources["zoomingOL"];
             sbC = (Storyboard)this.Resources["zoomingC"];
             storyboardFlag = 0; // Initiates storyboard flag at zero
-            defaultFlag = true;
+            //defaultFlag = true;
             //  functionsIntro = "Functions are: ";
             // healthyBehaviorsIntro = "These healthy behaviors affect the ";
             // unhealthyBehaviorsIntro = "These unhealthy behaviors affect the ";
@@ -269,8 +269,7 @@ namespace InteractiveBrain
                     Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe = changedUnhealthyBehaviorsFrontalLobe;
                     Properties.Settings.Default.Save();
                     defaultUHBFLFlag = true;
-                }
-                
+                } 
                 healthyBehaviors.IsEnabled = false;
                 functions.IsEnabled = false;
             }

@@ -12,11 +12,12 @@ namespace InteractiveBrain
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class mainEntities : DbContext
+    using SqlProviderServices = System.Data.Entity.SqlServer.SqlProviderServices;
+
+    public partial class interactiveBrainEntities : DbContext
     {
-        public mainEntities()
-            : base("name=mainEntities")
+        public interactiveBrainEntities()
+            : base("name=interactiveBrainEntities")
         {
         }
     
