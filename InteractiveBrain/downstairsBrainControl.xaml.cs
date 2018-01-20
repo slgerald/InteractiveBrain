@@ -31,9 +31,16 @@ namespace InteractiveBrain
        // double originalImageWidth;
         private object movingObject; //The image being dragged and dropped 
         private double firstXPos, firstYPos;
-        private static downstairsBrainControl _instance; //render userControl based on button pressed
-
-
+        private static downstairsBrainControl _instance; 
+        //render userControl based on button pressed
+       double originalHippocampusX ;
+      double originalHippocampusY;
+      double originalAmygdalaX;
+       double originalAmygdalaY;
+       double originalPituitaryGlandX;
+      double originalPituitaryGlandY;
+      double originalBrainstemX;
+      double originalBrainstemY;
         //This is the entry point for the userControl page 
         public downstairsBrainControl()
         {
@@ -59,6 +66,17 @@ namespace InteractiveBrain
             amygdalaBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(AmygdalaBox_PreviewMouseLeftButtonDown);
             amygdalaBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
             amygdalaBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
+
+            originalHippocampusX = Canvas.GetLeft((UIElement)hippocampusBox);
+             originalHippocampusY = Canvas.GetTop((UIElement)hippocampusBox);
+            originalAmygdalaX = Canvas.GetLeft((UIElement)amygdalaBox);
+            originalAmygdalaY = Canvas.GetTop((UIElement)amygdalaBox);
+            originalPituitaryGlandX = Canvas.GetLeft((UIElement)pituitaryGlandBox); 
+            originalPituitaryGlandY = Canvas.GetTop((UIElement)pituitaryGlandBox);
+            originalBrainstemX = Canvas.GetLeft((UIElement)brainstemBox);
+            Console.WriteLine("original brainstemX " + originalBrainstemX);
+            originalBrainstemY = Canvas.GetTop((UIElement)brainstemBox);
+            Console.WriteLine("original brainstemy " + originalBrainstemY);
         }
         public static downstairsBrainControl Instance //This allows a new highSchool User Control to be instantiated 
         {
@@ -73,6 +91,7 @@ namespace InteractiveBrain
 
             }
         }
+        
         //This function sets flags to true and false
         private void Functions_Checked(object sender, RoutedEventArgs e)
         {
@@ -115,7 +134,8 @@ namespace InteractiveBrain
 
             firstXPos = e.GetPosition(img).X;
             firstYPos = e.GetPosition(img).Y;
-           
+            
+
             movingObject = sender;
 
             // Put the image currently being dragged on top of the others
@@ -403,6 +423,39 @@ namespace InteractiveBrain
         {
 
         }
+
+        private void ResetImages(object sender, RoutedEventArgs e)
+        {
+           
+               
+                amygdalaBox.SetValue(Canvas.LeftProperty, originalAmygdalaX);
+                amygdalaBox.SetValue(Canvas.TopProperty, originalAmygdalaY);
+                pituitaryGlandBox.SetValue(Canvas.LeftProperty, originalPituitaryGlandX);
+                pituitaryGlandBox.SetValue(Canvas.TopProperty, originalPituitaryGlandY);
+                brainstemBox.SetValue(Canvas.LeftProperty, originalBrainstemX);
+                brainstemBox.SetValue(Canvas.TopProperty, originalBrainstemY);
+                hippocampusBox.SetValue(Canvas.LeftProperty, originalHippocampusX);
+                hippocampusBox.SetValue(Canvas.TopProperty, originalHippocampusY);
+           
+        }
+
+        private void ScrambleButton_Click(object sender, RoutedEventArgs e)
+        {
+            Random rnd = new Random();
+            amygdalaBox.SetValue(Canvas.LeftProperty, Convert.ToDouble(rnd.Next(0, 660 - Convert.ToInt32(amygdalaBox.ActualWidth))));
+            amygdalaBox.SetValue(Canvas.TopProperty, Convert.ToDouble(rnd.Next(0,375-Convert.ToInt32(amygdalaBox.ActualHeight))));
+            pituitaryGlandBox.SetValue(Canvas.LeftProperty, Convert.ToDouble(rnd.Next(0, 660-Convert.ToInt32(pituitaryGlandBox.ActualWidth))));
+            pituitaryGlandBox.SetValue(Canvas.TopProperty, Convert.ToDouble(rnd.Next(0, 375 - Convert.ToInt32(pituitaryGlandBox.ActualHeight))));
+            brainstemBox.SetValue(Canvas.LeftProperty, Convert.ToDouble(rnd.Next(0, 660-Convert.ToInt32(brainstemBox.ActualWidth))));
+            brainstemBox.SetValue(Canvas.TopProperty, Convert.ToDouble(rnd.Next(0, 375 - Convert.ToInt32(brainstemBox.ActualHeight))));
+            hippocampusBox.SetValue(Canvas.LeftProperty, Convert.ToDouble(rnd.Next(0, 660-Convert.ToInt32(hippocampusBox.ActualWidth))));
+            hippocampusBox.SetValue(Canvas.TopProperty, Convert.ToDouble(rnd.Next(0, 375 - Convert.ToInt32(hippocampusBox.ActualHeight))));
+
+
+           
+        }
+
+
 
         //This function determines what happens when the Got It button is clicked
         //It makes certain controls hidden and others visible. It also reenables 

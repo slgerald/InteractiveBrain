@@ -184,7 +184,7 @@
                         <ComboBoxItem x:Name="parietalLobe" Content="Parietal Lobe"></ComboBoxItem>
                     </ComboBox>
                     <Label x:Name="brainPartLabel" Content="Brain Part" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="30" Canvas.Left="30" Canvas.Top="20" FontFamily="Calibri" FontSize="20"/>
-                    <TextBox x:Name ="editingTextBox" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black" HorizontalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name ="editingTextBox" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black" TextWrapping="Wrap"/>
                     <Button x:Name="closeButton" Content="" Click="ClosePopupClicked" HorizontalAlignment="Center" Height="25" Width="25" Canvas.Left="535" Canvas.Top="290" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Close">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
@@ -205,7 +205,7 @@
         <RadioButton x:Name="healthyBehaviors" Content="Healthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="HealthyBehaviors_Checked" Height="25" Width="165" Canvas.Left="220" Canvas.Top="20" FontSize="20" FontFamily="Calibri"/>
         <RadioButton x:Name="unhealthyBehaviors" Content="Unhealthy Behaviors" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="UnhealthyBehaviors_Checked" Canvas.Left="455" Canvas.Top="20" Width="185" Height="25" FontSize="20" FontFamily="Calibri"/>
         <Ellipse x:Name="centerReference" Visibility="Hidden" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5" Canvas.Left="340" Canvas.Top="250"/>
-        <TextBox x:Name="factsMessageBox" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Visibility ="Hidden" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TextChanged="TextBox_TextChanged" FontSize="18" Canvas.Left="90" Canvas.Top="460">
+        <TextBox x:Name="factsMessageBox" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Visibility ="Hidden" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TextChanged="TextBox_TextChanged" FontSize="18" Canvas.Left="90" Canvas.Top="460" BorderBrush="{x:Null}">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </TextBox.Background>

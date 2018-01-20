@@ -305,6 +305,7 @@
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
       <LastGenOutput>InteractiveBrainModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\reset.ico" />
     <None Include="Resources\poecentericon_HCM_icon.ico" />
   </ItemGroup>
   <ItemGroup>

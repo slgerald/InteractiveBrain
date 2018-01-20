@@ -136,7 +136,7 @@
             <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20" Selected="Hallucinogens_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="opioids" Content="Opioids" Selected="Opioids_Selected" FontSize="20" FontFamily="Calibri"/>
         </ListBox>
-        <ListBox x:Name="healthyBehaviorsListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
+        <ListBox x:Name="healthyBehaviorsListBox" Visibility ="Hidden" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
             <!--  <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20"  FontFamily="Calibri"/>
                <ListBoxItem x:Name="healthAndExercise" Content="Physical Activity" FontSize="20" Selected="HealthAndExercise_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20" Selected="CognitiveActivity_Selected" FontFamily="Calibri"/>
@@ -227,6 +227,7 @@
             </Button.Background>
         </Button>
         <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png"/>
+        <TextBox x:Name="healthyBehaviorsTextBox" Height="30" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="405" Width="190" FontFamily="Calibri" FontSize="20" SpellCheck.IsEnabled="True" ScrollViewer.CanContentScroll="True"/>
     </Canvas>
 
 </UserControl>
