@@ -61,7 +61,7 @@ namespace InteractiveBrain
         {
             int n = 0;
             Console.WriteLine("This is the on button");
-            if (SerialPort1.IsOpen)
+            if (isConnected)
             {   while(n<100)
                 {
                     try

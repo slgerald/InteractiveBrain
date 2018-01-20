@@ -117,4 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="amygdala" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\amygdala.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brainstem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brainstem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cerebellum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cerebellum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cutoutLowerBrain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cutoutLowerBrain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="frontalLobe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\frontalLobe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fullTopBrain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fullTopBrain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hippocampus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hippocampus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_Brain_Games" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_Brain_Games.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_connect_established" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_connect_established.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_exit.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_icon_arrow_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_icon-arrow-left.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_menu.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_pensil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_pensil.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_Play.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_save.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_thumbs_up_1608950" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_thumbs-up_1608950.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_Upstairs_103047" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_Upstairs_103047.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="if_video" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\if_video.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="occipitalLobe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\occipitalLobe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="parietalLobe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\parietalLobe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pituitaryGland" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pituitaryGland.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="poecentericon_HCM_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\poecentericon_HCM_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Poe_Center_Logo_KM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Poe-Center-Logo-KM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="secondBrainstem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\secondBrainstem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="temporalLobe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\temporalLobe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

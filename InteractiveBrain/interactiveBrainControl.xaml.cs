@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Windows.UI.Core;
+using System.Windows.Resources;
 
 namespace InteractiveBrain
 {
@@ -42,7 +43,7 @@ namespace InteractiveBrain
 
         //THe following variables are for serial communication
         SerialPort SerialPort1; //SerialPort for serial communication with brain
-                                // bool isConnected = false;//using SerialPort1.IsOpen instead
+                                // bool isConnected = false;//using isConnected instead
         String[] ports; //Array of strings that list the available com ports 
         static ConcurrentQueue<char> serialDataQueue; // for serial communication
         string selectedPort;//for serial communication, which port was chosen
@@ -52,6 +53,8 @@ namespace InteractiveBrain
         bool editHealthyBehaviorsFlag;//for editPopup, load healthy behaviors from database
         ListBoxItem newListBoxItem = new ListBoxItem();
         string newListBoxItemContent;
+        bool defaultFlag = false;
+        bool isConnected = false;
         //The following array will help determine which parts should illuminate on the app and interactive brain
         //based on the selection of substances or healthy behaviors 
 
@@ -83,7 +86,7 @@ namespace InteractiveBrain
             brainPart = false;
             healthybehaviorBOOL = false;
             substance = false;
-            // isConnected = false;
+             isConnected = false;
             editHealthyBehaviorsFlag = false;
             editSubstancesFlag = false;
             GetAvailableComPorts();
@@ -121,6 +124,7 @@ namespace InteractiveBrain
                 if (editHealthyBehaviorsFlag)
                 {
                     editingListBox.Items.Clear();
+                  //  healthyBehaviorsListBox.Items.Clear();
                     query = "select * from HealthyBehaviors";
                 }
                 else if(editSubstancesFlag)
@@ -139,14 +143,22 @@ namespace InteractiveBrain
                 while (dr.Read())
                 {
                     ListBoxItem li = new ListBoxItem();
-                   
+                    ListBoxItem li_Two = new ListBoxItem();
                     if (editHealthyBehaviorsFlag)
                     {   
                         string healthyBehaviorListBoxItemContent = dr.GetString(1);
                         li.Content = healthyBehaviorListBoxItemContent;
+                      //  li_Two.Content = healthyBehaviorListBoxItemContent;
                         editingListBox.Items.Add(li);
                         li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 16;
+                     //   healthyBehaviorsListBox.Items.Add(li_Two);
+                        //    string substancesListBoxItemContent = dr.GetString(1);
+                        //    li.Content = substancesListBoxItemContent;
+                        //    substancesListBox.Items.Add(li);
+
+                      //  li_Two.FontFamily = new FontFamily("Calibri");
+                      //  li_Two.FontSize = 20;
                     }
                     else if(editSubstancesFlag){
                         string substancesListBoxItemContent = dr.GetString(1);
@@ -257,7 +269,7 @@ namespace InteractiveBrain
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
             cerebellumImage.BeginAnimation(OpacityProperty, null);
 
-            //  if (SerialPort1.IsOpen)
+            //  if (isConnected)
             //  {
             //send serial message for stop
             //  }
@@ -533,24 +545,7 @@ namespace InteractiveBrain
         {
             ToggleButton toggle = (ToggleButton)sender;
 
-            //If there aren't any serial ports to connect to
-            //Display message not able to connect and the togglebutton doesn't
-            //become checked
-            if (ports == null || ports.Length == 0)
-            {
-                selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-                toggleButton.IsChecked = false;
-            }
-            else
-            {
-                try //Try to connect to serial port
-                {
-                    //   isConnected = true;
-                    if (!connectionPopup.IsOpen)
-                    { connectionPopup.IsOpen = true; }
-                }
-                catch (Exception ex) { Console.WriteLine(ex.Message); }
-            }
+            
 
         }
 
@@ -558,37 +553,13 @@ namespace InteractiveBrain
         {
             ToggleButton toggle = (ToggleButton)sender;
             //If there was an established serial port connection, disconnect
-            if (SerialPort1.IsOpen)
-            {
-                selectionMessageBox.Text="Disconnected";
-                try
-                {
-                    SerialPort1.Close();
-                    ImageBrush brush1 = new ImageBrush(new BitmapImage(new Uri("Resources/if_connect_no.ico")));
-                    toggleButton.Background = brush1;
-                    
-                }
-                catch (Exception ex) { Console.WriteLine(ex.Message); }
-            }
-
-            //If there wasn't a successful connection
-            else {
-                Console.WriteLine(ports.Length);
-                if (ports == null || ports.Length == 0)
-                {
-                    selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-                    // MessageBox.Show("Not connected yet");
-                }
-                else {
-                    selectionMessageBox.Text = "Not connected yet";
-                }
-            }
+            
         }
         private void WriteLightingSequenceMessage()
         {
-            if (SerialPort1.IsOpen)
+            if (isConnected)
             {
-
+                //open serial port
                 //Add raspberrypi identifier(character array)
                 //add other parts of serial message protocol( character array)
                 //lightingSequenceFromDatabase = whichPartsToIlluminate
@@ -598,6 +569,7 @@ namespace InteractiveBrain
                 SerialPort1.Write(new string(lightingSequenceFromDatabase));
                 //character array as string
                 // Convert charArray as string, because zeros may be read as nulls
+                //close serial port
             }
         }
 
@@ -610,10 +582,17 @@ namespace InteractiveBrain
             selectedPort = comPortNumberComboBox.SelectedItem.ToString();
             Console.WriteLine("Connected to " + selectedPort);
             SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-            SerialPort1.Open();
-            SerialPort1.Write("#STAR\n");
-            ImageBrush brush1 = new ImageBrush(new BitmapImage(new Uri("Resources/if_connect_established.ico")));
-            toggleButton.Background = brush1;
+            // SerialPort1.Open();
+            //  SerialPort1.Write("#STAR\n");
+            Uri resourceUri = new Uri("Resources/if_connect_established.ico", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            toggleButton.Background = brush;
+            Console.WriteLine(toggleButton.Background.ToString());
             // open the Popup if it isn't open already 
         }
 
@@ -623,6 +602,7 @@ namespace InteractiveBrain
             if (editListsPopup.IsOpen) { editListsPopup.IsOpen = false; }
             editHealthyBehaviorsFlag = false;
             editSubstancesFlag = false;
+            Fill_ListBox();
         }
 
         private void ClosePopupClicked3(object sender, RoutedEventArgs e)
@@ -898,6 +878,69 @@ namespace InteractiveBrain
         private void ListBoxContent_TextChanged(object sender, TextChangedEventArgs e)
         {
             newListBoxItemContent = listBoxContent.Text;
+        }
+
+        private void toggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (defaultFlag == false)
+            {
+                //If there aren't any serial ports to connect to
+                //Display message not able to connect and the togglebutton doesn't
+                //become checked
+                if (ports == null || ports.Length == 0)
+                {
+                    selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
+                  //  toggleButton.IsChecked = false;
+                }
+                else
+                {
+                    try //Try to connect to serial port
+                    {
+                           isConnected = true;
+                        if (!connectionPopup.IsOpen)
+                        { connectionPopup.IsOpen = true; }
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                }
+                defaultFlag = true;
+            }
+            else if (defaultFlag == true)
+            {
+                if (isConnected)
+                {
+                    selectionMessageBox.Text = "Disconnected";
+                    try
+                    {
+                        //  SerialPort1.Close();
+                        Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
+                        StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                        BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                        var brush = new ImageBrush();
+                        brush.ImageSource = temp;
+
+                        toggleButton.Background = brush;
+
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                }
+                //If there wasn't a successful connection
+                else
+                {
+                    Console.WriteLine(ports.Length);
+                    if (ports == null || ports.Length == 0)
+                    {
+                        selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
+                        // MessageBox.Show("Not connected yet");
+                    }
+                    else
+                    {
+                        selectionMessageBox.Text = "Not connected yet";
+                    }
+                }
+                isConnected = false;
+                defaultFlag = false;
+            }
         }
     }
 }
