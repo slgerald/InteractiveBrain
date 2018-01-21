@@ -50,7 +50,7 @@ namespace InteractiveBrain
         String[] ports; //Array of strings that list the available com ports 
         static ConcurrentQueue<char> serialDataQueue; // for serial communication
         string selectedPort;//for serial communication, which port was chosen
-
+        List<string> col = new List<string>();
         //The following variables are for the editing function of the interactiveBrainControl
         bool editSubstancesFlag; //for editPopup, load substances from database
         bool editHealthyBehaviorsFlag;//for editPopup, load healthy behaviors from database
@@ -108,12 +108,26 @@ namespace InteractiveBrain
             {
                 comPortNumberComboBox.Items.Add(port);
                 Console.WriteLine(port);
-                if (ports[0] != null)
-                {
-                    comPortNumberComboBox.SelectedItem = ports[0];
-                }
             }
-
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            string query;
+            
+            try
+            {
+                sqlitecon.Open();
+                query = "select * from HealthyBehaviors";
+                SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                SQLiteDataReader dr = createCommand.ExecuteReader();
+                while (dr.Read())
+                {
+                    col.Add(dr.GetString(1));
+                }
+                sqlitecon.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
             Fill_ListBox();
         }
 
@@ -843,7 +857,9 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex);
             }
+            UpdateIndices();
             Fill_ListBox();
+
             //clear content box after saving
             // newlistboxitemcontent.text = string.empty;
         }
@@ -863,7 +879,7 @@ namespace InteractiveBrain
                     sqlitecon.Open();
                     if (editHealthyBehaviorsFlag)
                     {
-                        query = "UPDATE HealthyBehaviors SET Id='" + changingIndex + "' where healthyBehaviors='" + ((ListBoxItem)editingListBox.Items[index]).Content.ToString()+"' ";
+                        query = "UPDATE HealthyBehaviors SET Id='" + changingIndex + "' where healthyBehaviors='" + ((ListBoxItem)editingListBox.Items[index]).Content.ToString() + "' ";
                     }
                     else
                     {
@@ -881,8 +897,8 @@ namespace InteractiveBrain
 
                 index++;
             }
-           
-           
+
+
             //Fill_ListBox();
             //clear content box after saving
             // newlistboxitemcontent.text = string.empty;
@@ -914,9 +930,8 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex);
             }
-            UpdateIndices();
             Fill_ListBox();
-            
+            UpdateIndices();
             //clear content box after saving
             // newlistboxitemcontent.text = string.empty;
         }
@@ -998,10 +1013,80 @@ namespace InteractiveBrain
             }
         }
 
+        private void SearchTextBox_KeyUp(object sender, KeyboardEventArgs e)
+        {
+           bool found = false;
+            var border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+             string query_Two = (sender as TextBox).Text;
+         
+            if (query_Two.Length == 0)
+            {
+                // Clear   
+                resultsStack.Children.Clear();
+                border.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+                border.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            // Clear the list   
+            resultsStack.Children.Clear();
+
+            // Add the result   
+            foreach( string obj in col)
+            {
+                if (obj.ToLower().StartsWith(query_Two.ToLower()))
+                {
+                    // The word starts with this... Autocomplete must work   
+                    addItem(obj);
+                    found = true;
+                }
+            }
+            if (!found)
+            {
+                resultsStack.Children.Add(new TextBlock() { Text = "No results found." });
+            }
+        }
+ 
+    private void addItem(string text)
+    {
+        TextBlock block = new TextBlock();
+
+        // Add the text   
+        block.Text = text;
+
+        // A little style...   
+        block.Margin = new Thickness(2, 3, 2, 3);
+        block.Cursor = Cursors.Hand;
+
+        // Mouse events   
+        block.MouseLeftButtonUp += (sender, e) =>
+        {
+            searchTextBox.Text = (sender as TextBlock).Text;
+        };
+
+        block.MouseEnter += (sender, e) =>
+        {
+            TextBlock b = sender as TextBlock;
+            b.Background = Brushes.PeachPuff;
+        };
+
+        block.MouseLeave += (sender, e) =>
+        {
+            TextBlock b = sender as TextBlock;
+            b.Background = Brushes.Transparent;
+        };
+
+        // Add to the panel   
+        resultsStack.Children.Add(block);
+    }
+
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
     }
 }
+
  

@@ -54,24 +54,33 @@ namespace InteractiveBrain
                 Console.WriteLine(ex.Message);
             }
             serialDataQueue = new System.Collections.Concurrent.ConcurrentQueue<char>();
-            
+            foreach (string port in ports)
+            {
+                comPortNumberComboBox.Items.Add(port);
+                Console.WriteLine(port);
+            }
         }
-
         private void onButton_Click(object sender, RoutedEventArgs e)
         {
             int n = 0;
-            Console.WriteLine("This is the on button");
+            
             if (isConnected)
-            {   while(n<100)
+            {
+                Console.WriteLine("This is the on button");
+                try
                 {
-                    try
+                    SerialPort1.Open();
+
+                    while (n < 100)
                     {
                         SerialPort1.WriteLine("1");
                         messageTextBox.Text = "Sending a 1";
+                        n++;
                     }
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
-                    n++;
+                   SerialPort1.Close();
                 }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+               
             }
         }
 
@@ -91,13 +100,12 @@ namespace InteractiveBrain
                     isConnected = true;
                     selectedPort = comPortNumberComboBox.SelectedItem.ToString();
                     Console.WriteLine("Connected to " + selectedPort);
-                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                    SerialPort1.Open();
-                    SerialPort1.Write("#STAR\n");
+                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);                 
+                   // SerialPort1.Write("#STAR\n");
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
             }
-            if (isConnected) { messageTextBox.Text = "Connected" + selectedPort ; }
+            if (isConnected) { messageTextBox.Text = "Connected to " + selectedPort ; }
            // else { messageTextBox.Text = "Not Connected"; }
         }
 

@@ -30,7 +30,7 @@
                 Background="#FF0072BB"
                 BorderThickness="2" Width="310" Height="245" Canvas.Top="5">
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="245" Margin="0,-2,-2,-2" Width="308">
-                   
+
                     <TextBlock x:Name ="titleTextBlock" FontSize="14" Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="26" Width="247" Canvas.Left="33" Canvas.Top="209"/>
                     <Button Click="ClosePopupClicked2" HorizontalAlignment="Center" Height="20" Width="20" Canvas.Left="288" Canvas.Top="225" BorderBrush="{x:Null}">
                         <Button.Background>
@@ -127,7 +127,8 @@
             <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20" Selected="Hallucinogens_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="opioids" Content="Opioids" Selected="Opioids_Selected" FontSize="20" FontFamily="Calibri"/>
         </ListBox>
-        <ListBox x:Name="healthyBehaviorsListBox"  HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
+        <ListBox x:Name="healthyBehaviorsListBox" Visibility="Hidden" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
+
             <!--  <ListBoxItem x:Name="dietAndNutrition" Content="Diet and Nutrition" FontSize="20"  FontFamily="Calibri"/>
                <ListBoxItem x:Name="healthAndExercise" Content="Physical Activity" FontSize="20" Selected="HealthAndExercise_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="cognitiveActivity" Content="Cognitive Activity" FontSize="20" Selected="CognitiveActivity_Selected" FontFamily="Calibri"/>
@@ -218,13 +219,14 @@
             </Button.Background>
         </Button>
         <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png"/>
-        <TextBox x:Name="searchTextBox" Visibility ="Hidden" Height="30" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="405" Width="190" FontFamily="Calibri" FontSize="20" SpellCheck.IsEnabled="True" ScrollViewer.CanContentScroll="True" IsEnabled="False" TextChanged="searchTextBox_TextChanged">
-           
-        </TextBox>
-        <TextBox Height="23" Canvas.Left="482" Visibility="Hidden" TextWrapping="Wrap" Text="TextBox" Canvas.Top="470" Width="120">
-           
-        </TextBox>
+        <TextBox x:Name="searchTextBox" KeyUp="SearchTextBox_KeyUp" Height="23" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" TextChanged="searchTextBox_TextChanged"/>
+        <Border Width="190" Height="113" BorderBrush="Black" Canvas.Left="460" Canvas.Top="423">
+        
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="resultsStack"></StackPanel>
+                </ScrollViewer>
 
+        </Border>
     </Canvas>
 
 </UserControl>
