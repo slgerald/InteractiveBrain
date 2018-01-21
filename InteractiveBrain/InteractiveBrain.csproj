@@ -120,24 +120,29 @@
     </Compile>
     <Compile Include="HealthyBehavior.cs">
       <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="InteractiveBrainModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InteractiveBrainModel.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="InteractiveBrainModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="InteractiveBrainModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Substance.cs">
       <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="upstairsBrainControl.xaml.cs">
       <DependentUpon>upstairsBrainControl.xaml</DependentUpon>
@@ -208,9 +213,11 @@
     <EntityDeploy Include="InteractiveBrainModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>InteractiveBrainModel.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EntityDeploy>
     <None Include="InteractiveBrainModel.edmx.diagram">
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -299,11 +306,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
       <LastGenOutput>InteractiveBrainModel.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="InteractiveBrainModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
       <LastGenOutput>InteractiveBrainModel.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\reset.ico" />
     <None Include="Resources\poecentericon_HCM_icon.ico" />

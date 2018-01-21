@@ -21,6 +21,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Windows.UI.Core;
 using System.Windows.Resources;
+using System.Data;
+//using interactiveBrainModel;
+
 
 namespace InteractiveBrain
 {
@@ -62,7 +65,7 @@ namespace InteractiveBrain
         char[] lightingSequenceFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '\0' };//Reading from the 
         string lightingSequenceString;
         int index;
-      
+
         string dbConnectionString = @"data source=C:\Users\Shailicia\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
 
         //THis function instantiates a new insteractiveBrainControl when called
@@ -86,7 +89,7 @@ namespace InteractiveBrain
             brainPart = false;
             healthybehaviorBOOL = false;
             substance = false;
-             isConnected = false;
+            isConnected = false;
             editHealthyBehaviorsFlag = false;
             editSubstancesFlag = false;
             GetAvailableComPorts();
@@ -110,12 +113,13 @@ namespace InteractiveBrain
                     comPortNumberComboBox.SelectedItem = ports[0];
                 }
             }
+
             Fill_ListBox();
         }
 
         //tHIS FUNCTION NEEDS TO ADD SUBSTANCESlISTbOX
         public void Fill_ListBox()
-        {   
+        {
             string query;
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             try
@@ -124,43 +128,45 @@ namespace InteractiveBrain
                 if (editHealthyBehaviorsFlag)
                 {
                     editingListBox.Items.Clear();
-                  //  healthyBehaviorsListBox.Items.Clear();
+                    // healthyBehaviorsListBox.Items.Clear();
                     query = "select * from HealthyBehaviors";
                 }
-                else if(editSubstancesFlag)
+                else if (editSubstancesFlag)
                 {
                     editingListBox.Items.Clear();
                     query = "select * from Substances";
                 }
-                else{
+                else
+                {
                     healthyBehaviorsListBox.Items.Clear();
                     query = "select * from HealthyBehaviors";
 
-                        //query = "select * from Substances";
-                    }
-                    SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                    //query = "select * from Substances";
+                }
+                SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 SQLiteDataReader dr = createCommand.ExecuteReader();
                 while (dr.Read())
                 {
                     ListBoxItem li = new ListBoxItem();
                     ListBoxItem li_Two = new ListBoxItem();
                     if (editHealthyBehaviorsFlag)
-                    {   
+                    {
                         string healthyBehaviorListBoxItemContent = dr.GetString(1);
                         li.Content = healthyBehaviorListBoxItemContent;
-                      //  li_Two.Content = healthyBehaviorListBoxItemContent;
+                        //  li_Two.Content = healthyBehaviorListBoxItemContent;
                         editingListBox.Items.Add(li);
                         li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 16;
-                     //   healthyBehaviorsListBox.Items.Add(li_Two);
+                        healthyBehaviorsListBox.Items.Add(li_Two);
                         //    string substancesListBoxItemContent = dr.GetString(1);
                         //    li.Content = substancesListBoxItemContent;
                         //    substancesListBox.Items.Add(li);
 
-                      //  li_Two.FontFamily = new FontFamily("Calibri");
-                      //  li_Two.FontSize = 20;
+                        //  li_Two.FontFamily = new FontFamily("Calibri");
+                        //  li_Two.FontSize = 20;
                     }
-                    else if(editSubstancesFlag){
+                    else if (editSubstancesFlag)
+                    {
                         string substancesListBoxItemContent = dr.GetString(1);
                         li.Content = substancesListBoxItemContent;
                         editingListBox.Items.Add(li);
@@ -191,7 +197,7 @@ namespace InteractiveBrain
         //Depending on the selection, make affected areas glow 
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             animation.From = 1.0;
             animation.To = 0.4;
             animation.Duration = new Duration(TimeSpan.FromSeconds(.5));
@@ -326,9 +332,9 @@ namespace InteractiveBrain
             selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
             Console.WriteLine(selectedHealthyBehaviors);
             examplesButton.Visibility = System.Windows.Visibility.Hidden;
-            
+
             ListBoxSelectionChanged();
-          
+
 
         }
         #endregion
@@ -337,14 +343,14 @@ namespace InteractiveBrain
         #region
         private void Cerebellum_Selected(object sender, RoutedEventArgs e)
         {
-           // displayMessage = "Note the LED corresponding to the Cerebellum light up";
+            // displayMessage = "Note the LED corresponding to the Cerebellum light up";
             lightingSequenceFromDatabase = "1000000000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void Brainstem_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Brainstem light up";
-            lightingSequenceFromDatabase = "0100000000".ToArray(); 
+            lightingSequenceFromDatabase = "0100000000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void PituitaryGland_Selected(object sender, RoutedEventArgs e)
@@ -356,7 +362,7 @@ namespace InteractiveBrain
         private void Amygdala_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Amygdala light up";
-            lightingSequenceFromDatabase = "0001000000".ToArray(); 
+            lightingSequenceFromDatabase = "0001000000".ToArray();
             //  WriteLightingSequenceMessage();
         }
 
@@ -375,20 +381,20 @@ namespace InteractiveBrain
         private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
-              
+
             lightingSequenceFromDatabase = "0000001000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void OccipitalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
-             lightingSequenceFromDatabase = "0000000100".ToArray();
+            lightingSequenceFromDatabase = "0000000100".ToArray();
             //  WriteLightingSequenceMessage();
         }
 
         private void FrontalLobe_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Frontal Lobe light up";  
+            displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
             lightingSequenceFromDatabase = "0000000010".ToArray();
             //  WriteLightingSequenceMessage();
         }
@@ -417,7 +423,7 @@ namespace InteractiveBrain
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "opioids";
             //  WriteLightingSequenceMessage();
-            
+
         }
 
         #endregion
@@ -457,13 +463,13 @@ namespace InteractiveBrain
             }
             if (lightingSequenceFromDatabase[7] == '1')
             {
-               parietalLobeImage.BeginAnimation(OpacityProperty, animation);
+                parietalLobeImage.BeginAnimation(OpacityProperty, animation);
             }
             if (lightingSequenceFromDatabase[8] == '1')
             {
                 frontalLobeImage.BeginAnimation(OpacityProperty, animation);
             }
-           //WriteLightingSequenceMessage();
+            //WriteLightingSequenceMessage();
         }
 
         //This function determines which substances are listed based on the substance selected
@@ -540,21 +546,7 @@ namespace InteractiveBrain
                 Console.WriteLine(ex.Message);
             }
         }
-        //The connection button is a toggle button
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            ToggleButton toggle = (ToggleButton)sender;
 
-            
-
-        }
-
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ToggleButton toggle = (ToggleButton)sender;
-            //If there was an established serial port connection, disconnect
-            
-        }
         private void WriteLightingSequenceMessage()
         {
             if (isConnected)
@@ -592,7 +584,7 @@ namespace InteractiveBrain
             brush.ImageSource = temp;
 
             toggleButton.Background = brush;
-            Console.WriteLine(toggleButton.Background.ToString());
+
             // open the Popup if it isn't open already 
         }
 
@@ -602,6 +594,10 @@ namespace InteractiveBrain
             if (editListsPopup.IsOpen) { editListsPopup.IsOpen = false; }
             editHealthyBehaviorsFlag = false;
             editSubstancesFlag = false;
+            editingListBox.Items.Clear();
+            editHealthyBehaviorsRadioButton.IsChecked = false;
+            editSubstancesRadioButton.IsChecked = false;
+            titleTextBlock.Text = "";
             Fill_ListBox();
         }
 
@@ -609,6 +605,17 @@ namespace InteractiveBrain
         {
             // if the Popup is open, then close it 
             if (contentPopup.IsOpen) { contentPopup.IsOpen = false; }
+            listBoxContent.Text = "";
+            errorTextBlock.Text = "";
+            editAmygdalaCheckbox.IsChecked = false;
+            editParietalLobeCheckbox.IsChecked = false;
+            editTemporalLobeCheckbox.IsChecked = false;
+            editFrontalLobeCheckbox.IsChecked = false;
+            editCerebellumCheckbox.IsChecked = false;
+            editHippocampusCheckbox.IsChecked = false;
+            editPituitaryGlandCheckbox.IsChecked = false;
+            editBrainstemCheckbox.IsChecked = false;
+            editOccipitalLobeCheckbox.IsChecked = false;
         }
         private void ClosePopupClicked4(object sender, RoutedEventArgs e)
         {
@@ -661,7 +668,6 @@ namespace InteractiveBrain
         }
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-         
             if (editHealthyBehaviorsFlag || editSubstancesFlag)
             {
                 if (editHealthyBehaviorsFlag)
@@ -676,7 +682,7 @@ namespace InteractiveBrain
                         titleTextBlock.Text = "";
                         RemoveItemToDatabase();
                     }
-                    
+
                 }
                 if (editSubstancesFlag)
                 {
@@ -689,7 +695,7 @@ namespace InteractiveBrain
                     {
                         titleTextBlock.Text = "";
                     }
-                    
+
                 }
             }
             else
@@ -699,73 +705,82 @@ namespace InteractiveBrain
 
         }
         private void OkButton_Click(object sender, RoutedEventArgs e)
-        {  
-                bool effectsChecked = false;   
-                if (editCerebellumCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[0] = '1';
-                }
-                if (editBrainstemCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[1] = '1';
-                }
-                if (editPituitaryGlandCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[2] = '1';
-                }
-                if (editAmygdalaCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[3] = '1';
-                }
-                if (editHippocampusCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[4] = '1';
-                }
-                if (editTemporalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[5] = '1';
-                }
-                if (editOccipitalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[6] = '1';
-                }
-                if (editParietalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[7] = '1';
-                }
-                if (editFrontalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    lightingSequenceToDatabase[8] = '1';
-                }
+        {
+            bool effectsChecked = false;
+            if (editCerebellumCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[0] = '1';
+            }
+            if (editBrainstemCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[1] = '1';
+            }
+            if (editPituitaryGlandCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[2] = '1';
+            }
+            if (editAmygdalaCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[3] = '1';
+            }
+            if (editHippocampusCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[4] = '1';
+            }
+            if (editTemporalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[5] = '1';
+            }
+            if (editOccipitalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[6] = '1';
+            }
+            if (editParietalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[7] = '1';
+            }
+            if (editFrontalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[8] = '1';
+            }
 
-           lightingSequenceString = CharArrayToString(lightingSequenceToDatabase);
+            lightingSequenceString = CharArrayToString(lightingSequenceToDatabase);
 
             if (!effectsChecked && newListBoxItemContent == null)
             {
-                errorTextBlock.Text = "No content was inserted or effects are checked.";             
+                errorTextBlock.Text = "No content was inserted or effects are checked.";
             }
             else if (!effectsChecked && newListBoxItemContent != null)
             {
-                errorTextBlock.Text = "No effects are checked.";          
+                errorTextBlock.Text = "No effects are checked.";
             }
             else if (effectsChecked && newListBoxItemContent == null)
             {
-                errorTextBlock.Text = "No content was inserted.";      
+                errorTextBlock.Text = "No content was inserted.";
             }
             else if (effectsChecked && newListBoxItemContent != null)
             {
                 AddNewItemToDatabase();
-                //Clear content box after saving
-                // newListBoxItemContent.Text = string.Empty;
+                listBoxContent.Text = "";
+                effectsChecked = false;
+                editAmygdalaCheckbox.IsChecked = false;
+                editParietalLobeCheckbox.IsChecked = false;
+                editTemporalLobeCheckbox.IsChecked = false;
+                editFrontalLobeCheckbox.IsChecked = false;
+                editCerebellumCheckbox.IsChecked = false;
+                editHippocampusCheckbox.IsChecked = false;
+                editPituitaryGlandCheckbox.IsChecked = false;
+                editBrainstemCheckbox.IsChecked = false;
+                editOccipitalLobeCheckbox.IsChecked = false;
                 errorTextBlock.Text = "Saved.";
             }
         }
@@ -774,24 +789,21 @@ namespace InteractiveBrain
             ListBoxItem li = new ListBoxItem();
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             string query;
-            index = editingListBox.Items.Count;
-            Console.WriteLine(index);
-            Console.WriteLine(lightingSequenceString);
-            Console.WriteLine(newListBoxItemContent);
-            Console.WriteLine(lightingSequenceToDatabase[9]);
+            index = editingListBox.Items.Count - 1;
+
             try
             {
                 sqlitecon.Open();
-            if (editHealthyBehaviorsFlag)
-            { 
-                query = "insert into HealthyBehaviors (Id, healthyBehaviors, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString.Substring(0,9) + "')";
-                  
+                if (editHealthyBehaviorsFlag)
+                {
+                    query = "insert into HealthyBehaviors (Id, healthyBehaviors, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString.Substring(0, 9) + "')";
+
                 }
-            else
-            {
-                query = "insert into Substances (Id, substanceName, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString + "')";
-            }
-            
+                else
+                {
+                    query = "insert into Substances (Id, substanceName, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString + "')";
+                }
+
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 createCommand.ExecuteNonQuery();
                 sqlitecon.Close();
@@ -800,6 +812,7 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex);
             }
+            UpdateIndices();
             Fill_ListBox();
             //clear content box after saving
             // newlistboxitemcontent.text = string.empty;
@@ -813,15 +826,15 @@ namespace InteractiveBrain
             try
             {
                 sqlitecon.Open();
-            if (editHealthyBehaviorsFlag)
-            {    
-                query = "update HealthyBehaviors set Id='" + index + "',healthyBehaviors='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
-            }
-            else
-            {
-                query = "update Substances set Id='" + index + "',substanceName='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
-            }
-             
+                if (editHealthyBehaviorsFlag)
+                {
+                    query = "update HealthyBehaviors set Id='" + index + "',healthyBehaviors='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
+                }
+                else
+                {
+                    query = "update Substances set Id='" + index + "',substanceName='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
+                }
+
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 createCommand.ExecuteNonQuery();
                 sqlitecon.Close();
@@ -834,25 +847,65 @@ namespace InteractiveBrain
             //clear content box after saving
             // newlistboxitemcontent.text = string.empty;
         }
+        private void UpdateIndices()
+        {
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            int index = 0;
+            int changingIndex = 0;
+            while (index < editingListBox.Items.Count)
+            {
+                Console.WriteLine(editingListBox.Items.Count);
+                changingIndex = index;
+                Console.WriteLine(changingIndex);
+                string query;
+                try
+                {
+                    sqlitecon.Open();
+                    if (editHealthyBehaviorsFlag)
+                    {
+                        query = "UPDATE HealthyBehaviors SET Id='" + changingIndex + "' where healthyBehaviors='" + ((ListBoxItem)editingListBox.Items[index]).Content.ToString()+"' ";
+                    }
+                    else
+                    {
+                        query = "update Substances set Id='" + index + "',substanceName='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
+                    }
+
+                    SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                    createCommand.ExecuteNonQuery();
+                    sqlitecon.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+
+                index++;
+            }
+           
+           
+            //Fill_ListBox();
+            //clear content box after saving
+            // newlistboxitemcontent.text = string.empty;
+        }
         private void RemoveItemToDatabase()
         {
             ListBoxItem li = new ListBoxItem();
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             index = editingListBox.SelectedIndex;
+            //      string deleteThis =((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
             string query;
             try
             {
                 sqlitecon.Open();
-            if (editHealthyBehaviorsFlag)
-            {
-                query = "delete from HealthyBehaviors where Id='" + index + "' ";
-                Console.WriteLine(query);
-            }
-            else
-            {
-                query = "delete from Substances where Id='" + index + "' ";
-            }
-            
+                if (editHealthyBehaviorsFlag)
+                {
+                    query = "delete from HealthyBehaviors where Id='" + index + "' ";
+                    Console.WriteLine(query);
+                }
+                else
+                {
+                    query = "delete from Substances where Id='" + index + "' ";
+                }
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 createCommand.ExecuteNonQuery();
                 sqlitecon.Close();
@@ -861,7 +914,9 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex);
             }
+            UpdateIndices();
             Fill_ListBox();
+            
             //clear content box after saving
             // newlistboxitemcontent.text = string.empty;
         }
@@ -890,13 +945,13 @@ namespace InteractiveBrain
                 if (ports == null || ports.Length == 0)
                 {
                     selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-                  //  toggleButton.IsChecked = false;
+
                 }
                 else
                 {
                     try //Try to connect to serial port
                     {
-                           isConnected = true;
+                        isConnected = true;
                         if (!connectionPopup.IsOpen)
                         { connectionPopup.IsOpen = true; }
                     }
@@ -942,5 +997,11 @@ namespace InteractiveBrain
                 defaultFlag = false;
             }
         }
+
+        private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
+ 
