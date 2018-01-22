@@ -572,12 +572,29 @@ namespace InteractiveBrain
                 //concatenate all the parts in a character array
                 //Send serial message for stop to turn off all the lights
                 //should i wait a few milliseconds?
-                SerialPort1.Write(new string(lightingSequenceFromDatabase));
                 //character array as string
                 // Convert charArray as string, because zeros may be read as nulls
                 //close serial port
+                try
+                {
+                        SerialPort1.Open();
+                        // SerialPort1.Write(new string(concatenateArray));
+                        SerialPort1.Close();
+                    }
+                    catch (UnauthorizedAccessException ex) {
+                       
+                        selectionMessageBox.Text = "Chosen COM Port in use, connect to another";
+                        Console.WriteLine(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
+                }
+                
             }
-        }
+        
 
         // This function closes the pop up and changes the background of the connection
         //button to show that a connection has been established 
@@ -588,8 +605,8 @@ namespace InteractiveBrain
             selectedPort = comPortNumberComboBox.SelectedItem.ToString();
             Console.WriteLine("Connected to " + selectedPort);
             SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-            // SerialPort1.Open();
-            //  SerialPort1.Write("#STAR\n");
+            SerialPort1.ReadTimeout = 500;
+            SerialPort1.WriteTimeout = 500;
             Uri resourceUri = new Uri("Resources/if_connect_established.ico", UriKind.Relative);
             StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
 

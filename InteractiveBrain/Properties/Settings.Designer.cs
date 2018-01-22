@@ -215,5 +215,149 @@ distinguishing coins by how the edges feel to the skin)
                 this["defaultUnhealthyBehaviorsCerebellum"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultFunctionsHippocampus {
+            get {
+                return ((string)(this["defaultFunctionsHippocampus"]));
+            }
+            set {
+                this["defaultFunctionsHippocampus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultHealthyBehaviorsHippocampus {
+            get {
+                return ((string)(this["defaultHealthyBehaviorsHippocampus"]));
+            }
+            set {
+                this["defaultHealthyBehaviorsHippocampus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultUnhealthyBehaviorsHippocampus {
+            get {
+                return ((string)(this["defaultUnhealthyBehaviorsHippocampus"]));
+            }
+            set {
+                this["defaultUnhealthyBehaviorsHippocampus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultFunctionsAmygdala {
+            get {
+                return ((string)(this["defaultFunctionsAmygdala"]));
+            }
+            set {
+                this["defaultFunctionsAmygdala"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultHealthyBehaviorsAmygdala {
+            get {
+                return ((string)(this["defaultHealthyBehaviorsAmygdala"]));
+            }
+            set {
+                this["defaultHealthyBehaviorsAmygdala"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultUnhealthyBehaviorsAmygdala {
+            get {
+                return ((string)(this["defaultUnhealthyBehaviorsAmygdala"]));
+            }
+            set {
+                this["defaultUnhealthyBehaviorsAmygdala"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultFunctionsPituitaryGland {
+            get {
+                return ((string)(this["defaultFunctionsPituitaryGland"]));
+            }
+            set {
+                this["defaultFunctionsPituitaryGland"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultHealthyBehaviorsPituitaryGland {
+            get {
+                return ((string)(this["defaultHealthyBehaviorsPituitaryGland"]));
+            }
+            set {
+                this["defaultHealthyBehaviorsPituitaryGland"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultUnhealthyBehaviorsPituitaryGland {
+            get {
+                return ((string)(this["defaultUnhealthyBehaviorsPituitaryGland"]));
+            }
+            set {
+                this["defaultUnhealthyBehaviorsPituitaryGland"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultFunctionsBrainstem {
+            get {
+                return ((string)(this["defaultFunctionsBrainstem"]));
+            }
+            set {
+                this["defaultFunctionsBrainstem"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultHealthyBehaviorsBrainstem {
+            get {
+                return ((string)(this["defaultHealthyBehaviorsBrainstem"]));
+            }
+            set {
+                this["defaultHealthyBehaviorsBrainstem"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string defaultUnhealthyBehaviorsBrainstem {
+            get {
+                return ((string)(this["defaultUnhealthyBehaviorsBrainstem"]));
+            }
+            set {
+                this["defaultUnhealthyBehaviorsBrainstem"] = value;
+            }
+        }
     }
 }

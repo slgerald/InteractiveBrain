@@ -190,9 +190,9 @@
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
                         </Button.Background>
                     </Button>
-                    <RadioButton x:Name ="editFunctionsRadioButton" Content="Functions" Canvas.Left="345" Canvas.Top="10" IsChecked="False" Checked="FunctionsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
-                    <RadioButton x:Name ="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="345" Canvas.Top="28" IsChecked="False" Checked="HealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
-                    <RadioButton x:Name="editUnhealthyBehaviorsRadioButton" Content="Unhealthy Behaviors" Canvas.Left="345" Canvas.Top="48" IsChecked="False" Checked="UnhealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <RadioButton x:Name ="editFunctionsRadioButton" Content="Functions" Canvas.Left="345" Canvas.Top="10" IsChecked="False" Checked="EditFunctionsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <RadioButton x:Name ="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="345" Canvas.Top="28" IsChecked="False" Checked="EditHealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <RadioButton x:Name="editUnhealthyBehaviorsRadioButton" Content="Unhealthy Behaviors" Canvas.Left="345" Canvas.Top="48" IsChecked="False" Checked="EditUnhealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
                     <Button Content="" Canvas.Left="475" Canvas.Top="246" Width="40" Height="40" RenderTransformOrigin="1.154,0.556" Click="SaveButton_Click" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Save">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_save.ico"/>
@@ -282,7 +282,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBox Visibility="Visible" x:Name="brainPartsLabel" IsReadOnly="True" Height="50" Canvas.Left="195" TextWrapping="Wrap" Canvas.Top="50" Width="300" TextChanged="BrainPartsLabel_TextChanged" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <TextBox Visibility="Visible" x:Name="brainPartsLabel" IsReadOnly="True" Height="50" Canvas.Left="195" TextWrapping="Wrap" Canvas.Top="50" Width="300" TextChanged="BrainPartsLabel_TextChanged" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Tahoma"/>
 
     </Canvas>
 </UserControl>

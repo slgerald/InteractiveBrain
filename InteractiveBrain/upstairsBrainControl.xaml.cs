@@ -134,10 +134,6 @@ namespace InteractiveBrain
             sbOL = (Storyboard)this.Resources["zoomingOL"];
             sbC = (Storyboard)this.Resources["zoomingC"];
             storyboardFlag = 0; // Initiates storyboard flag at zero
-            //defaultFlag = true;
-            //  functionsIntro = "Functions are: ";
-            // healthyBehaviorsIntro = "These healthy behaviors affect the ";
-            // unhealthyBehaviorsIntro = "These unhealthy behaviors affect the ";
         }
 
         private void ClosePopupClicked(object sender, RoutedEventArgs e)
@@ -214,11 +210,6 @@ namespace InteractiveBrain
             factsMessageBox.Visibility = System.Windows.Visibility.Visible;
             brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
 
-            /*This was used to get location of the frontalLobeBox
-             * double objectX = Canvas.GetLeft(frontalLobeBox);
-            double objectY = Canvas.GetTop(frontalLobeBox);
-            Console.WriteLine("objectX" + objectX + " , objectY" + objectY);
-            */
             if (functionsFlag)
             {
                 if (defaultFunctionsFLFlag)
@@ -938,7 +929,7 @@ namespace InteractiveBrain
             
         }
 #endregion
-        private void FunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void EditFunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = true;
             editHealthyBehaviorsFlag = false;
@@ -968,7 +959,7 @@ namespace InteractiveBrain
             }
         }
 
-        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void EditHealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = true;
@@ -997,7 +988,7 @@ namespace InteractiveBrain
                 }
             }
         }
-        private void UnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void EditUnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = false;
