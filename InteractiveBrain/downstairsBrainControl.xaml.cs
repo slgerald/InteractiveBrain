@@ -102,6 +102,7 @@ namespace InteractiveBrain
         bool editHealthyBehaviorsFlag = false;
         bool editUnhealthyBehaviorsFlag = false;
 
+        bool disabled = false;
        
         //This is the entry point for the userControl page 
         public downstairsBrainControl()
@@ -110,11 +111,10 @@ namespace InteractiveBrain
              
             functions.IsChecked = true; //The page begins with the functions Radio Button being checked first 
 
-          //  pictureCanvasScaler.MouseDoubleClick += new MouseButtonEventHandler(RestoreScalingFactor);
+         
             hippocampusBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(HippocampusBox_PreviewMouseLeftButtonDown);
             hippocampusBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
             hippocampusBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
-
             pituitaryGlandBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(PituitaryGlandBox_PreviewMouseLeftButtonDown);
             pituitaryGlandBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
             pituitaryGlandBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
@@ -137,15 +137,12 @@ namespace InteractiveBrain
           
             originalBrainstemY = Canvas.GetTop((UIElement)brainstemBox);
 
-            sbH = (Storyboard)this.Resources["zoomingH"];
-            sbA = (Storyboard)this.Resources["zoomingA"];
-            sbPG = (Storyboard)this.Resources["zoomingPG"];
-            sbBS = (Storyboard)this.Resources["zoomingBS"];
+            sbH = (Storyboard)Resources["zoomingH"];
+            sbA = (Storyboard)Resources["zoomingA"];
+            sbPG = (Storyboard)Resources["zoomingPG"];
+            sbBS = (Storyboard)Resources["zoomingBS"];
             
             storyboardFlag = 0; // Initiates storyboard flag at zero
-
-           
-
         }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
@@ -206,306 +203,324 @@ namespace InteractiveBrain
             functionsFlag = false;
             healthyBehaviorsFlag = false;
         }
-        //This is what happens whem the scaler is clicked twice 
-        void RestoreScalingFactor(object sender, MouseButtonEventArgs args)
-        {
-            ((Slider)sender).Value = 1.0;
-            brainstemBox.Visibility = System.Windows.Visibility.Visible;
-            amygdalaBox.Visibility = System.Windows.Visibility.Visible;
-            pituitaryGlandBox.Visibility = System.Windows.Visibility.Visible;
-            hippocampusBox.Visibility = System.Windows.Visibility.Visible;
-            cutoutLowerBrain.Visibility = System.Windows.Visibility.Visible;
-        }
+
         //This function determines what happens when the hippocampus is clicked on with the mouse's left button
         private void HippocampusBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            brainPartsLabel.Text = "Hippocampus"; //Label for the brain part 
-            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
-            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
-         
-            Canvas canvas = img.Parent as Canvas;
-
-            firstXPos = e.GetPosition(img).X;
-            firstYPos = e.GetPosition(img).Y;
-            
-
-            movingObject = sender;
-
-            // Put the image currently being dragged on top of the others
-            int top = Canvas.GetZIndex(img);
-            foreach (System.Windows.Controls.Image child in canvas.Children)
-                if (top < Canvas.GetZIndex(child))
-                    top = Canvas.GetZIndex(child);
-            Canvas.SetZIndex(img, top + 1); 
-            Mouse.Capture(img); //So the mouse pointer doesn't "slip" off of image while dragging and dropping 
-
-
-            storyboardFlag = 1;
-
-            //without reverseOn every other time autoreverse = true
-            if (sbH.AutoReverse)
-                ReverseOn(1);
-            else { ReverseOff(1); }
-
-
-            if (functionsFlag)
+            if (e.ClickCount == 1 && !disabled )
             {
-                if (defaultFunctionsHFlag)
-                {
-                    factsMessageBox.Text = "Functions of the Hippocampus: " + defaultFunctionsHippocampus;
-                }
-                else
-                {
-                    Console.WriteLine(changedFunctionsHippocampus);
-                    factsMessageBox.Text = "Functions of the Hippocampus: " + changedFunctionsHippocampus;
-                    defaultFunctionsHippocampus = changedFunctionsHippocampus;
-                    Console.WriteLine(Properties.Settings.Default.defaultFunctionsHippocampus);
+                brainPartsLabel.Text = "Hippocampus"; //Label for the brain part 
+                                                      // In this event, we get the current mouse position on the control to use it in the MouseMove event.
+                System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
 
-                    Properties.Settings.Default.defaultFunctionsHippocampus = changedFunctionsHippocampus;
-                    Properties.Settings.Default.Save();
+                Canvas canvas = img.Parent as Canvas;
 
-                    defaultFunctionsHFlag = true;
-                }
-                healthyBehaviors.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-            }
-            if (healthyBehaviorsFlag)
-            {
-                if (defaultHBHFlag)
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Hippocampus: " + defaultHealthyBehaviorsHippocampus;
-                }
-                else
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Hippocampus: " + changedHealthyBehaviorsHippocampus;
-                    Properties.Settings.Default.defaultHealthyBehaviorsHippocampus = changedHealthyBehaviorsHippocampus;
-                    Properties.Settings.Default.Save();
-                    defaultHBHFlag = true;
-                }
-                functions.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-            }
-            if (unhealthyBehaviorsFlag)
-            {
-                if (defaultUHBHFlag)
-                {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Hippocampus : " + Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
+                firstXPos = e.GetPosition(img).X;
+                firstYPos = e.GetPosition(img).Y;
 
-                }
-                else
+
+                movingObject = sender;
+
+                // Put the image currently being dragged on top of the others
+                int top = Canvas.GetZIndex(img);
+                foreach (System.Windows.Controls.Image child in canvas.Children)
+                    if (top < Canvas.GetZIndex(child))
+                        top = Canvas.GetZIndex(child);
+                Canvas.SetZIndex(img, top + 1);
+                Mouse.Capture(img); //So the mouse pointer doesn't "slip" off of image while dragging and dropping 
+
+
+                if (functionsFlag)
                 {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Hipocampus: " + changedUnhealthyBehaviorsHippocampus;
-                    Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus = changedUnhealthyBehaviorsHippocampus;
-                    Properties.Settings.Default.Save();
-                    defaultUHBHFlag = true;
+                    if (defaultFunctionsHFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Hippocampus: " + defaultFunctionsHippocampus;
+                    }
+                    else
+                    {
+                        Console.WriteLine(changedFunctionsHippocampus);
+                        factsMessageBox.Text = "Functions of the Hippocampus: " + changedFunctionsHippocampus;
+                        defaultFunctionsHippocampus = changedFunctionsHippocampus;
+                        Console.WriteLine(Properties.Settings.Default.defaultFunctionsHippocampus);
+
+                        Properties.Settings.Default.defaultFunctionsHippocampus = changedFunctionsHippocampus;
+                        Properties.Settings.Default.Save();
+
+                        defaultFunctionsHFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
                 }
-                healthyBehaviors.IsEnabled = false;
-                functions.IsEnabled = false;
+                if (healthyBehaviorsFlag)
+                {
+                    if (defaultHBHFlag)
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Hippocampus: " + defaultHealthyBehaviorsHippocampus;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Hippocampus: " + changedHealthyBehaviorsHippocampus;
+                        Properties.Settings.Default.defaultHealthyBehaviorsHippocampus = changedHealthyBehaviorsHippocampus;
+                        Properties.Settings.Default.Save();
+                        defaultHBHFlag = true;
+                    }
+                    functions.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
+                }
+                if (unhealthyBehaviorsFlag)
+                {
+                    if (defaultUHBHFlag)
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Hippocampus : " + Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
+
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Hipocampus: " + changedUnhealthyBehaviorsHippocampus;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus = changedUnhealthyBehaviorsHippocampus;
+                        Properties.Settings.Default.Save();
+                        defaultUHBHFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    functions.IsEnabled = false;
+                }
+                //Makes the text box, "got it" button, and brain parts label visible 
+                //Determines what happens when the image is clicked twice 
+
             }
-            //Makes the text box, "got it" button, and brain parts label visible 
-            //Determines what happens when the image is clicked twice 
             if (e.ClickCount == 2)
             {
+                storyboardFlag = 1;
+                //without reverseOn every other time autoreverse = true
+              if (sbH.AutoReverse)
+             {
+                    ReverseOff(1);
+                }
+              else { ReverseOn(1); }
                 brainstemBox.Visibility = System.Windows.Visibility.Hidden;
-               amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
+                amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
                 pituitaryGlandBox.Visibility = System.Windows.Visibility.Hidden;
                 cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
+                scrambleButton.Visibility = System.Windows.Visibility.Hidden;
+                resetButton.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
-                //  pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
+                disabled = true;
             }
-
         }
-
+        
         //Determines what happens when the amygdala is clicked on 
         private void AmygdalaBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            brainPartsLabel.Text = "Amygdala";
-            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
-            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
-            Console.WriteLine(sender);
-
-
-            Canvas canvas = img.Parent as Canvas;
-
-            firstXPos = e.GetPosition(img).X;
-            firstYPos = e.GetPosition(img).Y;
-
-            movingObject = sender;
-
-            // Put the image currently being dragged on top of the others
-            int top = Canvas.GetZIndex(img);
-            foreach (System.Windows.Controls.Image child in canvas.Children)
-                if (top < Canvas.GetZIndex(child))
-                    top = Canvas.GetZIndex(child);
-            Canvas.SetZIndex(img, top + 1);
-
-            Mouse.Capture(img); //So the mouse pointer doesn't "slip" off image when being dragged and dropped 
-
-            //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used 
-            if (functionsFlag)
+            if (e.ClickCount == 1 && !disabled)
             {
-                if (defaultFunctionsAFlag)
-                {
-                    factsMessageBox.Text = "Functions of the Amygdala: " + defaultFunctionsAmygdala;
-                }
-                else
-                {
-                    Console.WriteLine(changedFunctionsAmygdala);
-                    factsMessageBox.Text = "Functions of the Amygdala: " + changedFunctionsAmygdala;
-                    defaultFunctionsAmygdala = changedFunctionsAmygdala;
-                    Console.WriteLine(Properties.Settings.Default.defaultFunctionsAmygdala);
+                brainPartsLabel.Text = "Amygdala";
+                // In this event, we get the current mouse position on the control to use it in the MouseMove event.
+                System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
+                Console.WriteLine(sender);
 
-                    Properties.Settings.Default.defaultFunctionsAmygdala = changedFunctionsAmygdala;
-                    Properties.Settings.Default.Save();
 
-                    defaultFunctionsAFlag = true;
+
+                Canvas canvas = img.Parent as Canvas;
+
+                firstXPos = e.GetPosition(img).X;
+                firstYPos = e.GetPosition(img).Y;
+
+                movingObject = sender;
+
+                // Put the image currently being dragged on top of the others
+                int top = Canvas.GetZIndex(img);
+                foreach (System.Windows.Controls.Image child in canvas.Children)
+                    if (top < Canvas.GetZIndex(child))
+                        top = Canvas.GetZIndex(child);
+                Canvas.SetZIndex(img, top + 1);
+
+                Mouse.Capture(img); //So the mouse pointer doesn't "slip" off image when being dragged and dropped 
+
+                //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used 
+                if (functionsFlag)
+                {
+                    if (defaultFunctionsAFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Amygdala: " + defaultFunctionsAmygdala;
+                    }
+                    else
+                    {
+                        Console.WriteLine(changedFunctionsAmygdala);
+                        factsMessageBox.Text = "Functions of the Amygdala: " + changedFunctionsAmygdala;
+                        defaultFunctionsAmygdala = changedFunctionsAmygdala;
+                        Console.WriteLine(Properties.Settings.Default.defaultFunctionsAmygdala);
+
+                        Properties.Settings.Default.defaultFunctionsAmygdala = changedFunctionsAmygdala;
+                        Properties.Settings.Default.Save();
+
+                        defaultFunctionsAFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
                 }
-                healthyBehaviors.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
+                if (healthyBehaviorsFlag)
+                {
+                    if (defaultHBAFlag)
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Amygdala: " + defaultHealthyBehaviorsAmygdala;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Amygdala: " + changedHealthyBehaviorsAmygdala;
+                        Properties.Settings.Default.defaultHealthyBehaviorsAmygdala = changedHealthyBehaviorsAmygdala;
+                        Properties.Settings.Default.Save();
+                        defaultHBAFlag = true;
+                    }
+                    functions.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
+                }
+                if (unhealthyBehaviorsFlag)
+                {
+                    if (defaultUHBAFlag)
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Amygdala: " + Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
+
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Amygdala: " + changedUnhealthyBehaviorsAmygdala;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala = changedUnhealthyBehaviorsAmygdala;
+                        Properties.Settings.Default.Save();
+                        defaultUHBAFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    functions.IsEnabled = false;
+                }
+                //makes the textbox, "Got It" button, and brain parts label visible when this brain part is chosen
             }
-            if (healthyBehaviorsFlag)
-            {
-                if (defaultHBAFlag)
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Amygdala: " + defaultHealthyBehaviorsAmygdala;
-                }
-                else
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Amygdala: " + changedHealthyBehaviorsAmygdala;
-                    Properties.Settings.Default.defaultHealthyBehaviorsAmygdala = changedHealthyBehaviorsAmygdala;
-                    Properties.Settings.Default.Save();
-                    defaultHBAFlag = true;
-                }
-                functions.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-            }
-            if (unhealthyBehaviorsFlag)
-            {
-                if (defaultUHBAFlag)
-                {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Amygdala: " + Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
-
-                }
-                else
-                {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Amygdala: " + changedUnhealthyBehaviorsAmygdala;
-                    Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala = changedUnhealthyBehaviorsAmygdala;
-                    Properties.Settings.Default.Save();
-                    defaultUHBAFlag = true;
-                }
-                healthyBehaviors.IsEnabled = false;
-                functions.IsEnabled = false;
-            }
-            //makes the textbox, "Got It" button, and brain parts label visible when this brain part is chosen
-
 
             //This determines what happens when the amygdala is clicked twice 
             if (e.ClickCount == 2)
             {
+                storyboardFlag = 2;
+                //without reverseOn every other time autoreverse = true
+                if (sbA.AutoReverse)
+                { ReverseOff(2); }
+                else { ReverseOn(2); }
                 brainstemBox.Visibility = System.Windows.Visibility.Hidden;
                 hippocampusBox.Visibility = System.Windows.Visibility.Hidden;
                 pituitaryGlandBox.Visibility = System.Windows.Visibility.Hidden;
                 cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
+                scrambleButton.Visibility = System.Windows.Visibility.Hidden;
+                resetButton.Visibility = System.Windows.Visibility.Hidden;
+
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
-              //  pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
+                disabled = true;
             }
         }
 
         //This function determines what happens when the brainstem is left clicked 
         private void BrainstemBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            brainPartsLabel.Text = "Brainstem";
-            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
-            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
-            Console.WriteLine(sender);
-
-
-            Canvas canvas = img.Parent as Canvas;
-
-            firstXPos = e.GetPosition(img).X;
-            firstYPos = e.GetPosition(img).Y;
-
-            movingObject = sender;
-
-            // Put the image currently being dragged on top of the others
-            int top = Canvas.GetZIndex(img);
-            foreach (System.Windows.Controls.Image child in canvas.Children)
-                if (top < Canvas.GetZIndex(child))
-                    top = Canvas.GetZIndex(child);
-            Canvas.SetZIndex(img, top + 1);
-
-            Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
-
-            //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
-            if (functionsFlag)
+            if (e.ClickCount == 1 && !disabled)
             {
-                if (defaultFunctionsBSFlag)
-                {
-                    factsMessageBox.Text = "Functions of the Brainstem: " + defaultFunctionsBrainstem;
-                }
-                else
-                {
-                    Console.WriteLine(changedFunctionsBrainstem);
-                    factsMessageBox.Text = "Functions of the Brainstem: " + changedFunctionsBrainstem;
-                    defaultFunctionsBrainstem = changedFunctionsBrainstem;
-                    Console.WriteLine(Properties.Settings.Default.defaultFunctionsBrainstem);
+                brainPartsLabel.Text = "Brainstem";
+                // In this event, we get the current mouse position on the control to use it in the MouseMove event.
+                System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
+                Console.WriteLine(sender);
 
-                    Properties.Settings.Default.defaultFunctionsBrainstem = changedFunctionsBrainstem;
-                    Properties.Settings.Default.Save();
 
-                    defaultFunctionsBSFlag = true;
+
+                Canvas canvas = img.Parent as Canvas;
+
+                firstXPos = e.GetPosition(img).X;
+                firstYPos = e.GetPosition(img).Y;
+
+                movingObject = sender;
+
+                // Put the image currently being dragged on top of the others
+                int top = Canvas.GetZIndex(img);
+                foreach (System.Windows.Controls.Image child in canvas.Children)
+                    if (top < Canvas.GetZIndex(child))
+                        top = Canvas.GetZIndex(child);
+                Canvas.SetZIndex(img, top + 1);
+
+                Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
+
+                //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
+                if (functionsFlag)
+                {
+                    if (defaultFunctionsBSFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Brainstem: " + defaultFunctionsBrainstem;
+                    }
+                    else
+                    {
+                        Console.WriteLine(changedFunctionsBrainstem);
+                        factsMessageBox.Text = "Functions of the Brainstem: " + changedFunctionsBrainstem;
+                        defaultFunctionsBrainstem = changedFunctionsBrainstem;
+                        Console.WriteLine(Properties.Settings.Default.defaultFunctionsBrainstem);
+
+                        Properties.Settings.Default.defaultFunctionsBrainstem = changedFunctionsBrainstem;
+                        Properties.Settings.Default.Save();
+
+                        defaultFunctionsBSFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
                 }
-                healthyBehaviors.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
+                if (healthyBehaviorsFlag)
+                {
+                    if (defaultHBBSFlag)
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Brainstem: " + defaultHealthyBehaviorsBrainstem;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Brainstem: " + changedHealthyBehaviorsBrainstem;
+                        Properties.Settings.Default.defaultHealthyBehaviorsBrainstem = changedHealthyBehaviorsBrainstem;
+                        Properties.Settings.Default.Save();
+                        defaultHBBSFlag = true;
+                    }
+                    functions.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
+                }
+                if (unhealthyBehaviorsFlag)
+                {
+                    if (defaultUHBBSFlag)
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Brainstem : " + Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
+
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Brainstem: " + changedUnhealthyBehaviorsBrainstem;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem = changedUnhealthyBehaviorsBrainstem;
+                        Properties.Settings.Default.Save();
+                        defaultUHBBSFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    functions.IsEnabled = false;
+                }
             }
-            if (healthyBehaviorsFlag)
-            {
-                if (defaultHBBSFlag)
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Brainstem: " + defaultHealthyBehaviorsBrainstem;
-                }
-                else
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Brainstem: " + changedHealthyBehaviorsBrainstem;
-                    Properties.Settings.Default.defaultHealthyBehaviorsBrainstem = changedHealthyBehaviorsBrainstem;
-                    Properties.Settings.Default.Save();
-                    defaultHBBSFlag = true;
-                }
-                functions.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-            }
-            if (unhealthyBehaviorsFlag)
-            {
-                if (defaultUHBBSFlag)
-                {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Brainstem : " + Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
-
-                }
-                else
-                {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Brainstem: " + changedUnhealthyBehaviorsBrainstem;
-                    Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem = changedUnhealthyBehaviorsBrainstem;
-                    Properties.Settings.Default.Save();
-                    defaultUHBBSFlag = true;
-                }
-                healthyBehaviors.IsEnabled = false;
-                functions.IsEnabled = false;
-            }
-
             if (e.ClickCount == 2) //What happens when the Brainstem is selected 
             {
+                storyboardFlag = 4;
+                //without reverseOn every other time autoreverse = true
+                if (sbBS.AutoReverse)
+                {
+                    ReverseOff(4);
+                }
+                else { ReverseOn(4); }
                 hippocampusBox.Visibility = System.Windows.Visibility.Hidden;
                 amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
                 pituitaryGlandBox.Visibility = System.Windows.Visibility.Hidden;
                 cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
+                resetButton.Visibility = System.Windows.Visibility.Hidden;
+                scrambleButton.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
-              //  pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
+                disabled = true;
             }
 
         }
@@ -513,96 +528,106 @@ namespace InteractiveBrain
         //This function determines what happens when the pituitary gland is left clicked 
         private void PituitaryGlandBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            brainPartsLabel.Text = "Pituitary Gland";
-            // In this event, we get the current mouse position on the control to use it in the MouseMove event.
-            System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
-            Console.WriteLine(sender);
 
-            Canvas canvas = img.Parent as Canvas;
-
-            firstXPos = e.GetPosition(img).X;
-            firstYPos = e.GetPosition(img).Y;
-
-            movingObject = sender;
-
-            // Put the image currently being dragged on top of the others
-            int top = Canvas.GetZIndex(img);
-            foreach (System.Windows.Controls.Image child in canvas.Children)
-                if (top < Canvas.GetZIndex(child))
-                    top = Canvas.GetZIndex(child);
-            Canvas.SetZIndex(img, top + 1);
-
-            Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
-
-            //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
-
-            if (functionsFlag)
+            if (e.ClickCount == 1 && !disabled)
             {
-                if (defaultFunctionsPGFlag)
-                {
-                    factsMessageBox.Text = "Functions of the Pituitary Gland: " + defaultFunctionsPituitaryGland;
-                }
-                else
-                {
-                    Console.WriteLine(changedFunctionsPituitaryGland);
-                    factsMessageBox.Text = "Functions of the Pituitary Gland: " + changedFunctionsPituitaryGland;
-                    defaultFunctionsPituitaryGland = changedFunctionsPituitaryGland;
-                    Console.WriteLine(Properties.Settings.Default.defaultFunctionsPituitaryGland);
+                brainPartsLabel.Text = "Pituitary Gland";
+                // In this event, we get the current mouse position on the control to use it in the MouseMove event.
+                System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
+                Console.WriteLine(sender);
 
-                    Properties.Settings.Default.defaultFunctionsPituitaryGland = changedFunctionsPituitaryGland;
-                    Properties.Settings.Default.Save();
+                Canvas canvas = img.Parent as Canvas;
 
-                    defaultFunctionsPGFlag = true;
+                firstXPos = e.GetPosition(img).X;
+                firstYPos = e.GetPosition(img).Y;
+
+                movingObject = sender;
+
+                // Put the image currently being dragged on top of the others
+                int top = Canvas.GetZIndex(img);
+                foreach (System.Windows.Controls.Image child in canvas.Children)
+                    if (top < Canvas.GetZIndex(child))
+                        top = Canvas.GetZIndex(child);
+                Canvas.SetZIndex(img, top + 1);
+
+                Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
+
+                //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
+
+                if (functionsFlag)
+                {
+                    if (defaultFunctionsPGFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Pituitary Gland: " + defaultFunctionsPituitaryGland;
+                    }
+                    else
+                    {
+                        Console.WriteLine(changedFunctionsPituitaryGland);
+                        factsMessageBox.Text = "Functions of the Pituitary Gland: " + changedFunctionsPituitaryGland;
+                        defaultFunctionsPituitaryGland = changedFunctionsPituitaryGland;
+                        Console.WriteLine(Properties.Settings.Default.defaultFunctionsPituitaryGland);
+
+                        Properties.Settings.Default.defaultFunctionsPituitaryGland = changedFunctionsPituitaryGland;
+                        Properties.Settings.Default.Save();
+
+                        defaultFunctionsPGFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
                 }
-                healthyBehaviors.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
+                if (healthyBehaviorsFlag)
+                {
+                    if (defaultHBPGFlag)
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Pituitary Gland: " + defaultHealthyBehaviorsPituitaryGland;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Healthy Behaviors that affect the Pituitary Gland: " + changedHealthyBehaviorsPituitaryGland;
+                        Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland = changedHealthyBehaviorsPituitaryGland;
+                        Properties.Settings.Default.Save();
+                        defaultHBPGFlag = true;
+                    }
+                    functions.IsEnabled = false;
+                    unhealthyBehaviors.IsEnabled = false;
+                }
+                if (unhealthyBehaviorsFlag)
+                {
+                    if (defaultUHBPGFlag)
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Pituitary Gland : " + Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
+
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Pituitary Gland: " + changedUnhealthyBehaviorsPituitaryGland;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland = changedUnhealthyBehaviorsPituitaryGland;
+                        Properties.Settings.Default.Save();
+                        defaultUHBPGFlag = true;
+                    }
+                    healthyBehaviors.IsEnabled = false;
+                    functions.IsEnabled = false;
+                }
+
+
             }
-            if (healthyBehaviorsFlag)
-            {
-                if (defaultHBPGFlag)
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Pituitary Gland: " + defaultHealthyBehaviorsPituitaryGland;
-                }
-                else
-                {
-                    factsMessageBox.Text = "Healthy Behaviors that affect the Pituitary Gland: " + changedHealthyBehaviorsPituitaryGland;
-                    Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland = changedHealthyBehaviorsPituitaryGland;
-                    Properties.Settings.Default.Save();
-                    defaultHBPGFlag = true;
-                }
-                functions.IsEnabled = false;
-                unhealthyBehaviors.IsEnabled = false;
-            }
-            if (unhealthyBehaviorsFlag)
-            {
-                if (defaultUHBPGFlag)
-                {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Pituitary Gland : " + Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
-
-                }
-                else
-                {
-                    factsMessageBox.Text = "Unhealthy Behaviors that affect the Pituitary Gland: " + changedUnhealthyBehaviorsPituitaryGland;
-                    Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland = changedUnhealthyBehaviorsPituitaryGland;
-                    Properties.Settings.Default.Save();
-                    defaultUHBPGFlag = true;
-                }
-                healthyBehaviors.IsEnabled = false;
-                functions.IsEnabled = false;
-            }
-
-
-
             if (e.ClickCount == 2) //What happens when the pituitary gland is double clicked 
             {
+                storyboardFlag = 3;
+                //without reverseOn every other time autoreverse = true
+                if (sbPG.AutoReverse)
+                { ReverseOff(3); }
+                else { ReverseOn(3); }
                 brainstemBox.Visibility = System.Windows.Visibility.Hidden;
                 amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
                 hippocampusBox.Visibility = System.Windows.Visibility.Hidden;
                 cutoutLowerBrain.Visibility = System.Windows.Visibility.Hidden;
+                resetButton.Visibility = System.Windows.Visibility.Hidden;
+                scrambleButton.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
-              //  pictureCanvasScaler.Visibility = System.Windows.Visibility.Visible;
+                disabled = true;
             }
         }
 
@@ -727,18 +752,6 @@ namespace InteractiveBrain
         //the value of 1.0
         private void GotItButton_Click(object sender, RoutedEventArgs e)
         {
-            factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
-            gotItButton.Visibility = System.Windows.Visibility.Hidden;
-         //   pictureCanvasScaler.Visibility = System.Windows.Visibility.Hidden;
-            brainPartsLabel.Visibility = System.Windows.Visibility.Hidden;
-
-            brainstemBox.Visibility = System.Windows.Visibility.Visible;
-            amygdalaBox.Visibility = System.Windows.Visibility.Visible;
-            pituitaryGlandBox.Visibility = System.Windows.Visibility.Visible;
-            cutoutLowerBrain.Visibility = System.Windows.Visibility.Visible;
-            hippocampusBox.Visibility = System.Windows.Visibility.Visible;
-
-            //pictureCanvasScaler.Value = 1.0;
             //sbH = 1, sbTL = 2, sbPL = 3, sbOL = 4, 
             //Safeguard against incorrect AutoREverse attribute of selected brain part 
             if (sbH.AutoReverse)
@@ -763,7 +776,7 @@ namespace InteractiveBrain
                     pituitaryGlandBox.Visibility = System.Windows.Visibility.Visible;
                     amygdalaBox.Visibility = System.Windows.Visibility.Visible;
                     brainstemBox.Visibility = System.Windows.Visibility.Visible;
-                   
+                    
                     break;
                 case 2:
                     pituitaryGlandBox.Visibility = System.Windows.Visibility.Visible;
@@ -783,7 +796,11 @@ namespace InteractiveBrain
                     amygdalaBox.Visibility = System.Windows.Visibility.Visible;
                    
                     break;
+
             }
+            cutoutLowerBrain.Visibility = System.Windows.Visibility.Visible;
+            resetButton.Visibility = System.Windows.Visibility.Visible;
+            scrambleButton.Visibility = System.Windows.Visibility.Visible;
             factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Hidden;
             brainPartsLabel.Visibility = System.Windows.Visibility.Hidden;
@@ -820,7 +837,7 @@ namespace InteractiveBrain
                 healthyBehaviors.IsEnabled = true;
                 functions.IsEnabled = true;
             }
-            factsMessageBox.Text = "";
+            disabled = false;
             storyboardFlag = 0;
         }
         private void ReverseOff(int storyboardFlag)

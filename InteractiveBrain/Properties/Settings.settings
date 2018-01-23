@@ -58,7 +58,7 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="defaultFunctionsHippocampus" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">processes short-term memory to convert into long term memory, in limbic system (note long term memories are stored all over the brain)</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsHippocampus" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -67,7 +67,7 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="defaultFunctionsAmygdala" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">responsible for emotions, particularly survival instincts (fear &amp; aggression), hypersensitive to stress, role in storing emotional memories, in Limbic System</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsAmygdala" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -76,7 +76,7 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="defaultFunctionsPituitaryGland" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">regulates growth hormone, triggers onset of puberty. Attached to the hypothalamus, in Limbic System</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsPituitaryGland" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -85,7 +85,7 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="defaultFunctionsBrainstem" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">controls flow of messages between the brain and the rest of the body. Also controls basic body function like breathing, swallowing, heartbeat (medulla), sleep regulation (pons), etc.</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsBrainstem" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

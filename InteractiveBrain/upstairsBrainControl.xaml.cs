@@ -732,6 +732,7 @@ namespace InteractiveBrain
             gotItButton.Visibility = System.Windows.Visibility.Hidden;
             brainPartsLabel.Visibility = System.Windows.Visibility.Hidden;
 
+
             //Safegaurd against incorrect AutoReverse attribute of selected brain part 
             if (!sbFL.AutoReverse && storyboardFlag == 1)
             { ReverseOn(1); }

@@ -218,7 +218,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("processes short-term memory to convert into long term memory, in limbic system (n" +
+            "ote long term memories are stored all over the brain)")]
         public string defaultFunctionsHippocampus {
             get {
                 return ((string)(this["defaultFunctionsHippocampus"]));
@@ -254,7 +255,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("responsible for emotions, particularly survival instincts (fear & aggression), hy" +
+            "persensitive to stress, role in storing emotional memories, in Limbic System")]
         public string defaultFunctionsAmygdala {
             get {
                 return ((string)(this["defaultFunctionsAmygdala"]));
@@ -290,7 +292,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("regulates growth hormone, triggers onset of puberty. Attached to the hypothalamus" +
+            ", in Limbic System")]
         public string defaultFunctionsPituitaryGland {
             get {
                 return ((string)(this["defaultFunctionsPituitaryGland"]));
@@ -326,7 +329,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("controls flow of messages between the brain and the rest of the body. Also contro" +
+            "ls basic body function like breathing, swallowing, heartbeat (medulla), sleep re" +
+            "gulation (pons), etc.")]
         public string defaultFunctionsBrainstem {
             get {
                 return ((string)(this["defaultFunctionsBrainstem"]));

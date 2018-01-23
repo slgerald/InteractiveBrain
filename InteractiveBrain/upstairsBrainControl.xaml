@@ -120,29 +120,7 @@
         </Storyboard>
     </UserControl.Resources>
     <Canvas Name ="myCanvas" RenderTransformOrigin="0.5,0.5" Height="600">
-        <Canvas.Triggers>
-            <!-- makes it zoom out first-->
-            <EventTrigger RoutedEvent="MouseDown"  SourceName="frontalLobeBox">
-                <BeginStoryboard  Storyboard="{StaticResource zoomingFL}">
-                </BeginStoryboard>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="MouseDown" SourceName="temporalLobeBox">
-                <BeginStoryboard Storyboard="{StaticResource zoomingTL}">
-                </BeginStoryboard>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="MouseDown" SourceName="occipitalLobeBox">
-                <BeginStoryboard Storyboard="{StaticResource zoomingOL}">
-                </BeginStoryboard>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="MouseDown" SourceName="parietalLobeBox">
-                <BeginStoryboard Storyboard="{StaticResource zoomingPL}">
-                </BeginStoryboard>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="MouseDown" SourceName="cerebellumBox">
-                <BeginStoryboard Storyboard="{StaticResource zoomingC}">
-                </BeginStoryboard>
-            </EventTrigger>
-        </Canvas.Triggers>
+      
         <Image x:Name="temporalLobeBox" Canvas.Left="215" Canvas.Top ="173" Height="160" VerticalAlignment="Top" Width="217" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png" ToolTip="Temporal Lobe">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
