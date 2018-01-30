@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="680" Height="600">
     <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="680">
-        <TextBox IsReadOnly="True"  Height="225" Canvas.Left="140" TextWrapping="Wrap" Text="Take 2. Travis Martin is now in charge of simulations. This page is still under construction. This page will have different animations to demonstrate healthy and unhealthy behaviors such as how substances may affect dopamine levels or how different areas of the brain &quot;light up&quot; looking at CT scans while participating in healthy activities such as reading or exercise" Canvas.Top="160" Width="400" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" TextAlignment="Center"/>
+        <Button Content="Brain Development" Canvas.Left="117" Canvas.Top="193" Width="205" Height="75" Click="Button_Click"/>
+        <Button Content="Dopamine Pathways" Canvas.Left="346" Canvas.Top="193" Width="205" Height="75"/>
+        <Button Content="Normal vs. On Drugs" Canvas.Left="117" Canvas.Top="315" Width="205" Height="75"/>
+        <Button Content="Healthy Activities" Canvas.Left="346" Canvas.Top="315" Width="205" Height="75"/>
     </Canvas>
 </UserControl>
