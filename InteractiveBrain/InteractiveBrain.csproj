@@ -80,12 +80,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
-    </Compile>
     <Compile Include="downstairsBrainControl.xaml.cs">
       <DependentUpon>downstairsBrainControl.xaml</DependentUpon>
     </Compile>
@@ -102,6 +96,9 @@
     </Compile>
     <Compile Include="simulationUserControl.xaml.cs">
       <DependentUpon>simulationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="brainDevelopmentControl.xaml.cs">
+      <DependentUpon>brainDevelopmentControl.xaml</DependentUpon>
     </Compile>
     <Page Include="downstairsBrainControl.xaml">
       <SubType>Designer</SubType>
@@ -135,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="simulationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="brainDevelopmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
