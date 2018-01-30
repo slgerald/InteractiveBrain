@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.Concurrent;
+using System.Windows.Media.Animation;
 
 namespace InteractiveBrain
 {
@@ -21,6 +23,7 @@ namespace InteractiveBrain
     public partial class simulationUserControl : UserControl
     {
         private static simulationUserControl _instance; //render userControl based on button pressed
+        double buttonTopValue;
         public simulationUserControl()
         {
             InitializeComponent();
@@ -39,7 +42,39 @@ namespace InteractiveBrain
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BrainDevelopmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            buttonTopValue = Canvas.GetTop(brainDevelopmentButton);
+            if (buttonPanel.Width != 45)
+            {
+                // Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
+            buttonPanel.Children.Clear();
+            if (!buttonPanel.Children.Contains(brainDevelopmentControl.Instance))
+            {
+
+
+                buttonPanel.Children.Add(brainDevelopmentControl.Instance);
+            }
+            else
+                buttonPanel.Children.Add(brainDevelopmentControl.Instance);
+        }
+
+        private void DopaminePathwaysButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HealthyActivitiesButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NormalVsOnDrugsButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
