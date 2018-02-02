@@ -89,15 +89,49 @@ namespace InteractiveBrain
 
         private void HealthyActivitiesButton_Click(object sender, RoutedEventArgs e)
         {
+            buttonTopValue = Canvas.GetTop(healthyActivitiesButton);
+            if (buttonPanel.Width != 45)
+            {
+                // Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                //pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
+            buttonPanel.Children.Clear();
+            if (!buttonPanel.Children.Contains(healthyActivitiesControl.Instance))
+            {
 
+
+                buttonPanel.Children.Add(healthyActivitiesControl.Instance);
+            }
+            else
+                buttonPanel.Children.Add(healthyActivitiesControl.Instance);
         }
 
         private void NormalVsOnDrugsButton_Click(object sender, RoutedEventArgs e)
         {
+            buttonTopValue = Canvas.GetTop(normalVsOnDrugsButton);
+            if (buttonPanel.Width != 45)
+            {
+                // Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                //pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
+            buttonPanel.Children.Clear();
+            if (!buttonPanel.Children.Contains(normalVsOnDrugsControl.Instance))
+            {
 
+
+                buttonPanel.Children.Add(normalVsOnDrugsControl.Instance);
+            }
+            else
+                buttonPanel.Children.Add(normalVsOnDrugsControl.Instance);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             //buttonPanel.Children.Remove(brainDevelopmentControl.Instance);
             buttonPanel.Children.Clear();

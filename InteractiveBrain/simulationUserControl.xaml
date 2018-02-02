@@ -26,7 +26,7 @@
                     </TextBlock>
                 </DockPanel>
             </Button>
-            <Button Canvas.Left="97" Canvas.Top="315" Width="225" Height="105" Click="HealthyActivitiesButton_Click">
+            <Button x:Name="healthyActivitiesButton" Foreground="Black" Canvas.Left="97" Canvas.Top="315" Width="225" Height="105" Click="HealthyActivitiesButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}">
                 <DockPanel Height="105" LastChildFill="False" Width="225">
                     <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="20" Margin="0,15" Height="75" Width="225">
                 <Run Text="           Healthy"/>
@@ -35,7 +35,7 @@
                     </TextBlock>
                 </DockPanel>
             </Button>
-            <Button Canvas.Left="346" Canvas.Top="315" Width="225" Height="105" Click="NormalVsOnDrugsButton_Click">
+            <Button x:Name="normalVsOnDrugsButton" Foreground="Black" Canvas.Left="346" Canvas.Top="315" Width="225" Height="105" Click="NormalVsOnDrugsButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}">
                 <DockPanel Height="105" LastChildFill="False" Width="225">
                     <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="20" Margin="0,15" Height="75" Width="225">
                 <Run Text="          Normal"/>
@@ -48,6 +48,10 @@
             </Button>
         </Canvas>
 
-        <Button Content="Back" Canvas.Left="604" Canvas.Top="565" Width="66" Click="Button_Click" Height="25"/>
+        <Button Content="" Canvas.Left="555" Canvas.Top="519" Width="115" Click="BackButton_Click" Height="71">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/back_button.ico"/>
+            </Button.Background>
+        </Button>
     </Canvas>
 </UserControl>
