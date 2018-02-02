@@ -36,9 +36,15 @@ namespace InteractiveBrain
                 {
                     _instance = new brainDevelopmentControl();
                 }
+                _instance = new brainDevelopmentControl();
                 return _instance;
 
             }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

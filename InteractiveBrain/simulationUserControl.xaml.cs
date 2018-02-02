@@ -37,6 +37,7 @@ namespace InteractiveBrain
                 {
                     _instance = new simulationUserControl();
                 }
+                _instance = new simulationUserControl();
                 return _instance;
 
             }
@@ -51,7 +52,7 @@ namespace InteractiveBrain
             }
             else
             {
-                pageMarker.Visibility = System.Windows.Visibility.Hidden;
+                //pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             buttonPanel.Children.Clear();
             if (!buttonPanel.Children.Contains(brainDevelopmentControl.Instance))
@@ -77,6 +78,11 @@ namespace InteractiveBrain
         private void NormalVsOnDrugsButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            buttonPanel.Children.Remove(brainDevelopmentControl.Instance);
         }
     }
 }

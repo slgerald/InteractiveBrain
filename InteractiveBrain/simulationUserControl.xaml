@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:InteractiveBrain"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="680" Height="600">
-    <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="680">
+    <Canvas>
+        <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
         <Button x:Name="brainDevelopmentButton" Foreground="Black" Canvas.Left="97" Canvas.Top="162" Width="225" Height="105" Click="BrainDevelopmentButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}">
             <DockPanel Height="105" LastChildFill="False" Width="225">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Tahoma"  FontSize ="20" Margin="0,15,0,0" Height="75" Width="225">
@@ -45,5 +46,8 @@
                 </TextBlock>
             </DockPanel>
         </Button>
+    </Canvas>
+
+    <Button Content="Button" Canvas.Left="72" Canvas.Top="556" Width="75" Click="Button_Click"/>
     </Canvas>
 </UserControl>
