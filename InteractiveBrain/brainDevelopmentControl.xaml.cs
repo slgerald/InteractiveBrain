@@ -46,5 +46,10 @@ namespace InteractiveBrain
         {
 
         }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }

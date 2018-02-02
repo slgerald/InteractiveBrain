@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:InteractiveBrain"
              mc:Ignorable="d" d:DesignWidth="300" Height="519" Width="680">
     <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
-        <Image x:Name="brainChildToAdult" Canvas.Left="177" Canvas.Top ="27" Height="310" VerticalAlignment="Top" Width="337" RenderTransformOrigin="0.5,0.5" Source="Resources/brain_child_to_adult.jpg">
+        <Image x:Name="brainChildToAdult" Canvas.Left="177" Canvas.Top ="60" Height="310" VerticalAlignment="Top" Width="337" RenderTransformOrigin="0.5,0.5" Source="Resources/brain_child_to_adult.jpg">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -16,7 +16,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="brainChildToAdultSlider" Canvas.Left="218" Canvas.Top ="334" Height="65" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Source="Resources/brain_child_to_adult_slider.jpg"/>
         <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="We made it to the brain development page" VerticalAlignment="Top" Width="328" TextChanged="TextBox_TextChanged" Canvas.Left="174" Canvas.Top="417"/>
+        <Slider Height="21" Width="313" RenderTransformOrigin="0.584,5.397" Canvas.Left="174" Canvas.Top="377" ValueChanged="Slider_ValueChanged"/>
     </Canvas>
 </UserControl>
