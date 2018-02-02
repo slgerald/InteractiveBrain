@@ -67,7 +67,24 @@ namespace InteractiveBrain
 
         private void DopaminePathwaysButton_Click(object sender, RoutedEventArgs e)
         {
+            buttonTopValue = Canvas.GetTop(dopaminePathwaysButton);
+            if (buttonPanel.Width != 45)
+            {
+                // Canvas.SetTop(pageMarker, buttonTopValue);
+            }
+            else
+            {
+                //pageMarker.Visibility = System.Windows.Visibility.Hidden;
+            }
+            buttonPanel.Children.Clear();
+            if (!buttonPanel.Children.Contains(dopaminePathwaysControl.Instance))
+            {
 
+
+                buttonPanel.Children.Add(dopaminePathwaysControl.Instance);
+            }
+            else
+                buttonPanel.Children.Add(dopaminePathwaysControl.Instance);
         }
 
         private void HealthyActivitiesButton_Click(object sender, RoutedEventArgs e)
@@ -82,7 +99,9 @@ namespace InteractiveBrain
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            buttonPanel.Children.Remove(brainDevelopmentControl.Instance);
+            //buttonPanel.Children.Remove(brainDevelopmentControl.Instance);
+            buttonPanel.Children.Clear();
+            buttonPanel.Children.Add(simulationUserControl.Instance);
         }
     }
 }

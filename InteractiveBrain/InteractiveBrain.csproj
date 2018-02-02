@@ -100,8 +100,8 @@
     <Compile Include="brainDevelopmentControl.xaml.cs">
       <DependentUpon>brainDevelopmentControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
+    <Compile Include="dopaminePathwaysControl.xaml.cs">
+      <DependentUpon>dopaminePathwaysControl.xaml</DependentUpon>
     </Compile>
     <Page Include="downstairsBrainControl.xaml">
       <SubType>Designer</SubType>
@@ -142,7 +142,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl1.xaml">
+    <Page Include="dopaminePathwaysControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
