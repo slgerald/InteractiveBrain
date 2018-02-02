@@ -17,6 +17,6 @@
             </Image.RenderTransform>
         </Image>
         <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="We made it to the brain development page" VerticalAlignment="Top" Width="328" TextChanged="TextBox_TextChanged" Canvas.Left="174" Canvas.Top="417"/>
-        <Slider Height="21" Width="313" RenderTransformOrigin="0.584,5.397" Canvas.Left="174" Canvas.Top="377" ValueChanged="Slider_ValueChanged"/>
+        <Slider Height="21" Width="328" RenderTransformOrigin="0.584,5.397" Canvas.Left="174" Canvas.Top="376" ValueChanged="Slider_ValueChanged"/>
     </Canvas>
 </UserControl>
