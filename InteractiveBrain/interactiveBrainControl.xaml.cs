@@ -1010,6 +1010,7 @@ namespace InteractiveBrain
 
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    isConnected = false;
                 }
                 //If there wasn't a successful connection
                 else
@@ -1020,12 +1021,12 @@ namespace InteractiveBrain
                         selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
                         // MessageBox.Show("Not connected yet");
                     }
-                    else
+                    else  //this connection is never met
                     {
                         selectionMessageBox.Text = "Not connected yet";
                     }
                 }
-                isConnected = false;
+                
                 defaultFlag = false;
             }
         }

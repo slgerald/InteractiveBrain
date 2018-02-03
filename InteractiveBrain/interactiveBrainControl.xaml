@@ -12,6 +12,9 @@
             <Border BorderBrush="Black" 
                 Background="#FF0072BB"
                 BorderThickness="2" Width="150" Height="120" Canvas.Top="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                </Border.Effect>
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="120" Margin="-2" Width="150">
                     <ComboBox x:Name="comPortNumberComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Height="30" Canvas.Left="10" Canvas.Top="45" BorderBrush="Black"/>
                     <Label Content="COM PORT NUMBER" HorizontalAlignment="Center" VerticalAlignment="Top" Width="128" Height="30" Canvas.Left="10" Canvas.Top="10" FontFamily="Calibri" FontSize="14"/>
@@ -29,6 +32,9 @@
             <Border BorderBrush="Black" 
                 Background="#FF0072BB"
                 BorderThickness="2" Width="310" Height="245" Canvas.Top="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                </Border.Effect>
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="245" Margin="0,-2,-2,-2" Width="308">
 
                     <TextBlock x:Name ="titleTextBlock" FontSize="14" Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="26" Width="247" Canvas.Left="33" Canvas.Top="209"/>
@@ -51,6 +57,9 @@
             <Border BorderBrush="Black" 
                 Background="#FF0072BB"
                 BorderThickness="2" Width="425" Height="225" Canvas.Top="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                </Border.Effect>
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Height="205" Margin="3,18,-2,-2" Width="420">
                     <TextBlock x:Name ="errorTextBlock" FontSize="14" Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="37" Width="305" Canvas.Left="25" Canvas.Top="153"/>
                     <Button Click="ClosePopupClicked3" HorizontalAlignment="Center" Height="20" Width="20" Canvas.Left="400" Canvas.Top="185" BorderBrush="{x:Null}" RenderTransformOrigin="1.85,-2">
@@ -93,6 +102,9 @@
             <Border BorderBrush="Black" 
                 Background="#FF0072BB"
                 BorderThickness="2" Width="315" Height="300" Canvas.Top="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                </Border.Effect>
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="300" Margin="2,-2,-2,-2" Width="311">
                     <TextBox x:Name ="listedExamples" FontSize="20"  Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="260" Width="258" Canvas.Left="25" Canvas.Top="20" VerticalScrollBarVisibility="Auto" UseLayoutRounding="False" HorizontalScrollBarVisibility="Auto"/>
                     <Button Click="ClosePopupClicked4" HorizontalAlignment="Center" Height="20" Width="20" Canvas.Left="288" Canvas.Top="280" BorderBrush="{x:Null}" RenderTransformOrigin="0,2.5">
