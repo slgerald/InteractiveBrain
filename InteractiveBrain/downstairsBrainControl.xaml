@@ -112,11 +112,10 @@
                         <ComboBoxItem x:Name="pituitaryGland" Content="Pituitary Gland"></ComboBoxItem>
                         <ComboBoxItem x:Name="brainstem" Content="Brainstem"></ComboBoxItem>
                         <ComboBoxItem x:Name="amygdala" Content="Amygdala"></ComboBoxItem>
-
                     </ComboBox>
                     <Label x:Name="brainPartLabel" Content="Brain Part" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="30" Canvas.Left="30" Canvas.Top="20" FontFamily="Calibri" FontSize="20"/>
                     <TextBox x:Name ="editingTextBox" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black" TextWrapping="Wrap"/>
-                    <Button x:Name="closeButton" Content="" Click="ClosePopupClicked" HorizontalAlignment="Center" Height="25" Width="25" Canvas.Left="535" Canvas.Top="290" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Close">
+                    <Button x:Name="closeButton" Content="" Click="CloseEditPopupClicked" HorizontalAlignment="Center" Height="25" Width="25" Canvas.Left="535" Canvas.Top="290" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Close">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
                         </Button.Background>
@@ -133,11 +132,11 @@
                 </Canvas>
             </Border>
         </Popup>
-        <TextBox x:Name="brainPartsLabel" IsReadOnly="True" Canvas.Left="211" TextWrapping="Wrap" Canvas.Top="55" Height="50" Width="260" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Tahoma" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+        <TextBox x:Name="brainPartsLabel" IsReadOnly="True" Canvas.Left="211" TextWrapping="Wrap" Canvas.Top="55" Height="50" Width="260" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Tahoma" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"  Focusable="False" IsTabStop="False"/>
         <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="40" Canvas.Top="15" Checked="FunctionsRadioButton_Checked" FontSize="20" FontFamily="Calibri"/>
         <RadioButton x:Name ="healthyBehaviors"  Checked="HealthyBehaviorsRadioButton_Checked" Content="Healthy Behaviors" Canvas.Left="220" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
         <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="459" Checked="UnhealthyBehaviorsRadioButton_Checked" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
-        <TextBox x:Name="factsMessageBox" Visibility="Visible" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="335" Canvas.Left="360" TextWrapping="Wrap"  Canvas.Top="105" Width="310" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsTabStop="False"/>
+        <TextBox x:Name="factsMessageBox" Visibility="Hidden" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="335" Canvas.Left="360" TextWrapping="Wrap"  Canvas.Top="105" Width="310" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsTabStop="False"/>
        
         <Canvas    Height="335" Width="660" Canvas.Left="10" Canvas.Top="105" x:Name="pictureCanvas" Background="Transparent" AllowDrop="True" >
 
@@ -229,7 +228,7 @@
                 <ImageBrush ImageSource="Resources/reset.ico"/>
             </Button.Background>
         </Button>
-        <Button x:Name="gotItButton" Content="" Visibility="Visible" Canvas.Left="323" Canvas.Top="480" Width="40" Click="GotItButton_Click" Height="40" FontSize="18" BorderBrush="{x:Null}" RenderTransformOrigin="0.125,0.25">
+        <Button x:Name="gotItButton" Content="" Visibility="Hidden" Canvas.Left="323" Canvas.Top="480" Width="40" Click="GotItButton_Click" Height="40" FontSize="18" BorderBrush="{x:Null}" RenderTransformOrigin="0.125,0.25">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_thumbs-up_1608950.png"/>
             </Button.Background>

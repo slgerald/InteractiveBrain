@@ -650,6 +650,8 @@ namespace InteractiveBrain
                     ReverseOn(2);
                 }
                 //Hide other parts and make facts box and go button visible
+                temporalLobeBox.SetValue(Canvas.LeftProperty, originalTemporalLobeX);
+                temporalLobeBox.SetValue(Canvas.TopProperty, originalTemporalLobeY);
                 parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 frontalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 cerebellumBox.Visibility = System.Windows.Visibility.Hidden;
@@ -749,6 +751,8 @@ namespace InteractiveBrain
                     ReverseOn(3);
                 }
                 //Hide other parts and make facts box and go button visible
+                parietalLobeBox.SetValue(Canvas.LeftProperty, originalParietalLobeX);
+                parietalLobeBox.SetValue(Canvas.TopProperty, originalParietalLobeY);
                 temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 frontalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 cerebellumBox.Visibility = System.Windows.Visibility.Hidden;
@@ -846,6 +850,8 @@ namespace InteractiveBrain
                     ReverseOn(4);
                 }
                 //Hide other parts and make facts box and go button visible
+                occipitalLobeBox.SetValue(Canvas.LeftProperty, originalOccipitalLobeX);
+                occipitalLobeBox.SetValue(Canvas.TopProperty, originalOccipitalLobeY);
                 temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 frontalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 cerebellumBox.Visibility = System.Windows.Visibility.Hidden;
@@ -944,6 +950,8 @@ namespace InteractiveBrain
                     ReverseOn(5);
                 }
                 //Hide other parts and make facts box and go button visible
+                cerebellumBox.SetValue(Canvas.LeftProperty, originalCerebellumX);
+                cerebellumBox.SetValue(Canvas.TopProperty, originalCerebellumY);
                 temporalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 frontalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
