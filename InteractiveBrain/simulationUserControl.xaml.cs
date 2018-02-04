@@ -43,6 +43,7 @@ namespace InteractiveBrain
             }
         }
 
+ Simulations
         private void BrainDevelopmentButton_Click(object sender, RoutedEventArgs e)
         {
             buttonTopValue = Canvas.GetTop(brainDevelopmentButton);
@@ -136,6 +137,11 @@ namespace InteractiveBrain
             //buttonPanel.Children.Remove(brainDevelopmentControl.Instance);
             buttonPanel.Children.Clear();
             buttonPanel.Children.Add(simulationUserControl.Instance);
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+
         }
     }
 }
