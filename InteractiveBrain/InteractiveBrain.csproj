@@ -158,6 +158,18 @@
     <Compile Include="simulationUserControl.xaml.cs">
       <DependentUpon>simulationUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="brainDevelopmentControl.xaml.cs">
+      <DependentUpon>brainDevelopmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dopaminePathwaysControl.xaml.cs">
+      <DependentUpon>dopaminePathwaysControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="normalVsOnDrugsControl.xaml.cs">
+      <DependentUpon>normalVsOnDrugsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="healthyActivitiesControl.xaml.cs">
+      <DependentUpon>healthyActivitiesControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="downstairsBrainControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +202,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="simulationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="brainDevelopmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="dopaminePathwaysControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="normalVsOnDrugsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="healthyActivitiesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -302,6 +330,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+ Simulations
+    <Resource Include="Resources\back_button.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\brain_child_to_adult.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\brain_child_to_adult_slider.jpg" />
     <Content Include="InteractiveBrainModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
