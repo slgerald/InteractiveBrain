@@ -222,11 +222,11 @@
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="searchTextBox" KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" FontSize="16" FontFamily="Calibri" />
-        <Border Width="190" Height="113" BorderBrush="Black" Canvas.Left="460" Canvas.Top="423" Visibility="Collapsed">
+        <TextBox x:Name="searchTextBox" KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" FontSize="20" FontFamily="Calibri" />
+        <Border x:Name ="panelBorder" Width="190" Height="113" BorderBrush="Black" Canvas.Left="460" Canvas.Top="423" Visibility="Collapsed" PreviewMouseUp="ResultsStackMouseDown">
         
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel x:Name="resultsStack" ></StackPanel>
+                <StackPanel x:Name="resultsStack"></StackPanel>
                 </ScrollViewer>
 
         </Border>

@@ -44,6 +44,7 @@ namespace InteractiveBrain
         bool brainPart = false; //was a brain part selected?
         bool healthybehaviorBOOL = false; //was a healthy behavior selected?
         bool substance = false;//was a substance selected?
+        Border border;
 
         DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
 
@@ -667,7 +668,7 @@ namespace InteractiveBrain
         private void SearchTextBox_KeyUp(object sender, KeyboardEventArgs e)
         {
             bool found = false;
-            var border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+            border = (resultsStack.Parent as ScrollViewer).Parent as Border;
             string query_Two = (sender as TextBox).Text;
 
             if (query_Two.Length == 0)
@@ -745,6 +746,12 @@ namespace InteractiveBrain
             // Add to the panel   
             resultsStack.Children.Add(block);
         }
+       private void ResultsStackMouseDown(object sender,MouseButtonEventArgs e) {
+            resultsStack.Children.Clear();
+            border.Visibility = System.Windows.Visibility.Collapsed;
+            border.Background = Brushes.Transparent;
+
+        }
         #endregion
         //This function determines what happens when the Go Button is Clicked
         //Depending on the selection, make affected areas glow 
@@ -779,9 +786,10 @@ namespace InteractiveBrain
             {
                 substancesListBox.SelectedItem = false;
                 brainPartsListBox.SelectedItem = false;
-                
+                selectedHealthyBehaviors = searchTextBox.Text;
                 selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
                 healthybehaviorBOOL = false;
+                
                 SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
                 string Query;
                 try
@@ -802,10 +810,21 @@ namespace InteractiveBrain
                 {
                     Console.WriteLine(ex);
                 }
-                lightingSequenceFromDatabase = lightingSequenceString.ToArray();
-                LightingSequence();
-                
+                if (lightingSequenceString == null)
+                {
+                    selectionMessageBox.Text = "Choose a option available from the autocomplete drop down list ";
+                }
+                else
+                {
+                    resultsStack.Children.Clear();
+                    border.Visibility = System.Windows.Visibility.Collapsed;
+                    border.Background = Brushes.Transparent;
+                    lightingSequenceFromDatabase = lightingSequenceString.ToArray();
+                    LightingSequence();
+                }
+
             }
+
         }
         public char[] StringToCharArray(string convertString)
         {
