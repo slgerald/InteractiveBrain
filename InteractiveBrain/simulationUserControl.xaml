@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:InteractiveBrain"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="680" Height="600">
-Simulations
     <Canvas>
         <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
             <Button x:Name="brainDevelopmentButton" Foreground="Black" Canvas.Left="97" Canvas.Top="162" Width="225" Height="105" Click="BrainDevelopmentButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}">
@@ -57,4 +56,5 @@ Simulations
     <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="680">
         <TextBox IsReadOnly="True"  Height="225" Canvas.Left="140" TextWrapping="Wrap" Text="Travis is now in charge of the simulation for this page. This page is still under construction. This page will have different animations to demonstrate healthy and unhealthy behaviors such as how substances may affect dopamine levels or how different areas of the brain &quot;light up&quot; looking at CT scans while participating in healthy activities such as reading or exercise" Canvas.Top="160" Width="400" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" TextAlignment="Center" TextChanged="TextBox_TextChanged"/>
     </Canvas>
+   </Canvas>
 </UserControl>
