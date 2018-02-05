@@ -220,6 +220,7 @@ namespace InteractiveBrain
             if (!editPopup.IsOpen)
             {
                 editPopup.IsOpen = true;
+
             }
         }
 
@@ -239,7 +240,8 @@ namespace InteractiveBrain
             editUnhealthyBehaviorsFlag = false;
             brainPartComboBox.SelectedItem = null;
             editingMessageBlock.Text = "";
-            
+            editingTextBox.IsReadOnly = false;
+
         }
         //This function is to save the selected brain part from the drop down list in the 
         //editPopup into a string to determine the correct message to display when saving
@@ -363,7 +365,7 @@ namespace InteractiveBrain
             { editingMessageBlock.Text = "Choose either functions, healthy behaviors, and unhealthy behaviors"; }
             if (brainPart != null && (editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
             {
-
+                editingTextBox.IsReadOnly = false;
                 if (editFunctionsFlag)
                 {
                     switch (brainPart)

@@ -191,6 +191,7 @@ namespace InteractiveBrain
             if (!editPopup.IsOpen)
             {
                 editPopup.IsOpen = true;
+
             }
         }
         //This function saves the editingTextBox text into a variable to be saved 
@@ -228,6 +229,7 @@ namespace InteractiveBrain
             editUnhealthyBehaviorsFlag = false;
             brainPartComboBox.SelectedItem = null;
             editingMessageBlock.Text = "";
+            editingTextBox.IsReadOnly = true;
 
         }
         private void EditFunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -323,7 +325,7 @@ namespace InteractiveBrain
             { editingMessageBlock.Text = "Choose either functions, healthy behaviors, and unhealthy behaviors"; }
             if (brainPart != null && (editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
             {
-
+                editingTextBox.IsReadOnly = false;
                 if (editFunctionsFlag)
                 {
                     switch (brainPart)

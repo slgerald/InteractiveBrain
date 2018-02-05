@@ -731,6 +731,15 @@ namespace InteractiveBrain
                 searchTextBox.Text = (sender as TextBlock).Text;
             };
 
+          //  block.KeyDown += (sender, e) =>
+          //  {
+           //     if (e.Key == Key.Enter)
+           //     {
+            //        searchTextBox.Text = (sender as TextBlock).Text;
+            //    }
+                
+           // };
+
             block.MouseEnter += (sender, e) =>
             {
                 TextBlock b = sender as TextBlock;
@@ -782,7 +791,7 @@ namespace InteractiveBrain
                 substance = false;
                 examplesButton.Visibility = System.Windows.Visibility.Visible;
             }
-            else
+            if(searchTextBox.Text != "")
             {
                 substancesListBox.SelectedItem = false;
                 brainPartsListBox.SelectedItem = false;
