@@ -330,7 +330,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
- Simulations
     <Resource Include="Resources\back_button.ico" />
   </ItemGroup>
   <ItemGroup>
