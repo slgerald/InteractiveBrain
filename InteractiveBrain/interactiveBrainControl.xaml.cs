@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using System.Data.Entity;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Windows.UI.Core;
+using System.Windows.Resources;
+using System.Data;
+//using interactiveBrainModel;
+
 
 namespace InteractiveBrain
 {
@@ -26,29 +32,53 @@ namespace InteractiveBrain
     /// </summary>
     public partial class interactiveBrainControl : UserControl
     {
-        string selectedBrainPart;
-        private static interactiveBrainControl _instance;
-        string displayMessage;
-        string selectedSubstances;
-        string selectedActivities;
-        bool brainPart;
-        bool activity;
-        bool substance;
+        //The following variable are for the userControl interaction
+        private static interactiveBrainControl _instance; //used to instantiate new instance of interactiveBrainControl
+
+        string selectedBrainPart;//string to determine which brain part was selected
+        string displayMessage;//What should be displayed above both brain maps
+        string selectedSubstances;//string to determine which substance was selected 
+        string lastSubstanceSelected; //used to determine which substance to displayed when examplesButton is pressed
+        string selectedHealthyBehaviors;//string to determine which healthy behavior was selected 
+
+        bool brainPart = false; //was a brain part selected?
+        bool healthybehaviorBOOL = false; //was a healthy behavior selected?
+        bool substance = false;//was a substance selected?
+        Border border;
+
         DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
-        String lastSubstanceSelected;
 
-        SerialPort SerialPort1;
-        bool isConnected = false;
-        String[] ports;
-        static ConcurrentQueue<char> serialDataQueue;
-        string selectedPort;
-        bool editSubstancesFlag;
-        bool editHealthyBehaviorsFlag;
+
+        //THe following variables are for serial communication
+        SerialPort SerialPort1; //SerialPort for serial communication with brain
+        bool isConnected = false;//using isConnected instead
+        string[] ports; //Array of strings that list the available com ports 
+        static ConcurrentQueue<char> serialDataQueue; // for serial communication
+        string selectedPort;//for serial communication, which port was chosen
+
+
+        //The following variables are for the editing function of the interactiveBrainControl
+        bool editSubstancesFlag = false; //for editPopup, load substances from database
+        bool editHealthyBehaviorsFlag = false;//for editPopup, load healthy behaviors from database
         ListBoxItem newListBoxItem = new ListBoxItem();
-        string newListBoxContentText;
+        string newListBoxItemContent;
+        bool defaultFlag = false;
 
+        List<string> col = new List<string>();//Used for the serach AutocompleteTextbox
+        //The following array will help determine which parts should illuminate on the app and interactive brain
+        //based on the selection of substances or healthy behaviors 
+
+        char[] lightingSequenceToDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '\0' }; //Writing to the database
+        char[] lightingSequenceFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '\0' };//Reading from the 
+        string lightingSequenceString;
+        int index;
+
+        //How to change connection string when transferring to local machine
+        string dbConnectionString = @"data source=C:\Users\Shailicia\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
+
+
+        //THis function instantiates a new insteractiveBrainControl when called
         public static interactiveBrainControl Instance
-        
         {
             get
             {
@@ -58,19 +88,16 @@ namespace InteractiveBrain
                 }
                 _instance = new interactiveBrainControl();
                 return _instance;
-               
             }
         }
+
+        //This function determines how the interactiveBrainCintrol is initialized
         public interactiveBrainControl()
         {
             InitializeComponent();
-            brainPart = false;
-            activity = false;
-            substance = false;
-            isConnected = false;
-            editHealthyBehaviorsFlag = false;
-            editSubstancesFlag = false;
-            GetAvailableComPorts();
+            GetAvailableComPorts(); //list available serial ports in array of strings
+
+            //Preparing for possible serial connection
             try
             {
                 SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
@@ -79,108 +106,389 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex.Message);
             }
+
             serialDataQueue = new System.Collections.Concurrent.ConcurrentQueue<char>();
-            foreach (string port in ports) //used to list available Port Names
+
+            foreach (string port in ports)
             {
                 comPortNumberComboBox.Items.Add(port);
                 Console.WriteLine(port);
-                if (ports[0] != null)
-                {
-                    comPortNumberComboBox.SelectedItem = ports[0];
-                }
             }
-        }
 
-        private void SelectionMessageBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            string query;
 
-        }
-
-        //This function determines what happens when the Go Button is Clicked
-        //Depending on the selection, make affected areas glow 
-        private void GoButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (brainPart)
+            //Add healthy behaviors in database to list of strings
+            try
             {
-                // selectionMessageBox.Text = selectedBrainPart + " was chosen. " + displayMessage;
-                selectionMessageBox.Text = selectedBrainPart + " was chosen. " ;
-                activitiesListBox.SelectedItem = false;
-                substancesListBox.SelectedItem = false;
-                brainPart = false;
-                animation.From = 1.0;
-                animation.To = 0.4;
-                animation.Duration = new Duration(TimeSpan.FromSeconds(.5));
-                animation.AutoReverse = true;
-                animation.RepeatBehavior = RepeatBehavior.Forever;
-                switch (selectedBrainPart)
+                sqlitecon.Open();
+                query = "select * from HealthyBehaviors";
+                SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                SQLiteDataReader dr = createCommand.ExecuteReader();
+                while (dr.Read())
                 {
-                    case "Amygdala":
-                        
-                        amygdalaImage.BeginAnimation(OpacityProperty, animation);
+                    col.Add(dr.GetString(1));
+                }
+                sqlitecon.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            //This function is used for the listbox not search autocomplete textbox
+            Fill_ListBox();
+        }
 
-                        break;
-                    case "Pituitary Gland":
-
-                        pituitaryGlandImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-                    case "Temporal Lobe":
-
-                        temporalLobeImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-                    case "Occipital Lobe":
-
-                        occipitalLobeImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-                    case "Parietal Lobe":
-
-                        parietalLobeImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-                    case "Cerebellum":
-
-                        cerebellumImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-                    case "Hippocampus":
-
-                        hippocampusImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-                    case "Frontal Lobe":
-
-                        frontalLobeImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-                    case "Brainstem":
-
-                       brainstemImage.BeginAnimation(OpacityProperty, animation);
-
-                        break;
-
-
+        //The following region pertains to the connection button and its popup and when
+        //the pop up is closed 
+        #region
+        private void toggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (defaultFlag == false)
+            {
+                //If there aren't any serial ports to connect to
+                //Display message not able to connect and the togglebutton doesn't
+                //become checked
+                if (ports == null || ports.Length == 0)
+                {
+                    selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
 
                 }
+                else
+                {
+                    try //Try to connect to serial port
+                    {
+                        isConnected = true;
+                        if (!connectionPopup.IsOpen)
+                        { connectionPopup.IsOpen = true; }
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                }
+                defaultFlag = true;
             }
-            if (substance)
+            else if (defaultFlag == true)
             {
-                activitiesListBox.SelectedItem = false;
-                brainPartsListBox.SelectedItem = false;
-                selectionMessageBox.Text = selectedSubstances + " was chosen. " + displayMessage;
-                substance = false;
-                examplesButton.Visibility = System.Windows.Visibility.Visible;
-               
-            }
-            if(activity)
-            {
-                substancesListBox.SelectedItem = false;
-                brainPartsListBox.SelectedItem = false;
-                selectionMessageBox.Text = selectedActivities + " was chosen. " + displayMessage;
-                activity = false;
+                //If the app is connected, change the image of button
+
+                if (isConnected)
+                {
+                    selectionMessageBox.Text = "Disconnected";
+                    try
+                    {
+                        Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
+                        StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                        BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                        var brush = new ImageBrush();
+                        brush.ImageSource = temp;
+                        toggleButton.Background = brush;
+
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    isConnected = false;
+                }
+                //If there wasn't already successful connection
+                else
+                {   //if there aren't any serial ports available
+                    if (ports == null || ports.Length == 0)
+                    {
+                        selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
+                    }
+                    else  //if they are serial ports available that app isn't use
+                    {
+                        selectionMessageBox.Text = "Not connected yet";
+                    }
+                }
+                defaultFlag = false;
             }
         }
+        //if com port is selected Check if selected port is being used by another process,Instantiate the serial port,
+        //and change the connection button otherwise don't change connection button image
+        //ensure connectionPopup is opened with next click of connection button
+        private void CloseConnectionPopupClicked(object sender, RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+            if (connectionPopup.IsOpen) { connectionPopup.IsOpen = false; }
+            try
+            {
+                selectedPort = comPortNumberComboBox.SelectedItem.ToString();
+                SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
+                SerialPort1.Open();
+                Thread.Sleep(250);
+                SerialPort1.Close();
+            }
+
+            catch (UnauthorizedAccessException ex)//The selected comPort is being used by another process
+            {
+
+                selectionMessageBox.Text = "Chosen COM Port in use, connect to another";
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            if (selectedPort != null)
+            {
+                Console.WriteLine("Connected to " + selectedPort);
+                SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
+                SerialPort1.ReadTimeout = 500;
+                SerialPort1.WriteTimeout = 500;
+                Uri resourceUri = new Uri("Resources/if_connect_established.ico", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+
+                toggleButton.Background = brush;
+            }
+            else  //if there are serial ports available that app isn't use
+            {
+                selectionMessageBox.Text = "COM PORTS available, no COM PORT NUMBER chosen";
+                isConnected = false;
+                defaultFlag = false;
+            }
+            // open the Popup if it isn't open already 
+        }
+
+        #endregion
+
+        //The following region pertains to the editListsPopUp
+        #region
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!editListsPopup.IsOpen)
+            { editListsPopup.IsOpen = true; }
+        }
+        //This function loads the listbox in the editListPopup with the current
+        //items for the substances table in the database
+        private void EditSubstancesRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            errorMessageTextBlock.Text = "";
+            editHealthyBehaviorsFlag = false;
+            editSubstancesFlag = true;
+            editingListBox.Items.Clear();
+            for (int i = 0; i < substancesListBox.Items.Count; i++)
+            {
+                ListBoxItem li = new ListBoxItem();
+                string item = ((ListBoxItem)substancesListBox.Items[i]).Content.ToString();
+                Console.WriteLine(item);
+                li.Content = item;
+                editingListBox.Items.Add(li);
+            }
+        }
+        //This function loads the listbox in the editListPopup with the current
+        //items for the healthyBehaviors table in the database
+        private void EditHealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            errorMessageTextBlock.Text = "";
+            editHealthyBehaviorsFlag = true;
+            editSubstancesFlag = false;
+            editingListBox.Items.Clear();
+            Fill_ListBox();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (editHealthyBehaviorsFlag || editSubstancesFlag)
+            {
+                if (!contentPopup.IsOpen)
+                {
+                    contentPopup.IsOpen = true;
+                }
+            }
+            else
+            {
+                errorMessageTextBlock.Text = "Select Substances or Healthy Behaviors";
+            }
+        }
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (editHealthyBehaviorsFlag || editSubstancesFlag)
+            {
+                if (editHealthyBehaviorsFlag)
+                {
+
+                    if (editingListBox.SelectedItem == null)
+                    {
+                        errorMessageTextBlock.Text = "First select an item in the list";
+                    }
+                    else
+                    {
+                        errorMessageTextBlock.Text = "";
+                        RemoveItemToDatabase();
+                    }
+
+                }
+                if (editSubstancesFlag)
+                {
+
+                    if (editingListBox.SelectedItem == null)
+                    {
+                        errorMessageTextBlock.Text = "First select an item in the list";
+                    }
+                    else
+                    {
+                        errorMessageTextBlock.Text = "";
+                    }
+
+                }
+            }
+            else
+            {
+                errorMessageTextBlock.Text = "Select Substances or Healthy Behaviors";
+            }
+
+        }
+        //The string in the content textbox becomes the content in the new ListBox item
+        //the checkboxes checked mean '1' in the lighting sequence for that part and 
+        //'0' for unchecked checkboxes, the item is then added to the database 
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool effectsChecked = false;
+            if (editCerebellumCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[0] = '1';
+            }
+            if (editBrainstemCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[1] = '1';
+            }
+            if (editPituitaryGlandCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[2] = '1';
+            }
+            if (editAmygdalaCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[3] = '1';
+            }
+            if (editHippocampusCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[4] = '1';
+            }
+            if (editTemporalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[5] = '1';
+            }
+            if (editOccipitalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[6] = '1';
+            }
+            if (editParietalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[7] = '1';
+            }
+            if (editFrontalLobeCheckbox.IsChecked.Value)
+            {
+                effectsChecked = true;
+                lightingSequenceToDatabase[8] = '1';
+            }
+
+            lightingSequenceString = CharArrayToString(lightingSequenceToDatabase);
+
+            if (!effectsChecked && newListBoxItemContent == null)
+            {
+                errorTextBlock.Text = "No content was inserted or effects are checked.";
+            }
+            else if (!effectsChecked && newListBoxItemContent != null)
+            {
+                errorTextBlock.Text = "No effects are checked.";
+            }
+            else if (effectsChecked && newListBoxItemContent == null)
+            {
+                errorTextBlock.Text = "No content was inserted.";
+            }
+            else if (effectsChecked && newListBoxItemContent != null)
+            {
+                AddNewItemToDatabase();
+                listBoxContent.Text = "";
+                effectsChecked = false;
+                editAmygdalaCheckbox.IsChecked = false;
+                editParietalLobeCheckbox.IsChecked = false;
+                editTemporalLobeCheckbox.IsChecked = false;
+                editFrontalLobeCheckbox.IsChecked = false;
+                editCerebellumCheckbox.IsChecked = false;
+                editHippocampusCheckbox.IsChecked = false;
+                editPituitaryGlandCheckbox.IsChecked = false;
+                editBrainstemCheckbox.IsChecked = false;
+                editOccipitalLobeCheckbox.IsChecked = false;
+                errorTextBlock.Text = "Saved.";
+            }
+        }
+        //resest the editListsPopup
+        private void CloseEditListsPopupClicked(object sender, RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+            if (editListsPopup.IsOpen) { editListsPopup.IsOpen = false; }
+            editHealthyBehaviorsFlag = false;
+            editSubstancesFlag = false;
+            editingListBox.Items.Clear();
+            editHealthyBehaviorsRadioButton.IsChecked = false;
+            editSubstancesRadioButton.IsChecked = false;
+            errorMessageTextBlock.Text = "";
+            Fill_ListBox();
+        }
+        #endregion
+        //The following region pertains to the contentPopup
+        #region
+        private void ListBoxContent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            newListBoxItemContent = listBoxContent.Text;
+        }
+        private void CloseContentPopupClicked(object sender, RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+            if (contentPopup.IsOpen) { contentPopup.IsOpen = false; }
+            listBoxContent.Text = "";
+            errorTextBlock.Text = "";
+            editAmygdalaCheckbox.IsChecked = false;
+            editParietalLobeCheckbox.IsChecked = false;
+            editTemporalLobeCheckbox.IsChecked = false;
+            editFrontalLobeCheckbox.IsChecked = false;
+            editCerebellumCheckbox.IsChecked = false;
+            editHippocampusCheckbox.IsChecked = false;
+            editPituitaryGlandCheckbox.IsChecked = false;
+            editBrainstemCheckbox.IsChecked = false;
+            editOccipitalLobeCheckbox.IsChecked = false;
+        }
+        #endregion
+
+        //The following region pertains to the examplesPopup
+        #region
+        //This function determines which substances are listed based on the substance selected
+        private void ExamplesButton_Click(object sender, RoutedEventArgs e)
+        {  // open the Popup if it isn't open already 
+            if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
+            examplesButton.Visibility = System.Windows.Visibility.Visible;
+            if (lastSubstanceSelected == "stimulants")
+            {
+                listedExamples.Text = "Examples of Stimulants:\r\n\r\n\u2022 Dexedrine® \r\n\u2022 Adderall® \r\n\u2022 Ritalin® \r\n\u2022 Concerta®\r\n\r\n(www.drugabuse.gov) ";
+            }
+            if (lastSubstanceSelected == "depressants")
+            {
+                examplesButton.Content = "Click for examples of Depressants";
+                listedExamples.Text = "Examples of Depressants: \r\n\r\n\u2022 Valium® \r\n\u2022 Xanax® \r\n\u2022 Halcion® \r\n\u2022 Ambien® \r\n\u2022 Lunesta® \r\n\u2022 Alcohol \r\n" +
+                   "\u2022 Hydrocone(e.g.Vicodin®) \r\n\u2022 Oxycodone(e.g., OxyContin®, Percocet®) \r\n\u2022 Oxymorphone(e.g., Opana®) \r\n\u2022 Morphine(e.g., Kadian®, Avinza®)\r\n\u2022 Codeine, Fentanyl, and others\r\n\r\n(www.drugabuse.gov) ";
+            }
+            if (lastSubstanceSelected == "hallucinogens")
+            {
+                examplesButton.Content = "Click for examples of Hallucinogens";
+                listedExamples.Text = "Examples of Hallucinogens: \r\n\r\n\u2022 LSD \r\n\u2022 Phencyclidine(PCP), \r\n\u2022 Psilocybin(e.g. shrooms) \r\n\r\n(www.drugabuse.gov) ";
+            }
+
+        }
+        private void CloseExamplesPopupClicked(object sender, RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+            if (examplesPopup.IsOpen) { examplesPopup.IsOpen = false; }
+        }
+        #endregion
+
         //The following code determines what happens when the selection between the three
         //lists change
         #region
@@ -189,16 +497,8 @@ namespace InteractiveBrain
         //Make the Examples Button Unavailable 
         //When selection changes stop parts glowing based on the previous selection
 
-        private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBoxSelectionChanged()
         {
-            brainPart = true;
-            substance = false;
-            activity = false;
-            activitiesListBox.SelectedItem = false;
-            substancesListBox.SelectedItem = false;
-            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
-
-            examplesButton.Visibility = System.Windows.Visibility.Hidden;
 
             amygdalaImage.BeginAnimation(OpacityProperty, null);
             pituitaryGlandImage.BeginAnimation(OpacityProperty, null);
@@ -209,8 +509,29 @@ namespace InteractiveBrain
             parietalLobeImage.BeginAnimation(OpacityProperty, null);
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
             cerebellumImage.BeginAnimation(OpacityProperty, null);
-            
+
+            //  if (isConnected)
+            //  {
+            //send serial message for stop
+            //  }
         }
+
+
+        private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            brainPart = true;
+            substance = false;
+            healthybehaviorBOOL = false;
+            healthyBehaviorsListBox.SelectedItem = false;
+            substancesListBox.SelectedItem = false;
+            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
+
+            examplesButton.Visibility = System.Windows.Visibility.Hidden;
+
+            ListBoxSelectionChanged();
+
+        }
+
 
         //This function determines what happens when the selection of the brain Part list changes 
         //Set substance flag true and other flags false 
@@ -220,23 +541,15 @@ namespace InteractiveBrain
         {
             substance = true;
             brainPart = false;
-            activity = false;
+            healthybehaviorBOOL = false;
             brainPartsListBox.SelectedItem = false;
-            activitiesListBox.SelectedItem = false;
+            healthyBehaviorsListBox.SelectedItem = false;
             selectedSubstances = ((ListBoxItem)substancesListBox.SelectedItem).Content.ToString();
 
             examplesButton.Content = "Click for Examples for " + selectedSubstances;
             examplesButton.Visibility = System.Windows.Visibility.Visible;
 
-            amygdalaImage.BeginAnimation(OpacityProperty, null);
-            pituitaryGlandImage.BeginAnimation(OpacityProperty, null);
-            hippocampusImage.BeginAnimation(OpacityProperty, null);
-            brainstemImage.BeginAnimation(OpacityProperty, null);
-            frontalLobeImage.BeginAnimation(OpacityProperty, null);
-            temporalLobeImage.BeginAnimation(OpacityProperty, null);
-            parietalLobeImage.BeginAnimation(OpacityProperty, null);
-            occipitalLobeImage.BeginAnimation(OpacityProperty, null);
-            cerebellumImage.BeginAnimation(OpacityProperty, null);
+            ListBoxSelectionChanged();
         }
 
         //This function determines what happens when the selection of the brain Part list changes 
@@ -244,354 +557,371 @@ namespace InteractiveBrain
         //Make the Examples Button Unavailable
         //When selection changes stop parts glowing based on the previous selection
 
-        private void ActivitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void HealthyBehaviorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            activity = true;
+            healthybehaviorBOOL = true;
             substance = false;
             brainPart = false;
             brainPartsListBox.SelectedItem = false;
             substancesListBox.SelectedItem = false;
-            selectedActivities = ((ListBoxItem)activitiesListBox.SelectedItem).Content.ToString();
-
+            selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
+            Console.WriteLine(selectedHealthyBehaviors);
             examplesButton.Visibility = System.Windows.Visibility.Hidden;
 
-            amygdalaImage.BeginAnimation(OpacityProperty, null);
-            pituitaryGlandImage.BeginAnimation(OpacityProperty, null);
-            hippocampusImage.BeginAnimation(OpacityProperty, null);
-            brainstemImage.BeginAnimation(OpacityProperty, null);
-            frontalLobeImage.BeginAnimation(OpacityProperty, null);
-            temporalLobeImage.BeginAnimation(OpacityProperty, null);
-            parietalLobeImage.BeginAnimation(OpacityProperty, null);
-            occipitalLobeImage.BeginAnimation(OpacityProperty, null);
-            cerebellumImage.BeginAnimation(OpacityProperty, null);
+            ListBoxSelectionChanged();
+
+
         }
         #endregion
         //The following code determines what is displayed in the selectionMessageBox
         //based on the selection
         #region
-        private void Amygdala_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Amygdala light up";
-          //  if (SerialPort1.IsOpen)
-         //   {
-                //  SerialPort1.Write("0");
-           // }
-           // else
-           // {
-               // selectionMessageBox.Text = "Check the connection, then redo the selection";
-           // }
-            }
-        private void PituitaryGland_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-        private void Hippocampus_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Hippocampus light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // };
-        }
         private void Cerebellum_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Cerebellum light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-        private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-        private void TemporalLobe_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-        private void FrontalLobe_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-        private void OccipitalLobe_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
+            // displayMessage = "Note the LED corresponding to the Cerebellum light up";
+            lightingSequenceFromDatabase = "1000000000".ToArray();
+            //  WriteLightingSequenceMessage();
         }
         private void Brainstem_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Brainstem light up";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
+            lightingSequenceFromDatabase = "0100000000".ToArray();
+            //  WriteLightingSequenceMessage();
         }
+        private void PituitaryGland_Selected(object sender, RoutedEventArgs e)
+        {
+            displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
+            lightingSequenceFromDatabase = "0010000000".ToArray();
+            //  WriteLightingSequenceMessage();
+        }
+        private void Amygdala_Selected(object sender, RoutedEventArgs e)
+        {
+            displayMessage = "Note the LED corresponding to the Amygdala light up";
+            lightingSequenceFromDatabase = "0001000000".ToArray();
+            //  WriteLightingSequenceMessage();
+        }
+
+        private void Hippocampus_Selected(object sender, RoutedEventArgs e)
+        {
+            displayMessage = "Note the LED corresponding to the Hippocampus light up";
+            lightingSequenceFromDatabase = "0000100000".ToArray();
+            //  WriteLightingSequenceMessage();
+        }
+        private void TemporalLobe_Selected(object sender, RoutedEventArgs e)
+        {
+            displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
+            lightingSequenceFromDatabase = "0000010000".ToArray();
+            //  WriteLightingSequenceMessage();
+        }
+        private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
+        {
+            displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
+
+            lightingSequenceFromDatabase = "0000001000".ToArray();
+            //  WriteLightingSequenceMessage();
+        }
+        private void OccipitalLobe_Selected(object sender, RoutedEventArgs e)
+        {
+            displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
+            lightingSequenceFromDatabase = "0000000100".ToArray();
+            //  WriteLightingSequenceMessage();
+        }
+
+        private void FrontalLobe_Selected(object sender, RoutedEventArgs e)
+        {
+            displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
+            lightingSequenceFromDatabase = "0000000010".ToArray();
+            //  WriteLightingSequenceMessage();
+        }
+
 
         private void Stimulants_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "stimulants";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
+            //  WriteLightingSequenceMessage();
         }
         private void Depressants_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "depressants";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
+            //  WriteLightingSequenceMessage();
         }
         private void Hallucinogens_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "hallucinogens";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
+            //  WriteLightingSequenceMessage();
         }
         private void Opioids_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "This selection will be programmed next semester";
             lastSubstanceSelected = "opioids";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
+            //  WriteLightingSequenceMessage();
+
         }
 
-        private void DietAndNutrition_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-
-        private void HealthAndExercise_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-
-        private void CognitiveActivity_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
-
-        private void SocialEngagement_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            //  if (SerialPort1.IsOpen)
-            //   {
-            //  SerialPort1.Write("0");
-            // }
-            // else
-            // {
-            // selectionMessageBox.Text = "Check the connection, then redo the selection";
-            // }
-        }
         #endregion
 
-        //This function determines which substances are listed based on the substance selected
-        private  void ExamplesButton_Click(object sender, RoutedEventArgs e)
-        {  // open the Popup if it isn't open already 
-           // if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
-            examplesButton.Visibility = System.Windows.Visibility.Visible;
-            if (lastSubstanceSelected == "stimulants")
-            {       
-              MessageBox.Show("Examples of Stimulants:\r\n\r\n\u2022 Dexedrine® \r\n\u2022 Adderall® \r\n\u2022 Ritalin® \r\n\u2022 Concerta®\r\n\r\n(www.drugabuse.gov) ");
-                //   titleTextBlock.Text = "Examples of Stimulants:";
-                //   listedExamples.Text = "Dexedrine® ,\r\nAdderall®, \r\nRitalin®, \r\nConcerta® \r\n(www.drugabuse.gov) ";                
-            }
-            if (lastSubstanceSelected == "depressants")
-            {
-                examplesButton.Content = "Click for examples for Depressants"; 
-                MessageBox.Show("Examples of Depressants: \r\n\r\n\u2022 Valium® \r\n\u2022 Xanax® \r\n\u2022 Halcion® \r\n\u2022 Ambien® \r\n\u2022 Lunesta® \r\n\u2022 Alcohol \r\n\r\n(www.drugabuse.gov)");
-            }
-            if (lastSubstanceSelected == "hallucinogens")
-            {
-                examplesButton.Content = "Click for examples for Hallucinogens";
-                MessageBox.Show("Examples of Hallucinogens: \r\n\r\n\u2022 LSD \r\n\u2022 Phencyclidine(PCP), \r\n\u2022 Psilocybin(e.g. shrooms) \r\n\r\n(www.drugabuse.gov) ");
-            }
-            if(lastSubstanceSelected == "opioids")
-            {
-                examplesButton.Content = "Click for examples for Opioids";
-                MessageBox.Show("Examples of Opioids: \r\n\r\n\u2022 Hydrocone(e.g. Vicodin®) \r\n\u2022 Oxycodone (e.g., OxyContin®, Percocet®) \r\n\u2022 Oxymorphone (e.g., Opana®) \r\n\u2022 Morphine (e.g., Kadian®, Avinza®)\r\n\u2022 Codeine, Fentanyl, and others\r\n\r\n(www.drugabuse.gov)");
-            }
-        }
-        
-        //The connection button is a toggle button
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        //The following region pertains to the AutoComplete search box 
+        #region
+        private void SearchTextBox_KeyUp(object sender, KeyboardEventArgs e)
         {
-            ToggleButton toggle = (ToggleButton)sender;
-                
-                //If there aren't any serial ports to connect to
-                //Display message not able to connect and the togglebutton doesn't
-                //become checked
-                if (ports == null || ports.Length == 0)
+            bool found = false;
+            border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+            string query_Two = (sender as TextBox).Text;
+
+            if (query_Two.Length == 0)
+            {
+                // Clear   
+                resultsStack.Children.Clear();
+                border.Visibility = System.Windows.Visibility.Collapsed;
+                border.Background = Brushes.Transparent;
+            }
+            else
+            {
+                border.Visibility = System.Windows.Visibility.Visible;
+                border.Background = Brushes.White;
+            }
+
+            // Clear the list   
+            resultsStack.Children.Clear();
+
+            // Add the result   
+            foreach (string obj in col)
+            {
+                if (obj.ToLower().StartsWith(query_Two.ToLower()))
                 {
-                    selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-                    toggleButton.IsChecked = false;
+                    // The word starts with this... Autocomplete must work   
+                    addItem(obj,"PeachPuff");
+                    found = true;
                 }
                 else
                 {
-
-                    try //Try to connect to serial port
-                    {
-                        isConnected = true;
-                        selectedPort = comPortNumberComboBox.SelectedItem.ToString();
-                        //selectedPort = ports[0];
-                        Console.WriteLine("Connected to " + selectedPort);
-                        SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                        SerialPort1.Open();
-                        SerialPort1.Write("#STAR\n");
-                        // MessageBox.Show("Connected to " + selectedPort)
-
-                        // open the Popup if it isn't open already 
-                        if (!connectionPopup.IsOpen)
-                        { connectionPopup.IsOpen = true; }
-
+                    addItem(obj, "White");
                 }
-                catch (Exception ex) { Console.WriteLine(ex.Message); }
-                }
+            }
+            if (!found)
+            {
+                resultsStack.Children.Clear();
+                resultsStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 20, FontFamily = new FontFamily("Calibri") });
+            }
+        }
+    
         
-        }
 
-
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void addItem(string text,string color)
         {
-                Console.WriteLine(isConnected);
-                ToggleButton toggle = (ToggleButton)sender;  
-                //If there was an established serial port connection, disconnect
-                if (isConnected)
+            TextBlock block = new TextBlock();
+                                    
+
+            // Add the text   
+            block.Text = text;
+
+            // A little style...   
+            block.Margin = new Thickness(2, 3, 2, 3);
+            block.Cursor = Cursors.Hand;
+            block.FontFamily = new FontFamily("Calibri");
+            block.FontSize = 20;
+            block.Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush;
+
+            // Mouse events   
+            block.MouseLeftButtonUp += (sender, e) =>
+            {
+                searchTextBox.Text = (sender as TextBlock).Text;
+            };
+
+            block.MouseEnter += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.PeachPuff;
+            };
+
+            block.MouseLeave += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.Transparent;
+            };
+
+            // Add to the panel   
+            resultsStack.Children.Add(block);
+        }
+       private void ResultsStackMouseDown(object sender,MouseButtonEventArgs e) {
+            resultsStack.Children.Clear();
+            border.Visibility = System.Windows.Visibility.Collapsed;
+            border.Background = Brushes.Transparent;
+
+        }
+        #endregion
+        //This function determines what happens when the Go Button is Clicked
+        //Depending on the selection, make affected areas glow 
+        private void GoButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            animation.From = 1.0;
+            animation.To = 0.4;
+            animation.Duration = new Duration(TimeSpan.FromSeconds(.5));
+            animation.AutoReverse = true;
+            animation.RepeatBehavior = RepeatBehavior.Forever;
+            if (brainPart)
+            {
+                
+                selectionMessageBox.Text = selectedBrainPart + " was chosen. ";
+                healthyBehaviorsListBox.SelectedItem = false;
+                substancesListBox.SelectedItem = false;
+                brainPart = false;
+                //Don't need to look in database because hard coded 
+                LightingSequence();
+            }
+            if (substance)
+            {
+                healthyBehaviorsListBox.SelectedItem = false;
+                brainPartsListBox.SelectedItem = false;
+                selectionMessageBox.Text = selectedSubstances + " was chosen. " + displayMessage;
+                //Call the function to determine which parts to illuminate
+                substance = false;
+                examplesButton.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                substancesListBox.SelectedItem = false;
+                brainPartsListBox.SelectedItem = false;
+                selectedHealthyBehaviors = searchTextBox.Text;
+                selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
+                healthybehaviorBOOL = false;
+                
+                SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+                string Query;
+                try
                 {
-                    //MessageBox.Show("Disconnected");
-                    try
+                    sqlitecon.Open();
+                    Query = "select * from HealthyBehaviors where healthyBehaviors='" + selectedHealthyBehaviors + "' ";
+                    SQLiteCommand createCommand = new SQLiteCommand(Query, sqlitecon);
+                    SQLiteDataReader dr = createCommand.ExecuteReader();
+                    while (dr.Read())
                     {
-                        isConnected = false;
-                        SerialPort1.Close();
-                        ImageBrush brush1 = new ImageBrush(new BitmapImage(new Uri("Resources/if_connect_no.ico")));
-                       
-                        toggleButton.Background = brush1;
+                        string receivedString = dr.GetString(2);
+                        lightingSequenceString = receivedString;
+                        Console.WriteLine(lightingSequenceString);
                     }
-
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
-
+                    sqlitecon.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                if (lightingSequenceString == null)
+                {
+                    selectionMessageBox.Text = "Choose a option available from the autocomplete drop down list ";
+                }
+                else
+                {
+                    resultsStack.Children.Clear();
+                    border.Visibility = System.Windows.Visibility.Collapsed;
+                    border.Background = Brushes.Transparent;
+                    lightingSequenceFromDatabase = lightingSequenceString.ToArray();
+                    LightingSequence();
                 }
 
-                //If there wasn't a successful connection
-                else {
-                    Console.WriteLine(ports.Length);
-                    if (ports == null || ports.Length == 0)
-                    {
-                        selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-                       // MessageBox.Show("Not connected yet");
-                    }
-                    else { 
-                        selectionMessageBox.Text = "Not connected yet";
-                    }
-                }
-           
+            }
+
+        }
+        public char[] StringToCharArray(string convertString)
+        {
+            char[] newCharArr = convertString.ToCharArray();
+            return newCharArr;
+        }
+        public string CharArrayToString(char[] convertArray)
+        {
+            string newString = new string(convertArray);
+            return newString;
+        }
+        //This functions deterine which parts of the brain on the app side to illuminate based on
+        //selection of substances and healthy behaviors
+        private void LightingSequence()
+        {
+            if (lightingSequenceFromDatabase[0] == '1')
+            {
+                cerebellumImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[1] == '1')
+            {
+                brainstemImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[2] == '1')
+            {
+                pituitaryGlandImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[3] == '1')
+            {
+                amygdalaImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[4] == '1')
+            {
+                hippocampusImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[5] == '1')
+            {
+                temporalLobeImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[6] == '1')
+            {
+                occipitalLobeImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[7] == '1')
+            {
+                parietalLobeImage.BeginAnimation(OpacityProperty, animation);
+            }
+            if (lightingSequenceFromDatabase[8] == '1')
+            {
+                frontalLobeImage.BeginAnimation(OpacityProperty, animation);
+            }
+            WriteLightingSequenceMessage();
         }
 
+
+        private void WriteLightingSequenceMessage()
+        {
+
+            //open serial port
+            //Add raspberrypi identifier(character array)
+            //lightingSequenceFromDatabase 
+            //concatenate all the parts in a character array
+            //Send serial message for stop to turn off all the lights
+            //should i wait a few milliseconds?
+            //character array as string
+            // Convert charArray as string, because zeros may be read as nulls
+            //close serial port
+            if (isConnected)
+            {
+                try
+                {
+                    SerialPort1.Open();
+                    // SerialPort1.Write(new string(concatenateArray));
+                    SerialPort1.Close();
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+
+                    selectionMessageBox.Text = "Chosen COM Port in use, connect to another";
+                    Console.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Not connected to serial port to write serial message");
+            }
+
+        }
         //This function gets the available serial ports 
         void GetAvailableComPorts()
         {
-
             ports = SerialPort.GetPortNames();
-
         }
 
         //This function handles if data is received through the serial port 
@@ -607,12 +937,10 @@ namespace InteractiveBrain
             {
                 // get the data
                 sp.Read(recBuf, 0, bytesAvailable);
-
                 // put data, char by char into a threadsafe FIFO queue
                 // a better aproach maybe is putting the data in a struct and enque the struct        
                 for (int index = 0; index < bytesAvailable; index++)
                     serialDataQueue.Enqueue(recBuf[index]);
-
             }
             catch (TimeoutException ex)
             {
@@ -623,256 +951,220 @@ namespace InteractiveBrain
         //This function handles what to do with received data
         private void ReadSerialDataQueue()
         {
-        
-
             try
             {
                 while (serialDataQueue.TryDequeue(out char ch))
                 {
                     // do something with ch, add it to a textbox 
                     // for example to see that it actually works
-                   // selectionMessageBox.Text += ch;
+                    // selectionMessageBox.Text += ch;
                 }
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
-
-
-        // This function closes the pop up and changes the background of the connection
-        //button to show that a connection has been established 
-        private void ClosePopupClicked(object sender, RoutedEventArgs e)
+       
+        //tHIS FUNCTION NEEDS TO ADD SUBSTANCESlISTbOX
+        //This function is used to fill the listbox with items from the database
+        //used to also update list after item has been added or removed 
+        public void Fill_ListBox()
         {
-            // if the Popup is open, then close it 
-
-            if (connectionPopup.IsOpen) { connectionPopup.IsOpen = false; }
-            ImageBrush brush1 = new ImageBrush(new BitmapImage(new Uri("Resources/if_connect_established.ico")));
-         
-            toggleButton.Background = brush1;
-        }
-
-        private void ClosePopupClicked2(object sender, RoutedEventArgs e)
-        {
-            // if the Popup is open, then close it 
-
-            if (editListsPopup.IsOpen) { editListsPopup.IsOpen = false; }
-            editHealthyBehaviorsFlag = false;
-            editSubstancesFlag = false;
-
-        }
-
-        private void ClosePopupClicked3(object sender, RoutedEventArgs e)
-        {
-            // if the Popup is open, then close it 
-
-            if (contentPopup.IsOpen) { contentPopup.IsOpen = false; }
-
-
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!editListsPopup.IsOpen)
-            { editListsPopup.IsOpen = true; }
-           
-        }
-
-        private void SubstancesRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            titleTextBlock.Text = "";
-            editHealthyBehaviorsFlag = false;
-            editSubstancesFlag = true;
-            currentListBox.Items.Clear();
-            for (int i = 0; i < substancesListBox.Items.Count; i++)
+            string query;
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            try
             {
-                ListBoxItem li = new ListBoxItem();
-                string item = ((ListBoxItem)substancesListBox.Items[i]).Content.ToString();
-                Console.WriteLine(item);
-                li.Content = item;
-                currentListBox.Items.Add(li);
-
-            }
-
-        }
-
-        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            titleTextBlock.Text = "";
-            editHealthyBehaviorsFlag = true;
-            editSubstancesFlag = false;
-            currentListBox.Items.Clear();
-            for (int i = 0; i < activitiesListBox.Items.Count; i++)
-            {
-                ListBoxItem li = new ListBoxItem();
-                string item = ((ListBoxItem)activitiesListBox.Items[i]).Content.ToString();
-                Console.WriteLine(item);
-                li.Content = item;
-                currentListBox.Items.Add(li);
-
-            }
-        }
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (editHealthyBehaviorsFlag || editSubstancesFlag)
-            {
-                if (!contentPopup.IsOpen)
-                {
-                    contentPopup.IsOpen = true;
-                }
-            }
-            else
-            {
-                titleTextBlock.Text = "Select Substances or Healthy Behaviors";
-            }
-        }
-
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            int lastIndex;
-            if (editHealthyBehaviorsFlag || editSubstancesFlag)
-            {
+                sqlitecon.Open();
                 if (editHealthyBehaviorsFlag)
                 {
-                    lastIndex = activitiesListBox.SelectedIndex;
-                    currentListBox.Items.Remove(lastIndex);
-                    // activitiesListBox.Items.Remove(lastIndex);
+                    editingListBox.Items.Clear();
+                    query = "select * from HealthyBehaviors";
                 }
-                if (editSubstancesFlag)
+                else if (editSubstancesFlag)
                 {
-                    lastIndex = substancesListBox.SelectedIndex;
-                    currentListBox.Items.Remove(lastIndex);
-                    // activitiesListBox.Items.Remove(lastIndex);
+                    editingListBox.Items.Clear();
+                    query = "select * from Substances";
                 }
+                else //If this function is being called other than during editing
+                {
+                    healthyBehaviorsListBox.Items.Clear();
+                    query = "select * from HealthyBehaviors";
+                    //query = "select * from Substances";
+                }
+                SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                SQLiteDataReader dr = createCommand.ExecuteReader();
+                while (dr.Read())
+                {
+                    ListBoxItem li = new ListBoxItem();
+                    if (editHealthyBehaviorsFlag)
+                    {
+                        string healthyBehaviorListBoxItemContent = dr.GetString(1);
+                        li.Content = healthyBehaviorListBoxItemContent;
+
+                        editingListBox.Items.Add(li);
+                        li.FontFamily = new FontFamily("Calibri");
+                        li.FontSize = 16;
+                        //    string substancesListBoxItemContent = dr.GetString(1);
+                        //    li.Content = substancesListBoxItemContent;
+                        //    substancesListBox.Items.Add(li);
+
+                    }
+                    else if (editSubstancesFlag)
+                    {
+                        string substancesListBoxItemContent = dr.GetString(1);
+                        li.Content = substancesListBoxItemContent;
+                        editingListBox.Items.Add(li);
+                        li.FontFamily = new FontFamily("Calibri");
+                        li.FontSize = 16;
+                    }
+                    else
+                    {
+                        string healthyBehaviorListBoxItemContent = dr.GetString(1);
+                        li.Content = healthyBehaviorListBoxItemContent;
+                        healthyBehaviorsListBox.Items.Add(li);
+                        //    string substancesListBoxItemContent = dr.GetString(1);
+                        //    li.Content = substancesListBoxItemContent;
+                        //    substancesListBox.Items.Add(li);
+
+                        li.FontFamily = new FontFamily("Calibri");
+                        li.FontSize = 20;
+                    }
+                }
+                sqlitecon.Close();
             }
-
-        }
-        private void OkButton_Click(object sender, RoutedEventArgs e)
-        { int index;
-            bool effectsChecked = false;
-
-            if (editHealthyBehaviorsFlag)
+            catch (Exception ex)
             {
-               // ListBoxItem newListBoxItem = new ListBoxItem();
-                index = activitiesListBox.Items.Count + 1;
-
-                if (editAmygdalaCheckbox.IsChecked.Value == true)
-                {
-                    effectsChecked = true;
-                    Console.WriteLine("In Amgydala edit checkbox");
-                }
-                else if (editCerebellumCheckbox.IsChecked.HasValue && editCerebellumCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editTemporalLobeCheckbox.IsChecked.HasValue && editTemporalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editPituitaryGlandCheckbox.IsChecked.HasValue && editPituitaryGlandCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editFrontalLobeCheckbox.IsChecked.HasValue && editFrontalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editParietalLobeCheckbox.IsChecked.HasValue && editParietalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editOccipitalLobeCheckbox.IsChecked.HasValue && editOccipitalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-               else  if (editBrainstemCheckbox.IsChecked.HasValue && editBrainstemCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editHippocampusCheckbox.IsChecked.HasValue && editHippocampusCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-               
-                
-            }
-            if (editSubstancesFlag)
-            {
-                ListBoxItem newListBoxItem = new ListBoxItem();
-                index = substancesListBox.Items.Count + 1;
-                if ( editAmygdalaCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                    Console.WriteLine("In Amgydala edit checkbox");
-                }
-               else  if (editCerebellumCheckbox.IsChecked.HasValue && editCerebellumCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editTemporalLobeCheckbox.IsChecked.HasValue && editTemporalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-               else  if (editPituitaryGlandCheckbox.IsChecked.HasValue && editPituitaryGlandCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editFrontalLobeCheckbox.IsChecked.HasValue && editFrontalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editParietalLobeCheckbox.IsChecked.HasValue && editParietalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editOccipitalLobeCheckbox.IsChecked.HasValue && editOccipitalLobeCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-               else  if (editBrainstemCheckbox.IsChecked.HasValue && editBrainstemCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                else if (editHippocampusCheckbox.IsChecked.HasValue && editHippocampusCheckbox.IsChecked.Value)
-                {
-                    effectsChecked = true;
-                }
-                
-               
-            }
-                if (!effectsChecked && newListBoxContentText == null)
-                {
-                    errorTextBlock.Text = "No content was inserted or effects are checked.";
-                Console.WriteLine(effectsChecked);
-                Console.WriteLine(editAmygdalaCheckbox.IsChecked.Value);
-                }
-                else if (!effectsChecked && newListBoxContentText != null)
-                {
-                    errorTextBlock.Text = "No effects are checked.";
-                Console.WriteLine(effectsChecked);
-            }
-                else if (effectsChecked && newListBoxContentText == null)
-                {
-                    errorTextBlock.Text = "No content was inserted.";
-                Console.WriteLine(effectsChecked);
-            }
-                else if (effectsChecked && newListBoxContentText != null)
-                {
-                    newListBoxItem.Content = newListBoxContentText;
-                    currentListBox.Items.Add(newListBoxItem);
-                    errorTextBlock.Text = "Saved.";
-                Console.WriteLine(effectsChecked);
+                Console.WriteLine(ex);
             }
         }
-
-        private void ListBoxContent_TextChanged(object sender, TextChangedEventArgs e)
+        //This function updates indices of database table with each new remove,add or update
+        private void UpdateIndices()
         {
-            newListBoxContentText = listBoxContent.Text;
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            int index = 0;
+            int changingIndex = 0;
+            while (index < editingListBox.Items.Count)
+            {
+                Console.WriteLine(editingListBox.Items.Count);
+                changingIndex = index;
+                Console.WriteLine(changingIndex);
+                string query;
+                try
+                {
+                    sqlitecon.Open();
+                    if (editHealthyBehaviorsFlag)
+                    {
+                        query = "UPDATE HealthyBehaviors SET Id='" + changingIndex + "' where healthyBehaviors='" + ((ListBoxItem)editingListBox.Items[index]).Content.ToString() + "' ";
+                    }
+                    else
+                    {
+                        query = "update Substances set Id='" + index + "',substanceName='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
+                    }
+
+                    SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                    createCommand.ExecuteNonQuery();
+                    sqlitecon.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+
+                index++;
+            }
         }
+        private void AddNewItemToDatabase()
+        {
+            ListBoxItem li = new ListBoxItem();
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            string query;
+            index = editingListBox.Items.Count - 1;
 
+            try
+            {
+                sqlitecon.Open();
+                if (editHealthyBehaviorsFlag)
+                {
+                    query = "insert into HealthyBehaviors (Id, healthyBehaviors, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString.Substring(0, 9) + "')";
 
+                }
+                else
+                {
+                    query = "insert into Substances (Id, substanceName, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString + "')";
+                }
+
+                SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                createCommand.ExecuteNonQuery();
+                sqlitecon.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            UpdateIndices();
+            Fill_ListBox();
+        }
        
+        private void RemoveItemToDatabase()
+        {
+            ListBoxItem li = new ListBoxItem();
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            index = editingListBox.SelectedIndex;
+            string query;
+            try
+            {
+                sqlitecon.Open();
+                if (editHealthyBehaviorsFlag)
+                {
+                    query = "delete from HealthyBehaviors where Id='" + index + "' ";
+                    Console.WriteLine(query);
+                }
+                else
+                {
+                    query = "delete from Substances where Id='" + index + "' ";
+                }
+                SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                createCommand.ExecuteNonQuery();
+                sqlitecon.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            Fill_ListBox();
+            UpdateIndices();
+        }
+        private void UpdateItemToDatabase()
+        {
+            ListBoxItem li = new ListBoxItem();
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            index = editingListBox.SelectedIndex;
+            string query;
+            try
+            {
+                sqlitecon.Open();
+                if (editHealthyBehaviorsFlag)
+                {
+                    query = "update HealthyBehaviors set Id='" + index + "',healthyBehaviors='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
+                }
+                else
+                {
+                    query = "update Substances set Id='" + index + "',substanceName='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
+                }
+
+                SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
+                createCommand.ExecuteNonQuery();
+                sqlitecon.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            UpdateIndices();
+            Fill_ListBox();
+        }
     }
 }
+
+ 
