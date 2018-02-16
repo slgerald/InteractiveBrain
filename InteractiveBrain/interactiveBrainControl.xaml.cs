@@ -74,9 +74,11 @@ namespace InteractiveBrain
         int index;
 
         //How to change connection string when transferring to local machine
-        string dbConnectionString = @"data source=C:\Users\Shailicia\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
-
-
+        //string dbConnectionString = @"data source=C:\Users\Shailicia\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
+        // string dbConnectionString = @"data source=" + System.Environment.CurrentDirectory + "\\interactiveBrainDatabase.db";
+        // string [] appPath = Path.Split
+        string dbConnectionString = @"data source=|DataDirectory|interactiveBrainDatabase.db";
+        
         //THis function instantiates a new insteractiveBrainControl when called
         public static interactiveBrainControl Instance
         {
@@ -114,7 +116,7 @@ namespace InteractiveBrain
                 comPortNumberComboBox.Items.Add(port);
                 Console.WriteLine(port);
             }
-
+            Console.WriteLine(dbConnectionString);
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             string query;
 

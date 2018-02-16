@@ -9,18 +9,18 @@
         <Storyboard x:Key="zoomingFL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformFL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.3" Duration="0:0:1"
+                                         From="1.0" To="1.25" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformFL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.3" Duration="0:0:1"
+                                         From="1.0" To="1.25" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <!--The translate formula is -->
             <DoubleAnimation Storyboard.TargetName="translateTransformFL"
                                          Storyboard.TargetProperty="X"
-                                         From="0" To="-88" 
+                                         From="0" To="-65" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformFL"
@@ -32,12 +32,12 @@
         <Storyboard x:Key="zoomingTL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformTL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.3" Duration="0:0:1"
+                                         From="1.0" To="1.1" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformTL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.3" Duration="0:0:1"
+                                         From="1.0" To="1.1" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformTL"
@@ -55,17 +55,17 @@
         <Storyboard x:Key="zoomingOL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformOL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="2" Duration="0:0:1"
+                                         From="1.0" To="1.75" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformOL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="2" Duration="0:0:1"
+                                         From="1.0" To="1.75" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformOL"
                                          Storyboard.TargetProperty="X"
-                                         From="0.0" To="-319" 
+                                         From="0.0" To="-340" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformOL"
@@ -77,17 +77,17 @@
         <Storyboard x:Key="zoomingPL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformPL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.5" Duration="0:0:1"
+                                         From="1.0" To="1.25" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformPL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.5" Duration="0:0:1"
+                                         From="1.0" To="1.25" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformPL"
                                          Storyboard.TargetProperty="X"
-                                         From="0.0" To="-209" 
+                                         From="0.0" To="-215" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformPL"
@@ -99,17 +99,17 @@
         <Storyboard x:Key="zoomingC">
             <DoubleAnimation Storyboard.TargetName="scaleTransformC"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="2" Duration="0:0:1"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformC"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="2" Duration="0:0:1"
+                                         From="1.0" To="1.5" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformC"
                                          Storyboard.TargetProperty="X"
-                                         From="0" To="-246" 
+                                         From="0" To="-275" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformC"
@@ -164,7 +164,8 @@
             </TextBox.Background>
         </TextBox>
         <Canvas    Height="335" Width="660" Canvas.Left="9" Canvas.Top="104" x:Name="pictureCanvas" Background="Transparent" AllowDrop="True" >
-            <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="176" VerticalAlignment="Top" Width="197" Source="Resources/frontalLobe.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="140" Canvas.Top="47" ToolTip="Frontal Lobe" >
+            <Image Height="335" Width="460" x:Name="cutoutUpstairsBrain" Visibility="Visible" Source="Resources/UpstairsBrainCutout.png" Canvas.Left="96"/>
+            <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="254" VerticalAlignment="Top" Width="250" Source="Resources/frontalLobe.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="96" Canvas.Top="16" ToolTip="Frontal Lobe" >
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
@@ -182,7 +183,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="108" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.5,0.5" Source="Resources/occipitalLobe.png" Canvas.Left="429" Canvas.Top="106" ToolTip="Occipital Lobe">
+            <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="141" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.5,0.5" Source="Resources/occipitalLobe.png" Canvas.Left="468" Canvas.Top="90" ToolTip="Occipital Lobe">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
@@ -200,7 +201,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="142" Margin="0" Canvas.Top ="45" Canvas.Left="261" VerticalAlignment="Top" Width="195" Source="Resources/parietalLobe.png" ToolTip="Parietal Lobe" RenderTransformOrigin="0.5,0.5">
+            <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="175" Margin="0" Canvas.Top ="16" Canvas.Left="253" VerticalAlignment="Top" Width="253" Source="Resources/parietalLobe.png" ToolTip="Parietal Lobe" RenderTransformOrigin="0.5,0.5">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
@@ -218,7 +219,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image x:Name="temporalLobeBox" Canvas.Left="226" Canvas.Top ="104" Height="160" VerticalAlignment="Top" Width="217" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png" ToolTip="Temporal Lobe">
+            <Image x:Name="temporalLobeBox" Canvas.Left="204" Canvas.Top ="88" Height="206" VerticalAlignment="Top" Width="287" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png" ToolTip="Temporal Lobe">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
@@ -236,7 +237,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="133" Source="Resources/cerebellum.png" Canvas.Left="329" Canvas.Top="202" ToolTip="Cerebellum" RenderTransformOrigin="0.5,0.5">
+            <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="108" VerticalAlignment="Top" Width="179" Source="Resources/cerebellum.png" Canvas.Left="337" Canvas.Top="217" ToolTip="Cerebellum" RenderTransformOrigin="0.5,0.5">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/cerebellum.png"/>
