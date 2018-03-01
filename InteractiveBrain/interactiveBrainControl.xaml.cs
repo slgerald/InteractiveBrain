@@ -74,7 +74,7 @@ namespace InteractiveBrain
         int index;
 
         //How to change connection string when transferring to local machine
-        string dbConnectionString = @"data source=C:\Users\Shailicia\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
+        string dbConnectionString = @"data source=C:\Users\Owner\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
 
 
         //THis function instantiates a new insteractiveBrainControl when called
@@ -96,8 +96,7 @@ namespace InteractiveBrain
         {
             InitializeComponent();
             GetAvailableComPorts(); //list available serial ports in array of strings
-            searchTextBox.MouseDown += new MouseButtonEventHandler(SearchTextBoxMouseDown);
-           
+
             //Preparing for possible serial connection
             try
             {
@@ -115,7 +114,6 @@ namespace InteractiveBrain
                 comPortNumberComboBox.Items.Add(port);
                 Console.WriteLine(port);
             }
-            Console.WriteLine(dbConnectionString);
 
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             string query;
@@ -135,7 +133,6 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
                 Console.WriteLine(ex);
             }
             //This function is used for the listbox not search autocomplete textbox
@@ -676,29 +673,25 @@ namespace InteractiveBrain
 
             if (query_Two.Length == 0)
             {
-                 //Clear   
+                // Clear   
                 resultsStack.Children.Clear();
                 border.Visibility = System.Windows.Visibility.Collapsed;
                 border.Background = Brushes.Transparent;
-               // border.Visibility = System.Windows.Visibility.Visible;
-               // border.Background = Brushes.White;
             }
             else
             {
-           
                 border.Visibility = System.Windows.Visibility.Visible;
                 border.Background = Brushes.White;
-                 }
+            }
 
-                // Clear the list   
-                resultsStack.Children.Clear();
+            // Clear the list   
+            resultsStack.Children.Clear();
 
-                // Add the result   
-                foreach (string obj in col)
+            // Add the result   
+            foreach (string obj in col)
             {
                 if (obj.ToLower().StartsWith(query_Two.ToLower()))
                 {
-                    
                     // The word starts with this... Autocomplete must work   
                     addItem(obj,"PeachPuff");
                     found = true;
@@ -710,9 +703,8 @@ namespace InteractiveBrain
             }
             if (!found)
             {
-                //  resultsStack.Children.Clear();
-                // addItem(obj, "White");
-                //  resultsStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 20, FontFamily = new FontFamily("Calibri") });
+                resultsStack.Children.Clear();
+                resultsStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 20, FontFamily = new FontFamily("Calibri") });
             }
         }
     
@@ -738,15 +730,6 @@ namespace InteractiveBrain
             {
                 searchTextBox.Text = (sender as TextBlock).Text;
             };
-
-          //  block.KeyDown += (sender, e) =>
-          //  {
-           //     if (e.Key == Key.Enter)
-           //     {
-            //        searchTextBox.Text = (sender as TextBlock).Text;
-            //    }
-                
-           // };
 
             block.MouseEnter += (sender, e) =>
             {
@@ -799,7 +782,7 @@ namespace InteractiveBrain
                 substance = false;
                 examplesButton.Visibility = System.Windows.Visibility.Visible;
             }
-            if(searchTextBox.Text != "")
+            else
             {
                 substancesListBox.SelectedItem = false;
                 brainPartsListBox.SelectedItem = false;
@@ -829,7 +812,7 @@ namespace InteractiveBrain
                 }
                 if (lightingSequenceString == null)
                 {
-                    selectionMessageBox.Text = "Choose a option available from the drop down list ";
+                    selectionMessageBox.Text = "Choose a option available from the autocomplete drop down list ";
                 }
                 else
                 {
@@ -963,25 +946,6 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex.Message);
             }
-        }
-        public void SearchTextBoxMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            border = (resultsStack.Parent as ScrollViewer).Parent as Border;
-
-            border.Visibility = System.Windows.Visibility.Visible;
-                border.Background = Brushes.White;
-            
-
-            // Clear the list   
-            resultsStack.Children.Clear();
-
-            // Add the result   
-            foreach (string obj in col)
-            {
-                  addItem(obj, "White");
-                
-            }
-
         }
 
         //This function handles what to do with received data
