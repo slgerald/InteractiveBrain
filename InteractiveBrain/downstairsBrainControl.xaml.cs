@@ -447,11 +447,11 @@ namespace InteractiveBrain
                     {
                         if (defaultHBHFlag)
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Hippocampus: " + defaultHealthyBehaviorsHippocampus;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Hippocampus: " + defaultHealthyBehaviorsHippocampus;
                         }
                         else
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Hippocampus: " + changedHealthyBehaviorsHippocampus;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Hippocampus: " + changedHealthyBehaviorsHippocampus;
                             Properties.Settings.Default.defaultHealthyBehaviorsHippocampus = changedHealthyBehaviorsHippocampus;
                             Properties.Settings.Default.Save();
                             defaultHBHFlag = true;
@@ -463,11 +463,11 @@ namespace InteractiveBrain
                     {
                         if (defaultUHBHFlag)
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Hippocampus : " + Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Hippocampus : " + Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
                         }
                         else
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Hipocampus: " + changedUnhealthyBehaviorsHippocampus;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Hipocampus: " + changedUnhealthyBehaviorsHippocampus;
                             Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus = changedUnhealthyBehaviorsHippocampus;
                             Properties.Settings.Default.Save();
                             defaultUHBHFlag = true;
@@ -544,11 +544,11 @@ namespace InteractiveBrain
                     {
                         if (defaultHBAFlag)
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Amygdala: " + defaultHealthyBehaviorsAmygdala;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors affect the Amygdala: " + defaultHealthyBehaviorsAmygdala;
                         }
                         else
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Amygdala: " + changedHealthyBehaviorsAmygdala;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors affect the Amygdala: " + changedHealthyBehaviorsAmygdala;
                             Properties.Settings.Default.defaultHealthyBehaviorsAmygdala = changedHealthyBehaviorsAmygdala;
                             Properties.Settings.Default.Save();
                             defaultHBAFlag = true;
@@ -560,12 +560,12 @@ namespace InteractiveBrain
                     {
                         if (defaultUHBAFlag)
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Amygdala: " + Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Amygdala: " + Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
 
                         }
                         else
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Amygdala: " + changedUnhealthyBehaviorsAmygdala;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Amygdala: " + changedUnhealthyBehaviorsAmygdala;
                             Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala = changedUnhealthyBehaviorsAmygdala;
                             Properties.Settings.Default.Save();
                             defaultUHBAFlag = true;
@@ -642,11 +642,11 @@ namespace InteractiveBrain
                     {
                         if (defaultHBBSFlag)
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Brainstem: " + defaultHealthyBehaviorsBrainstem;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Brainstem: " + defaultHealthyBehaviorsBrainstem;
                         }
                         else
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Brainstem: " + changedHealthyBehaviorsBrainstem;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Brainstem: " + changedHealthyBehaviorsBrainstem;
                             Properties.Settings.Default.defaultHealthyBehaviorsBrainstem = changedHealthyBehaviorsBrainstem;
                             Properties.Settings.Default.Save();
                             defaultHBBSFlag = true;
@@ -658,12 +658,12 @@ namespace InteractiveBrain
                     {
                         if (defaultUHBBSFlag)
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Brainstem : " + Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Brainstem : " + Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
 
                         }
                         else
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Brainstem: " + changedUnhealthyBehaviorsBrainstem;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Brainstem: " + changedUnhealthyBehaviorsBrainstem;
                             Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem = changedUnhealthyBehaviorsBrainstem;
                             Properties.Settings.Default.Save();
                             defaultUHBBSFlag = true;
@@ -743,11 +743,11 @@ namespace InteractiveBrain
                     {
                         if (defaultHBPGFlag)
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Pituitary Gland: " + defaultHealthyBehaviorsPituitaryGland;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Pituitary Gland: " + defaultHealthyBehaviorsPituitaryGland;
                         }
                         else
                         {
-                            factsMessageBox.Text = "Healthy Behaviors that affect the Pituitary Gland: " + changedHealthyBehaviorsPituitaryGland;
+                            factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Pituitary Gland: " + changedHealthyBehaviorsPituitaryGland;
                             Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland = changedHealthyBehaviorsPituitaryGland;
                             Properties.Settings.Default.Save();
                             defaultHBPGFlag = true;
@@ -759,12 +759,12 @@ namespace InteractiveBrain
                     {
                         if (defaultUHBPGFlag)
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Pituitary Gland : " + Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Pituitary Gland : " + Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
 
                         }
                         else
                         {
-                            factsMessageBox.Text = "Unhealthy Behaviors that affect the Pituitary Gland: " + changedUnhealthyBehaviorsPituitaryGland;
+                            factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Pituitary Gland: " + changedUnhealthyBehaviorsPituitaryGland;
                             Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland = changedUnhealthyBehaviorsPituitaryGland;
                             Properties.Settings.Default.Save();
                             defaultUHBPGFlag = true;

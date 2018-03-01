@@ -504,11 +504,11 @@ namespace InteractiveBrain
                 {
                     if (defaultHBFLFlag)
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Frontal Lobe: " + defaultHealthyBehaviorsFrontalLobe;
+                        factsMessageBox.Text = "Examples Healthy Behaviors that affect the Frontal Lobe: " + defaultHealthyBehaviorsFrontalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Frontal Lobe: " + changedHealthyBehaviorsFrontalLobe;
+                        factsMessageBox.Text = "Examples Healthy Behaviors that affect the Frontal Lobe: " + changedHealthyBehaviorsFrontalLobe;
                         Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe = changedHealthyBehaviorsFrontalLobe;
                         Properties.Settings.Default.Save();
                         defaultHBFLFlag = true;
@@ -520,11 +520,11 @@ namespace InteractiveBrain
                 {
                     if (defaultUHBFLFlag)
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Frontal Lobe : " + Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Frontal Lobe : " + Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Frontal Lobe: " + changedUnhealthyBehaviorsFrontalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Frontal Lobe: " + changedUnhealthyBehaviorsFrontalLobe;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe = changedUnhealthyBehaviorsFrontalLobe;
                         Properties.Settings.Default.Save();
                         defaultUHBFLFlag = true;
@@ -611,11 +611,11 @@ namespace InteractiveBrain
                 {
                     if (defaultHBTLFlag)
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Temporal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Temporal Lobe: " + changedHealthyBehaviorsTemporalLobe;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + changedHealthyBehaviorsTemporalLobe;
                         Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe = changedHealthyBehaviorsTemporalLobe;
                         Properties.Settings.Default.Save();
                         defaultHBTLFlag = true;
@@ -627,11 +627,11 @@ namespace InteractiveBrain
                 {
                     if (defaultUHBTLFlag)
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Temporal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Temporal Lobe: " + changedUnhealthyBehaviorsTemporalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + changedUnhealthyBehaviorsTemporalLobe;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe = changedUnhealthyBehaviorsTemporalLobe;
                         Properties.Settings.Default.Save();
                         defaultUHBTLFlag = true;
@@ -712,11 +712,11 @@ namespace InteractiveBrain
                 {
                     if (defaultHBPLFlag)
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Parietal Lobe: " + changedHealthyBehaviorsParietalLobe;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + changedHealthyBehaviorsParietalLobe;
                         Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe = changedHealthyBehaviorsParietalLobe;
                         Properties.Settings.Default.Save();
                         defaultHBPLFlag = true;
@@ -729,11 +729,11 @@ namespace InteractiveBrain
                 {
                     if (defaultUHBPLFlag)
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Parietal Lobe: " + changedUnhealthyBehaviorsParietalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + changedUnhealthyBehaviorsParietalLobe;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe = changedUnhealthyBehaviorsParietalLobe;
                         Properties.Settings.Default.Save();
                         defaultUHBPLFlag = true;
@@ -814,11 +814,11 @@ namespace InteractiveBrain
                 {
                     if (defaultHBOLFlag)
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Occipital Lobe: " + changedHealthyBehaviorsOccipitalLobe;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + changedHealthyBehaviorsOccipitalLobe;
                         Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe = changedHealthyBehaviorsOccipitalLobe;
                         Properties.Settings.Default.Save();
                         defaultHBOLFlag = true;
@@ -830,11 +830,11 @@ namespace InteractiveBrain
                 {
                     if (defaultUHBOLFlag)
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Occipital Lobe: " + changedUnhealthyBehaviorsOccipitalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + changedUnhealthyBehaviorsOccipitalLobe;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe = changedUnhealthyBehaviorsOccipitalLobe;
                         Properties.Settings.Default.Save();
                         defaultUHBOLFlag = true;
@@ -914,11 +914,11 @@ namespace InteractiveBrain
                 {
                     if (defaultHBCFlag)
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Cerebellum: " + Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Healthy Behaviors that affect the Cerebellum: " + changedHealthyBehaviorsCerebellum;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + changedHealthyBehaviorsCerebellum;
                         Properties.Settings.Default.defaultHealthyBehaviorsCerebellum = changedHealthyBehaviorsCerebellum;
                         Properties.Settings.Default.Save();
                         defaultHBCFlag = true;
@@ -931,11 +931,11 @@ namespace InteractiveBrain
                 {
                     if (defaultUHBCFlag)
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Cerebellum: " + Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Unhealthy Behaviors that affect the Cerebellum: " + changedUnhealthyBehaviorsCerebellum;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + changedUnhealthyBehaviorsCerebellum;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum = changedUnhealthyBehaviorsCerebellum;
                         Properties.Settings.Default.Save();
                         defaultUHBCFlag = true;

@@ -22,6 +22,7 @@ using System.Windows.Shapes;
 using Windows.UI.Core;
 using System.Windows.Resources;
 using System.Data;
+using System.Management;
 //using interactiveBrainModel;
 
 
@@ -30,6 +31,7 @@ namespace InteractiveBrain
     /// <summary>
     /// Interaction logic for interactiveBrainControl.xaml
     /// </summary>
+    /// 
     public partial class interactiveBrainControl : UserControl
     {
         //The following variable are for the userControl interaction
@@ -37,13 +39,11 @@ namespace InteractiveBrain
 
         string selectedBrainPart;//string to determine which brain part was selected
         string displayMessage;//What should be displayed above both brain maps
-        string selectedSubstances;//string to determine which substance was selected 
-        string lastSubstanceSelected; //used to determine which substance to displayed when examplesButton is pressed
         string selectedHealthyBehaviors;//string to determine which healthy behavior was selected 
 
         bool brainPart = false; //was a brain part selected?
         bool healthybehaviorBOOL = false; //was a healthy behavior selected?
-        bool substance = false;//was a substance selected?
+       
         Border border;
 
         DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
@@ -58,7 +58,6 @@ namespace InteractiveBrain
 
 
         //The following variables are for the editing function of the interactiveBrainControl
-        bool editSubstancesFlag = false; //for editPopup, load substances from database
         bool editHealthyBehaviorsFlag = false;//for editPopup, load healthy behaviors from database
         ListBoxItem newListBoxItem = new ListBoxItem();
         string newListBoxItemContent;
@@ -66,7 +65,7 @@ namespace InteractiveBrain
 
         List<string> col = new List<string>();//Used for the serach AutocompleteTextbox
         //The following array will help determine which parts should illuminate on the app and interactive brain
-        //based on the selection of substances or healthy behaviors 
+        //based on the selection of healthy behaviors 
 
         char[] lightingSequenceToDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '\0' }; //Writing to the database
         char[] lightingSequenceFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '\0' };//Reading from the 
@@ -159,10 +158,14 @@ namespace InteractiveBrain
                     try //Try to connect to serial port
                     {
                         isConnected = true;
+                      
                         if (!connectionPopup.IsOpen)
                         { connectionPopup.IsOpen = true; }
                     }
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    catch (Exception ex) { Console.WriteLine(ex.Message);
+
+                        isConnected = false;
+                    }
                 }
                 defaultFlag = true;
             }
@@ -258,50 +261,29 @@ namespace InteractiveBrain
             { editListsPopup.IsOpen = true; }
         }
         //This function loads the listbox in the editListPopup with the current
-        //items for the substances table in the database
-        private void EditSubstancesRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            errorMessageTextBlock.Text = "";
-            editHealthyBehaviorsFlag = false;
-            editSubstancesFlag = true;
-            editingListBox.Items.Clear();
-            for (int i = 0; i < substancesListBox.Items.Count; i++)
-            {
-                ListBoxItem li = new ListBoxItem();
-                string item = ((ListBoxItem)substancesListBox.Items[i]).Content.ToString();
-                Console.WriteLine(item);
-                li.Content = item;
-                editingListBox.Items.Add(li);
-            }
-        }
-        //This function loads the listbox in the editListPopup with the current
         //items for the healthyBehaviors table in the database
         private void EditHealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             errorMessageTextBlock.Text = "";
             editHealthyBehaviorsFlag = true;
-            editSubstancesFlag = false;
+          
             editingListBox.Items.Clear();
             Fill_ListBox();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (editHealthyBehaviorsFlag || editSubstancesFlag)
+            if (editHealthyBehaviorsFlag)
             {
                 if (!contentPopup.IsOpen)
                 {
                     contentPopup.IsOpen = true;
                 }
             }
-            else
-            {
-                errorMessageTextBlock.Text = "Select Substances or Healthy Behaviors";
-            }
         }
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (editHealthyBehaviorsFlag || editSubstancesFlag)
+            if (editHealthyBehaviorsFlag)
             {
                 if (editHealthyBehaviorsFlag)
                 {
@@ -317,23 +299,10 @@ namespace InteractiveBrain
                     }
 
                 }
-                if (editSubstancesFlag)
-                {
-
-                    if (editingListBox.SelectedItem == null)
-                    {
-                        errorMessageTextBlock.Text = "First select an item in the list";
-                    }
-                    else
-                    {
-                        errorMessageTextBlock.Text = "";
-                    }
-
-                }
             }
             else
             {
-                errorMessageTextBlock.Text = "Select Substances or Healthy Behaviors";
+                errorMessageTextBlock.Text = "Select Healthy Behaviors";
             }
 
         }
@@ -426,10 +395,10 @@ namespace InteractiveBrain
             // if the Popup is open, then close it 
             if (editListsPopup.IsOpen) { editListsPopup.IsOpen = false; }
             editHealthyBehaviorsFlag = false;
-            editSubstancesFlag = false;
+           
             editingListBox.Items.Clear();
             editHealthyBehaviorsRadioButton.IsChecked = false;
-            editSubstancesRadioButton.IsChecked = false;
+           
             errorMessageTextBlock.Text = "";
             Fill_ListBox();
         }
@@ -460,28 +429,6 @@ namespace InteractiveBrain
 
         //The following region pertains to the examplesPopup
         #region
-        //This function determines which substances are listed based on the substance selected
-        private void ExamplesButton_Click(object sender, RoutedEventArgs e)
-        {  // open the Popup if it isn't open already 
-            if (!examplesPopup.IsOpen) { examplesPopup.IsOpen = true; }
-            examplesButton.Visibility = System.Windows.Visibility.Visible;
-            if (lastSubstanceSelected == "stimulants")
-            {
-                listedExamples.Text = "Examples of Stimulants:\r\n\r\n\u2022 Dexedrine® \r\n\u2022 Adderall® \r\n\u2022 Ritalin® \r\n\u2022 Concerta®\r\n\r\n(www.drugabuse.gov) ";
-            }
-            if (lastSubstanceSelected == "depressants")
-            {
-                examplesButton.Content = "Click for examples of Depressants";
-                listedExamples.Text = "Examples of Depressants: \r\n\r\n\u2022 Valium® \r\n\u2022 Xanax® \r\n\u2022 Halcion® \r\n\u2022 Ambien® \r\n\u2022 Lunesta® \r\n\u2022 Alcohol \r\n" +
-                   "\u2022 Hydrocone(e.g.Vicodin®) \r\n\u2022 Oxycodone(e.g., OxyContin®, Percocet®) \r\n\u2022 Oxymorphone(e.g., Opana®) \r\n\u2022 Morphine(e.g., Kadian®, Avinza®)\r\n\u2022 Codeine, Fentanyl, and others\r\n\r\n(www.drugabuse.gov) ";
-            }
-            if (lastSubstanceSelected == "hallucinogens")
-            {
-                examplesButton.Content = "Click for examples of Hallucinogens";
-                listedExamples.Text = "Examples of Hallucinogens: \r\n\r\n\u2022 LSD \r\n\u2022 Phencyclidine(PCP), \r\n\u2022 Psilocybin(e.g. shrooms) \r\n\r\n(www.drugabuse.gov) ";
-            }
-
-        }
         private void CloseExamplesPopupClicked(object sender, RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
@@ -520,11 +467,10 @@ namespace InteractiveBrain
         private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = true;
-            substance = false;
+           
             healthybehaviorBOOL = false;
             healthyBehaviorsListBox.SelectedItem = false;
-            substancesListBox.SelectedItem = false;
-            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
+           selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
 
             examplesButton.Visibility = System.Windows.Visibility.Hidden;
 
@@ -534,24 +480,7 @@ namespace InteractiveBrain
 
 
         //This function determines what happens when the selection of the brain Part list changes 
-        //Set substance flag true and other flags false 
-        //Make the Examples Button available with appropriate examples
-        //When selection changes stop parts glowing based on the previous selection
-        private void SubstancesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            substance = true;
-            brainPart = false;
-            healthybehaviorBOOL = false;
-            brainPartsListBox.SelectedItem = false;
-            healthyBehaviorsListBox.SelectedItem = false;
-            selectedSubstances = ((ListBoxItem)substancesListBox.SelectedItem).Content.ToString();
-
-            examplesButton.Content = "Click for Examples for " + selectedSubstances;
-            examplesButton.Visibility = System.Windows.Visibility.Visible;
-
-            ListBoxSelectionChanged();
-        }
-
+        
         //This function determines what happens when the selection of the brain Part list changes 
         //Set activities flag true and other flags false 
         //Make the Examples Button Unavailable
@@ -560,10 +489,10 @@ namespace InteractiveBrain
         private void HealthyBehaviorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             healthybehaviorBOOL = true;
-            substance = false;
+          
             brainPart = false;
             brainPartsListBox.SelectedItem = false;
-            substancesListBox.SelectedItem = false;
+           
             selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
             Console.WriteLine(selectedHealthyBehaviors);
             examplesButton.Visibility = System.Windows.Visibility.Hidden;
@@ -633,35 +562,6 @@ namespace InteractiveBrain
             lightingSequenceFromDatabase = "0000000010".ToArray();
             //  WriteLightingSequenceMessage();
         }
-
-
-        private void Stimulants_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            lastSubstanceSelected = "stimulants";
-            //  WriteLightingSequenceMessage();
-        }
-        private void Depressants_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            lastSubstanceSelected = "depressants";
-            //  WriteLightingSequenceMessage();
-        }
-        private void Hallucinogens_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            lastSubstanceSelected = "hallucinogens";
-            //  WriteLightingSequenceMessage();
-        }
-        private void Opioids_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "This selection will be programmed next semester";
-            lastSubstanceSelected = "opioids";
-            //  WriteLightingSequenceMessage();
-
-        }
-
-        #endregion
 
         //The following region pertains to the AutoComplete search box 
         #region
@@ -768,23 +668,11 @@ namespace InteractiveBrain
                 
                 selectionMessageBox.Text = selectedBrainPart + " was chosen. ";
                 healthyBehaviorsListBox.SelectedItem = false;
-                substancesListBox.SelectedItem = false;
+               
                 brainPart = false;
                 //Don't need to look in database because hard coded 
                 LightingSequence();
             }
-            if (substance)
-            {
-                healthyBehaviorsListBox.SelectedItem = false;
-                brainPartsListBox.SelectedItem = false;
-                selectionMessageBox.Text = selectedSubstances + " was chosen. " + displayMessage;
-                //Call the function to determine which parts to illuminate
-                substance = false;
-                examplesButton.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                substancesListBox.SelectedItem = false;
                 brainPartsListBox.SelectedItem = false;
                 selectedHealthyBehaviors = searchTextBox.Text;
                 selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
@@ -816,6 +704,7 @@ namespace InteractiveBrain
                 }
                 else
                 {
+                    searchTextBox.Text = "";
                     resultsStack.Children.Clear();
                     border.Visibility = System.Windows.Visibility.Collapsed;
                     border.Background = Brushes.Transparent;
@@ -837,7 +726,7 @@ namespace InteractiveBrain
             return newString;
         }
         //This functions deterine which parts of the brain on the app side to illuminate based on
-        //selection of substances and healthy behaviors
+        //selection of healthy behaviors
         private void LightingSequence()
         {
             if (lightingSequenceFromDatabase[0] == '1')
@@ -918,10 +807,22 @@ namespace InteractiveBrain
             }
 
         }
-        //This function gets the available serial ports 
-        void GetAvailableComPorts()
+        //This function gets the available serial ports
+        //From the Microsoft C# Documentation
+        //The port names are obtained from the system registry(for example, HKEY_LOCAL_MACHINE\HARDWARE\DEVICEMAP\SERIALCOMM). 
+        //If the registry contains stale or otherwise incorrect data then the GetPortNames method will return incorrect data.
+
+       void GetAvailableComPorts()
         {
             ports = SerialPort.GetPortNames();
+            // remove duplicates, sort alphabetically and convert to array
+            ports = ports.Distinct().OrderBy(s => s).ToArray();
+            //https://dariosantarelli.wordpress.com/2010/10/18/c-how-to-programmatically-find-a-com-port-by-friendly-name/
+            foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
+
+            {
+                Console.WriteLine(string.Format("{0} – {1}", comPort.Name, comPort.Description));
+            }
         }
 
         //This function handles if data is received through the serial port 
@@ -966,7 +867,6 @@ namespace InteractiveBrain
             }
         }
        
-        //tHIS FUNCTION NEEDS TO ADD SUBSTANCESlISTbOX
         //This function is used to fill the listbox with items from the database
         //used to also update list after item has been added or removed 
         public void Fill_ListBox()
@@ -981,16 +881,12 @@ namespace InteractiveBrain
                     editingListBox.Items.Clear();
                     query = "select * from HealthyBehaviors";
                 }
-                else if (editSubstancesFlag)
-                {
-                    editingListBox.Items.Clear();
-                    query = "select * from Substances";
-                }
+              
                 else //If this function is being called other than during editing
                 {
                     healthyBehaviorsListBox.Items.Clear();
                     query = "select * from HealthyBehaviors";
-                    //query = "select * from Substances";
+                  
                 }
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 SQLiteDataReader dr = createCommand.ExecuteReader();
@@ -1005,28 +901,14 @@ namespace InteractiveBrain
                         editingListBox.Items.Add(li);
                         li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 16;
-                        //    string substancesListBoxItemContent = dr.GetString(1);
-                        //    li.Content = substancesListBoxItemContent;
-                        //    substancesListBox.Items.Add(li);
+                     
 
-                    }
-                    else if (editSubstancesFlag)
-                    {
-                        string substancesListBoxItemContent = dr.GetString(1);
-                        li.Content = substancesListBoxItemContent;
-                        editingListBox.Items.Add(li);
-                        li.FontFamily = new FontFamily("Calibri");
-                        li.FontSize = 16;
                     }
                     else
                     {
                         string healthyBehaviorListBoxItemContent = dr.GetString(1);
                         li.Content = healthyBehaviorListBoxItemContent;
                         healthyBehaviorsListBox.Items.Add(li);
-                        //    string substancesListBoxItemContent = dr.GetString(1);
-                        //    li.Content = substancesListBoxItemContent;
-                        //    substancesListBox.Items.Add(li);
-
                         li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 20;
                     }
@@ -1057,11 +939,6 @@ namespace InteractiveBrain
                     {
                         query = "UPDATE HealthyBehaviors SET Id='" + changingIndex + "' where healthyBehaviors='" + ((ListBoxItem)editingListBox.Items[index]).Content.ToString() + "' ";
                     }
-                    else
-                    {
-                        query = "update Substances set Id='" + index + "',substanceName='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
-                    }
-
                     SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                     createCommand.ExecuteNonQuery();
                     sqlitecon.Close();
@@ -1089,11 +966,6 @@ namespace InteractiveBrain
                     query = "insert into HealthyBehaviors (Id, healthyBehaviors, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString.Substring(0, 9) + "')";
 
                 }
-                else
-                {
-                    query = "insert into Substances (Id, substanceName, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString + "')";
-                }
-
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 createCommand.ExecuteNonQuery();
                 sqlitecon.Close();
@@ -1120,10 +992,6 @@ namespace InteractiveBrain
                     query = "delete from HealthyBehaviors where Id='" + index + "' ";
                     Console.WriteLine(query);
                 }
-                else
-                {
-                    query = "delete from Substances where Id='" + index + "' ";
-                }
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 createCommand.ExecuteNonQuery();
                 sqlitecon.Close();
@@ -1148,11 +1016,6 @@ namespace InteractiveBrain
                 {
                     query = "update HealthyBehaviors set Id='" + index + "',healthyBehaviors='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
                 }
-                else
-                {
-                    query = "update Substances set Id='" + index + "',substanceName='" + newListBoxItemContent + "',lightingSequenceArray'" + lightingSequenceString + "'where Id='" + index + "' ";
-                }
-
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 createCommand.ExecuteNonQuery();
                 sqlitecon.Close();
