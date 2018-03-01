@@ -74,9 +74,6 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.Entity">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Data.Linq">
       <Private>True</Private>
@@ -85,9 +82,8 @@
     <Reference Include="System.Data.Services" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Data.Services.Design" />
-    <Reference Include="System.Data.SQLite, Version=1.0.107.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.107.0\lib\net46\System.Data.SQLite.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.Data.SQLite, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.106.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite.EF6, Version=1.0.107.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.EF6.1.0.107.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
@@ -122,31 +118,8 @@
     <Compile Include="downstairsBrainControl.xaml.cs">
       <DependentUpon>downstairsBrainControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HealthyBehavior.cs">
-      <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="InteractiveBrainModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InteractiveBrainModel.Context.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="InteractiveBrainModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="InteractiveBrainModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Substance.cs">
-      <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Compile Include="interactiveBrainControl.xaml.cs">
+      <DependentUpon>interactiveBrainControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="upstairsBrainControl.xaml.cs">
       <DependentUpon>upstairsBrainControl.xaml</DependentUpon>
@@ -180,7 +153,7 @@
     </Page>
     <Page Include="interactiveBrainControl.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -189,9 +162,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="interactiveBrainControl.xaml.cs">
-      <DependentUpon>interactiveBrainControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -247,9 +217,6 @@
       <LastGenOutput>InteractiveBrainModel.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EntityDeploy>
-    <None Include="interactiveBrainDatabase.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="InteractiveBrainModel.edmx.diagram">
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -345,18 +312,6 @@
   <ItemGroup>
     <Resource Include="Resources\UpstairsBrainCutout.png" />
     <Resource Include="Resources\brain_child_to_adult_slider.jpg" />
-    <Content Include="InteractiveBrainModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
-      <LastGenOutput>InteractiveBrainModel.Context.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="InteractiveBrainModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
-      <LastGenOutput>InteractiveBrainModel.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Resources\reset.ico" />
     <None Include="Resources\poecentericon_HCM_icon.ico" />
   </ItemGroup>
