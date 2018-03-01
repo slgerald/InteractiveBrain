@@ -220,6 +220,7 @@ namespace InteractiveBrain
             if (!editPopup.IsOpen)
             {
                 editPopup.IsOpen = true;
+
             }
         }
 
@@ -239,7 +240,8 @@ namespace InteractiveBrain
             editUnhealthyBehaviorsFlag = false;
             brainPartComboBox.SelectedItem = null;
             editingMessageBlock.Text = "";
-            
+            editingTextBox.IsReadOnly = false;
+
         }
         //This function is to save the selected brain part from the drop down list in the 
         //editPopup into a string to determine the correct message to display when saving
@@ -363,7 +365,7 @@ namespace InteractiveBrain
             { editingMessageBlock.Text = "Choose either functions, healthy behaviors, and unhealthy behaviors"; }
             if (brainPart != null && (editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
             {
-
+                editingTextBox.IsReadOnly = false;
                 if (editFunctionsFlag)
                 {
                     switch (brainPart)
@@ -548,6 +550,7 @@ namespace InteractiveBrain
                 cerebellumBox.Visibility = System.Windows.Visibility.Hidden;
                 occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 scrambleButton.Visibility = System.Windows.Visibility.Hidden;
+                cutoutUpstairsBrain.Visibility = System.Windows.Visibility.Hidden;
                 resetButton.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
@@ -658,6 +661,7 @@ namespace InteractiveBrain
                 occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 scrambleButton.Visibility = System.Windows.Visibility.Hidden;
                 resetButton.Visibility = System.Windows.Visibility.Hidden;
+                cutoutUpstairsBrain.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
@@ -759,6 +763,7 @@ namespace InteractiveBrain
                 occipitalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 scrambleButton.Visibility = System.Windows.Visibility.Hidden;
                 resetButton.Visibility = System.Windows.Visibility.Hidden;
+                cutoutUpstairsBrain.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
@@ -858,6 +863,7 @@ namespace InteractiveBrain
                 parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 scrambleButton.Visibility = System.Windows.Visibility.Hidden;
                 resetButton.Visibility = System.Windows.Visibility.Hidden;
+                cutoutUpstairsBrain.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
@@ -958,6 +964,7 @@ namespace InteractiveBrain
                 parietalLobeBox.Visibility = System.Windows.Visibility.Hidden;
                 scrambleButton.Visibility = System.Windows.Visibility.Hidden;
                 resetButton.Visibility = System.Windows.Visibility.Hidden;
+                cutoutUpstairsBrain.Visibility = System.Windows.Visibility.Hidden;
                 factsMessageBox.Visibility = System.Windows.Visibility.Visible;
                 gotItButton.Visibility = System.Windows.Visibility.Visible;
                 brainPartsLabel.Visibility = System.Windows.Visibility.Visible;
@@ -1180,6 +1187,7 @@ namespace InteractiveBrain
             factsMessageBox.Visibility = System.Windows.Visibility.Hidden;
             gotItButton.Visibility = System.Windows.Visibility.Hidden;
             brainPartsLabel.Visibility = System.Windows.Visibility.Hidden;
+            cutoutUpstairsBrain.Visibility = System.Windows.Visibility.Visible;
 
 
             //Safegaurd against incorrect AutoReverse attribute of selected brain part 

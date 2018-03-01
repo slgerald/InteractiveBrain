@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:ui="http://schemas.microsoft.com/wix/UIExtension">
-	<Product Id="*" Name="InteractiveBrainSetup" Language="1033" Version="1.0.2" Manufacturer="ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:ui="http://schemas.microsoft.com/wix/UIExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+    xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+	<Product Id="*" Name="Interactive Brain" Language="1033" Version="1.0.3" Manufacturer="ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -19,32 +20,49 @@
             Value="WelcomeDlg"
             Order="2">1</Publish>
     </UI>
-		<Feature Id="ProductFeature" Title="InteractiveBrainSetup" Level="1">
+		<Feature Id="ProductFeature" Title="InteractiveBrain" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="ProductMenuComponents" />
+      <ComponentGroupRef Id="x86_files" />
+      <ComponentGroupRef Id="x64_files" />
 		</Feature>
 	</Product>
 
 	<Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFiles64Folder">
-				<Directory Id="INSTALLFOLDER" Name="InteractiveBrainSetup" />
-			</Directory>
-      <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="Interactive Brain"/>
-      </Directory>
-		</Directory>
+    <!-- Step 1: Define the directory structure -->
+      <Directory Id="TARGETDIR" Name="SourceDir">
+        <Directory Id="ProgramFiles64Folder">
+          <Directory Id="INSTALLFOLDER" Name="Interactive Brain" >
+            <Directory Id="x86_dir" Name="x86"/>
+            <Directory Id="x64_dir" Name="x64"/>
+          </Directory>
+        </Directory>
+        <Directory Id="ProgramMenuFolder">
+          <Directory Id="ApplicationProgramsFolder" Name="Interactive Brain"/>
+        </Directory>
+      </Directory>  
 	</Fragment>
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-      <Component Id="InteractiveBrainSetup" Win64="yes">
+      <Component Id="InteractiveBrain.exe" Win64="yes">
         <File Id="InteractiveBrain.exe" Source="$(var.InteractiveBrain.TargetPath)" KeyPath="yes" Checksum="yes" />
       </Component>
+      <Component Id="interactiveBrainDatabase.db" Win64="yes">
+        <File Id="interactiveBrainDatabase.db" Source="$(var.TargetDir)\interactiveBrainDatabase.db" KeyPath="yes" />
+      </Component>
+      <Component Id='System.Data.SQLite' Win64="yes">
+        <File Id='System.Data.SQLite' Name='System.Data.SQLite.dll' Source='$(var.TargetDir)\System.Data.SQLite.dll' KeyPath='yes' />
+      </Component>
 		</ComponentGroup>
+    <ComponentGroup Id="x86_files" Directory="x86_dir" >
+      <Component Id="SQLite_x86.Interop.dll" Win64="yes" >
+        <File Id="SQLite_x86.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x86\SQLite.Interop.dll" />
+      </Component>
+    </ComponentGroup>
     <ComponentGroup Id="ProductMenuComponents" Directory="ApplicationProgramsFolder">
-      <Component Id="ApplicationShortcut" Guid="{B6E07F8F-29FE-410A-ACE7-DD40F84F26FF}" >
+      <Component Id="ApplicationShortcut" Guid="{B6E07F8F-29FE-410A-ACE7-DD40F84F26FF}">
         <Shortcut
             Id="ApplicationStartMenuShortcut"
             Name="Interactive Brain"
@@ -59,5 +77,10 @@
             KeyPath="yes" />
       </Component>
     </ComponentGroup>
-	</Fragment>
+    <ComponentGroup Id="x64_files" Directory="x64_dir">
+      <Component Id="SQLite_x64.Interop.dll" Win64="yes">
+        <File Id="SQLite_x64.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x64\SQLite.Interop.dll" />
+      </Component>
+    </ComponentGroup>
+    </Fragment>
 </Wix>

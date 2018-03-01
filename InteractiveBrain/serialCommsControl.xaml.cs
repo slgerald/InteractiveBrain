@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -66,23 +67,48 @@ namespace InteractiveBrain
             
             if (isConnected)
             {
-                Console.WriteLine("This is the on button");
+                
                 try
                 {
                     SerialPort1.Open();
-
-                    while (n < 100)
+                    Console.WriteLine("Serial Port just opened");
+                    while (n < 10)
                     {
-                        SerialPort1.WriteLine("1");
-                        messageTextBox.Text = "Sending a 1";
+                        int num = 1 * n;
+                        SerialPort1.WriteLine(num.ToString() + "\n");
+                        messageTextBox.Text = num.ToString() + "\n";
+                        Console.WriteLine(num.ToString() + "\n");
+                        //Thread CloseDown = new Thread(new ThreadStart(CloseSerialOnExit)); //close port in new thread to avoid hang
+
+                        // CloseDown.Start(); //close port in new thread to avoid hang
                         n++;
+                        
                     }
+
                    SerialPort1.Close();
+                    Console.WriteLine("Serial Port just closed ");
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
                
             }
         }
+
+private void CloseSerialOnExit(){
+
+    try
+
+    {
+
+        SerialPort1.Close(); //close the serial port
+
+    }
+    catch (Exception ex)
+    {
+
+        Console.WriteLine(ex.Message); //catch any serial port closing error messages
+
+    }
+}
 
         private void connectButton_Click(object sender, RoutedEventArgs e)
         {
@@ -200,7 +226,5 @@ namespace InteractiveBrain
                 Console.WriteLine(ex.Message);
             }
         }
-
-
     }
 }

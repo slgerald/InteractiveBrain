@@ -207,7 +207,7 @@
         </Image>
         <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png"/>
         <Button x:Name="examplesButton" Content="Click for Examples of" Background="#FF0072BB" Canvas.Left="33" Visibility="Hidden"  Canvas.Top="559" Width="302" Height="31" FontSize="18" Click="ExamplesButton_Click" BorderBrush="{x:Null}"/>
-        <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41">
+        <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41" ToolTip="Initiate lighting sequence">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_Play.ico"/>
             </Button.Background>
@@ -217,12 +217,12 @@
                 <ImageBrush ImageSource="Resources/if_connect_no.ico"/>
             </Button.Background>
         </Button>
-        <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="559" Width="40" Height="41" Click="EditButton_Click" BorderBrush="{x:Null}">
+        <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="559" Width="40" Height="41" Click="EditButton_Click" BorderBrush="{x:Null}" ToolTip="Edit">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="searchTextBox" KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" FontSize="20" FontFamily="Calibri" />
+        <TextBox x:Name="searchTextBox" MouseDown="SearchTextBoxMouseDown" KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" FontSize="20" FontFamily="Calibri" />
         <Border x:Name ="panelBorder" Width="190" Height="113" BorderBrush="Black" Canvas.Left="460" Canvas.Top="423" Visibility="Collapsed" PreviewMouseUp="ResultsStackMouseDown">
         
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
