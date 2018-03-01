@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:InteractiveBrain"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="680" Height="600">
-
     <Canvas>
         <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
             <Button x:Name="brainDevelopmentButton" Foreground="Black" Canvas.Left="97" Canvas.Top="162" Width="225" Height="105" Click="BrainDevelopmentButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}">
@@ -54,8 +53,7 @@
                 <ImageBrush ImageSource="Resources/back_button.ico"/>
             </Button.Background>
         </Button>
-    <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="680">
-        
+        <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="680">
+        </Canvas>
     </Canvas>
-    </Canvas>    
 </UserControl>
