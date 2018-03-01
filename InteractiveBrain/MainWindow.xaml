@@ -8,7 +8,7 @@
          x:Class="InteractiveBrain.MainWindow"
         mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
-        Title="Poe Health Center's Interactive Brain" Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
+        Title="WhatSUP Desktop App" Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
 
 
     <Viewbox Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" MaxHeight="700" MaxWidth="1375">
@@ -22,10 +22,10 @@
                         </DockPanel>
 
                     </Button>
-                    <Button x:Name="simulationButton"  Foreground="Black"  Height="100" Click="SimulationButton_Click" Canvas.Top="170" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Tahoma" ToolTip="Simulation">
+                    <Button x:Name="simulationButton"  Foreground="Black"  Height="100" Click="SimulationButton_Click" Canvas.Top="170" Width="220" FontSize="24" Background="#FF0072BB" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Tahoma" ToolTip="Animations">
                         <DockPanel Height="100" LastChildFill="False" Width="220">
-                            <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Video.ico" ToolTip="Simulation"/>
-                            <TextBlock Text="     Simulation" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Tahoma" FontSize="24" Margin="0,36" Width="170" ToolTip="Simulation" ></TextBlock>
+                            <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/if_Video.ico" ToolTip="Animations"/>
+                            <TextBlock Text="     Animations " HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Tahoma" FontSize="24" Margin="0,36" Width="170" ToolTip="Animations" ></TextBlock>
                         </DockPanel>
                     </Button>
                     <Button x:Name="serialCommsButton" Foreground="#FF0E1116" Content="Serial &#xA;Communications &#xD;&#xA;Test" Height="100" Click="SerialCommsButton_Click" Width="149" Canvas.Top="470" RenderTransformOrigin="0.5,0.5" FontSize="18" Background="#FF0072BB" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Tahoma" Canvas.Left="71">

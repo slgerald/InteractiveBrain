@@ -30,6 +30,8 @@ namespace InteractiveBrain
         static ConcurrentQueue<char> serialDataQueue;
         private static serialCommsControl _instance;
         string selectedPort;
+        string append;
+        string id = "9999";
         public static serialCommsControl Instance 
         {
             get
@@ -72,20 +74,27 @@ namespace InteractiveBrain
                 {
                     SerialPort1.Open();
                     Console.WriteLine("Serial Port just opened");
+                    n = 0;
+                    append = null;
                     while (n < 10)
                     {
                         int num = 1 * n;
-                        SerialPort1.WriteLine(num.ToString() + "\n");
+                        string numV2 = num.ToString();
+                        append += numV2;
+                        SerialPort1.WriteLine(num.ToString()); //null after eeach number
+                        //SerialPort1.WriteLine(id+append);
                         messageTextBox.Text = num.ToString() + "\n";
-                        Console.WriteLine(num.ToString() + "\n");
-                        //Thread CloseDown = new Thread(new ThreadStart(CloseSerialOnExit)); //close port in new thread to avoid hang
-
-                        // CloseDown.Start(); //close port in new thread to avoid hang
+                        //Console.WriteLine(append); //WriteLine includes null at the end
+                       Console.WriteLine(num.ToString());
+                        //Thread.Sleep(20);//needed so not writing to port too quickly
+                        Thread.Sleep(1);
                         n++;
-                        
                     }
 
                    SerialPort1.Close();
+                    //Thread CloseDown = new Thread(new ThreadStart(CloseSerialOnExit)); //close port in new thread to avoid hang
+
+                   // CloseDown.Start(); //close port in new thread to avoid hang
                     Console.WriteLine("Serial Port just closed ");
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
