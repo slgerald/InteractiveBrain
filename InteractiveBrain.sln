@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InteractiveBrain", "InteractiveBrain\InteractiveBrain.csproj", "{465C5823-9BE7-471C-97C9-88D8789159A6}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "InteractiveBrainSetup", "InteractiveBrainSetup\InteractiveBrainSetup.wixproj", "{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,14 +27,6 @@ Global
 		{465C5823-9BE7-471C-97C9-88D8789159A6}.Release|x64.Build.0 = Release|Any CPU
 		{465C5823-9BE7-471C-97C9-88D8789159A6}.Release|x86.ActiveCfg = Release|Any CPU
 		{465C5823-9BE7-471C-97C9-88D8789159A6}.Release|x86.Build.0 = Release|Any CPU
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Debug|x64.ActiveCfg = Debug|x86
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Debug|x86.ActiveCfg = Debug|x86
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Debug|x86.Build.0 = Debug|x86
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Release|Any CPU.ActiveCfg = Release|x86
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Release|x64.ActiveCfg = Release|x86
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Release|x86.ActiveCfg = Release|x86
-		{6895911B-45BA-4AC3-82DA-CC11ADC3AE29}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

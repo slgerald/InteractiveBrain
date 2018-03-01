@@ -74,7 +74,7 @@ namespace InteractiveBrain
         int index;
 
         //How to change connection string when transferring to local machine
-        string dbConnectionString = @"data source=C:\Users\Shailicia\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
+        string dbConnectionString = @"data source=C:\Users\Owner\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
 
 
         //THis function instantiates a new insteractiveBrainControl when called
