@@ -251,7 +251,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EntityDeploy>
     <None Include="interactiveBrainDatabase.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="InteractiveBrainModel.edmx.diagram">
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>

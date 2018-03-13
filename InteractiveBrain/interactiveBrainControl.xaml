@@ -40,7 +40,7 @@
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
                         </Button.Background>
                     </Button>
-                    <RadioButton x:Name="editSubstancesRadioButton" Content="Substances" Canvas.Left="33"  Canvas.Top="10" Checked="EditSubstancesRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
+
                     <RadioButton  x:Name="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="159" Canvas.Top="10" Checked="EditHealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
                     <ListBox x:Name="editingListBox" Height="160" Canvas.Left="33" Canvas.Top="40" Width="155" BorderBrush="Black"/>
                     <Button x:Name="addButton" Content="Add Item" Canvas.Left="200" Canvas.Top="40" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="AddButton_Click" FontSize="14"/>
@@ -94,27 +94,9 @@
                 </Canvas>
             </Border>
         </Popup>
-        <Popup PlacementTarget="{Binding ElementName=selectionMessageBox}" x:Name="examplesPopup" >
-            <Border BorderBrush="Black" 
-                Background="#FF0072BB"
-                BorderThickness="2" Width="315" Height="300" Canvas.Top="5">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
-                </Border.Effect>
-                <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="300" Margin="2,-2,-2,-2" Width="311">
-                    <TextBox x:Name ="listedExamples" FontSize="20"  Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="260" Width="258" Canvas.Left="25" Canvas.Top="20" VerticalScrollBarVisibility="Auto" UseLayoutRounding="False" HorizontalScrollBarVisibility="Auto"/>
-                    <Button Click="CloseExamplesPopupClicked" HorizontalAlignment="Center" Height="20" Width="20" Canvas.Left="288" Canvas.Top="280" BorderBrush="{x:Null}" RenderTransformOrigin="0,2.5">
-                        <Button.Background>
-                            <ImageBrush ImageSource="Resources/if_exit.ico"/>
-                        </Button.Background>
-                    </Button>
 
-                </Canvas>
-            </Border>
-        </Popup>
-       
         <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" FontFamily="Calibri" IsTabStop="False" Focusable="False" />
-        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="172" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
+        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="182" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
             <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="20" Selected="Amygdala_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" Selected="PituitaryGland_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe" FontSize="20"   Selected="TemporalLobe_Selected" FontFamily="Calibri"/>
@@ -125,15 +107,10 @@
             <ListBoxItem x:Name="parietalLobe" Content="Parietal Lobe" FontSize="20" Selected="ParietalLobe_Selected" FontFamily="Calibri"/>
             <ListBoxItem x:Name="cerebellum" Content="Cerebellum" FontSize="20" Selected="Cerebellum_Selected" FontFamily="Calibri"/>
         </ListBox>
-        <ListBox x:Name="substancesListBox" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="150" SelectionChanged="SubstancesListBox_SelectionChanged" Canvas.Left="260" Canvas.Top="400">
-            <ListBoxItem x:Name="stimulants" Content="Stimulants" FontSize="20" Selected="Stimulants_Selected" FontFamily="Calibri"/>
-            <ListBoxItem x:Name="depressants" Content="Depressants" FontSize="20" Selected="Depressants_Selected" FontFamily="Calibri"/>
-            <ListBoxItem x:Name="hallucinogens" Content="Hallucinogens" FontSize="20" Selected="Hallucinogens_Selected" FontFamily="Calibri"/>
-        </ListBox>
-        <ListBox x:Name="healthyBehaviorsListBox" Visibility="Hidden" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="460" Canvas.Top="400">
+
+        <ListBox x:Name="healthyBehaviorsListBox" Visibility="Hidden" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="260" Canvas.Top="400">
         </ListBox>
         <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="60" Canvas.Top="355" FontFamily="Tahoma"/>
-        <Label Content="Substances" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150" FontSize="24" FontFamily="Tahoma" Canvas.Left="270" Canvas.Top="355"/>
         <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="210" FontSize="24" Canvas.Left="455" Canvas.Top="355" FontFamily="Tahoma"/>
         <Image Height="235" Width="250" Canvas.Top="85" x:Name="cutoutLowerBrain" Canvas.Left="405">
             <Image.Style>
@@ -141,6 +118,11 @@
                     <Setter Property= "Source" Value="Resources/cutoutLowerBrain.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="94" Width="62" Canvas.Top="158" x:Name="hippocampusImage" Canvas.Left="504">
             <Image.Style>
@@ -148,6 +130,11 @@
                     <Setter Property= "Source" Value="Resources/hippocampus.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="115" Width="47" Canvas.Top="210" x:Name="brainstemImage" Canvas.Left="519" Source="Resources/secondBrainstem.png">
             <Image.Style>
@@ -155,6 +142,11 @@
                     <Setter Property= "Source" Value="Resources/secondBrainstem.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="13" Width="20" Canvas.Top="217" x:Name="amygdalaImage" Canvas.Left="515">
             <Image.Style>
@@ -162,6 +154,11 @@
                     <Setter Property= "Source" Value="Resources/amygdala.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="21" Width="22" Canvas.Top="227" x:Name="pituitaryGlandImage" Canvas.Left="482">
             <Image.Style>
@@ -169,6 +166,11 @@
                     <Setter Property= "Source" Value="Resources/pituitaryGland.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="128" Width="160" Canvas.Top="97" x:Name="frontalLobeImage" Canvas.Left="45">
             <Image.Style>
@@ -176,6 +178,11 @@
                     <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="80" Width="57" Canvas.Top="137" x:Name="occipitalLobeImage" Canvas.Left="261">
             <Image.Style>
@@ -183,6 +190,11 @@
                     <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="115" Width="160" Canvas.Top="137" x:Name="temporalLobeImage" Canvas.Left="115">
             <Image.Style>
@@ -190,6 +202,11 @@
                     <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="135" Width="143" Canvas.Top="76" x:Name="parietalLobeImage" Canvas.Left="142">
             <Image.Style>
@@ -197,6 +214,11 @@
                     <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
         <Image Height="87" Width="99" Canvas.Top="193" x:Name="cerebellumImage" Canvas.Left="191">
             <Image.Style>
@@ -204,9 +226,19 @@
                     <Setter Property= "Source" Value="Resources/cerebellum.png"/>
                 </Style>
             </Image.Style>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
         </Image>
-        <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png"/>
-        <Button x:Name="examplesButton" Content="Click for Examples of" Background="#FF0072BB" Canvas.Left="33" Visibility="Hidden"  Canvas.Top="559" Width="302" Height="31" FontSize="18" Click="ExamplesButton_Click" BorderBrush="{x:Null}"/>
+        <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
         <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41" ToolTip="Initiate lighting sequence">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_Play.ico"/>
@@ -222,12 +254,12 @@
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="searchTextBox" MouseDown="SearchTextBoxMouseDown" KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" FontSize="20" FontFamily="Calibri" />
+        <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" FontSize="20" FontFamily="Calibri" />
         <Border x:Name ="panelBorder" Width="190" Height="113" BorderBrush="Black" Canvas.Left="460" Canvas.Top="423" Visibility="Collapsed" PreviewMouseUp="ResultsStackMouseDown">
-        
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="resultsStack"></StackPanel>
-                </ScrollViewer>
+            </ScrollViewer>
 
         </Border>
     </Canvas>

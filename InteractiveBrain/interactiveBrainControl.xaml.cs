@@ -46,8 +46,11 @@ namespace InteractiveBrain
        
         Border border;
 
-        DoubleAnimation animation = new DoubleAnimation();//animation used for the glowing effect
-
+        Storyboard storyboard = new Storyboard();
+        DoubleAnimation growXAnimation = new DoubleAnimation();
+        DoubleAnimation growYAnimation = new DoubleAnimation();
+        DoubleAnimation glowAnimation = new DoubleAnimation();//animation used for the glowing effect
+        ScaleTransform scale = new ScaleTransform(1.0, 1.0);
 
         //THe following variables are for serial communication
         SerialPort SerialPort1; //SerialPort for serial communication with brain
@@ -77,7 +80,8 @@ namespace InteractiveBrain
         // string dbConnectionString = @"data source=" + System.Environment.CurrentDirectory + "\\interactiveBrainDatabase.db";
         // string [] appPath = Path.Split
         string dbConnectionString = @"data source=|DataDirectory|interactiveBrainDatabase.db";
-        
+
+        string query;
         //THis function instantiates a new insteractiveBrainControl when called
         public static interactiveBrainControl Instance
         {
@@ -97,7 +101,6 @@ namespace InteractiveBrain
         {
             InitializeComponent();
             GetAvailableComPorts(); //list available serial ports in array of strings
-            searchTextBox.MouseDown += new MouseButtonEventHandler(SearchTextBoxMouseDown);
            
             //Preparing for possible serial connection
             try
@@ -119,7 +122,7 @@ namespace InteractiveBrain
             Console.WriteLine(dbConnectionString);
 
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
-            string query;
+            //string query;
 
             //Add healthy behaviors in database to list of strings
             try
@@ -143,9 +146,7 @@ namespace InteractiveBrain
             Fill_ListBox();
         }
 
-        //The following region pertains to the connection button and its popup and when
-        //the pop up is closed 
-        #region
+        
         private void toggleButton_Click(object sender, RoutedEventArgs e)
         {
             if (defaultFlag == false)
@@ -247,6 +248,7 @@ namespace InteractiveBrain
 
                 toggleButton.Background = brush;
             }
+         
             else  //if there are serial ports available that app isn't use
             {
                 selectionMessageBox.Text = "COM PORTS available, no COM PORT NUMBER chosen";
@@ -255,11 +257,7 @@ namespace InteractiveBrain
             }
             // open the Popup if it isn't open already 
         }
-
-        #endregion
-
-        //The following region pertains to the editListsPopUp
-        #region
+       
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             if (!editListsPopup.IsOpen)
@@ -285,6 +283,7 @@ namespace InteractiveBrain
                     contentPopup.IsOpen = true;
                 }
             }
+            
         }
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -393,6 +392,7 @@ namespace InteractiveBrain
                 editOccipitalLobeCheckbox.IsChecked = false;
                 errorTextBlock.Text = "Saved.";
             }
+            AddNewItemToDatabase();
         }
         //resest the editListsPopup
         private void CloseEditListsPopupClicked(object sender, RoutedEventArgs e)
@@ -403,11 +403,11 @@ namespace InteractiveBrain
            
             editingListBox.Items.Clear();
             editHealthyBehaviorsRadioButton.IsChecked = false;
-           
             errorMessageTextBlock.Text = "";
+            UpdateIndices();
             Fill_ListBox();
         }
-        #endregion
+
         //The following region pertains to the contentPopup
         #region
         private void ListBoxContent_TextChanged(object sender, TextChangedEventArgs e)
@@ -432,18 +432,6 @@ namespace InteractiveBrain
         }
         #endregion
 
-        //The following region pertains to the examplesPopup
-        #region
-        private void CloseExamplesPopupClicked(object sender, RoutedEventArgs e)
-        {
-            // if the Popup is open, then close it 
-            if (examplesPopup.IsOpen) { examplesPopup.IsOpen = false; }
-        }
-        #endregion
-
-        //The following code determines what happens when the selection between the three
-        //lists change
-        #region
         //This function determines what happens when the selection of the brain Part list changes 
         //Set brain part flag true and other flags false 
         //Make the Examples Button Unavailable 
@@ -453,6 +441,7 @@ namespace InteractiveBrain
         {
 
             amygdalaImage.BeginAnimation(OpacityProperty, null);
+
             pituitaryGlandImage.BeginAnimation(OpacityProperty, null);
             hippocampusImage.BeginAnimation(OpacityProperty, null);
             brainstemImage.BeginAnimation(OpacityProperty, null);
@@ -461,6 +450,8 @@ namespace InteractiveBrain
             parietalLobeImage.BeginAnimation(OpacityProperty, null);
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
             cerebellumImage.BeginAnimation(OpacityProperty, null);
+            cerebellumImage.BeginAnimation(ScaleTransform.ScaleXProperty, null);
+            storyboard.Stop();
 
             //  if (isConnected)
             //  {
@@ -476,8 +467,6 @@ namespace InteractiveBrain
             healthybehaviorBOOL = false;
             healthyBehaviorsListBox.SelectedItem = false;
            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
-
-            examplesButton.Visibility = System.Windows.Visibility.Hidden;
 
             ListBoxSelectionChanged();
 
@@ -500,16 +489,11 @@ namespace InteractiveBrain
            
             selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
             Console.WriteLine(selectedHealthyBehaviors);
-            examplesButton.Visibility = System.Windows.Visibility.Hidden;
-
             ListBoxSelectionChanged();
 
 
         }
-        #endregion
-        //The following code determines what is displayed in the selectionMessageBox
-        //based on the selection
-        #region
+      
         private void Cerebellum_Selected(object sender, RoutedEventArgs e)
         {
             // displayMessage = "Note the LED corresponding to the Cerebellum light up";
@@ -567,121 +551,37 @@ namespace InteractiveBrain
             lightingSequenceFromDatabase = "0000000010".ToArray();
             //  WriteLightingSequenceMessage();
         }
-
-        //The following region pertains to the AutoComplete search box 
-        #region
-        private void SearchTextBox_KeyUp(object sender, KeyboardEventArgs e)
-        {
-            bool found = false;
-            border = (resultsStack.Parent as ScrollViewer).Parent as Border;
-            string query_Two = (sender as TextBox).Text;
-
-            if (query_Two.Length == 0)
-            {
-                 //Clear   
-                resultsStack.Children.Clear();
-                border.Visibility = System.Windows.Visibility.Collapsed;
-                border.Background = Brushes.Transparent;
-               // border.Visibility = System.Windows.Visibility.Visible;
-               // border.Background = Brushes.White;
-            }
-            else
-            {
-           
-                border.Visibility = System.Windows.Visibility.Visible;
-                border.Background = Brushes.White;
-                 }
-
-                // Clear the list   
-                resultsStack.Children.Clear();
-
-                // Add the result   
-                foreach (string obj in col)
-            {
-                if (obj.ToLower().StartsWith(query_Two.ToLower()))
-                {
-                    
-                    // The word starts with this... Autocomplete must work   
-                    addItem(obj,"PeachPuff");
-                    found = true;
-                }
-                else
-                {
-                    addItem(obj, "White");
-                }
-            }
-            if (!found)
-            {
-                //  resultsStack.Children.Clear();
-                // addItem(obj, "White");
-                //  resultsStack.Children.Add(new TextBlock() { Text = "No results found.", FontSize = 20, FontFamily = new FontFamily("Calibri") });
-            }
-        }
-    
-        
-
-        private void addItem(string text,string color)
-        {
-            TextBlock block = new TextBlock();
-                                    
-
-            // Add the text   
-            block.Text = text;
-
-            // A little style...   
-            block.Margin = new Thickness(2, 3, 2, 3);
-            block.Cursor = Cursors.Hand;
-            block.FontFamily = new FontFamily("Calibri");
-            block.FontSize = 20;
-            block.Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush;
-
-            // Mouse events   
-            block.MouseLeftButtonUp += (sender, e) =>
-            {
-                searchTextBox.Text = (sender as TextBlock).Text;
-            };
-
-          //  block.KeyDown += (sender, e) =>
-          //  {
-           //     if (e.Key == Key.Enter)
-           //     {
-            //        searchTextBox.Text = (sender as TextBlock).Text;
-            //    }
-                
-           // };
-
-            block.MouseEnter += (sender, e) =>
-            {
-                TextBlock b = sender as TextBlock;
-                b.Background = Brushes.PeachPuff;
-            };
-
-            block.MouseLeave += (sender, e) =>
-            {
-                TextBlock b = sender as TextBlock;
-                b.Background = Brushes.Transparent;
-            };
-
-            // Add to the panel   
-            resultsStack.Children.Add(block);
-        }
-       private void ResultsStackMouseDown(object sender,MouseButtonEventArgs e) {
-            resultsStack.Children.Clear();
-            border.Visibility = System.Windows.Visibility.Collapsed;
-            border.Background = Brushes.Transparent;
-
-        }
-        #endregion
         //This function determines what happens when the Go Button is Clicked
         //Depending on the selection, make affected areas glow 
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
 
-            animation.From = 1.0;
-            animation.To = 0.4;
-            animation.Duration = new Duration(TimeSpan.FromSeconds(.5));
-            animation.AutoReverse = true;
-            animation.RepeatBehavior = RepeatBehavior.Forever;
+            glowAnimation.From = 1.0;
+            glowAnimation.To = 0.4;
+            glowAnimation.Duration = new Duration(TimeSpan.FromSeconds(.5));
+            glowAnimation.AutoReverse = true;
+            glowAnimation.RepeatBehavior = RepeatBehavior.Forever;
+
+            //button.RenderTransformOrigin = new Point(0.5, 0.5);
+          //  button.RenderTransform = scale;
+
+          //  DoubleAnimation growAnimation = new DoubleAnimation();
+            growXAnimation.Duration = TimeSpan.FromMilliseconds(500);
+            growYAnimation.Duration = TimeSpan.FromMilliseconds(500);
+            growXAnimation.From = 1;
+            growYAnimation.From = 1;
+            growXAnimation.To = 1.25;
+            growYAnimation.To = 1.25;
+
+            growXAnimation.AutoReverse = true;
+            growYAnimation.AutoReverse = true;
+            growXAnimation.RepeatBehavior = RepeatBehavior.Forever;
+            growYAnimation.RepeatBehavior = RepeatBehavior.Forever;
+            
+            storyboard.Children.Add(growXAnimation);
+            storyboard.Children.Add(growYAnimation);
+            Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
+            Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
             if (brainPart)
             {
                 
@@ -694,16 +594,17 @@ namespace InteractiveBrain
             }
            
             if(searchTextBox.Text != "")
-            {\
+            {
                 brainPartsListBox.SelectedItem = false;
                 selectedHealthyBehaviors = searchTextBox.Text;
                 selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
                 healthybehaviorBOOL = false;
                 
                 SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
-                string Query;
+                
                 try
                 {
+                    string Query;
                     sqlitecon.Open();
                     Query = "select * from HealthyBehaviors where healthyBehaviors='" + selectedHealthyBehaviors + "' ";
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqlitecon);
@@ -753,39 +654,75 @@ namespace InteractiveBrain
         {
             if (lightingSequenceFromDatabase[0] == '1')
             {
-                cerebellumImage.BeginAnimation(OpacityProperty, animation);
+               cerebellumImage.BeginAnimation(OpacityProperty, glowAnimation);
+               cerebellumImage.RenderTransform = scale;
+               Storyboard.SetTarget(growXAnimation, cerebellumImage);
+               Storyboard.SetTarget(growYAnimation,cerebellumImage);
+               storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[1] == '1')
             {
-                brainstemImage.BeginAnimation(OpacityProperty, animation);
+                brainstemImage.BeginAnimation(OpacityProperty, glowAnimation);
+                brainstemImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, brainstemImage);
+                Storyboard.SetTarget(growYAnimation, brainstemImage);
+                storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[2] == '1')
             {
-                pituitaryGlandImage.BeginAnimation(OpacityProperty, animation);
+                pituitaryGlandImage.BeginAnimation(OpacityProperty, glowAnimation);
+                pituitaryGlandImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, pituitaryGlandImage);
+                Storyboard.SetTarget(growYAnimation, pituitaryGlandImage);
+                storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[3] == '1')
             {
-                amygdalaImage.BeginAnimation(OpacityProperty, animation);
+                amygdalaImage.BeginAnimation(OpacityProperty, glowAnimation);
+                amygdalaImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, amygdalaImage);
+                Storyboard.SetTarget(growYAnimation, amygdalaImage);
+                storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[4] == '1')
             {
-                hippocampusImage.BeginAnimation(OpacityProperty, animation);
+                hippocampusImage.BeginAnimation(OpacityProperty, glowAnimation);
+                hippocampusImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, hippocampusImage);
+                Storyboard.SetTarget(growYAnimation, hippocampusImage);
+                storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[5] == '1')
             {
-                temporalLobeImage.BeginAnimation(OpacityProperty, animation);
+                temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+                temporalLobeImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, temporalLobeImage);
+                Storyboard.SetTarget(growYAnimation, temporalLobeImage);
+                storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[6] == '1')
             {
-                occipitalLobeImage.BeginAnimation(OpacityProperty, animation);
+                occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+               occipitalLobeImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, occipitalLobeImage);
+                Storyboard.SetTarget(growYAnimation, occipitalLobeImage);
+                storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[7] == '1')
             {
-                parietalLobeImage.BeginAnimation(OpacityProperty, animation);
+                parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+                parietalLobeImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, parietalLobeImage);
+                Storyboard.SetTarget(growYAnimation, parietalLobeImage);
+                storyboard.Begin();
             }
             if (lightingSequenceFromDatabase[8] == '1')
             {
-                frontalLobeImage.BeginAnimation(OpacityProperty, animation);
+                frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+                frontalLobeImage.RenderTransform = scale;
+                Storyboard.SetTarget(growXAnimation, frontalLobeImage);
+                Storyboard.SetTarget(growYAnimation, frontalLobeImage);
+                storyboard.Begin();
             }
             WriteLightingSequenceMessage();
         }
@@ -870,13 +807,25 @@ namespace InteractiveBrain
                 Console.WriteLine(ex.Message);
             }
         }
-        public void SearchTextBoxMouseDown(object sender, MouseButtonEventArgs e)
+        
+        private void SearchTextBox_KeyUp(object sender, KeyboardEventArgs e)
         {
+            bool found = false;
             border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+            string query_Two = (sender as TextBox).Text;
 
-            border.Visibility = System.Windows.Visibility.Visible;
+            if (query_Two.Length == 0)
+            {
+                // Clear   
+                resultsStack.Children.Clear();
+                border.Visibility = System.Windows.Visibility.Collapsed;
+                border.Background = Brushes.Transparent;
+            }
+            else
+            {
+                border.Visibility = System.Windows.Visibility.Visible;
                 border.Background = Brushes.White;
-            
+            }
 
             // Clear the list   
             resultsStack.Children.Clear();
@@ -884,12 +833,61 @@ namespace InteractiveBrain
             // Add the result   
             foreach (string obj in col)
             {
-                  addItem(obj, "White");
-                
+                if (obj.ToLower().StartsWith(query_Two.ToLower()))
+                {
+                    // The word starts with this... Autocomplete must work   
+                    addItem(obj, "PeachPuff");
+                    found = true;
+                }
+                else
+                {
+                    addItem(obj, "White");
+                }
             }
+        }
+        private void addItem(string text, string color)
+        {
+            TextBlock block = new TextBlock();
+
+
+            // Add the text   
+            block.Text = text;
+
+            // A little style...   
+            block.Margin = new Thickness(2, 3, 2, 3);
+            block.Cursor = Cursors.Hand;
+            block.FontFamily = new FontFamily("Calibri");
+            block.FontSize = 20;
+            block.Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush;
+
+            // Mouse events   
+            block.MouseLeftButtonUp += (sender, e) =>
+            {
+                searchTextBox.Text = (sender as TextBlock).Text;
+            };
+
+            block.MouseEnter += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.PeachPuff;
+            };
+
+            block.MouseLeave += (sender, e) =>
+            {
+                TextBlock b = sender as TextBlock;
+                b.Background = Brushes.Transparent;
+            };
+
+            // Add to the panel   
+            resultsStack.Children.Add(block);
+        }
+        private void ResultsStackMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            resultsStack.Children.Clear();
+            border.Visibility = System.Windows.Visibility.Collapsed;
+            border.Background = Brushes.Transparent;
 
         }
-
         //This function handles what to do with received data
         private void ReadSerialDataQueue()
         {
@@ -933,25 +931,25 @@ namespace InteractiveBrain
                 SQLiteDataReader dr = createCommand.ExecuteReader();
                 while (dr.Read())
                 {
+                    string healthyBehaviorListBoxItemContent;
                     ListBoxItem li = new ListBoxItem();
                     if (editHealthyBehaviorsFlag)
                     {
-                        string healthyBehaviorListBoxItemContent = dr.GetString(1);
+                        healthyBehaviorListBoxItemContent = dr.GetString(1);
                         li.Content = healthyBehaviorListBoxItemContent;
 
                         editingListBox.Items.Add(li);
                         li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 16;
-                     
-
                     }
-                    else
-                    {
-                        string healthyBehaviorListBoxItemContent = dr.GetString(1);
-                        li.Content = healthyBehaviorListBoxItemContent;
+                     else
+                     {
+                     healthyBehaviorListBoxItemContent = dr.GetString(1);
+                      li.Content = healthyBehaviorListBoxItemContent;
                         healthyBehaviorsListBox.Items.Add(li);
-                        li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 20;
+                        li.FontFamily = new FontFamily("Calibri");
+                       
                     }
                 }
                 sqlitecon.Close();
@@ -969,16 +967,17 @@ namespace InteractiveBrain
             int changingIndex = 0;
             while (index < editingListBox.Items.Count)
             {
-                Console.WriteLine(editingListBox.Items.Count);
+              
                 changingIndex = index;
                 Console.WriteLine(changingIndex);
-                string query;
+                
                 try
                 {
+                   // string query;
                     sqlitecon.Open();
                     if (editHealthyBehaviorsFlag)
                     {
-                        query = "UPDATE HealthyBehaviors SET Id='" + changingIndex + "' where healthyBehaviors='" + ((ListBoxItem)editingListBox.Items[index]).Content.ToString() + "' ";
+                        query = "UPDATE HealthyBehaviors SET Id='" + changingIndex + "' WHERE healthyBehaviors='" + ((ListBoxItem)editingListBox.Items[index]).Content.ToString() + "' ";
                     }
                     SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                     createCommand.ExecuteNonQuery();
@@ -996,7 +995,7 @@ namespace InteractiveBrain
         {
             ListBoxItem li = new ListBoxItem();
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
-            string query;
+            //string query;
             index = editingListBox.Items.Count - 1;
 
             try
@@ -1004,8 +1003,8 @@ namespace InteractiveBrain
                 sqlitecon.Open();
                 if (editHealthyBehaviorsFlag)
                 {
-                    query = "insert into HealthyBehaviors (Id, healthyBehaviors, lightingSequenceArray) values ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString.Substring(0, 9) + "')";
-
+                    query = "INSERT INTO HealthyBehaviors (Id, healthyBehaviors, lightingSequenceArray) VALUES ('" + index + "','" + newListBoxItemContent + "','" + lightingSequenceString.Substring(0, 9) + "')";
+                    
                 }
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
                 createCommand.ExecuteNonQuery();
@@ -1015,6 +1014,7 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex);
             }
+            col.Add(newListBoxItemContent);
             UpdateIndices();
             Fill_ListBox();
         }
@@ -1024,13 +1024,14 @@ namespace InteractiveBrain
             ListBoxItem li = new ListBoxItem();
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             index = editingListBox.SelectedIndex;
-            string query;
+            col.Remove(((ListBoxItem)editingListBox.SelectedItem).Content.ToString());
+            //string query;
             try
             {
                 sqlitecon.Open();
                 if (editHealthyBehaviorsFlag)
                 {
-                    query = "delete from HealthyBehaviors where Id='" + index + "' ";
+                    query = "DELETE FROM HealthyBehaviors WHERE Id='" + index + "' ";
                     Console.WriteLine(query);
                 }
                 SQLiteCommand createCommand = new SQLiteCommand(query, sqlitecon);
@@ -1041,6 +1042,7 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(ex);
             }
+            
             Fill_ListBox();
             UpdateIndices();
         }
@@ -1049,7 +1051,7 @@ namespace InteractiveBrain
             ListBoxItem li = new ListBoxItem();
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             index = editingListBox.SelectedIndex;
-            string query;
+            //string query;
             try
             {
                 sqlitecon.Open();
@@ -1070,5 +1072,3 @@ namespace InteractiveBrain
         }
     }
 }
-
- 
