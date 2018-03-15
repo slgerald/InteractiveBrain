@@ -64,17 +64,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Entity">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.Entity.Design" />
@@ -347,7 +344,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\UpstairsBrainCutout.png" />
-    <Resource Include="Resources\brain_child_to_adult_slider.jpg" />
     <Content Include="InteractiveBrainModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
@@ -364,6 +360,48 @@
     <None Include="Resources\poecentericon_HCM_icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\alcoholic_brain.PNG" />
+    <Resource Include="Resources\brain_on_meth_1month.PNG" />
+    <Resource Include="Resources\brain_on_meth_14month.PNG" />
+    <Resource Include="Resources\cocaine_brain.PNG" />
+    <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_brain_reward_pathways.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_continuous_dopamine_stimulation.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_dopamine_receptors.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_dopamine_transporters.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_drug_stimulation.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_increased_tolerance.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_neurons.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_tolerance.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\gray_matter_5_years.PNG" />
+    <Resource Include="Resources\gray_matter_early_teen.PNG" />
+    <Resource Include="Resources\gray_matter_late_teen.PNG" />
+    <Resource Include="Resources\gray_matter_meter.PNG" />
+    <Resource Include="Resources\gray_matter_teen.PNG" />
+    <Resource Include="Resources\gray_matter_young_adult.PNG" />
+    <Resource Include="Resources\non_alcoholic_brain.PNG" />
+    <Resource Include="Resources\non_cocaine_brain.PNG" />
+    <Resource Include="Resources\non_smoker_brain.PNG" />
+    <Resource Include="Resources\normal_brain.PNG" />
+    <Resource Include="Resources\smoker_brain.PNG" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

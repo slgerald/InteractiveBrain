@@ -22,10 +22,13 @@ namespace InteractiveBrain
     {
 
         private static brainDevelopmentControl _instance; //render userControl based on button pressed
-
         public brainDevelopmentControl()
         {
             InitializeComponent();
+            Image2.Visibility = Visibility.Hidden;
+            Image3.Visibility = Visibility.Hidden;
+            Image4.Visibility = Visibility.Hidden;
+            Image5.Visibility = Visibility.Hidden;
         }
 
         public static brainDevelopmentControl Instance
@@ -50,6 +53,50 @@ namespace InteractiveBrain
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
+            if (slValue.Value == 5)
+            {
+                Image2.Visibility = Visibility.Hidden;
+                Image3.Visibility = Visibility.Hidden;
+                Image4.Visibility = Visibility.Hidden;
+                Image5.Visibility = Visibility.Hidden;
+                Image1.Visibility = Visibility.Visible;
+            }
+            else if (slValue.Value == 8.75)
+            {
+                Image1.Visibility = Visibility.Hidden;
+                Image3.Visibility = Visibility.Hidden;
+                Image4.Visibility = Visibility.Hidden;
+                Image5.Visibility = Visibility.Hidden;
+                Image2.Visibility = Visibility.Visible;
+            }
+            else if (slValue.Value == 12.5)
+            {
+                Image1.Visibility = Visibility.Hidden;
+                Image2.Visibility = Visibility.Hidden;
+                Image4.Visibility = Visibility.Hidden;
+                Image5.Visibility = Visibility.Hidden;
+                Image3.Visibility = Visibility.Visible;
+            }
+            else if (slValue.Value == 16.25)
+            {
+                Image1.Visibility = Visibility.Hidden;
+                Image2.Visibility = Visibility.Hidden;
+                Image3.Visibility = Visibility.Hidden;
+                Image5.Visibility = Visibility.Hidden;
+                Image4.Visibility = Visibility.Visible;
+            }
+            else if (slValue.Value == 20)
+            {
+                Image1.Visibility = Visibility.Hidden;
+                Image2.Visibility = Visibility.Hidden;
+                Image3.Visibility = Visibility.Hidden;
+                Image4.Visibility = Visibility.Hidden;
+                Image5.Visibility = Visibility.Visible;
+            }
+
         }
+
     }
 }
+
+
