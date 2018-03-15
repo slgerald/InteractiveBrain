@@ -186,7 +186,7 @@ namespace InteractiveBrain
         //When functions radio button is chosen
         //This function sets functions flag to 
         //true and healthyBehaviors and unhealthybehaviors to false
-        private void Functions_Checked(object sender, RoutedEventArgs e)
+        public void Functions_Checked(object sender, RoutedEventArgs e)
         {
             factsMessageBox.Text = "";
             switch (storyboardFlag)
@@ -194,7 +194,7 @@ namespace InteractiveBrain
                 case 1:
                     if (defaultFunctionsFLFlag)
                     {
-                        factsMessageBox.Text = "Functions of the Frontal Lobe: " + "please work";
+                        factsMessageBox.Text = "Functions of the Frontal Lobe: " + Properties.Settings.Default.defaultFunctionsFrontalLobe;
                     }
                     else
                     {
@@ -1179,7 +1179,10 @@ namespace InteractiveBrain
        
             disabled = false;
             storyboardFlag = 0; //reset storyboard flag
-
+            factsMessageBox.Text = "";
+            functions.IsChecked = false;
+            healthyBehaviors.IsChecked = false;
+            unhealthyBehaviors.IsChecked = false;
         } 
     }
 }

@@ -991,6 +991,10 @@ namespace InteractiveBrain
 
                 disabled = false;
                 storyboardFlag = 0;
-            }
+            factsMessageBox.Text = "";
+            functions.IsChecked = false;
+            healthyBehaviors.IsChecked = false;
+            unhealthyBehaviors.IsChecked = false;
+        }
         }
     }
