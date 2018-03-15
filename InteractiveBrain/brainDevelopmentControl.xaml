@@ -4,19 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InteractiveBrain"
-             mc:Ignorable="d" d:DesignWidth="300" Height="519" Width="680">
-    <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
-        <Image x:Name="brainChildToAdult" Canvas.Left="177" Canvas.Top ="60" Height="310" VerticalAlignment="Top" Width="337" RenderTransformOrigin="0.5,0.5" Source="Resources/brain_child_to_adult.jpg">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-1.261"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-3.411"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="We made it to the brain development page" VerticalAlignment="Top" Width="328" TextChanged="TextBox_TextChanged" Canvas.Left="174" Canvas.Top="417"/>
-        <Slider Height="21" Width="328" RenderTransformOrigin="0.584,5.397" Canvas.Left="174" Canvas.Top="375" ValueChanged="Slider_ValueChanged"/>
+             mc:Ignorable="d" d:DesignWidth="300" Height="500" Width="680">
+    <Canvas x:Name="brainDevelopment" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
+        <Image x:Name="Image1"
+                Canvas.Left="177" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="330" 
+                RenderTransformOrigin="0.5,0.5" 
+                Source="Resources/gray_matter_5_years.png" 
+                IsEnabled="False"/>
+        <Image x:Name="Image2"
+                Canvas.Left="177" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="330" 
+                RenderTransformOrigin="0.5,0.5" 
+                Source="Resources/gray_matter_early_teen.png" IsEnabled="False"/>
+        <Image x:Name="Image3"
+                Canvas.Left="177" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="330" 
+                RenderTransformOrigin="0.5,0.5" 
+                Source="Resources/gray_matter_teen.png" IsEnabled="False"/>
+        <Image x:Name="Image4"
+                Canvas.Left="177" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="330" 
+                RenderTransformOrigin="0.5,0.5" 
+                Source="Resources/gray_matter_late_teen.png" IsEnabled="False"/>
+        <Image x:Name="Image5"
+                Canvas.Left="177" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="330" 
+                RenderTransformOrigin="0.5,0.5" 
+                Source="Resources/gray_matter_young_adult.png" IsEnabled="False"/>
+        <Image 
+                Canvas.Left="519" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="101" 
+                RenderTransformOrigin="0.5,0.5" 
+                Source="Resources/gray_matter_meter.png" IsEnabled="False"/>
+        <!--<TextBox x:Name="textbox" 
+                 Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                 DockPanel.Dock="Right" TextAlignment="Right" Width="37" Height="20" Canvas.Left="519" Canvas.Top="395"/>-->
+        <Slider Name="slValue"
+                Minimum="5" Maximum="20" 
+                TickFrequency="3.75" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Foreground="Blue"
+                Height="22" Width="330" 
+                RenderTransformOrigin="0.584,5.397" 
+                Canvas.Left="177" Canvas.Top="393" 
+                ValueChanged="Slider_ValueChanged" 
+                Cursor="Hand" ScrollViewer.CanContentScroll="True">
+        </Slider>
+        <Label Content="5 Years Old" Canvas.Left="146" Canvas.Top="420" Width="70" Height="26"/>
+        <Label Content="20 Years Old" Canvas.Left="466" Canvas.Top="420" Width="78" RenderTransformOrigin="0.537,0.488"/>
+        <Label Content="More" Canvas.Left="625" Canvas.Top="60" Width="53"/>
+        <Label Content="Less" Canvas.Left="625" Canvas.Top="234"/>
     </Canvas>
 </UserControl>
