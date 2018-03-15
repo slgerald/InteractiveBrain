@@ -25,20 +25,6 @@ namespace InteractiveBrain.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("planning, reasoning, speech, voluntary movement (motor cortex is in the frontal l" +
-            "obe), problem solving, regulating emotions (the frontal lobe doesn’t initiate th" +
-            "e emotion, but it helps us control our emotions)\"")]
-        public string defaultFunctionsFrontalLobe {
-            get {
-                return ((string)(this["defaultFunctionsFrontalLobe"]));
-            }
-            set {
-                this["defaultFunctionsFrontalLobe"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Reading, Problem-Solving games, choreography (like for ballet, Zumba), meditation" +
             "\r\n, creative writing, speaking a foreign language (actual motor movements of the" +
             " mouth)")]
@@ -231,7 +217,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Repeating a phone number to help you remember it\r\nMatching games, doing mental ma" +
+            "th problems (without using paper)\r\n")]
         public string defaultHealthyBehaviorsHippocampus {
             get {
                 return ((string)(this["defaultHealthyBehaviorsHippocampus"]));
@@ -268,7 +255,10 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Breathing exercises when you feel stressed, anxious or angry\r\nRecognizing when yo" +
+            "u feel angry/stressed/fearful and being able to minimize those feelings-- thinki" +
+            "ng logically\r\nAny healthy behaviors that will help you de-escalate stressful fee" +
+            "lings\r\n")]
         public string defaultHealthyBehaviorsAmygdala {
             get {
                 return ((string)(this["defaultHealthyBehaviorsAmygdala"]));
@@ -305,7 +295,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Eating high protein foods (eggs, fish, poultry, etc)\r\nEating foods with vitamin A" +
+            " & E\r\nGetting enough vitamin D (the best way is getting outside for sunshine!)\r\n" +
+            "")]
         public string defaultHealthyBehaviorsPituitaryGland {
             get {
                 return ((string)(this["defaultHealthyBehaviorsPituitaryGland"]));
@@ -343,7 +335,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Good sleep routine (going to sleep the same time each night, avoiding screens hour before bed, getting adequate sleep, etc)
+Impulse control (practicing small acts of self-control--  controlling the urge to punch someone :) or controlling road rage, or reaching for that extra cookie)
+")]
         public string defaultHealthyBehaviorsBrainstem {
             get {
                 return ((string)(this["defaultHealthyBehaviorsBrainstem"]));
@@ -362,6 +356,20 @@ distinguishing coins by how the edges feel to the skin)
             }
             set {
                 this["defaultUnhealthyBehaviorsBrainstem"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("planning, reasoning, speech, voluntary movement (motor cortex is in the frontal l" +
+            "obe), problem solving, regulating emotions (the frontal lobe doesn’t initiate th" +
+            "e emotion, but it helps us control our emotions)")]
+        public string defaultFunctionsFrontalLobe {
+            get {
+                return ((string)(this["defaultFunctionsFrontalLobe"]));
+            }
+            set {
+                this["defaultFunctionsFrontalLobe"] = value;
             }
         }
     }

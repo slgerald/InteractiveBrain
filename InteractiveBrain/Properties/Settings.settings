@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="InteractiveBrain.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="defaultFunctionsFrontalLobe" Type="System.String" Scope="User">
-      <Value Profile="(Default)">planning, reasoning, speech, voluntary movement (motor cortex is in the frontal lobe), problem solving, regulating emotions (the frontal lobe doesn’t initiate the emotion, but it helps us control our emotions)"</Value>
-    </Setting>
     <Setting Name="defaultHealthyBehaviorsFrontalLobe" Type="System.String" Scope="User">
       <Value Profile="(Default)">Reading, Problem-Solving games, choreography (like for ballet, Zumba), meditation
 , creative writing, speaking a foreign language (actual motor movements of the mouth)</Value>
@@ -61,7 +58,9 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)">processes short-term memory to convert into long term memory, in limbic system (note long term memories are stored all over the brain)</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsHippocampus" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Repeating a phone number to help you remember it
+Matching games, doing mental math problems (without using paper)
+</Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsHippocampus" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -70,7 +69,10 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)">responsible for emotions, particularly survival instincts (fear &amp; aggression), hypersensitive to stress, role in storing emotional memories, in Limbic System</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsAmygdala" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Breathing exercises when you feel stressed, anxious or angry
+Recognizing when you feel angry/stressed/fearful and being able to minimize those feelings-- thinking logically
+Any healthy behaviors that will help you de-escalate stressful feelings
+</Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsAmygdala" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -79,7 +81,10 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)">regulates growth hormone, triggers onset of puberty. Attached to the hypothalamus, in Limbic System</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsPituitaryGland" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Eating high protein foods (eggs, fish, poultry, etc)
+Eating foods with vitamin A &amp; E
+Getting enough vitamin D (the best way is getting outside for sunshine!)
+</Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsPituitaryGland" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -88,10 +93,15 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)">controls flow of messages between the brain and the rest of the body. Also controls basic body function like breathing, swallowing, heartbeat (medulla), sleep regulation (pons), etc.</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsBrainstem" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Good sleep routine (going to sleep the same time each night, avoiding screens hour before bed, getting adequate sleep, etc)
+Impulse control (practicing small acts of self-control--  controlling the urge to punch someone :) or controlling road rage, or reaching for that extra cookie)
+</Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsBrainstem" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="defaultFunctionsFrontalLobe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">planning, reasoning, speech, voluntary movement (motor cortex is in the frontal lobe), problem solving, regulating emotions (the frontal lobe doesn’t initiate the emotion, but it helps us control our emotions)</Value>
     </Setting>
   </Settings>
 </SettingsFile>

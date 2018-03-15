@@ -77,17 +77,17 @@
         <Storyboard x:Key="zoomingPL">
             <DoubleAnimation Storyboard.TargetName="scaleTransformPL"
                                          Storyboard.TargetProperty="ScaleX"
-                                         From="1.0" To="1.25" Duration="0:0:1"
+                                         From="1.0" To="1.2" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                         />
             <DoubleAnimation Storyboard.TargetName="scaleTransformPL"
                                          Storyboard.TargetProperty="ScaleY"
-                                         From="1.0" To="1.25" Duration="0:0:1"
+                                         From="1.0" To="1.2" Duration="0:0:1"
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformPL"
                                          Storyboard.TargetProperty="X"
-                                         From="0.0" To="-215" 
+                                         From="0.0" To="-230" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformPL"

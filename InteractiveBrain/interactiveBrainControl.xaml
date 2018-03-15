@@ -96,7 +96,7 @@
         </Popup>
 
         <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" FontFamily="Calibri" IsTabStop="False" Focusable="False" />
-        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="182" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="33" Canvas.Top="404">
+        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="182" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="93" Canvas.Top="404">
             <ListBoxItem x:Name="amygdala" Content="Amygdala" FontSize="20" Selected="Amygdala_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="pituitaryGland" Content="Pituitary Gland" FontSize="20" Selected="PituitaryGland_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="temporalLobe" Content="Temporal Lobe" FontSize="20"   Selected="TemporalLobe_Selected" FontFamily="Calibri"/>
@@ -110,8 +110,8 @@
 
         <ListBox x:Name="healthyBehaviorsListBox" Visibility="Hidden" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="260" Canvas.Top="400">
         </ListBox>
-        <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="60" Canvas.Top="355" FontFamily="Tahoma"/>
-        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="210" FontSize="24" Canvas.Left="455" Canvas.Top="355" FontFamily="Tahoma"/>
+        <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="120" Canvas.Top="359" FontFamily="Tahoma"/>
+        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="210" FontSize="24" Canvas.Left="395" Canvas.Top="359" FontFamily="Tahoma"/>
         <Image Height="235" Width="250" Canvas.Top="85" x:Name="cutoutLowerBrain" Canvas.Left="405">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -254,7 +254,7 @@
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="460" TextWrapping="Wrap" Canvas.Top="400" Width="190" FontSize="20" FontFamily="Calibri" />
+        <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="400" TextWrapping="Wrap" Canvas.Top="404" Width="190" FontSize="20" FontFamily="Calibri" />
         <Border x:Name ="panelBorder" Width="190" Height="113" BorderBrush="Black" Canvas.Left="460" Canvas.Top="423" Visibility="Collapsed" PreviewMouseUp="ResultsStackMouseDown">
 
             <ScrollViewer VerticalScrollBarVisibility="Auto">
