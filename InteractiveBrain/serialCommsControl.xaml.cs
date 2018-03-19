@@ -32,6 +32,10 @@ namespace InteractiveBrain
         string selectedPort;
         string append;
         string id = "9999";
+        string[] lightingSequenceFromDatabase;
+        
+            
+        
         public static serialCommsControl Instance 
         {
             get
@@ -62,6 +66,42 @@ namespace InteractiveBrain
                 comPortNumberComboBox.Items.Add(port);
                 Console.WriteLine(port);
             }
+            // displayMessage = "Note the LED corresponding to the Cerebellum light up";
+            lightingSequenceFromDatabase[0] = "1000000000";
+
+
+            //
+            //  displayMessage = "Note the LED corresponding to the Brainstem light up";
+            lightingSequenceFromDatabase[1] = "0100000000";
+
+
+            //  displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
+            lightingSequenceFromDatabase[2] = "0010000000";
+
+
+            // displayMessage = "Note the LED corresponding to the Amygdala light up";
+            lightingSequenceFromDatabase[3] = "0001000000";
+
+
+
+            // displayMessage = "Note the LED corresponding to the Hippocampus light up";
+            lightingSequenceFromDatabase[4] = "0000100000";
+
+            //  displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
+            lightingSequenceFromDatabase[5] = "0000010000";
+
+            //  displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
+
+            lightingSequenceFromDatabase[6] = "0000001000";
+
+
+            //  displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
+            lightingSequenceFromDatabase[7] = "0000000100";
+
+
+
+            //   displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
+            lightingSequenceFromDatabase[8] = "0000000010";
         }
         private void onButton_Click(object sender, RoutedEventArgs e)
         {
@@ -75,19 +115,18 @@ namespace InteractiveBrain
                     SerialPort1.Open();
                     Console.WriteLine("Serial Port just opened");
                     n = 0;
-                    append = null;
+                   // append = null;
                     while (n < 10)
                     {
-                        int num = 1 * n;
-                        string numV2 = num.ToString();
-                        append += numV2;
-                        SerialPort1.WriteLine(num.ToString()); //null after eeach number
+                        
+                        SerialPort1.WriteLine(lightingSequenceFromDatabase[n].ToString()); //null after eeach number
                         //SerialPort1.WriteLine(id+append);
-                        messageTextBox.Text = num.ToString() + "\n";
+                        messageTextBox.Text = lightingSequenceFromDatabase[n].ToString() + "\n";
                         //Console.WriteLine(append); //WriteLine includes null at the end
-                       Console.WriteLine(num.ToString());
-                        //Thread.Sleep(20);//needed so not writing to port too quickly
-                        Thread.Sleep(1);
+                       Console.WriteLine(lightingSequenceFromDatabase[n].ToString());
+                        Thread.Sleep(20);//needed so not writing to port too quickly
+                        SerialPort1.WriteLine("000000000");
+                        //Thread.Sleep(1);
                         n++;
                     }
 
