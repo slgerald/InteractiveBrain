@@ -451,10 +451,17 @@ namespace InteractiveBrain
             cerebellumImage.BeginAnimation(HeightProperty, null);
  
             storyboard.Stop(this);
-            //  if (isConnected)
-            //  {
-            //send serial message for stop
-            //  }
+              if (isConnected)
+              {
+                //send serial message for stop
+                try
+                {
+                    SerialPort1.Open();
+                    SerialPort1.Write("9999000000000n");
+                    SerialPort1.Close();
+                }
+                catch { }
+              }
         }
 
 
@@ -493,58 +500,58 @@ namespace InteractiveBrain
         {
             // displayMessage = "Note the LED corresponding to the Cerebellum light up";
             lightingSequenceFromDatabase = "1000000000".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
         private void Brainstem_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Brainstem light up";
             lightingSequenceFromDatabase = "0100000000".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
         private void PituitaryGland_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
             lightingSequenceFromDatabase = "0010000000".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
         private void Amygdala_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Amygdala light up";
             lightingSequenceFromDatabase = "0001000000".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
 
         private void Hippocampus_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Hippocampus light up";
             lightingSequenceFromDatabase = "0000100000".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
         private void TemporalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
             lightingSequenceFromDatabase = "0000010000".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
         private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
 
             lightingSequenceFromDatabase = "0000001000".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
         private void OccipitalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
             lightingSequenceFromDatabase = "0000000100".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
 
         private void FrontalLobe_Selected(object sender, RoutedEventArgs e)
         {
             displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
             lightingSequenceFromDatabase = "0000000010".ToArray();
-            //  WriteLightingSequenceMessage();
+              WriteLightingSequenceMessage();
         }
         //This function determines what happens when the Go Button is Clicked
         //Depending on the selection, make affected areas glow 
@@ -752,21 +759,26 @@ namespace InteractiveBrain
         private void WriteLightingSequenceMessage()
         {
 
-            //open serial port
-            //Add raspberrypi identifier(character array)
-            //lightingSequenceFromDatabase 
-            //concatenate all the parts in a character array
-            //Send serial message for stop to turn off all the lights
-            //should i wait a few milliseconds?
-            //character array as string
-            // Convert charArray as string, because zeros may be read as nulls
-            //close serial port
+            //1. open serial port
+            //2. Add raspberrypi identifier(character array)          
+            //3. lightingSequenceFromDatabase 
+            //4. concatenate all the parts in a character array
+            //5. Send serial message for stop to turn off all the lights
+            //6. Wait 20 milliseconds
+            //7. Convert charArray as string, because zeros may be read as nulls
+            //8. close serial port
             if (isConnected)
             {
                 try
                 {
                     SerialPort1.Open();
-                    // SerialPort1.Write(new string(concatenateArray));
+                    string id = "9999";
+                    string ending = "n";
+                    Console.WriteLine("Serial Port just opened");
+                    string concatenateArray = id + lightingSequenceFromDatabase.ToArray() + ending;
+                    Console.WriteLine(concatenateArray);
+                    SerialPort1.Write(concatenateArray);
+                    Thread.Sleep(20);
                     SerialPort1.Close();
                 }
                 catch (UnauthorizedAccessException ex)
@@ -783,7 +795,7 @@ namespace InteractiveBrain
             }
             else
             {
-                Console.WriteLine("Not connected to serial port to write serial message");
+                Console.WriteLine("Not connected to serial port to send selection to Brain");
             }
 
         }
