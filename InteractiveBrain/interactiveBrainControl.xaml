@@ -120,7 +120,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform  ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform  />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -132,7 +132,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform  ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform  />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -144,7 +144,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -156,7 +156,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform/>
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -168,7 +168,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -180,7 +180,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform/>
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -192,7 +192,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -204,7 +204,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -216,7 +216,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -228,7 +228,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform />
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>

@@ -143,7 +143,7 @@ namespace InteractiveBrain
                 MessageBox.Show(ex.ToString());
                 Console.WriteLine(ex);
             }
-       
+            
             //This function is used for the listbox not search autocomplete textbox
             Fill_ListBox();
         }
@@ -463,9 +463,9 @@ namespace InteractiveBrain
                 storyboard.Children.Remove(growYAnimation);
                 selectionMade = false;
             }
-            brainstemImage.RenderTransform = null;
-            cerebellumImage.RenderTransform = null;
-            hippocampusImage.RenderTransform = null;
+           brainstemImage.RenderTransform = null;
+           cerebellumImage.RenderTransform = null;
+           hippocampusImage.RenderTransform = null;
             frontalLobeImage.RenderTransform = null;
             temporalLobeImage.RenderTransform = null;
             occipitalLobeImage.RenderTransform = null;
@@ -606,9 +606,9 @@ namespace InteractiveBrain
             
           storyboard.Children.Add(growXAnimation);
           storyboard.Children.Add(growYAnimation);
-     
             Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
-          Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
+            Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
+
             if (brainPart)
             {
                 
@@ -681,13 +681,18 @@ namespace InteractiveBrain
         {
             if (lightingSequenceFromDatabase[0] == '1')
             {
-                cerebellumImage.BeginAnimation(OpacityProperty, glowAnimation);
                 cerebellumImage.RenderTransform = scale;
-                storyboard.Stop(this);
-                Storyboard.SetTarget(storyboard, cerebellumImage);
-                Storyboard.SetTargetName(growXAnimation, cerebellumImage.Name);
-                Storyboard.SetTargetName(growYAnimation, cerebellumImage.Name);
-                storyboard.Begin(this,true);
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+      
+                cerebellumImage.BeginAnimation(OpacityProperty, glowAnimation);
+                
+                storyboard.Stop();
+              
+                Storyboard.SetTarget(growXAnimation, cerebellumImage);
+                Storyboard.SetTarget(growYAnimation, cerebellumImage);
+    
+                storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
                 // Put the image currently being dragged on top of the others
                 Canvas canvas = cerebellumImage.Parent as Canvas;
@@ -696,66 +701,87 @@ namespace InteractiveBrain
             }
             if (lightingSequenceFromDatabase[1] == '1')
             {
+                brainstemImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+         
                 brainstemImage.BeginAnimation(OpacityProperty, glowAnimation);
             
-               brainstemImage.RenderTransform = scale;
-             
-                storyboard.Stop(this,true);
-                Storyboard.SetTarget(storyboard, brainstemImage);
-                Storyboard.SetTargetName(growXAnimation, brainstemImage.Name);
-                 Storyboard.SetTargetName(growYAnimation, brainstemImage.Name);
-
-                  storyboard.Begin(this,true);
+              
+                storyboard.Stop();
+        
+                Storyboard.SetTarget(growXAnimation, brainstemImage);
+                Storyboard.SetTarget(growYAnimation, brainstemImage);
+                storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[2] == '1')
             {
+                pituitaryGlandImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+
                 pituitaryGlandImage.BeginAnimation(OpacityProperty, glowAnimation);
           
-                pituitaryGlandImage.RenderTransform = scale;
-                storyboard.Stop(this);
-                Storyboard.SetTarget(storyboard, pituitaryGlandImage);
-                Storyboard.SetTargetName(growXAnimation, pituitaryGlandImage.Name);
-                Storyboard.SetTargetName(growYAnimation, pituitaryGlandImage.Name);
+                
+                storyboard.Stop();
+         
+                Storyboard.SetTarget(growXAnimation, pituitaryGlandImage);
+                Storyboard.SetTarget(growYAnimation, pituitaryGlandImage);
+                Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
+                Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
 
-                storyboard.Begin(this,true);
+                storyboard.Begin();
                  storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[3] == '1')
             {
-                amygdalaImage.BeginAnimation(OpacityProperty, glowAnimation);
                 amygdalaImage.RenderTransform = scale;
-                storyboard.Stop(this);
-                Storyboard.SetTarget(storyboard, amygdalaImage);
-                Storyboard.SetTargetName(growXAnimation, amygdalaImage.Name);
-                Storyboard.SetTargetName(growYAnimation, amygdalaImage.Name);
-
-                storyboard.Begin(this,true);
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+         
+                amygdalaImage.BeginAnimation(OpacityProperty, glowAnimation);
+              
+                storyboard.Stop();
+              
+                Storyboard.SetTarget(growXAnimation, amygdalaImage);
+                Storyboard.SetTarget(growYAnimation, amygdalaImage);
+               
+                storyboard.Begin();
                  storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[4] == '1')
             {
+                hippocampusImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+        
                 hippocampusImage.BeginAnimation(OpacityProperty, glowAnimation);
       
-                hippocampusImage.RenderTransform = scale;
-                storyboard.Stop(this);
-                Storyboard.SetTarget(storyboard, hippocampusImage);
-                Storyboard.SetTargetName(growXAnimation, hippocampusImage.Name);
-                Storyboard.SetTargetName(growYAnimation, hippocampusImage.Name);
+                
+                storyboard.Stop();
 
-                storyboard.Begin(this,true);
+                Storyboard.SetTarget(storyboard, hippocampusImage);
+       
+                Storyboard.SetTarget(growXAnimation, hippocampusImage);
+                Storyboard.SetTarget(growYAnimation, hippocampusImage);
+          
+                storyboard.Begin();
                   storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[5] == '1')
             {
-                temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                 temporalLobeImage.RenderTransform = scale;
-                storyboard.Stop(this);
-                Storyboard.SetTarget(storyboard, temporalLobeImage);
-                Storyboard.SetTargetName(growXAnimation, temporalLobeImage.Name);
-                Storyboard.SetTargetName(growYAnimation, temporalLobeImage.Name);
-
-                storyboard.Begin(this,true);
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+               temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+               
+                storyboard.Stop();
+     
+                Storyboard.SetTarget(growXAnimation, temporalLobeImage);
+                Storyboard.SetTarget(growYAnimation, temporalLobeImage);
+            
+                storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
 
@@ -766,15 +792,18 @@ namespace InteractiveBrain
             }
             if (lightingSequenceFromDatabase[6] == '1')
             {
-                occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
-             
                 occipitalLobeImage.RenderTransform = scale;
-                storyboard.Stop(this);
-                Storyboard.SetTarget(storyboard, occipitalLobeImage);
-                Storyboard.SetTargetName(growXAnimation, occipitalLobeImage.Name);
-                Storyboard.SetTargetName(growYAnimation, occipitalLobeImage.Name);
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+               occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+             
+                
+                storyboard.Stop();
 
-                storyboard.Begin(this,true);
+               Storyboard.SetTarget(growXAnimation, occipitalLobeImage);
+                Storyboard.SetTarget(growYAnimation, occipitalLobeImage);
+           
+                storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
                 Canvas canvas = occipitalLobeImage.Parent as Canvas;
                 int top = Canvas.GetZIndex(temporalLobeImage);
@@ -782,14 +811,16 @@ namespace InteractiveBrain
             }
             if (lightingSequenceFromDatabase[7] == '1')
             {
-                parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
-           
                 parietalLobeImage.RenderTransform = scale;
-                storyboard.Stop(this);
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+              parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+           
+                
+                storyboard.Stop();
                 Storyboard.SetTarget(growXAnimation, parietalLobeImage);
                 Storyboard.SetTarget(growYAnimation, parietalLobeImage);
-                
-                storyboard.Begin(this,true);
+              storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
                 Canvas canvas = parietalLobeImage.Parent as Canvas;
                 int top = Canvas.GetZIndex(temporalLobeImage);
@@ -797,14 +828,16 @@ namespace InteractiveBrain
             }
             if (lightingSequenceFromDatabase[8] == '1')
             {
-                frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
-             
                 frontalLobeImage.RenderTransform = scale;
-                storyboard.Stop(this);
-                Storyboard.SetTarget(growXAnimation, frontalLobeImage);
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+            frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+             
+                
+                storyboard.Stop();
+               Storyboard.SetTarget(growXAnimation, frontalLobeImage);
                 Storyboard.SetTarget(growYAnimation, frontalLobeImage);
-               
-                storyboard.Begin(this,true);
+             storyboard.Begin();
                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
                 Canvas canvas = temporalLobeImage.Parent as Canvas;
                 int top = Canvas.GetZIndex(temporalLobeImage);
