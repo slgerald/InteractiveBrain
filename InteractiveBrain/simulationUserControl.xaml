@@ -48,9 +48,9 @@
             </Button>
         </Canvas>
 
-        <Button Content="" Canvas.Left="555" Canvas.Top="519" Width="115" Click="BackButton_Click" Height="71">
+        <Button Content="" Canvas.Left="630" Canvas.Top="549" Width="40" Click="BackButton_Click" Height="41">
             <Button.Background>
-                <ImageBrush ImageSource="Resources/back_button.ico"/>
+                <ImageBrush ImageSource="Resources/if_icon-arrow-left.ico"/>
             </Button.Background>
         </Button>
         <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="680">

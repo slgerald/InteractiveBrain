@@ -32,6 +32,7 @@ namespace InteractiveBrain
 
             Gif1.Source = new Uri("Resources/gif_brain_reward_pathways.mp4", UriKind.RelativeOrAbsolute);
             Gif1.Play();
+            videoList.SelectedIndex = 0;
             videoLabel.Content = "1/9 Reward Pathways";
             dopamineText.Text = "In a healthy person, the brain's reward system reinforces healthy behaviors, such as eating. The reward system ensures that you eat, because it knows that after eating, you will feel good.";
             previousButton.Visibility = Visibility.Hidden;
@@ -97,6 +98,7 @@ namespace InteractiveBrain
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
+            int videoListIndex;
             if (Gif1.Source == new Uri("Resources/gif_neurons.mp4", UriKind.Relative))
             {
                 Gif1.Stop();
@@ -104,6 +106,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Hidden;
                 Gif1.Source = new Uri("Resources/gif_brain_reward_pathways.mp4", UriKind.Relative);
                 Gif1.Play();
+                videoList.SelectedIndex = 0;
                 videoLabel.Content = "1/9 Reward Pathways";
                 dopamineText.Text = "In a healthy person, the brain's reward system reinforces healthy behaviors, such as eating. The reward system ensures that you eat, because it knows that after eating, you will feel good.";
             }
@@ -114,6 +117,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_neurons.mp4", UriKind.Relative);
                 Gif1.Play();
+                videoList.SelectedIndex = 1;
                 videoLabel.Content = "2/9 Neurotransmitters";
                 dopamineText.Text = "A brain consists of billions of neurons, which communicate via neurotransmitters. After stimulation, an electrical impulse, called an action potential, is generated and travels down the axon to the nerve terminal.";
             }
@@ -124,6 +128,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_dopamine_receptors.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 2;
                 videoLabel.Content = "3/9 Dopamine Receptors";
                 dopamineText.Text = "The action impulse triggers the release of neurotransmitters in the synaptic clift, a space between neurons. The neurotransmitters then bind to receptors of a neighboring neuron, generating a signal in it, thereby transmitting the information to that neuron.";
             }
@@ -134,6 +139,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 3;
                 videoLabel.Content = "4/9 Dopamine Transporters";
                 dopamineText.Text = "After the dopamine binds to the receptors, pleasurable feelings or rewarding effects are produced. A special protein, called a dopamine transporter, then removes the dopamine from the synaptic clift and transports them back to the transmitting neuron.";
             }
@@ -144,6 +150,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_drug_stimulation.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 4;
                 videoLabel.Content = "5/9 Action Potential";
                 dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some drugs, such as alcohol, heroine, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
             }
@@ -154,6 +161,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_blocked_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 5;
                 videoLabel.Content = "6/9 Drug Binding";
                 dopamineText.Text = "Drugs, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
             }
@@ -164,6 +172,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_continuous_dopamine_stimulation.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 6;
                 videoLabel.Content = "7/9 Overstimulation";
                 dopamineText.Text = "Different drugs act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by drug users. ";
             }
@@ -174,6 +183,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_tolerance.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 7;
                 videoLabel.Content = "8/9 Tolerance";
                 dopamineText.Text = "Drugs will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the drug.";
             }
@@ -189,6 +199,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_neurons.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 1;
                 videoLabel.Content = "2/9 Neurotransmitters";
                 dopamineText.Text = "A brain consists of billions of neurons, which communicate via neurotransmitters. After stimulation, an electrical impulse, called an action potential, is generated and travels down the axon to the nerve terminal.";
             }
@@ -199,6 +210,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_dopamine_receptors.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 2;
                 videoLabel.Content = "3/9 Dopamine Receptors";
                 dopamineText.Text = "The action impulse triggers the release of neurotransmitters in the synaptic clift, a space between neurons. The neurotransmitters then bind to receptors of a neighboring neuron, generating a signal in it, thereby transmitting the information to that neuron.";
             }
@@ -209,6 +221,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 3;
                 videoLabel.Content = "4/9 Dopamine Transporters";
                 dopamineText.Text = "After the dopamine binds to the receptors, pleasurable feelings or rewarding effects are produced. A special protein, called a dopamine transporter, then removes the dopamine from the synaptic clift and transports them back to the transmitting neuron.";
             }
@@ -219,6 +232,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_drug_stimulation.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 4;
                 videoLabel.Content = "5/9 Action Potential";
                 dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some drugs, such as alcohol, heroine, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
             }
@@ -229,6 +243,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_blocked_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 5;
                 videoLabel.Content = "6/9 Drug Binding";
                 dopamineText.Text = "Drugs, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
             }
@@ -239,6 +254,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_continuous_dopamine_stimulation.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 6;
                 videoLabel.Content = "7/9 Overstimulation";
                 dopamineText.Text = "Different drugs act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by drug users. ";
             }
@@ -249,6 +265,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_tolerance.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 7;
                 videoLabel.Content = "8/9 Tolerance";
                 dopamineText.Text = "Drugs will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the drug.";
             }
@@ -259,6 +276,7 @@ namespace InteractiveBrain
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri("Resources/gif_increased_tolerance.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
+                videoList.SelectedIndex = 8;
                 videoLabel.Content = "9/9 Increased Tolerance";
                 dopamineText.Text = "Eventually, even the drug loses its ability to reward and higher doses are required to achieve the rewarding effect. This leads to drug overdose.";
             }

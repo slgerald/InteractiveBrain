@@ -32,7 +32,8 @@ namespace InteractiveBrain
             rehabLabel.Visibility = Visibility.Hidden;
             drugButton.Visibility = Visibility.Hidden;
             rehabButton.Visibility = Visibility.Visible;
-            rehabImageRight.Visibility = Visibility.Hidden;
+            rehabImageRight1.Visibility = Visibility.Hidden;
+            rehabImageRight2.Visibility = Visibility.Hidden;
             rehabImageLeft.Visibility = Visibility.Hidden;
             rehabSlider.Visibility = Visibility.Hidden;
         }
@@ -100,7 +101,7 @@ namespace InteractiveBrain
             drugList.Visibility = Visibility.Hidden;
 
             rehabSlider.Visibility = Visibility.Visible;
-            rehabImageRight.Visibility = Visibility.Visible;
+            rehabImageRight1.Visibility = Visibility.Visible;
             rehabImageLeft.Visibility = Visibility.Visible;
             rehabImageLeft.Source = new BitmapImage(new Uri("Resources/normal_brain.png", UriKind.Relative));
             drugButton.Visibility = Visibility.Visible;
@@ -110,19 +111,17 @@ namespace InteractiveBrain
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            /*
+            
             if (rehabSlider.Value == 1)
             {
-                rehabImageRight.Visibility = Visibility.Hidden;
-                rehabImageRight.Source = new BitmapImage(new Uri("Resources/brain_on_meth_1month.PNG", UriKind.Relative));
-                rehabImageRight.Visibility = Visibility.Visible;
+                rehabImageRight2.Visibility = Visibility.Hidden;
+                rehabImageRight1.Visibility = Visibility.Visible;
             } else if (rehabSlider.Value == 2)
             {
-                rehabImageRight.Visibility = Visibility.Hidden;
-                rehabImageRight.Source = new BitmapImage(new Uri("Resources/brain_on_meth_14month.PNG", UriKind.Relative));
-                rehabImageRight.Visibility = Visibility.Visible;
+                rehabImageRight1.Visibility = Visibility.Hidden;
+                rehabImageRight2.Visibility = Visibility.Visible;
             }
-            */
+     
         }
 
         private void drugButton_Click(object sender, RoutedEventArgs e)
@@ -134,7 +133,8 @@ namespace InteractiveBrain
             drugList.Visibility = Visibility.Visible;
 
             rehabSlider.Visibility = Visibility.Hidden;
-            rehabImageRight.Visibility = Visibility.Hidden;
+            rehabImageRight1.Visibility = Visibility.Hidden;
+            rehabImageRight2.Visibility = Visibility.Hidden;
             rehabImageLeft.Visibility = Visibility.Hidden;
             drugButton.Visibility = Visibility.Hidden;
             rehabLabel.Visibility = Visibility.Hidden;
