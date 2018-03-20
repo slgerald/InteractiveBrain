@@ -32,7 +32,7 @@ namespace InteractiveBrain
         string selectedPort;
         string append;
         string id = "9999";
-        string[] lightingSequenceFromDatabase;
+        string[] lightingSequenceFromDatabase = {"","","","","","","","","" };
         
             
         
@@ -126,6 +126,7 @@ namespace InteractiveBrain
                        Console.WriteLine(lightingSequenceFromDatabase[n].ToString());
                         Thread.Sleep(20);//needed so not writing to port too quickly
                         SerialPort1.WriteLine("000000000");
+                        Thread.Sleep(500);
                         //Thread.Sleep(1);
                         n++;
                     }

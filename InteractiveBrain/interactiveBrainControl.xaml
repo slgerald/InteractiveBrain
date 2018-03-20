@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InteractiveBrain"
              mc:Ignorable="d" Height="600" Width="680">
-
+ 
     <Canvas Margin="0,0,0,0">
 
         <Popup PlacementTarget="{Binding ElementName=selectionMessageBox}" x:Name="connectionPopup" >
@@ -120,7 +120,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform  ScaleX="1.0" ScaleY="1.0"/>
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -132,7 +132,7 @@
             </Image.Style>
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ScaleTransform  ScaleX="1.0" ScaleY="1.0"/>
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
@@ -233,11 +233,7 @@
             </Image.RenderTransform>
         </Image>
         <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
-                </TransformGroup>
-            </Image.RenderTransform>
+           
         </Image>
         <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41" ToolTip="Initiate lighting sequence">
             <Button.Background>
@@ -255,7 +251,7 @@
             </Button.Background>
         </Button>
         <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="400" TextWrapping="Wrap" Canvas.Top="404" Width="190" FontSize="20" FontFamily="Calibri" />
-        <Border x:Name ="panelBorder" Width="190" Height="113" BorderBrush="Black" Canvas.Left="460" Canvas.Top="423" Visibility="Collapsed" PreviewMouseUp="ResultsStackMouseDown">
+        <Border x:Name ="panelBorder" Width="190" Height="113" BorderBrush="Black" Canvas.Left="400" Canvas.Top="432" Visibility="Collapsed" PreviewMouseUp="ResultsStackMouseDown">
 
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="resultsStack"></StackPanel>

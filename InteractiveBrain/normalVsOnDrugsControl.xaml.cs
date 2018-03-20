@@ -26,16 +26,18 @@ namespace InteractiveBrain
         {
             InitializeComponent();
 
+
+            //Can set Initial visibility in .xaml file
             leftImage.Visibility = Visibility.Visible;
             rightImage.Visibility = Visibility.Visible;
             drugLabel.Visibility = Visibility.Visible;
             rehabLabel.Visibility = Visibility.Hidden;
             drugButton.Visibility = Visibility.Hidden;
             rehabButton.Visibility = Visibility.Visible;
-            rehabImageRight1.Visibility = Visibility.Hidden;
-            rehabImageRight2.Visibility = Visibility.Hidden;
+          //  rehabImageRight1.Visibility = Visibility.Hidden;
+          //  rehabImageRight2.Visibility = Visibility.Hidden;
             rehabImageLeft.Visibility = Visibility.Hidden;
-            rehabSlider.Visibility = Visibility.Hidden;
+          //  rehabSlider.Visibility = Visibility.Hidden;
         }
 
         public static normalVsOnDrugsControl Instance
@@ -111,17 +113,31 @@ namespace InteractiveBrain
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            
+           
             if (rehabSlider.Value == 1)
             {
-                rehabImageRight2.Visibility = Visibility.Hidden;
-                rehabImageRight1.Visibility = Visibility.Visible;
-            } else if (rehabSlider.Value == 2)
-            {
-                rehabImageRight1.Visibility = Visibility.Hidden;
-                rehabImageRight2.Visibility = Visibility.Visible;
+                try
+                {
+                      rehabImageRight2.Visibility = Visibility.Hidden;
+                      rehabImageRight1.Visibility = Visibility.Visible;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
-     
+            else if (rehabSlider.Value == 2)
+            {
+                try
+                {
+                      rehabImageRight1.Visibility = Visibility.Hidden;
+                      rehabImageRight2.Visibility = Visibility.Visible;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
         }
 
         private void drugButton_Click(object sender, RoutedEventArgs e)
