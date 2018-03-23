@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Threading;
+using System.Drawing;
 
 namespace InteractiveBrain
 {
@@ -182,6 +183,7 @@ namespace InteractiveBrain
             originalTemporalLobeY = Canvas.GetTop((UIElement)temporalLobeBox);
             originalCerebellumX = Canvas.GetLeft((UIElement)cerebellumBox);
             originalCerebellumY = Canvas.GetTop((UIElement)cerebellumBox);
+
         }
         //When functions radio button is chosen
         //This function sets functions flag to 
@@ -189,6 +191,10 @@ namespace InteractiveBrain
         public void Functions_Checked(object sender, RoutedEventArgs e)
         {
             factsMessageBox.Text = "";
+            WhichFunction();
+        }
+        private void WhichFunction() {
+
             switch (storyboardFlag)
             {
                 case 1:
@@ -198,7 +204,7 @@ namespace InteractiveBrain
                     }
                     else
                     {
-                        factsMessageBox.Text = "Functions of the Frontal Lobe: " + changedFunctionsFrontalLobe;             
+                        factsMessageBox.Text = "Functions of the Frontal Lobe: " + changedFunctionsFrontalLobe;
                         Properties.Settings.Default.defaultFunctionsFrontalLobe = changedFunctionsFrontalLobe;
                         Properties.Settings.Default.Save();
                         defaultFunctionsFLFlag = true;
@@ -217,7 +223,7 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultFunctionsTLFlag = true;
                     }
-                        break;
+                    break;
                 case 3:
                     if (defaultFunctionsPLFlag)
                     {
@@ -258,7 +264,9 @@ namespace InteractiveBrain
                     }
                     break;
             }
+
         }
+
         //When healthy behaviors radio button is chosen 
         //This function sets healthyBehaviors flags to true 
         //and unhealthyBehaviors and functions to false 
@@ -266,11 +274,14 @@ namespace InteractiveBrain
         {
 
             factsMessageBox.Text = "";
+            WhichHealthyBehavior();
+        }
+        private void WhichHealthyBehavior() {
             switch (storyboardFlag)
             {
-              
+
                 case 1:
-                   if (defaultHBFLFlag)
+                    if (defaultHBFLFlag)
                     {
                         factsMessageBox.Text = "Examples Healthy Behaviors that affect the Frontal Lobe: " + defaultHealthyBehaviorsFrontalLobe;
                     }
@@ -281,7 +292,7 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultHBFLFlag = true;
                     }
-           
+
                     break;
                 case 2:
                     if (defaultHBTLFlag)
@@ -295,7 +306,7 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultHBTLFlag = true;
                     }
-             
+
                     break;
                 case 3:
                     if (defaultHBPLFlag)
@@ -337,6 +348,7 @@ namespace InteractiveBrain
                     }
                     break;
             }
+
         }
         //When the unhealthybehaviors radio button is chosen
         //This function set unhealthyBehaviors flags to true 
@@ -345,6 +357,9 @@ namespace InteractiveBrain
         {
 
             factsMessageBox.Text = "";
+            WhichUnhealthyBehavior();
+        }
+        private void WhichUnhealthyBehavior() {
             switch (storyboardFlag)
             {
                 case 1:
@@ -359,7 +374,7 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultUHBFLFlag = true;
                     }
-             
+
                     break;
                 case 2:
                     if (defaultUHBTLFlag)
@@ -373,7 +388,7 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultUHBTLFlag = true;
                     }
-    
+
                     break;
                 case 3:
                     if (defaultUHBPLFlag)
@@ -415,8 +430,9 @@ namespace InteractiveBrain
                     }
                     break;
             }
-        }
 
+
+        }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             // open the Popup if it isn't open already 
@@ -695,7 +711,16 @@ namespace InteractiveBrain
             }
             if (e.ClickCount == 2)
             {
-            
+                if (functions.IsChecked == true) {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked==true) {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true) {
+                    WhichUnhealthyBehavior();
+                }
+
                 //without reverseOn every other time autoreverse = true
                 if (sbFL.AutoReverse)
                     ReverseOff(1);
@@ -754,8 +779,19 @@ namespace InteractiveBrain
             }
             if (e.ClickCount == 2)
             {
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
+                }
 
-                
                 if (sbTL.AutoReverse)
                 {
                     ReverseOff(2);
@@ -819,6 +855,18 @@ namespace InteractiveBrain
                 {
                     ReverseOn(3);
                 }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
+                }
                 //Hide other parts and make facts box and go button visible
                 parietalLobeBox.SetValue(Canvas.LeftProperty, originalParietalLobeX);
                 parietalLobeBox.SetValue(Canvas.TopProperty, originalParietalLobeY);
@@ -870,6 +918,18 @@ namespace InteractiveBrain
                 else
                 {
                     ReverseOn(4);
+                }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
                 }
                 //Hide other parts and make facts box and go button visible
                 occipitalLobeBox.SetValue(Canvas.LeftProperty, originalOccipitalLobeX);
@@ -923,6 +983,18 @@ namespace InteractiveBrain
                 else
                 {
                     ReverseOn(5);
+                }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
                 }
                 //Hide other parts and make facts box and go button visible
                 cerebellumBox.SetValue(Canvas.LeftProperty, originalCerebellumX);
@@ -1183,7 +1255,62 @@ namespace InteractiveBrain
             functions.IsChecked = false;
             healthyBehaviors.IsChecked = false;
             unhealthyBehaviors.IsChecked = false;
-        } 
+        }
+        // Make a region representing the
+        // image's non-transparent pixels.
+        //from http://csharphelper.com/blog/2016/09/make-a-region-from-non-transparent-pixels-in-c/
+        public static Region MakeNonTransparentRegion(System.Windows.Controls.Image regionFromImage)
+        {
+            
+
+            Bitmap bm = new Bitmap(regionFromImage.Source.ToString());
+            if (bm == null) return null;
+
+            // Make the result region.
+            Region result = new Region();
+            result.MakeEmpty();
+
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(0, 0, 1, 1);
+            bool in_image = false;
+            for (int y = 0; y < bm.Height; y++)
+            {
+                for (int x = 0; x < bm.Width; x++)
+                {
+                    if (!in_image)
+                    {
+                        // We're not now in the non-transparent pixels.
+                        if (bm.GetPixel(x, y).A != 0)
+                        {
+                            // We just started into non-transparent pixels.
+                            // Start a Rectangle to represent them.
+                            in_image = true;
+                            rect.X = x;
+                            rect.Y = y;
+                            rect.Height = 1;
+                        }
+                    }
+                    else if (bm.GetPixel(x, y).A == 0)
+                    {
+                        // We are in the non-transparent pixels and
+                        // have found a transparent one.
+                        // Add the rectangle so far to the region.
+                        in_image = false;
+                        rect.Width = (x - rect.X);
+                        result.Union(rect);
+                    }
+                }
+
+                // Add the final piece of the rectangle if necessary.
+                if (in_image)
+                {
+                    in_image = false;
+                    rect.Width = (bm.Width - rect.X);
+                    result.Union(rect);
+                }
+            }
+
+            return result;
+        }
     }
 }
 

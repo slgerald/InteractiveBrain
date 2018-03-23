@@ -159,6 +159,11 @@ namespace InteractiveBrain
         //This function sets flags to true and false
         private void FunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            factsMessageBox.Text = "";
+            WhichFunction();
+
+        }
+        private void WhichFunction() {
             switch (storyboardFlag)
             {
                 case 1:
@@ -218,15 +223,12 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultFunctionsBSFlag = true;
                     }
-                
+
                     break;
 
             }
-
         }
-        //This function sets flags as true and false 
-        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
+        private void WhichHealthyBehavior() {
             switch (storyboardFlag)
             {
                 case 1:
@@ -289,11 +291,8 @@ namespace InteractiveBrain
                     break;
 
             }
-
         }
-        //This function set flags as true and false 
-        private void UnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
+        private void WhichUnhealthyBehavior() {
             switch (storyboardFlag)
             {
                 case 1:
@@ -359,6 +358,19 @@ namespace InteractiveBrain
                     break;
 
             }
+        }
+        //This function sets flags as true and false 
+        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+            factsMessageBox.Text = "";
+            WhichHealthyBehavior();
+        }
+        //This function set flags as true and false 
+        private void UnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            factsMessageBox.Text = "";
+            WhichUnhealthyBehavior();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -614,6 +626,18 @@ namespace InteractiveBrain
                     ReverseOff(1);
                 }
                 else { ReverseOn(1); }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
+                }
                 //Hide other parts and make facts box and go button visible
                 hippocampusBox.SetValue(Canvas.LeftProperty, originalHippocampusX);
                 hippocampusBox.SetValue(Canvas.TopProperty, originalHippocampusY);
@@ -664,6 +688,18 @@ namespace InteractiveBrain
                 if (sbA.AutoReverse)
                 { ReverseOff(2); }
                 else { ReverseOn(2); }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
+                }
                 amygdalaBox.SetValue(Canvas.LeftProperty, originalAmygdalaX);
                 amygdalaBox.SetValue(Canvas.TopProperty, originalAmygdalaY);
                 brainstemBox.Visibility = System.Windows.Visibility.Hidden;
@@ -710,7 +746,19 @@ namespace InteractiveBrain
                     if (sbPG.AutoReverse)
                     { ReverseOff(3); }
                     else { ReverseOn(3); }
-                    pituitaryGlandBox.SetValue(Canvas.LeftProperty, originalPituitaryGlandX);
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
+                }
+                pituitaryGlandBox.SetValue(Canvas.LeftProperty, originalPituitaryGlandX);
                     pituitaryGlandBox.SetValue(Canvas.TopProperty, originalPituitaryGlandY);
                     brainstemBox.Visibility = System.Windows.Visibility.Hidden;
                     amygdalaBox.Visibility = System.Windows.Visibility.Hidden;
@@ -759,6 +807,18 @@ namespace InteractiveBrain
                     ReverseOff(4);
                 }
                 else { ReverseOn(4); }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
+                }
                 brainstemBox.SetValue(Canvas.LeftProperty, originalBrainstemX);
                 brainstemBox.SetValue(Canvas.TopProperty, originalBrainstemY);
 

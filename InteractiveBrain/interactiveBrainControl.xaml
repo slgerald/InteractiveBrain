@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InteractiveBrain"
              mc:Ignorable="d" Height="600" Width="680">
- 
+
     <Canvas Margin="0,0,0,0">
 
         <Popup PlacementTarget="{Binding ElementName=selectionMessageBox}" x:Name="connectionPopup" >
@@ -220,7 +220,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="87" Width="99" Canvas.Top="193" x:Name="cerebellumImage" Canvas.Left="191">
+        <Image Height="87" Width="99" Canvas.Top="193" x:Name="cerebellumImage" Canvas.Left="191" OpacityMask="Black">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property= "Source" Value="Resources/cerebellum.png"/>
@@ -233,7 +233,7 @@
             </Image.RenderTransform>
         </Image>
         <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png">
-           
+
         </Image>
         <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41" ToolTip="Initiate lighting sequence">
             <Button.Background>

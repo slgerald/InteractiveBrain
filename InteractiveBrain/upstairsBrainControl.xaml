@@ -165,7 +165,8 @@
         </TextBox>
         <Canvas    Height="416" Width="661" Canvas.Left="9" Canvas.Top="104" x:Name="pictureCanvas" Background="Transparent" AllowDrop="True" >
             <Image Height="335" Width="460" x:Name="cutoutUpstairsBrain" Visibility="Visible" Source="Resources/UpstairsBrainCutout.png" Canvas.Left="96"/>
-            <Image x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="254" VerticalAlignment="Top" Width="250" Source="Resources/frontalLobe.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="96" Canvas.Top="16" ToolTip="Frontal Lobe" >
+            <local:OpaqueClickableImage x:Name="frontalLobeBox" HorizontalAlignment="Left" Height="254" VerticalAlignment="Top" Width="250" Source="Resources/frontalLobe.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="96" Canvas.Top="16" ToolTip="Frontal Lobe" >
+
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/frontalLobe.png"/>
@@ -182,8 +183,8 @@
                         <TranslateTransform x:Name="translateTransformFL" X="0" Y="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
-            <Image x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="141" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.5,0.5" Source="Resources/occipitalLobe.png" Canvas.Left="468" Canvas.Top="90" ToolTip="Occipital Lobe">
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="occipitalLobeBox" HorizontalAlignment="Left" Height="141" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.5,0.5" Source="Resources/occipitalLobe.png" Canvas.Left="468" Canvas.Top="90" ToolTip="Occipital Lobe">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/occipitalLobe.png"/>
@@ -200,8 +201,8 @@
                         <TranslateTransform x:Name="translateTransformOL" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
-            <Image x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="175" Margin="0" Canvas.Top ="16" Canvas.Left="253" VerticalAlignment="Top" Width="253" Source="Resources/parietalLobe.png" ToolTip="Parietal Lobe" RenderTransformOrigin="0.5,0.5">
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="parietalLobeBox" HorizontalAlignment="Left" Height="175" Margin="0" Canvas.Top ="16" Canvas.Left="253" VerticalAlignment="Top" Width="253" Source="Resources/parietalLobe.png" ToolTip="Parietal Lobe" RenderTransformOrigin="0.5,0.5">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/parietalLobe.png"/>
@@ -218,8 +219,8 @@
                         <TranslateTransform x:Name="translateTransformPL" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
-            <Image x:Name="temporalLobeBox" Canvas.Left="204" Canvas.Top ="88" Height="206" VerticalAlignment="Top" Width="287" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png" ToolTip="Temporal Lobe">
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="temporalLobeBox" Canvas.Left="204" Canvas.Top ="88" Height="206" VerticalAlignment="Top" Width="287" RenderTransformOrigin="0.5,0.5" Source="Resources/temporalLobe.png" ToolTip="Temporal Lobe">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/temporalLobe.png"/>
@@ -236,8 +237,8 @@
                         <TranslateTransform x:Name="translateTransformTL" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
-            <Image x:Name="cerebellumBox" HorizontalAlignment="Left" Height="108" VerticalAlignment="Top" Width="179" Source="Resources/cerebellum.png" Canvas.Left="337" Canvas.Top="217" ToolTip="Cerebellum" RenderTransformOrigin="0.5,0.5">
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="cerebellumBox" HorizontalAlignment="Left" Height="108" VerticalAlignment="Top" Width="179" Source="Resources/cerebellum.png" Canvas.Left="337" Canvas.Top="217" ToolTip="Cerebellum" RenderTransformOrigin="0.5,0.5">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/cerebellum.png"/>
@@ -254,7 +255,7 @@
                         <TranslateTransform x:Name="translateTransformC" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
+            </local:OpaqueClickableImage>
         </Canvas>
         <Button x:Name ="gotItButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="40" Click="GotItButton_Click" Canvas.Left="323" Canvas.Top="480" FontSize="18" Height="40" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" BorderBrush="{x:Null}">
             <Button.Background>
