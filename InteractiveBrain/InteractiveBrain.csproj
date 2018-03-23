@@ -369,6 +369,11 @@
     <Resource Include="Resources\brain_on_meth_1month.PNG" />
     <Resource Include="Resources\brain_on_meth_14month.PNG" />
     <Resource Include="Resources\cocaine_brain.PNG" />
+    <Resource Include="Resources\brain_activity_none.PNG" />
+    <Resource Include="Resources\brain_activity_walking.PNG" />
+    <Resource Include="Resources\brain_music_activity.PNG" />
+    <Resource Include="Resources\brain_music_none.PNG" />
+    <Resource Include="Resources\brain_reading.png" />
     <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -402,11 +407,11 @@
     <Resource Include="Resources\gray_matter_meter.PNG" />
     <Resource Include="Resources\gray_matter_teen.PNG" />
     <Resource Include="Resources\gray_matter_young_adult.PNG" />
-    <Resource Include="Resources\non_alcoholic_brain.PNG" />
-    <Resource Include="Resources\non_cocaine_brain.PNG" />
-    <Resource Include="Resources\non_smoker_brain.PNG" />
     <Resource Include="Resources\normal_brain.PNG" />
     <Resource Include="Resources\smoker_brain.PNG" />
+    <Resource Include="Resources\nonalcholic_brain.PNG" />
+    <Resource Include="Resources\noncocaine_brain.PNG" />
+    <Resource Include="Resources\nonsmoker_brain.PNG" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
