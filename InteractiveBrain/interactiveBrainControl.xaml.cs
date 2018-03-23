@@ -50,7 +50,7 @@ namespace InteractiveBrain
         DoubleAnimation growXAnimation = new DoubleAnimation();
         DoubleAnimation growYAnimation = new DoubleAnimation();
         DoubleAnimation glowAnimation = new DoubleAnimation();//animation used for the glowing effect
-        ScaleTransform scale = new ScaleTransform(1.0, 1.0);
+        ScaleTransform scale = new ScaleTransform();
 
         //THe following variables are for serial communication
         SerialPort SerialPort1; //SerialPort for serial communication with brain
@@ -65,6 +65,7 @@ namespace InteractiveBrain
         ListBoxItem newListBoxItem = new ListBoxItem();
         string newListBoxItemContent;
         bool defaultFlag = false;
+        bool selectionMade = false;
 
         List<string> col = new List<string>();//Used for the serach AutocompleteTextbox
         //The following array will help determine which parts should illuminate on the app and interactive brain
@@ -142,6 +143,7 @@ namespace InteractiveBrain
                 MessageBox.Show(ex.ToString());
                 Console.WriteLine(ex);
             }
+            
             //This function is used for the listbox not search autocomplete textbox
             Fill_ListBox();
         }
@@ -222,7 +224,7 @@ namespace InteractiveBrain
                 selectedPort = comPortNumberComboBox.SelectedItem.ToString();
                 SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
                 SerialPort1.Open();
-                Thread.Sleep(250);
+                Thread.Sleep(10);
                 SerialPort1.Close();
             }
 
@@ -268,8 +270,7 @@ namespace InteractiveBrain
         private void EditHealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             errorMessageTextBlock.Text = "";
-            editHealthyBehaviorsFlag = true;
-          
+            editHealthyBehaviorsFlag = true; 
             editingListBox.Items.Clear();
             Fill_ListBox();
         }
@@ -392,7 +393,7 @@ namespace InteractiveBrain
                 editOccipitalLobeCheckbox.IsChecked = false;
                 errorTextBlock.Text = "Saved.";
             }
-            AddNewItemToDatabase();
+          //  AddNewItemToDatabase();
         }
         //resest the editListsPopup
         private void CloseEditListsPopupClicked(object sender, RoutedEventArgs e)
@@ -400,7 +401,6 @@ namespace InteractiveBrain
             // if the Popup is open, then close it 
             if (editListsPopup.IsOpen) { editListsPopup.IsOpen = false; }
             editHealthyBehaviorsFlag = false;
-           
             editingListBox.Items.Clear();
             editHealthyBehaviorsRadioButton.IsChecked = false;
             errorMessageTextBlock.Text = "";
@@ -441,35 +441,64 @@ namespace InteractiveBrain
         {
 
             amygdalaImage.BeginAnimation(OpacityProperty, null);
-
+       
             pituitaryGlandImage.BeginAnimation(OpacityProperty, null);
-            hippocampusImage.BeginAnimation(OpacityProperty, null);
+          hippocampusImage.BeginAnimation(OpacityProperty, null);
+       
             brainstemImage.BeginAnimation(OpacityProperty, null);
+        
             frontalLobeImage.BeginAnimation(OpacityProperty, null);
+         
             temporalLobeImage.BeginAnimation(OpacityProperty, null);
+          
             parietalLobeImage.BeginAnimation(OpacityProperty, null);
+         
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
+          
             cerebellumImage.BeginAnimation(OpacityProperty, null);
-            cerebellumImage.BeginAnimation(ScaleTransform.ScaleXProperty, null);
-            storyboard.Stop();
+        
 
-            //  if (isConnected)
-            //  {
-            //send serial message for stop
-            //  }
+            if (selectionMade) {
+                storyboard.Children.Remove(growXAnimation);
+                storyboard.Children.Remove(growYAnimation);
+                selectionMade = false;
+            }
+           brainstemImage.RenderTransform = null;
+           cerebellumImage.RenderTransform = null;
+           hippocampusImage.RenderTransform = null;
+            frontalLobeImage.RenderTransform = null;
+            temporalLobeImage.RenderTransform = null;
+            occipitalLobeImage.RenderTransform = null;
+            parietalLobeImage.RenderTransform = null;
+            amygdalaImage.RenderTransform = null;
+            pituitaryGlandImage.RenderTransform = null;
+
+            
+            if (isConnected)
+              {
+                //send serial message for stop
+                try
+                {
+                    // lightingSequenceFromDatabase = "0000000000".ToArray();
+                    SerialPort1.DiscardOutBuffer();
+                    SerialPort1.Open();
+
+                    SerialPort1.Write("000000000");
+                    Thread.Sleep(20);
+                    SerialPort1.Close();
+                }
+                catch { }
+              }
         }
 
 
         private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = true;
-           
             healthybehaviorBOOL = false;
             healthyBehaviorsListBox.SelectedItem = false;
-           selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
-
+            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
             ListBoxSelectionChanged();
-
         }
 
 
@@ -497,91 +526,89 @@ namespace InteractiveBrain
         private void Cerebellum_Selected(object sender, RoutedEventArgs e)
         {
             // displayMessage = "Note the LED corresponding to the Cerebellum light up";
-            lightingSequenceFromDatabase = "1000000000".ToArray();
+            lightingSequenceFromDatabase = "100000000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void Brainstem_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Brainstem light up";
-            lightingSequenceFromDatabase = "0100000000".ToArray();
+           // displayMessage = "Note the LED corresponding to the Brainstem light up";
+            lightingSequenceFromDatabase = "010000000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void PituitaryGland_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
-            lightingSequenceFromDatabase = "0010000000".ToArray();
+           // displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
+            lightingSequenceFromDatabase = "001000000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void Amygdala_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Amygdala light up";
-            lightingSequenceFromDatabase = "0001000000".ToArray();
-            //  WriteLightingSequenceMessage();
+          //  displayMessage = "Note the LED corresponding to the Amygdala light up";
+            lightingSequenceFromDatabase = "000100000".ToArray();
+//WriteLightingSequenceMessage();
         }
 
         private void Hippocampus_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Hippocampus light up";
-            lightingSequenceFromDatabase = "0000100000".ToArray();
+          //  displayMessage = "Note the LED corresponding to the Hippocampus light up";
+            lightingSequenceFromDatabase = "000010000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void TemporalLobe_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
-            lightingSequenceFromDatabase = "0000010000".ToArray();
-            //  WriteLightingSequenceMessage();
-        }
-        private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
-        {
-            displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
-
-            lightingSequenceFromDatabase = "0000001000".ToArray();
+          //  displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
+            lightingSequenceFromDatabase = "000001000".ToArray();
             //  WriteLightingSequenceMessage();
         }
         private void OccipitalLobe_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
-            lightingSequenceFromDatabase = "0000000100".ToArray();
-            //  WriteLightingSequenceMessage();
+            //   displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
+            lightingSequenceFromDatabase = "000000100".ToArray();
+            //WriteLightingSequenceMessage();
         }
+        private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
+        {
+           // displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
+
+            lightingSequenceFromDatabase = "000000010".ToArray();
+           //   WriteLightingSequenceMessage();
+        }
+      
 
         private void FrontalLobe_Selected(object sender, RoutedEventArgs e)
         {
-            displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
-            lightingSequenceFromDatabase = "0000000010".ToArray();
-            //  WriteLightingSequenceMessage();
+           // displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
+            lightingSequenceFromDatabase = "000000001".ToArray();
+           
         }
         //This function determines what happens when the Go Button is Clicked
         //Depending on the selection, make affected areas glow 
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
+            selectionMade = true;
 
             glowAnimation.From = 1.0;
             glowAnimation.To = 0.4;
             glowAnimation.Duration = new Duration(TimeSpan.FromSeconds(.5));
             glowAnimation.AutoReverse = true;
             glowAnimation.RepeatBehavior = RepeatBehavior.Forever;
-
-            //button.RenderTransformOrigin = new Point(0.5, 0.5);
-          //  button.RenderTransform = scale;
-
-          //  DoubleAnimation growAnimation = new DoubleAnimation();
             growXAnimation.Duration = TimeSpan.FromMilliseconds(500);
-            growYAnimation.Duration = TimeSpan.FromMilliseconds(500);
-            growXAnimation.From = 1;
+           growYAnimation.Duration = TimeSpan.FromMilliseconds(500);
+           growXAnimation.From = 1;
             growYAnimation.From = 1;
-            growXAnimation.To = 1.25;
-            growYAnimation.To = 1.25;
+            growXAnimation.To = 1.1;
+           growYAnimation.To = 1.1;
 
             growXAnimation.AutoReverse = true;
             growYAnimation.AutoReverse = true;
-            growXAnimation.RepeatBehavior = RepeatBehavior.Forever;
+           growXAnimation.RepeatBehavior = RepeatBehavior.Forever;
             growYAnimation.RepeatBehavior = RepeatBehavior.Forever;
             
-            storyboard.Children.Add(growXAnimation);
-            storyboard.Children.Add(growYAnimation);
+          storyboard.Children.Add(growXAnimation);
+          storyboard.Children.Add(growYAnimation);
             Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
             Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
+
             if (brainPart)
             {
                 
@@ -654,75 +681,167 @@ namespace InteractiveBrain
         {
             if (lightingSequenceFromDatabase[0] == '1')
             {
-               cerebellumImage.BeginAnimation(OpacityProperty, glowAnimation);
-               cerebellumImage.RenderTransform = scale;
-               Storyboard.SetTarget(growXAnimation, cerebellumImage);
-               Storyboard.SetTarget(growYAnimation,cerebellumImage);
-               storyboard.Begin();
+                cerebellumImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+      
+                cerebellumImage.BeginAnimation(OpacityProperty, glowAnimation);
+                
+                storyboard.Stop();
+              
+                Storyboard.SetTarget(growXAnimation, cerebellumImage);
+                Storyboard.SetTarget(growYAnimation, cerebellumImage);
+    
+                storyboard.Begin();
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                // Put the image currently being dragged on top of the others
+                Canvas canvas = cerebellumImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(cerebellumImage);
+                Canvas.SetZIndex(cerebellumImage, top + 1);
             }
             if (lightingSequenceFromDatabase[1] == '1')
             {
-                brainstemImage.BeginAnimation(OpacityProperty, glowAnimation);
                 brainstemImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+         
+                brainstemImage.BeginAnimation(OpacityProperty, glowAnimation);
+            
+              
+                storyboard.Stop();
+        
                 Storyboard.SetTarget(growXAnimation, brainstemImage);
                 Storyboard.SetTarget(growYAnimation, brainstemImage);
                 storyboard.Begin();
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[2] == '1')
             {
-                pituitaryGlandImage.BeginAnimation(OpacityProperty, glowAnimation);
                 pituitaryGlandImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+
+                pituitaryGlandImage.BeginAnimation(OpacityProperty, glowAnimation);
+          
+                
+                storyboard.Stop();
+         
                 Storyboard.SetTarget(growXAnimation, pituitaryGlandImage);
                 Storyboard.SetTarget(growYAnimation, pituitaryGlandImage);
+                Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
+                Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
+
                 storyboard.Begin();
+                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[3] == '1')
             {
-                amygdalaImage.BeginAnimation(OpacityProperty, glowAnimation);
                 amygdalaImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+         
+                amygdalaImage.BeginAnimation(OpacityProperty, glowAnimation);
+              
+                storyboard.Stop();
+              
                 Storyboard.SetTarget(growXAnimation, amygdalaImage);
                 Storyboard.SetTarget(growYAnimation, amygdalaImage);
+               
                 storyboard.Begin();
+                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[4] == '1')
             {
-                hippocampusImage.BeginAnimation(OpacityProperty, glowAnimation);
                 hippocampusImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+        
+                hippocampusImage.BeginAnimation(OpacityProperty, glowAnimation);
+      
+                
+                storyboard.Stop();
+
+                Storyboard.SetTarget(storyboard, hippocampusImage);
+       
                 Storyboard.SetTarget(growXAnimation, hippocampusImage);
                 Storyboard.SetTarget(growYAnimation, hippocampusImage);
+          
                 storyboard.Begin();
+                  storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
             }
             if (lightingSequenceFromDatabase[5] == '1')
             {
-                temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                 temporalLobeImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+               temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+               
+                storyboard.Stop();
+     
                 Storyboard.SetTarget(growXAnimation, temporalLobeImage);
                 Storyboard.SetTarget(growYAnimation, temporalLobeImage);
+            
                 storyboard.Begin();
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
+
+                // Put the image currently being dragged on top of the others
+                Canvas canvas = temporalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas.SetZIndex(temporalLobeImage, top + 1);
             }
             if (lightingSequenceFromDatabase[6] == '1')
             {
-                occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
-               occipitalLobeImage.RenderTransform = scale;
-                Storyboard.SetTarget(growXAnimation, occipitalLobeImage);
+                occipitalLobeImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+               occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+             
+                
+                storyboard.Stop();
+
+               Storyboard.SetTarget(growXAnimation, occipitalLobeImage);
                 Storyboard.SetTarget(growYAnimation, occipitalLobeImage);
+           
                 storyboard.Begin();
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                Canvas canvas = occipitalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas.SetZIndex(occipitalLobeImage, top + 1);
             }
             if (lightingSequenceFromDatabase[7] == '1')
             {
-                parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                 parietalLobeImage.RenderTransform = scale;
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+              parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+           
+                
+                storyboard.Stop();
                 Storyboard.SetTarget(growXAnimation, parietalLobeImage);
                 Storyboard.SetTarget(growYAnimation, parietalLobeImage);
-                storyboard.Begin();
+              storyboard.Begin();
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                Canvas canvas = parietalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas.SetZIndex(parietalLobeImage, top + 1);
             }
             if (lightingSequenceFromDatabase[8] == '1')
             {
-                frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                 frontalLobeImage.RenderTransform = scale;
-                Storyboard.SetTarget(growXAnimation, frontalLobeImage);
+                scale.ScaleX = 1.0;
+                scale.ScaleY = 1.0;
+            frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+             
+                
+                storyboard.Stop();
+               Storyboard.SetTarget(growXAnimation, frontalLobeImage);
                 Storyboard.SetTarget(growYAnimation, frontalLobeImage);
-                storyboard.Begin();
+             storyboard.Begin();
+               storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                Canvas canvas = temporalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas.SetZIndex(parietalLobeImage, top + 1);
             }
             WriteLightingSequenceMessage();
         }
@@ -731,21 +850,27 @@ namespace InteractiveBrain
         private void WriteLightingSequenceMessage()
         {
 
-            //open serial port
-            //Add raspberrypi identifier(character array)
-            //lightingSequenceFromDatabase 
-            //concatenate all the parts in a character array
-            //Send serial message for stop to turn off all the lights
-            //should i wait a few milliseconds?
-            //character array as string
-            // Convert charArray as string, because zeros may be read as nulls
-            //close serial port
+            //1. open serial port
+            //2. Add raspberrypi identifier(character array)          
+            //3. lightingSequenceFromDatabase 
+            //4. concatenate all the parts in a character array
+            //5. Send serial message for stop to turn off all the lights
+            //6. Wait 20 milliseconds
+            //7. Convert charArray as string, because zeros may be read as nulls
+            //8. close serial port
             if (isConnected)
             {
                 try
                 {
                     SerialPort1.Open();
-                    // SerialPort1.Write(new string(concatenateArray));
+                    string id = "9999";
+                    string ending = "n";
+                    Console.WriteLine("Serial Port just opened");
+                    // string concatenateArray = id + lightingSequenceFromDatabase.ToArray() + ending;
+
+                    Console.WriteLine(CharArrayToString(lightingSequenceFromDatabase));
+                    SerialPort1.Write(CharArrayToString(lightingSequenceFromDatabase));
+                    Thread.Sleep(20);
                     SerialPort1.Close();
                 }
                 catch (UnauthorizedAccessException ex)
@@ -762,7 +887,7 @@ namespace InteractiveBrain
             }
             else
             {
-                Console.WriteLine("Not connected to serial port to write serial message");
+                Console.WriteLine("Not connected to serial port to send selection to Brain");
             }
 
         }
@@ -810,7 +935,8 @@ namespace InteractiveBrain
         
         private void SearchTextBox_KeyUp(object sender, KeyboardEventArgs e)
         {
-            bool found = false;
+            ListBoxSelectionChanged();
+          //  bool found = false;
             border = (resultsStack.Parent as ScrollViewer).Parent as Border;
             string query_Two = (sender as TextBox).Text;
 
@@ -837,7 +963,7 @@ namespace InteractiveBrain
                 {
                     // The word starts with this... Autocomplete must work   
                     addItem(obj, "PeachPuff");
-                    found = true;
+                  //  found = true;
                 }
                 else
                 {
@@ -937,15 +1063,14 @@ namespace InteractiveBrain
                     {
                         healthyBehaviorListBoxItemContent = dr.GetString(1);
                         li.Content = healthyBehaviorListBoxItemContent;
-
                         editingListBox.Items.Add(li);
                         li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 16;
                     }
                      else
                      {
-                     healthyBehaviorListBoxItemContent = dr.GetString(1);
-                      li.Content = healthyBehaviorListBoxItemContent;
+                        healthyBehaviorListBoxItemContent = dr.GetString(1);
+                        li.Content = healthyBehaviorListBoxItemContent;
                         healthyBehaviorsListBox.Items.Add(li);
                         li.FontSize = 20;
                         li.FontFamily = new FontFamily("Calibri");
@@ -965,12 +1090,9 @@ namespace InteractiveBrain
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             int index = 0;
             int changingIndex = 0;
-            while (index < editingListBox.Items.Count)
+            while (changingIndex < editingListBox.Items.Count+1)
             {
-              
-                changingIndex = index;
-                Console.WriteLine(changingIndex);
-                
+                Console.WriteLine(changingIndex);  
                 try
                 {
                    // string query;
@@ -987,8 +1109,8 @@ namespace InteractiveBrain
                 {
                     Console.WriteLine(ex);
                 }
-
                 index++;
+                changingIndex++;
             }
         }
         private void AddNewItemToDatabase()
@@ -996,8 +1118,8 @@ namespace InteractiveBrain
             ListBoxItem li = new ListBoxItem();
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             //string query;
-            index = editingListBox.Items.Count - 1;
-
+            index = editingListBox.Items.Count ;
+            col.Add(newListBoxItemContent);
             try
             {
                 sqlitecon.Open();
@@ -1013,8 +1135,7 @@ namespace InteractiveBrain
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }
-            col.Add(newListBoxItemContent);
+            }        
             UpdateIndices();
             Fill_ListBox();
         }
@@ -1041,8 +1162,7 @@ namespace InteractiveBrain
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }
-            
+            }    
             Fill_ListBox();
             UpdateIndices();
         }

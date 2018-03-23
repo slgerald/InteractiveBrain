@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Threading;
+using System.Drawing;
 
 namespace InteractiveBrain
 {
@@ -26,9 +27,7 @@ namespace InteractiveBrain
         private static upstairsBrainControl _instance; //render userControl based on button pressed
        
         //flags used to determine which radio button has been used 
-        bool functionsFlag = false; //The functions flag used to ensure functions are listed in the facts message box
-        bool healthyBehaviorsFlag = false; //The healthyBehaviorsFlag is used to ensure healthy behaviors are listed in the facts message box
-        bool unhealthyBehaviorsFlag=false; //The unhealthybehaviorsflag is used to ensure unhealthy behaviors are listed in the facts message box
+      
 
         //flags used to determine which radio button has been used on the editPopup
         bool editFunctionsFlag = false;
@@ -67,8 +66,8 @@ namespace InteractiveBrain
         string changedFactsMessageBoxText;//used to save content of textbox in editPopup
 
         //Initialize texts for Upstairs Brain 
-        string defaultFunctionsFrontalLobe = Properties.Settings.Default.defaultFunctionsFrontalLobe;
         string changedFunctionsFrontalLobe = null;
+        string defaultFunctionsFrontalLobe = Properties.Settings.Default.defaultFunctionsFrontalLobe;
         bool defaultFunctionsFLFlag = true;
         string defaultHealthyBehaviorsFrontalLobe = Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe;
         string changedHealthyBehaviorsFrontalLobe = null;
@@ -78,7 +77,7 @@ namespace InteractiveBrain
         bool defaultUHBFLFlag = true;
 
         string changedFunctionsTemporalLobe = null;
-            string defaultFunctionsTemporalLobe = Properties.Settings.Default.defaultFunctionsTemporalLobe;
+        string defaultFunctionsTemporalLobe = Properties.Settings.Default.defaultFunctionsTemporalLobe;
         bool defaultFunctionsTLFlag=true;
         string changedHealthyBehaviorsTemporalLobe = null;
         string defaultHealthyBehaviorsTemporalLobe = Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
@@ -140,8 +139,7 @@ namespace InteractiveBrain
         public upstairsBrainControl()
         {
             InitializeComponent();
-            functions.IsChecked = true;
-
+   
             //Event handlers for the images and gotItButton
             frontalLobeBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(FrontalLobeBox_MouseDown);
             frontalLobeBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
@@ -185,73 +183,105 @@ namespace InteractiveBrain
             originalTemporalLobeY = Canvas.GetTop((UIElement)temporalLobeBox);
             originalCerebellumX = Canvas.GetLeft((UIElement)cerebellumBox);
             originalCerebellumY = Canvas.GetTop((UIElement)cerebellumBox);
+
         }
         //When functions radio button is chosen
         //This function sets functions flag to 
         //true and healthyBehaviors and unhealthybehaviors to false
-        private void Functions_Checked(object sender, RoutedEventArgs e)
+        public void Functions_Checked(object sender, RoutedEventArgs e)
         {
-            functionsFlag = true;
-            healthyBehaviorsFlag = false;
-            unhealthyBehaviorsFlag = false;
             factsMessageBox.Text = "";
+            WhichFunction();
+        }
+        private void WhichFunction() {
+
             switch (storyboardFlag)
             {
                 case 1:
                     if (defaultFunctionsFLFlag)
                     {
-                        factsMessageBox.Text = "Functions of the Frontal Lobe: " + defaultFunctionsFrontalLobe;
+                        factsMessageBox.Text = "Functions of the Frontal Lobe: " + Properties.Settings.Default.defaultFunctionsFrontalLobe;
                     }
                     else
                     {
                         factsMessageBox.Text = "Functions of the Frontal Lobe: " + changedFunctionsFrontalLobe;
-                        defaultFunctionsFrontalLobe = changedFunctionsFrontalLobe;
                         Properties.Settings.Default.defaultFunctionsFrontalLobe = changedFunctionsFrontalLobe;
                         Properties.Settings.Default.Save();
                         defaultFunctionsFLFlag = true;
                     }
-                //    healthyBehaviors.IsEnabled = false;
-                 //   unhealthyBehaviors.IsEnabled = false;
                     break;
                 case 2:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultFunctionsTLFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Temporal Lobe: " + Properties.Settings.Default.defaultFunctionsTemporalLobe;
+
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Functions of Temporal Lobe: " + changedFunctionsTemporalLobe;
+                        Properties.Settings.Default.defaultFunctionsTemporalLobe = changedFunctionsTemporalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultFunctionsTLFlag = true;
+                    }
                     break;
                 case 3:
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultFunctionsPLFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Parietal Lobe: " + Properties.Settings.Default.defaultFunctionsParietalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Functions of the Parietal Lobe: " + changedFunctionsParietalLobe;
+                        Properties.Settings.Default.defaultFunctionsParietalLobe = changedFunctionsParietalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultFunctionsPLFlag = true;
+                    }
                     break;
                 case 4:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultFunctionsOLFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Occipital Lobe: " + Properties.Settings.Default.defaultFunctionsOccipitalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Functions of the Occipital Lobe: " + changedFunctionsOccipitalLobe;
+                        Properties.Settings.Default.defaultFunctionsOccipitalLobe = changedFunctionsOccipitalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultFunctionsOLFlag = true;
+                    }
                     break;
                 case 5:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultFunctionsCFlag)
+                    {
+                        factsMessageBox.Text = "Functions of the Cerebellum: " + Properties.Settings.Default.defaultFunctionsCerebellum;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Functions of the Cerebellum: " + changedFunctionsCerebellum;
+                        Properties.Settings.Default.defaultFunctionsCerebellum = changedFunctionsCerebellum;
+                        Properties.Settings.Default.Save();
+                        defaultFunctionsCFlag = true;
+                    }
                     break;
             }
+
         }
+
         //When healthy behaviors radio button is chosen 
         //This function sets healthyBehaviors flags to true 
         //and unhealthyBehaviors and functions to false 
         private void HealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
-            healthyBehaviorsFlag = true;
-            functionsFlag = false;
-            unhealthyBehaviorsFlag = false;
+
             factsMessageBox.Text = "";
+            WhichHealthyBehavior();
+        }
+        private void WhichHealthyBehavior() {
             switch (storyboardFlag)
             {
+
                 case 1:
-                   if (defaultHBFLFlag)
+                    if (defaultHBFLFlag)
                     {
                         factsMessageBox.Text = "Examples Healthy Behaviors that affect the Frontal Lobe: " + defaultHealthyBehaviorsFrontalLobe;
                     }
@@ -262,44 +292,74 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultHBFLFlag = true;
                     }
-                //    functions.IsEnabled = false;
-                 //   unhealthyBehaviors.IsEnabled = false;
+
                     break;
                 case 2:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultHBTLFlag)
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + changedHealthyBehaviorsTemporalLobe;
+                        Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe = changedHealthyBehaviorsTemporalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultHBTLFlag = true;
+                    }
+
                     break;
                 case 3:
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultHBPLFlag)
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + changedHealthyBehaviorsParietalLobe;
+                        Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe = changedHealthyBehaviorsParietalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultHBPLFlag = true;
+                    }
                     break;
                 case 4:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultHBOLFlag)
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + changedHealthyBehaviorsOccipitalLobe;
+                        Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe = changedHealthyBehaviorsOccipitalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultHBOLFlag = true;
+                    }
                     break;
                 case 5:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultHBCFlag)
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + changedHealthyBehaviorsCerebellum;
+                        Properties.Settings.Default.defaultHealthyBehaviorsCerebellum = changedHealthyBehaviorsCerebellum;
+                        Properties.Settings.Default.Save();
+                        defaultHBCFlag = true;
+                    }
                     break;
             }
+
         }
         //When the unhealthybehaviors radio button is chosen
         //This function set unhealthyBehaviors flags to true 
         //and healthyBehaviors and functions flag to false 
         private void UnhealthyBehaviors_Checked(object sender, RoutedEventArgs e)
         {
-            unhealthyBehaviorsFlag = true;
-            functionsFlag = false;
-            healthyBehaviorsFlag = false;
+
             factsMessageBox.Text = "";
+            WhichUnhealthyBehavior();
+        }
+        private void WhichUnhealthyBehavior() {
             switch (storyboardFlag)
             {
                 case 1:
@@ -314,36 +374,65 @@ namespace InteractiveBrain
                         Properties.Settings.Default.Save();
                         defaultUHBFLFlag = true;
                     }
-                  //  healthyBehaviors.IsEnabled = false;
-                  //  functions.IsEnabled = false;
+
                     break;
                 case 2:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultUHBTLFlag)
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + changedUnhealthyBehaviorsTemporalLobe;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe = changedUnhealthyBehaviorsTemporalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultUHBTLFlag = true;
+                    }
+
                     break;
                 case 3:
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultUHBPLFlag)
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + changedUnhealthyBehaviorsParietalLobe;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe = changedUnhealthyBehaviorsParietalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultUHBPLFlag = true;
+                    }
                     break;
                 case 4:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    cerebellumBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultUHBOLFlag)
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + changedUnhealthyBehaviorsOccipitalLobe;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe = changedUnhealthyBehaviorsOccipitalLobe;
+                        Properties.Settings.Default.Save();
+                        defaultUHBOLFlag = true;
+                    }
                     break;
                 case 5:
-                    parietalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    temporalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    frontalLobeBox.Visibility = System.Windows.Visibility.Visible;
-                    occipitalLobeBox.Visibility = System.Windows.Visibility.Visible;
+                    if (defaultUHBCFlag)
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
+                    }
+                    else
+                    {
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + changedUnhealthyBehaviorsCerebellum;
+                        Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum = changedUnhealthyBehaviorsCerebellum;
+                        Properties.Settings.Default.Save();
+                        defaultUHBCFlag = true;
+                    }
                     break;
             }
-        }
 
+
+        }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             // open the Popup if it isn't open already 
@@ -369,8 +458,7 @@ namespace InteractiveBrain
             editUnhealthyBehaviorsRadioButton.IsChecked = false;
             editUnhealthyBehaviorsFlag = false;
             brainPartComboBox.SelectedItem = null;
-            editingMessageBlock.Text = "";
-            editingTextBox.IsReadOnly = false;
+            editingTextBox.IsReadOnly = true;
 
         }
         //This function is to save the selected brain part from the drop down list in the 
@@ -399,6 +487,7 @@ namespace InteractiveBrain
             editUnhealthyBehaviorsFlag = false;
             if (brainPart != null)
             {
+                editingTextBox.IsReadOnly = false;
                 switch (brainPart)
                 {
                     case "Cerebellum":
@@ -429,6 +518,7 @@ namespace InteractiveBrain
             editUnhealthyBehaviorsFlag = false;
             if (brainPart != null)
             {
+                editingTextBox.IsReadOnly = false;
                 switch (brainPart)
                 {
                     case "Cerebellum":
@@ -458,6 +548,7 @@ namespace InteractiveBrain
             editUnhealthyBehaviorsFlag = true;
             if (brainPart != null)
             {
+                editingTextBox.IsReadOnly = false;
                 switch (brainPart)
                 {
                     case "Cerebellum":
@@ -473,7 +564,7 @@ namespace InteractiveBrain
                         editingTextBox.Text = defaultUnhealthyBehaviorsTemporalLobe;
                         break;
                     case "Frontal Lobe":
-                        editingTextBox.Text = defaultFunctionsFrontalLobe;
+                        editingTextBox.Text = defaultUnhealthyBehaviorsFrontalLobe;
 
                         break;
 
@@ -495,6 +586,7 @@ namespace InteractiveBrain
             { editingMessageBlock.Text = "Choose either functions, healthy behaviors, and unhealthy behaviors"; }
             if (brainPart != null && (editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
             {
+                editingMessageBlock.Text = "Saved";
                 editingTextBox.IsReadOnly = false;
                 if (editFunctionsFlag)
                 {
@@ -588,6 +680,7 @@ namespace InteractiveBrain
         #region
         private void FrontalLobeBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            storyboardFlag = 1;
             if (e.ClickCount == 1 && !disabled)
             {
                 brainPartsLabel.Text = "Frontal Lobe";
@@ -618,7 +711,15 @@ namespace InteractiveBrain
             }
             if (e.ClickCount == 2)
             {
-                storyboardFlag = 1;
+                if (functions.IsChecked == true) {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked==true) {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true) {
+                    WhichUnhealthyBehavior();
+                }
 
                 //without reverseOn every other time autoreverse = true
                 if (sbFL.AutoReverse)
@@ -649,6 +750,7 @@ namespace InteractiveBrain
         #region
         private void TemporalLobeBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            storyboardFlag = 2;
             if (e.ClickCount == 1 && !disabled)
             {
                 brainPartsLabel.Text = "Temporal Lobe";
@@ -673,60 +775,23 @@ namespace InteractiveBrain
                 //If the content has been changed from the default, display then save to become
                 //the new default
                 //Disable the radio buttons when content is being displayed for individual part
-                if (functionsFlag)
-                {
-                    if (defaultFunctionsTLFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Temporal Lobe: " + Properties.Settings.Default.defaultFunctionsTemporalLobe;
-
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of Temporal Lobe: " + changedFunctionsTemporalLobe;
-                        Properties.Settings.Default.defaultFunctionsTemporalLobe = changedFunctionsTemporalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsTLFlag = true;
-                    }
-                    healthyBehaviors.IsEnabled = false;
-                    unhealthyBehaviors.IsEnabled = false;
-                }
-                if (healthyBehaviorsFlag)
-                {
-                    if (defaultHBTLFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + changedHealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe = changedHealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultHBTLFlag = true;
-                    }
-                    functions.IsEnabled = false;
-                    unhealthyBehaviors.IsEnabled = false;
-                }
-                if (unhealthyBehaviorsFlag)
-                {
-                    if (defaultUHBTLFlag)
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + changedUnhealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe = changedUnhealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultUHBTLFlag = true;
-                    }
-                    functions.IsEnabled = false;
-                    healthyBehaviors.IsEnabled = false;
-                }
+        
             }
             if (e.ClickCount == 2)
             {
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
+                }
 
-                storyboardFlag = 2;
                 if (sbTL.AutoReverse)
                 {
                     ReverseOff(2);
@@ -758,6 +823,7 @@ namespace InteractiveBrain
         #region
         private void ParietalLobeBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            storyboardFlag = 3;
             if (e.ClickCount == 1 && !disabled)
             {
                 brainPartsLabel.Text = "Parietal Lobe";
@@ -775,60 +841,12 @@ namespace InteractiveBrain
                 Canvas.SetZIndex(img, top + 1);
                 Mouse.Capture(img); //So the mouse pointer doesn't "slip" off image when being dragged and dropped 
 
-                if (functionsFlag)
-                {
-                    if (defaultFunctionsPLFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Parietal Lobe: " + Properties.Settings.Default.defaultFunctionsParietalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Parietal Lobe: " + changedFunctionsParietalLobe;
-                        Properties.Settings.Default.defaultFunctionsParietalLobe = changedFunctionsParietalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsPLFlag = true;
-                    }
-                    healthyBehaviors.IsEnabled = false;
-                    unhealthyBehaviors.IsEnabled = false;
-                }
-                if (healthyBehaviorsFlag)
-                {
-                    if (defaultHBPLFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + changedHealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe = changedHealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultHBPLFlag = true;
-                    }
-                    functions.IsEnabled = false;
-                    unhealthyBehaviors.IsEnabled = false;
-
-                }
-                if (unhealthyBehaviorsFlag)
-                {
-                    if (defaultUHBPLFlag)
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + changedUnhealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe = changedUnhealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultUHBPLFlag = true;
-                    }
-                    functions.IsEnabled = false;
-                    healthyBehaviors.IsEnabled = false;
-
-                }
+             
+               
             }
             if (e.ClickCount == 2)
             {
-                storyboardFlag = 3;
+              
                 if (sbPL.AutoReverse)
                 {
                     ReverseOff(3);
@@ -836,6 +854,18 @@ namespace InteractiveBrain
                 else
                 {
                     ReverseOn(3);
+                }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
                 }
                 //Hide other parts and make facts box and go button visible
                 parietalLobeBox.SetValue(Canvas.LeftProperty, originalParietalLobeX);
@@ -859,6 +889,7 @@ namespace InteractiveBrain
         #region
         private void OccipitalLobeBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            storyboardFlag = 4;
             if (e.ClickCount == 1 && !disabled)
             {
                 brainPartsLabel.Text = "Occipital Lobe";
@@ -876,59 +907,10 @@ namespace InteractiveBrain
                 Canvas.SetZIndex(img, top + 1);
                 Mouse.Capture(img); //So the mouse pointer doesn't "slip" off image when being dragged and dropped 
 
-               
-                if (functionsFlag)
-                {
-                    if (defaultFunctionsOLFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Occipital Lobe: " + Properties.Settings.Default.defaultFunctionsOccipitalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Occipital Lobe: " + changedFunctionsOccipitalLobe;
-                        Properties.Settings.Default.defaultFunctionsOccipitalLobe = changedFunctionsOccipitalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsOLFlag = true;
-                    }
-                    healthyBehaviors.IsEnabled = false;
-                    unhealthyBehaviors.IsEnabled = false;
-                }
-                if (healthyBehaviorsFlag)
-                {
-                    if (defaultHBOLFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + changedHealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe = changedHealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultHBOLFlag = true;
-                    }
-                    functions.IsEnabled = false;
-                    unhealthyBehaviors.IsEnabled = false;
-                }
-                if (unhealthyBehaviorsFlag)
-                {
-                    if (defaultUHBOLFlag)
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + changedUnhealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe = changedUnhealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultUHBOLFlag = true;
-                    }
-                    functions.IsEnabled = false;
-                    healthyBehaviors.IsEnabled = false;
-                }
             }
             if (e.ClickCount == 2)
             {
-                storyboardFlag = 4;
+               
                 if (sbOL.AutoReverse)
                 {
                     ReverseOff(4);
@@ -936,6 +918,18 @@ namespace InteractiveBrain
                 else
                 {
                     ReverseOn(4);
+                }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
                 }
                 //Hide other parts and make facts box and go button visible
                 occipitalLobeBox.SetValue(Canvas.LeftProperty, originalOccipitalLobeX);
@@ -960,6 +954,7 @@ namespace InteractiveBrain
         #region
         private void CerebellumBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            storyboardFlag = 5;
             if (e.ClickCount == 1 && !disabled)
             {
                 brainPartsLabel.Text = "Cerebellum";
@@ -977,59 +972,10 @@ namespace InteractiveBrain
                 Canvas.SetZIndex(img, top + 1);
                 Mouse.Capture(img); //So the mouse pointer doesn't "slip" off of image while dragging and dropping 
 
-                if (functionsFlag)
-                {
-                    if (defaultFunctionsCFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Cerebellum: " + Properties.Settings.Default.defaultFunctionsCerebellum;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Cerebellum: " + changedFunctionsCerebellum;
-                        Properties.Settings.Default.defaultFunctionsCerebellum = changedFunctionsCerebellum;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsCFlag = true;
-                    }
-                    healthyBehaviors.IsEnabled = false;
-                    unhealthyBehaviors.IsEnabled = false;
-                }
-                if (healthyBehaviorsFlag)
-                {
-                    if (defaultHBCFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + changedHealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.defaultHealthyBehaviorsCerebellum = changedHealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.Save();
-                        defaultHBCFlag = true;
-                    }
-                    unhealthyBehaviors.IsEnabled = false;
-                    functions.IsEnabled = false;
-
-                }
-                if (unhealthyBehaviorsFlag)
-                {
-                    if (defaultUHBCFlag)
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + changedUnhealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum = changedUnhealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.Save();
-                        defaultUHBCFlag = true;
-                    }
-                    functions.IsEnabled = false;
-                    healthyBehaviors.IsEnabled = false;
-                }
             }
             if (e.ClickCount == 2)
             {
-                storyboardFlag = 5;
+                
                 if (sbC.AutoReverse)
                 {
                     ReverseOff(5);
@@ -1037,6 +983,18 @@ namespace InteractiveBrain
                 else
                 {
                     ReverseOn(5);
+                }
+                if (functions.IsChecked == true)
+                {
+                    WhichFunction();
+                }
+                if (healthyBehaviors.IsChecked == true)
+                {
+                    WhichHealthyBehavior();
+                }
+                if (unhealthyBehaviors.IsChecked == true)
+                {
+                    WhichUnhealthyBehavior();
                 }
                 //Hide other parts and make facts box and go button visible
                 cerebellumBox.SetValue(Canvas.LeftProperty, originalCerebellumX);
@@ -1290,29 +1248,69 @@ namespace InteractiveBrain
             { ReverseOn(5); }
             else { ReverseOff(5); }
 
-            //re-enables the other radio buttons
-            if (functionsFlag)
-            {
-                healthyBehaviors.IsEnabled = true;
-                unhealthyBehaviors.IsEnabled = true;
-            }
-
-            if (healthyBehaviorsFlag)
-            {
-                functions.IsEnabled = true;
-                unhealthyBehaviors.IsEnabled = true;
-            }
-            if (unhealthyBehaviorsFlag)
-            {
-
-                healthyBehaviors.IsEnabled = true;
-                functions.IsEnabled = true;
-            }
-
+       
             disabled = false;
             storyboardFlag = 0; //reset storyboard flag
+            factsMessageBox.Text = "";
+            functions.IsChecked = false;
+            healthyBehaviors.IsChecked = false;
+            unhealthyBehaviors.IsChecked = false;
+        }
+        // Make a region representing the
+        // image's non-transparent pixels.
+        //from http://csharphelper.com/blog/2016/09/make-a-region-from-non-transparent-pixels-in-c/
+        public static Region MakeNonTransparentRegion(System.Windows.Controls.Image regionFromImage)
+        {
+            
 
-        } 
+            Bitmap bm = new Bitmap(regionFromImage.Source.ToString());
+            if (bm == null) return null;
+
+            // Make the result region.
+            Region result = new Region();
+            result.MakeEmpty();
+
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(0, 0, 1, 1);
+            bool in_image = false;
+            for (int y = 0; y < bm.Height; y++)
+            {
+                for (int x = 0; x < bm.Width; x++)
+                {
+                    if (!in_image)
+                    {
+                        // We're not now in the non-transparent pixels.
+                        if (bm.GetPixel(x, y).A != 0)
+                        {
+                            // We just started into non-transparent pixels.
+                            // Start a Rectangle to represent them.
+                            in_image = true;
+                            rect.X = x;
+                            rect.Y = y;
+                            rect.Height = 1;
+                        }
+                    }
+                    else if (bm.GetPixel(x, y).A == 0)
+                    {
+                        // We are in the non-transparent pixels and
+                        // have found a transparent one.
+                        // Add the rectangle so far to the region.
+                        in_image = false;
+                        rect.Width = (x - rect.X);
+                        result.Union(rect);
+                    }
+                }
+
+                // Add the final piece of the rectangle if necessary.
+                if (in_image)
+                {
+                    in_image = false;
+                    rect.Width = (bm.Width - rect.X);
+                    result.Union(rect);
+                }
+            }
+
+            return result;
+        }
     }
 }
 

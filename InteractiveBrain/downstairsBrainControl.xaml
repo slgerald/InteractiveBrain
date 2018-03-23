@@ -136,18 +136,18 @@
         <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="40" Canvas.Top="15" Checked="FunctionsRadioButton_Checked" FontSize="20" FontFamily="Calibri"/>
         <RadioButton x:Name ="healthyBehaviors"  Checked="HealthyBehaviorsRadioButton_Checked" Content="Healthy Behaviors" Canvas.Left="220" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
         <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="459" Checked="UnhealthyBehaviorsRadioButton_Checked" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
-        <TextBox x:Name="factsMessageBox" Visibility="Hidden" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="335" Canvas.Left="360" TextWrapping="Wrap"  Canvas.Top="105" Width="310" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsTabStop="False"/>
+        <TextBox x:Name="factsMessageBox" Visibility="Hidden" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="335" Canvas.Left="335" TextWrapping="Wrap"  Canvas.Top="105" Width="310" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsTabStop="False"/>
        
         <Canvas    Height="435" Width="660" Canvas.Left="10" Canvas.Top="105" x:Name="pictureCanvas" Background="Transparent" AllowDrop="True" >
 
-            <Image Height="336" Width="660" x:Name="cutoutLowerBrain">
+            <local:OpaqueClickableImage Height="336" Width="660" x:Name="cutoutLowerBrain">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/cutoutLowerBrain.png"/>
                     </Style>
                 </Image.Style>
-            </Image>
-            <Image x:Name="hippocampusBox" AllowDrop="True" Source ="Resources/hippocampus.png" Height="103" Canvas.Left="291" Canvas.Top="120" Width="95" RenderTransformOrigin="0.5,0.5" >
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="hippocampusBox" AllowDrop="True" Source ="Resources/hippocampus.png" Height="103" Canvas.Left="291" Canvas.Top="120" Width="95" RenderTransformOrigin="0.5,0.5" >
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Style.Triggers>
@@ -163,8 +163,8 @@
                         <TranslateTransform x:Name="translateTransformH" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
-            <Image x:Name="brainstemBox" Height="135" Canvas.Left="297" Canvas.Top="201" Width="106" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="brainstemBox" Height="135" Canvas.Left="297" Canvas.Top="201" Width="106" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/secondBrainstem.png"/>
@@ -182,9 +182,9 @@
                         <TranslateTransform x:Name="translateTransformBS" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
+            </local:OpaqueClickableImage>
 
-            <Image x:Name="pituitaryGlandBox" Height="35" Canvas.Left="258" Canvas.Top="205" Width="30" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
+            <local:OpaqueClickableImage x:Name="pituitaryGlandBox" Height="35" Canvas.Left="258" Canvas.Top="205" Width="30" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/pituitaryGland.png"/>
@@ -202,8 +202,8 @@
                         <TranslateTransform x:Name="translateTransformPG" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
-            <Image x:Name="amygdalaBox" Height="20" Canvas.Left="311" Canvas.Top="189" Width="23" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="amygdalaBox" Height="20" Canvas.Left="311" Canvas.Top="189" Width="23" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property= "Source" Value="Resources/amygdala.png"/>
@@ -220,7 +220,7 @@
                         <TranslateTransform x:Name="translateTransformA" Y="0" X="0"/>
                     </TransformGroup>
                 </Image.RenderTransform>
-            </Image>
+            </local:OpaqueClickableImage>
         </Canvas>
         <Button x:Name="scrambleButton" Content="SCRAMBLE" Canvas.Left="480" Canvas.Top="560" Width="115" Height="40" Click="ScrambleButton_Click" BorderBrush="{x:Null}" Background="#FF0072BB" FontSize="18" FontWeight="Bold" FontFamily="Tahoma" ToolTip="Scamble Parts"/>
         <Button x:Name="resetButton" Content="" Canvas.Left="600" Canvas.Top="560" Width="40" Height="40" Click="ResetImages" BorderBrush="{x:Null}" ToolTip="Reset parts">

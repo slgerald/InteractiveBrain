@@ -148,6 +148,7 @@
       <DependentUpon>InteractiveBrainModel.edmx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="OpaqueClickableImage.cs" />
     <Compile Include="Substance.cs">
       <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
