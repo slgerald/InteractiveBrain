@@ -143,7 +143,7 @@ namespace InteractiveBrain
             originalBrainstemX = Canvas.GetLeft((UIElement)brainstemBox);
             originalBrainstemY = Canvas.GetTop((UIElement)brainstemBox);
 
-            //Binding the declared storyboards to storyboards in resources
+            //Binding the declared storyboards(in code behind) to storyboards in user control resources in(xaml)
             sbH = (Storyboard)Resources["zoomingH"];
             sbA = (Storyboard)Resources["zoomingA"];
             sbPG = (Storyboard)Resources["zoomingPG"];
@@ -418,28 +418,6 @@ namespace InteractiveBrain
 
             }
         }
-        //This function is called when the editing textbox text changes. 
-        //Saves the changes into a global variable that can be used 
-        //to be saved as a default
-        private void EditingTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            changedFactsMessageBoxText = editingTextBox.Text;
-        }
-
-        //This function is to save the selected brain part from the drop down list in the 
-        //editPopup into a string to determine the correct message to display when saving
-        private void BrainPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                brainPart = ((ComboBoxItem)brainPartComboBox.SelectedItem).Content.ToString();
-            }
-            catch
-            {
-                editingMessageBlock.Text = "Select a brain part from the drop down list";
-            }
-        }
         //This function resets the editPopUp to its original state after its been closed
         //Closing the popup, setting the edtingTextBlock.Text to an empty string, 
         //deselecting radio buttons, resetting the editing flags, deslect the selection
@@ -463,6 +441,29 @@ namespace InteractiveBrain
 
         }
 
+        //This function is called when the editing textbox text changes. 
+        //Saves the changes into a global variable that can be used 
+        //to be saved as a default
+        private void EditingTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            changedFactsMessageBoxText = editingTextBox.Text;
+        }
+
+        //This function is to save the selected brain part from the drop down list in the 
+        //editPopup into a string to determine the correct message to display when saving
+        private void BrainPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                brainPart = ((ComboBoxItem)brainPartComboBox.SelectedItem).Content.ToString();
+            }
+            catch
+            {
+                editingMessageBlock.Text = "Select a brain part from the drop down list";
+            }
+        }
+ 
         //This function is called when the functions radio button of the editing button is selected
         private void EditFunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -516,7 +517,7 @@ namespace InteractiveBrain
                 }
             }
         }
-        //This function is called when the unhealthy radio button is checked 
+        //This function is called when the unhealthy behaviors radio button is checked 
         private void EditUnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
@@ -637,6 +638,7 @@ namespace InteractiveBrain
                 }
             }
         }
+       
         //This function determines what happens when the hippocampus is clicked on with the mouse's left button
         private void HippocampusBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -676,10 +678,7 @@ namespace InteractiveBrain
                 else { ReverseOn(1); }
 
                 //The following determines what to be displayed in factsMessageBox based on
-                //the selected radio button and whether or not the original content has been
-                //changed from the default.
-                //If the content has been changed from the default, display then save to become
-                //the new default
+                //the selected radio button 
                 if (functions.IsChecked == true)
                 {
                     WhichFunction();
