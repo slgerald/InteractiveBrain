@@ -13,6 +13,7 @@ App determined the best option .
 <b>Built with</b>
 - Microsoft Visual Studio Community 2017 with an NCSU license (C# WPF)
 - .NET Framework 4.6.1 
+
 <b>Nuget Packages</b>
 - EntityFramework by Microsoft v6.2.0
 - System.Data.SQLite v1.0.107
