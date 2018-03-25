@@ -9,61 +9,36 @@ Our sponsors were the Poe Center in Raleigh, NC. They are public health educator
 specifically for their youth drug prevention programs. Currently they only use a prezi. Wi-Fi independency was necessary so a Desktop 
 App determined the best option .
 
-## Build status
-Build status of continus integration i.e. travis, appveyor etc. Ex. - 
-
-[![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
-
-## Code style
-If you're using any code style like xo, standard etc. That will help others while contributing to your project. Ex. -
-
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
- 
-## Screenshots
-Include logo/demo screenshot etc.
-
-## Tech/framework used
-Ex. -
-
+## Tech/framework used'
 <b>Built with</b>
 - Microsoft Visual Studio Community 2017 with an NCSU license (C# WPF)
 - .NET Framework 4.6.1 
+<b>Nuget Packages</b>
 - EntityFramework by Microsoft v6.2.0
 - System.Data.SQLite v1.0.107
 - System.Data.SQLite.CORE v1.0.107
 - Wix Toolset 3.11.1.2318
 
-## Features
-What makes your project stand out?
-
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
 ## Installation
-Select InteractiveBrainSetup folder
+Select InteractiveBrainSetup folder download the interactiveBrainSetup.msi for the installation file for the app as an user
+
 ## API Reference
-//Wix API
-//Micosoft API
-//SQLite API
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+Wix API http://wixtoolset.org/documentation/
+Micosoft API https://docs.microsoft.com/en-us/
+SQLite API Using Native Library Pre-Loading section at http://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki
 
-## Tests
-Describe and show how to run the tests with code examples.
-
-## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+## Feaatures
+This app uses SQLite and Serial Ports to provide a way to edit certain features of the app and have communication with a custom 
+brain model, another component of the senior design project
 
 ## Contribute
-
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
+There won't be any contributions to this repo. Contributions can be made by NCSU students that may have access to this account
 
 ## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
-
+Shailicia Gerald and Travis Martin contributed to this project as a member of the ECE 484 and ECE 485 Team 16 Senior Design Project
 #### Anything else that seems useful
 
 ## License
-A short snippet describing the license (MIT, Apache etc)
+##A short snippet describing the license (MIT, Apache etc)
 
-MIT © [Yourname]()
+##MIT © [Yourname]()
