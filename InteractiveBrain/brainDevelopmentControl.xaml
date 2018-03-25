@@ -7,31 +7,31 @@
              mc:Ignorable="d" d:DesignWidth="300" Height="500" Width="680">
     <Canvas x:Name="brainDevelopment" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
         <Image x:Name="Image1"
-                Canvas.Left="177" Canvas.Top ="60" 
-                Height="300" VerticalAlignment="Top" Width="330" 
+                Canvas.Left="200" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="247" 
                 RenderTransformOrigin="0.5,0.5" 
                 Source="Resources/gray_matter_5_years.png" 
-                IsEnabled="False"/>
+                IsEnabled="False" Stretch="Fill"/>
         <Image x:Name="Image2"
-                Canvas.Left="177" Canvas.Top ="60" 
-                Height="300" VerticalAlignment="Top" Width="330" 
+                Canvas.Left="200" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="247" 
                 RenderTransformOrigin="0.5,0.5" 
-                Source="Resources/gray_matter_early_teen.png" IsEnabled="False"/>
+                Source="Resources/gray_matter_early_teen.png" IsEnabled="False" Stretch="Fill"/>
         <Image x:Name="Image3"
-                Canvas.Left="177" Canvas.Top ="60" 
-                Height="300" VerticalAlignment="Top" Width="330" 
+                Canvas.Left="200" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="247" 
                 RenderTransformOrigin="0.5,0.5" 
-                Source="Resources/gray_matter_teen.png" IsEnabled="False"/>
+                Source="Resources/gray_matter_teen.png" IsEnabled="False" Stretch="Fill"/>
         <Image x:Name="Image4"
-                Canvas.Left="177" Canvas.Top ="60" 
-                Height="300" VerticalAlignment="Top" Width="330" 
+                Canvas.Left="200" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="247" 
                 RenderTransformOrigin="0.5,0.5" 
-                Source="Resources/gray_matter_late_teen.png" IsEnabled="False"/>
+                Source="Resources/gray_matter_late_teen.png" IsEnabled="False" Stretch="Fill"/>
         <Image x:Name="Image5"
-                Canvas.Left="177" Canvas.Top ="60" 
-                Height="300" VerticalAlignment="Top" Width="330" 
+                Canvas.Left="200" Canvas.Top ="60" 
+                Height="300" VerticalAlignment="Top" Width="247" 
                 RenderTransformOrigin="0.5,0.5" 
-                Source="Resources/gray_matter_young_adult.png" IsEnabled="False"/>
+                Source="Resources/gray_matter_young_adult.png" IsEnabled="False" Stretch="Fill"/>
         <Image 
                 Canvas.Left="519" Canvas.Top ="60" 
                 Height="300" VerticalAlignment="Top" Width="101" 
@@ -43,15 +43,28 @@
         <Slider Name="slValue"
                 Minimum="5" Maximum="20" 
                 TickFrequency="3.75" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Foreground="Blue"
-                Height="22" Width="330" 
+                Height="22" Width="295" 
                 RenderTransformOrigin="0.584,5.397" 
                 Canvas.Left="177" Canvas.Top="393" 
                 ValueChanged="Slider_ValueChanged" 
                 Cursor="Hand" ScrollViewer.CanContentScroll="True">
         </Slider>
-        <Label Content="5 Years Old" Canvas.Left="146" Canvas.Top="420" Width="70" Height="26"/>
-        <Label Content="20 Years Old" Canvas.Left="466" Canvas.Top="420" Width="78" RenderTransformOrigin="0.537,0.488"/>
-        <Label Content="More" Canvas.Left="625" Canvas.Top="60" Width="53"/>
-        <Label Content="Less" Canvas.Left="625" Canvas.Top="234"/>
+        <Label Content="5 Years Old" Canvas.Left="136" Canvas.Top="420" Width="76" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" FontFamily="Calibri"/>
+        <Label Content="20 Years Old" Canvas.Left="436" Canvas.Top="420" Width="84" RenderTransformOrigin="0.537,0.488" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" FontFamily="Calibri"/>
+        <Label Content="More" Canvas.Left="620" Canvas.Top="60" Width="53" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" FontFamily="Calibri"/>
+        <Label Content="Less" Canvas.Left="625" Canvas.Top="234" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" FontFamily="Calibri"/>
+        <Label Content="9" Canvas.Left="244" Canvas.Top="420" RenderTransformOrigin="1.25,0.346" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" FontFamily="Calibri">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="2.085"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="13" Canvas.Left="314" Canvas.Top="420" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" FontFamily="Calibri"/>
+        <Label Content="17" Canvas.Left="387" Canvas.Top="420" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" FontFamily="Calibri" RenderTransformOrigin="-0.24,0.482"/>
+        <Label Content="Image from http://www.edinformatics.com/news/teenage_brains.htm" Canvas.Left="154" Canvas.Top="470" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Calibri"/>
     </Canvas>
 </UserControl>

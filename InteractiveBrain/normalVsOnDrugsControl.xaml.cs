@@ -28,6 +28,7 @@ namespace InteractiveBrain
 
 
             //Can set Initial visibility in .xaml file
+            drugList.SelectedIndex = 0;
             leftImage.Visibility = Visibility.Visible;
             rightImage.Visibility = Visibility.Visible;
             drugLabel.Visibility = Visibility.Visible;
@@ -65,7 +66,7 @@ namespace InteractiveBrain
             if (drugListValue == "Alcohol")
             {
                 leftImage.Visibility = Visibility.Hidden;
-                leftImage.Source = new BitmapImage(new Uri("Resources/non_alcoholic_brain.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/nonalcholic_brain.png", UriKind.Relative));
                 leftImage.Visibility = Visibility.Visible;
 
                 rightImage.Visibility = Visibility.Hidden;
@@ -75,7 +76,7 @@ namespace InteractiveBrain
             else if (drugListValue == "Smoker")
             {
                 leftImage.Visibility = Visibility.Hidden;
-                leftImage.Source = new BitmapImage(new Uri("Resources/non_smoker_brain.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/nonsmoker_brain.png", UriKind.Relative));
                 leftImage.Visibility = Visibility.Visible;
 
                 rightImage.Visibility = Visibility.Hidden;
@@ -85,7 +86,7 @@ namespace InteractiveBrain
             else if (drugListValue == "Cocaine")
             {
                 leftImage.Visibility = Visibility.Hidden;
-                leftImage.Source = new BitmapImage(new Uri("Resources/non_cocaine_brain.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/noncocaine_brain.png", UriKind.Relative));
                 leftImage.Visibility = Visibility.Visible;
 
                 rightImage.Visibility = Visibility.Hidden;
