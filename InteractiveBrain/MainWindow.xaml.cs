@@ -27,6 +27,7 @@ namespace InteractiveBrain
         public MainWindow()
         { 
             InitializeComponent();
+            AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
         }
 
         //There is one function for each of the buttons on the left panel

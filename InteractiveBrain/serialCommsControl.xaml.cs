@@ -132,9 +132,9 @@ namespace InteractiveBrain
                     }
 
                    SerialPort1.Close();
-                    //Thread CloseDown = new Thread(new ThreadStart(CloseSerialOnExit)); //close port in new thread to avoid hang
+                  //  Thread CloseDown = new Thread(new ThreadStart(CloseSerialOnExit)); //close port in new thread to avoid hang
 
-                   // CloseDown.Start(); //close port in new thread to avoid hang
+                  //  CloseDown.Start(); //close port in new thread to avoid hang
                     Console.WriteLine("Serial Port just closed ");
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }

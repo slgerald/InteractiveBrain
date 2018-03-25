@@ -15,9 +15,6 @@ namespace InteractiveBrain
     
     public partial class interactiveBrainEntities : DbContext
     {
-      //  string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
-      //  string path = (System.IO.Path.GetDirectoryName(executable));
-     //   AppDomain.CurrentDomain.SetData("DataDirectory",path);
         public interactiveBrainEntities()
             : base("name=interactiveBrainEntities")
         {
@@ -29,6 +26,5 @@ namespace InteractiveBrain
         }
     
         public virtual DbSet<HealthyBehavior> HealthyBehaviors { get; set; }
-        public virtual DbSet<Substance> Substances { get; set; }
     }
 }
