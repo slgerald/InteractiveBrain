@@ -37,9 +37,4 @@ There won't be any contributions to this repo. Contributions can be made by NCSU
 
 ## Credits
 Shailicia Gerald and Travis Martin contributed to this project as a member of the ECE 484 and ECE 485 Team 16 Senior Design Project
-#### Anything else that seems useful
 
-## License
-##A short snippet describing the license (MIT, Apache etc)
-
-##MIT © [Yourname]()
