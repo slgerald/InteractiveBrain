@@ -366,6 +366,7 @@
     <Resource Include="Resources\brain_music_activity.PNG" />
     <Resource Include="Resources\brain_music_none.PNG" />
     <Resource Include="Resources\brain_reading.png" />
+    <Resource Include="Resources\brain_before_meth.png" />
     <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

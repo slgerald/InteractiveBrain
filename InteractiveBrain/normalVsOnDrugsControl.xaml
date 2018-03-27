@@ -9,16 +9,16 @@
     <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Width="680">
         <Image x:Name="leftImage" Height="320" Canvas.Left="90" Canvas.Top="75" Width="220" Source="Resources/nonalcholic_brain.png" Stretch="Fill"/>
         <Image x:Name="rightImage" Height="320" Canvas.Left="373" Canvas.Top="75" Width="220" Source="Resources/alcoholic_brain.png" Stretch="Fill"/>
-        <ComboBox x:Name="drugList" Text="Drugs" Canvas.Left="279" Canvas.Top="425" Width="120" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox x:Name="drugList" Text="Alcohol" Canvas.Left="279" Canvas.Top="425" Width="120" SelectionChanged="ComboBox_SelectionChanged" FontSize="18" FontFamily="Calibri" BorderBrush="Black">
             <ComboBoxItem>Alcohol</ComboBoxItem>
             <ComboBoxItem>Smoker</ComboBoxItem>
             <ComboBoxItem>Cocaine</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="rehabButton" Content="Rehab" Canvas.Left="58" Canvas.Top="465" Width="74" Click="Rehab_Button_Click"/>
-        <Slider x:Name="rehabSlider" Canvas.Left="90" Canvas.Top="398" Width="500" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Cursor="Hand" Minimum="1" Maximum="2" Visibility="Hidden"/>
-        <Label x:Name="drugLabel" Content="Image from https://claeis.tumblr.com/" Canvas.Left="224" Canvas.Top="493" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Calibri"/>
-        <Label x:Name="rehabLabel" Content="Image from https://www.flickr.com/photos/nida-nih/8019773180" Canvas.Left="170" Canvas.Top="493" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Calibri"/>
-        <Button x:Name="drugButton" Content="Drugs" Canvas.Left="543" Canvas.Top="465" Width="75" Click="drugButton_Click"/>
+        <Button x:Name="rehabButton" Content="Rehab" Canvas.Left="58" Canvas.Top="465" Width="80" Click="Rehab_Button_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Rehab"/>
+        <Slider x:Name="rehabSlider" Canvas.Left="90" Canvas.Top="398" Width="500" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Cursor="Hand" Minimum="1" Maximum="2" Foreground="Blue" Visibility="Hidden"/>
+        <Label x:Name="drugLabel" Content="Image from https://claeis.tumblr.com/" Canvas.Left="224" Canvas.Top="493" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Tahoma"/>
+        <Label x:Name="rehabLabel" Content="Image from https://www.flickr.com/photos/nida-nih/8019773180" Canvas.Left="170" Canvas.Top="493" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Tahoma"/>
+        <Button x:Name="drugButton" Content="Drugs" Canvas.Left="543" Canvas.Top="465" Width="80" Click="drugButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Drugs"/>
         <Image x:Name="rehabImageLeft" Height="320" Canvas.Top="75" Width="220" Canvas.Left="90" Stretch="Fill"/>
         <Image x:Name="rehabImageRight1" Height="320" Canvas.Left="373" Canvas.Top="75" Width="220" Source="Resources/brain_on_meth_1month.PNG" Visibility="Hidden" Stretch="Fill"/>
         <Image x:Name="rehabImageRight2" Height="320" Canvas.Left="373" Canvas.Top="75" Width="220" Source="Resources/brain_on_meth_14month.PNG" Visibility="Hidden" Stretch="Fill"/>
