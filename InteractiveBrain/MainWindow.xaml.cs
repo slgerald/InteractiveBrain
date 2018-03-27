@@ -29,6 +29,7 @@ namespace InteractiveBrain
             InitializeComponent();
             //This creates the local folder of the app on the local machine 
             AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
+
         }
 
         //There is one function for each of the buttons on the left panel

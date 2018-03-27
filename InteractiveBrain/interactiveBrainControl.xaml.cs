@@ -26,6 +26,7 @@ using System.Management;
 using System.IO;
 using Windows.Storage;
 using Windows.ApplicationModel;
+using System.Reflection;
 //using interactiveBrainModel;
 
 
@@ -122,11 +123,16 @@ namespace InteractiveBrain
 
             CopyDatabase();//This function is used to copy the database file to a a location the user can write
                            //to the database file
-            dbConnectionString = string.Format(@"DataSource={0}\InteractiveBrain\interactiveBrainDatabase.db", AppDomain.CurrentDomain.GetData("DataDirectory").ToString());
-            //Preparing for possible serial connection
+                           //    dbConnectionString = string.Format("DataSource={0}\\InteractiveBrain\\interactiveBrainDatabase.db", AppDomain.CurrentDomain.GetData("DataDirectory"));
+
+            dbConnectionString = string.Format("DataSource={0}\\Interactive Brain\\interactiveBrainDatabase.db", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
+           // dbConnectionString = "DataSource=C:\\ProgramData\\Interactive Brain\\interactiveBrainDatabase.db";
+            Console.WriteLine(dbConnectionString);
+
+            //Preparing for possible two way serial connection
             try
             {
-                SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+           //  SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             }
             catch (Exception ex)
             {
@@ -141,7 +147,7 @@ namespace InteractiveBrain
                 Console.WriteLine(port);
             }
 
-            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString,true);
 
             //Add healthy behaviors in database to list of strings
             try
@@ -158,8 +164,9 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wasn't able to open database");
-                Console.WriteLine(ex);
+               // MessageBox.Show("Wasn't able to open database");
+
+                MessageBox.Show(ex.ToString());
             }
             
             //This function is used for the listbox not search autocomplete textbox
@@ -170,35 +177,54 @@ namespace InteractiveBrain
         //C:/Program Files/Interactive Brain/ to the app's Application Data Local Folder 
         //so user is able to write to it.
         public  void CopyDatabase()
-        {   
+        {   //Hrd coded string for program files and data string works but not GetDat("DataDirectory");
             string fileName = "interactiveBrainDatabase.db";
-            //MessageBox.Show(fileName); //For debuggign Purposes
-            string sourcePath = "C:\\Program Files\\Interactive Brain";
-            //MessageBox.Show(sourcePath); //For debugging Purposes
-            string targetPath = string.Format(@"{0}\Interactive Brain", AppDomain.CurrentDomain.GetData("DataDirectory").ToString());
-            //MessageBox.Show(targetPath); //For debugging purposes
-
-            // Use Path class to manipulate file and directory paths.
-            string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
-            //MessageBox.Show(sourceFile); //For debugging Purposes
-            string destFile = System.IO.Path.Combine(targetPath, fileName);
-            //MessageBox.Show(destFile); //For debugging purposes
-
+            MessageBox.Show(fileName); //For debuggign Purposes
+           string sourcePath = "C:\\Program Files\\Interactive Brain";
+            //    MessageBox.Show(sourcePath); //For debugging Purposes
+            //  string targetPath = string.Format("{0}\\Interactive Brain", AppDomain.CurrentDomain.GetData("DataDirectory"));
+            
             // To copy a folder's contents to a new location:
             // Create a new target folder, if necessary.
+            string targetPath = string.Format("{0}\\Interactive Brain",
+                 Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)); //different than AppDomain.CurrentDomain.GetData("DataDirectory
             if (!System.IO.Directory.Exists(targetPath))
             {
                 try
                 {
                     System.IO.Directory.CreateDirectory(targetPath);
                 }
-                catch { Console.WriteLine("Couldn't create folder C:\\ProgramData\\Interactive Brain"); }
+                catch { MessageBox.Show("Couldn't create folder C:\\ProgramData\\Interactive Brain"); }
             }
-            //else
-            //{
-                
-            //   MessageBox.Show("C:\\ProgramData\\Interactive Brain already exits");
-            //}
+            else
+            {
+
+                MessageBox.Show("C:\\ProgramData\\Interactive Brain already exist");
+            }
+
+            
+
+            Console.WriteLine("GetFolderPath: {0}",
+                 Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
+            //   MessageBox.Show(targetPath); //For debugging purposes
+           // string targetPath = "C:\\ProgramData\\Interactive Brain"; 
+
+            // Use Path class to manipulate file and directory paths.
+            string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+            if (System.IO.File.Exists(sourceFile))
+            {
+                Console.WriteLine(System.IO.File.Exists(sourceFile));
+                MessageBox.Show(sourceFile); //For debugging Purposes
+            }
+
+            string destFile = System.IO.Path.Combine(targetPath, fileName);
+            if (System.IO.File.Exists(destFile))
+            {
+                Console.WriteLine(System.IO.File.Exists(destFile));
+                MessageBox.Show(destFile); //For debugging purposes
+            }
+
+            
           
             if (System.IO.Directory.Exists(sourcePath))
             {
@@ -208,12 +234,13 @@ namespace InteractiveBrain
                 {
                     System.IO.File.Copy(sourceFile, destFile, true);
                 }
-                catch { Console.WriteLine("Couldn't copy database file from installation folder C:\\Program Files\\Interactive Brain "); }
+                catch { MessageBox.Show("Couldn't copy database file from installation folder C:\\Program Files\\Interactive Brain "); }
             }
             else
             { 
-                Console.WriteLine("Couldn't find database file in Installation Folder C:\\Program Files\\Interactive Brain");
-            }     
+                MessageBox.Show("Couldn't find database file in Installation Folder C:\\Program Files\\Interactive Brain");
+            }
+            Thread.Sleep(50);
         }
            
     
