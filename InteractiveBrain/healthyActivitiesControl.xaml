@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="300" Height="519" Width="680">
 
     <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
-        <ComboBox x:Name="activityList" Canvas.Left="550" Canvas.Top="72" Width="120" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox x:Name="activityList" Text="Walking" Canvas.Left="550" Canvas.Top="72" Width="120" SelectionChanged="ComboBox_SelectionChanged" FontSize="18" FontFamily="Calibri" BorderBrush="Black">
             <ComboBoxItem Name="cbi1">Walking</ComboBoxItem>
             <ComboBoxItem Name="cbi2">Listening to Music</ComboBoxItem>
             <ComboBoxItem Name="cbi3">Reading a Book</ComboBoxItem>
@@ -15,11 +15,11 @@
         <Image x:Name="leftActivity" Height="250" Canvas.Left="86" Canvas.Top="72" Width="200" Source="Resources/brain_activity_none.png" Stretch="Fill"/>
         <Image x:Name="rightActivity" Height="250" Width="200" Canvas.Left="328" Canvas.Top="72" Source="Resources/brain_activity_walking.png" Stretch="Fill"/>
         <TextBox x:Name="imageText" Height="125" Canvas.Left="86" TextWrapping="Wrap" Canvas.Top="354" Width="442" Text=""  FontSize="20" FontFamily="Calibri" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label x:Name="leftLabel" Content="" Canvas.Left="86" Canvas.Top="36" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Calibri" Width="200"/>
-        <Label x:Name="rightLabel" Content="" Canvas.Left="328" Canvas.Top="36" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Calibri" Width="200"/>
-        <Label x:Name="imageSourceLabel" Content="" Canvas.Left="86" Canvas.Top="484" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Calibri" Width="442"/>
+        <Label x:Name="leftLabel" Content="" Canvas.Left="86" Canvas.Top="36" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Width="200"/>
+        <Label x:Name="rightLabel" Content="" Canvas.Left="328" Canvas.Top="36" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Width="200"/>
+        <Label x:Name="imageSourceLabel" Content="" Canvas.Left="86" Canvas.Top="484" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Tahoma" Width="442"/>
         <Image x:Name="readingBook" Height="247" Canvas.Left="86" Canvas.Top="75" Width="442" Source="Resources/brain_reading.png" Visibility="Hidden"/>
-        <Label x:Name="readingLabel" Content="" Canvas.Left="86" Canvas.Top="36" Width="442" Height="31" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Calibri" Visibility="Hidden"/>
+        <Label x:Name="readingLabel" Content="" Canvas.Left="86" Canvas.Top="36" Width="442" Height="31" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Visibility="Hidden"/>
 
 
 
