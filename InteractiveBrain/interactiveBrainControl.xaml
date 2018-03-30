@@ -63,7 +63,7 @@
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
                         </Button.Background>
                     </Button>
-                    <TabControl Height="140" Width="360" Canvas.Left="25" >
+                    <TabControl x:Name="editingTabControl" Height="140" Width="360" Canvas.Left="25" >
                         <TabItem x:Name="contentTab" Header="Content">
                             <Grid Background="#FFE5E5E5" Margin="-5,-5,-1,-3">
                                 <TextBlock x:Name ="contentTextBlock" FontSize="14" Text="   Insert Content" HorizontalAlignment="Center" Height="16" Width="98" VerticalAlignment="Center" Margin="134,24,128,80" FontFamily="Calibri"/>

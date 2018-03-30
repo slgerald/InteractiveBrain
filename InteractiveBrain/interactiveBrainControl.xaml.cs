@@ -131,15 +131,16 @@ namespace InteractiveBrain
             // dbConnectionString = "DataSource=C:\\ProgramData\\Interactive Brain\\interactiveBrainDatabase.db";
             Console.WriteLine(dbConnectionString);
 
+            //Two way communication wasn't used 
             //Preparing for possible two way serial connection
-            try
-            {
+            //try
+            //{
            //  SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
 
             serialDataQueue = new System.Collections.Concurrent.ConcurrentQueue<char>();
 
@@ -166,7 +167,7 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wasn't able to open database");
+                MessageBox.Show("Wasn't able to load Healthy Behaviors list");
 
                // MessageBox.Show(ex.ToString());
             }
@@ -179,19 +180,23 @@ namespace InteractiveBrain
         //C:/Program Files/Interactive Brain/ to the app's Application Data Local Folder 
         //so user is able to write to it.
         public  void CopyDatabase()
-        {   //Hard coded string for program files and data string works but not GetDatA("DataDirectory");
+        {   //Hard coded string for program files and data string works but not  AppDomain.CurrentDomain.GetData("DataDirectory");
             string fileName = "interactiveBrainDatabase.db";
-           // MessageBox.Show(fileName); //For debugging Purposes
+            //MessageBox.Show(fileName); //For debugging Purposes
             string sourcePath = "C:\\Program Files\\Interactive Brain"; //Where original database file was installed
-            //MessageBox.Show(sourcePath); //For debugging Purposes
+                                                                        //MessageBox.Show(sourcePath); //For debugging Purposes
+
             //string targetPath = string.Format("{0}\\Interactive Brain", AppDomain.CurrentDomain.GetData("DataDirectory"));
-
-
             //string targetPath = string.Format("{0}\\Interactive Brain",
             //Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)); //different than AppDomain.CurrentDomain.GetData("DataDirectory)
-            
+            //string targetPath = "C:\\ProgramData\\Interactive Brain"; 
+            //MessageBox.Show(targetPath); //For debugging purposes
+
             string targetPath = string.Format("{0}\\Interactive Brain",
                  Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+            Console.WriteLine("GetFolderPath: {0}",
+                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+            
             //To copy a folder's contents to a new location:
             //Create a new target folder, if necessary.
             if (!System.IO.Directory.Exists(targetPath))
@@ -206,12 +211,8 @@ namespace InteractiveBrain
             {
                 Console.WriteLine(targetPath + " already exists ");
             }
-            Console.WriteLine("GetFolderPath: {0}",
-                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
-            //MessageBox.Show(targetPath); //For debugging purposes
-            //string targetPath = "C:\\ProgramData\\Interactive Brain"; 
 
-            // Use Path class to manipulate file and directory paths.
+            // Determines the path to the database file in the installation folder
             string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
             if (System.IO.File.Exists(sourceFile))
             {
@@ -221,7 +222,9 @@ namespace InteractiveBrain
             else {
                 Console.WriteLine(sourceFile + "does not exist");
             }
-
+            
+            //Determines the path to the database file that has been copied from the 
+            //installation folder to a location with read/write privelages
             string destFile = System.IO.Path.Combine(targetPath, fileName);
             if (System.IO.File.Exists(destFile))
             {
@@ -248,6 +251,8 @@ namespace InteractiveBrain
             }
             Thread.Sleep(50);
         }
+        //This function is used to determine if certain folders and file have write
+        //privelages for the database file 
         public static bool HasWritePermissionOnDir(string path)
         {
             var writeAllow = false;
@@ -284,8 +289,7 @@ namespace InteractiveBrain
                 //change
                 if (ports == null || ports.Length == 0)
                 {
-                    selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-
+                    MessageBox.Show("Check connection, then try again. ");
                 }
                 else
                 {
@@ -297,7 +301,7 @@ namespace InteractiveBrain
                         { connectionPopup.IsOpen = true; }
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message);
-
+                        MessageBox.Show("Couldn't open the pop-up to allow for connection to the Brain");
                         isConnected = false;
                     }
                 }
@@ -308,7 +312,7 @@ namespace InteractiveBrain
                 //If the app is connected, change the image of button
                 if (isConnected)
                 {
-                    selectionMessageBox.Text = "Disconnected";
+                    MessageBox.Show("Disconnected");
                     try
                     {
                         Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
@@ -327,11 +331,11 @@ namespace InteractiveBrain
                 {   //if there aren't any serial ports available
                     if (ports == null || ports.Length == 0)
                     {
-                        selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
+                        MessageBox.Show("Not able to connect, check connection, then try again.");
                     }
                     else  //if they are serial ports available that app aren't in use
                     {
-                        selectionMessageBox.Text = "Not connected yet";
+                        MessageBox.Show("The Brain wasn't connected yet.");
                     }
                 }
                 defaultFlag = false;
@@ -358,7 +362,7 @@ namespace InteractiveBrain
             catch (UnauthorizedAccessException ex)//The selected comPort is being used by another process
             {
 
-                selectionMessageBox.Text = "Chosen COM Port in use, connect to another";
+                MessageBox.Show("Wasn't able to connect to chosen port, choose another port for connection");
                 Console.WriteLine(ex.Message);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -380,7 +384,7 @@ namespace InteractiveBrain
          
             else  //if there are serial ports available that app aren't in use
             {
-                selectionMessageBox.Text = "COM PORTS available, no COM PORT NUMBER chosen";
+                MessageBox.Show("No COM PORT was chosen");
                 isConnected = false;
                 defaultFlag = false;
             }
@@ -551,7 +555,7 @@ namespace InteractiveBrain
             if (contentPopup.IsOpen) { contentPopup.IsOpen = false; }
             listBoxContent.Text = "";
             errorTextBlock.Text = "";
-            contentTab.TabIndex = -1;
+            editingTabControl.TabIndex = 0;
             editAmygdalaCheckbox.IsChecked = false;
             editParietalLobeCheckbox.IsChecked = false;
             editTemporalLobeCheckbox.IsChecked = false;
@@ -621,7 +625,7 @@ namespace InteractiveBrain
                     Thread.Sleep(20);
                     SerialPort1.Close();
                 }
-                catch { }
+                catch { MessageBox.Show("Check connection to Brain"); }
               }
         }
 
@@ -629,9 +633,15 @@ namespace InteractiveBrain
         private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = true;
-           // healthybehaviorBOOL = false;
+            // healthybehaviorBOOL = false;
             //healthyBehaviorsListBox.SelectedItem = false;
-            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
+            try
+            {
+                selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
+            }
+            catch {
+                MessageBox.Show("No brain part was selected. Select a brain part.");
+            }
             ListBoxSelectionChanged();
         }
         
@@ -639,13 +649,19 @@ namespace InteractiveBrain
         //Set activities flag true and other flags false 
         //Make the Examples Button Unavailable
         //When selection changes stop parts glowing based on the previous selection
-
+        //The ListBox for healthy behaviors wasn't used 
         private void HealthyBehaviorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = false;
             brainPartsListBox.SelectedItem = false;
-           
-            selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
+            try
+            {
+                selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
+            }
+            catch
+            {
+              //  MessageBox.Show(selectedBrainPart );
+            }
             Console.WriteLine(selectedHealthyBehaviors);
             ListBoxSelectionChanged();
         }
@@ -787,7 +803,7 @@ namespace InteractiveBrain
                 }
                 if (lightingSequenceString == null)
                 {
-                    selectionMessageBox.Text = "Choose a option available from the drop down list ";
+                    MessageBox.Show( "Choose a option available from the drop down list ");
                 }
                 else
                 {
@@ -847,8 +863,7 @@ namespace InteractiveBrain
                 scale.ScaleY = 1.0;
          
                 brainstemImage.BeginAnimation(OpacityProperty, glowAnimation);
-            
-              
+                  
                 storyboard.Stop();
         
                 Storyboard.SetTarget(growXAnimation, brainstemImage);
@@ -868,8 +883,7 @@ namespace InteractiveBrain
                 scale.ScaleY = 1.0;
 
                 pituitaryGlandImage.BeginAnimation(OpacityProperty, glowAnimation);
-          
-                
+                         
                 storyboard.Stop();        
                 Storyboard.SetTarget(growXAnimation, pituitaryGlandImage);
                 Storyboard.SetTarget(growYAnimation, pituitaryGlandImage);
@@ -1035,18 +1049,19 @@ namespace InteractiveBrain
                 catch (UnauthorizedAccessException ex)
                 {
 
-                    selectionMessageBox.Text = "Chosen COM Port in use, connect to another";
+                    MessageBox.Show( "Chosen COM Port in use, connect to another");
                     Console.WriteLine(ex.Message);
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show("Wasn't able to successfully connect to Brain");
                     Console.WriteLine(ex.Message);
                 }
 
             }
             else
-            {
-                Console.WriteLine("Not connected to serial port to send selection to Brain");
+            {               
+                Console.WriteLine("Not connected to COM PORT for Brain");
             }
 
         }
@@ -1248,6 +1263,7 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Wasn't able to add item to Healthy Behaviors list");
                 Console.WriteLine(ex);
             }
         }
@@ -1274,6 +1290,7 @@ namespace InteractiveBrain
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.
                     Console.WriteLine(ex);
                 }
                 index++;
