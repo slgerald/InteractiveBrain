@@ -149,17 +149,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="OpaqueClickableImage.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Substance.cs">
       <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="upstairsBrainControl.xaml.cs">
       <DependentUpon>upstairsBrainControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="serialCommsControl.xaml.cs">
       <DependentUpon>serialCommsControl.xaml</DependentUpon>
@@ -242,6 +242,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config">
@@ -365,16 +366,24 @@
     <None Include="Resources\poecentericon_HCM_icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\alcoholic_brain.PNG" />
-    <Resource Include="Resources\brain_on_meth_1month.PNG" />
-    <Resource Include="Resources\brain_on_meth_14month.PNG" />
-    <Resource Include="Resources\cocaine_brain.PNG" />
     <Resource Include="Resources\brain_activity_none.PNG" />
     <Resource Include="Resources\brain_activity_walking.PNG" />
     <Resource Include="Resources\brain_music_activity.PNG" />
     <Resource Include="Resources\brain_music_none.PNG" />
     <Resource Include="Resources\brain_reading.png" />
     <Resource Include="Resources\brain_before_meth.png" />
+    <Resource Include="Resources\brain_non_cocaine.png" />
+    <Resource Include="Resources\brain_non_cocaine %281%29.png" />
+    <Resource Include="Resources\brain_alcoholic.png" />
+    <Resource Include="Resources\brain_cocaine.png" />
+    <Resource Include="Resources\brain_meth.png" />
+    <Resource Include="Resources\brain_non_meth.png" />
+    <Resource Include="Resources\brain_non_smoker.png" />
+    <Resource Include="Resources\brain_smoker.png" />
+    <Resource Include="Resources\brain_normal.png" />
+    <Resource Include="Resources\brain_meth_rehab_1month.PNG" />
+    <Resource Include="Resources\brain_meth_rehab_14month.PNG" />
+    <Resource Include="Resources\brain_rehab_normal.PNG" />
     <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -408,11 +417,6 @@
     <Resource Include="Resources\gray_matter_meter.PNG" />
     <Resource Include="Resources\gray_matter_teen.PNG" />
     <Resource Include="Resources\gray_matter_young_adult.PNG" />
-    <Resource Include="Resources\normal_brain.PNG" />
-    <Resource Include="Resources\smoker_brain.PNG" />
-    <Resource Include="Resources\nonalcholic_brain.PNG" />
-    <Resource Include="Resources\noncocaine_brain.PNG" />
-    <Resource Include="Resources\nonsmoker_brain.PNG" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

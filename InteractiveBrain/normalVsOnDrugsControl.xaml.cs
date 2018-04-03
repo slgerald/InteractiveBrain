@@ -29,16 +29,14 @@ namespace InteractiveBrain
 
             //Can set Initial visibility in .xaml file
             drugList.SelectedIndex = 0;
-            leftImage.Visibility = Visibility.Visible;
-            rightImage.Visibility = Visibility.Visible;
-            drugLabel.Visibility = Visibility.Visible;
-            rehabLabel.Visibility = Visibility.Hidden;
+            sourceLabel.Visibility = Visibility.Visible;
             drugButton.Visibility = Visibility.Hidden;
             rehabButton.Visibility = Visibility.Visible;
-          //  rehabImageRight1.Visibility = Visibility.Hidden;
-          //  rehabImageRight2.Visibility = Visibility.Hidden;
-            rehabImageLeft.Visibility = Visibility.Hidden;
-          //  rehabSlider.Visibility = Visibility.Hidden;
+            rehabSlider.Visibility = Visibility.Hidden;
+            leftImageLabel.Content = "Typical Brain";
+            rightImageLabel.Content = "Alcoholic";
+            sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+            rehabText.Text = "Drugs can alter the way people think, feel, and behave by disrupting neurotransmission, the process of communication between neurons.";
         }
 
         public static normalVsOnDrugsControl Instance
@@ -66,49 +64,69 @@ namespace InteractiveBrain
             if (drugListValue == "Alcohol")
             {
                 leftImage.Visibility = Visibility.Hidden;
-                leftImage.Source = new BitmapImage(new Uri("Resources/nonalcholic_brain.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
                 leftImage.Visibility = Visibility.Visible;
 
                 rightImage.Visibility = Visibility.Hidden;
-                rightImage.Source = new BitmapImage(new Uri("Resources/alcoholic_brain.png", UriKind.Relative));
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_alcoholic.png", UriKind.Relative));
                 rightImage.Visibility = Visibility.Visible;
+
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Alcoholic Brain";
+                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
             }
             else if (drugListValue == "Smoker")
             {
                 leftImage.Visibility = Visibility.Hidden;
-                leftImage.Source = new BitmapImage(new Uri("Resources/nonsmoker_brain.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_non_smoker.png", UriKind.Relative));
                 leftImage.Visibility = Visibility.Visible;
 
                 rightImage.Visibility = Visibility.Hidden;
-                rightImage.Source = new BitmapImage(new Uri("Resources/smoker_brain.png", UriKind.Relative));
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_smoker.png", UriKind.Relative));
                 rightImage.Visibility = Visibility.Visible;
+
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Smoker Brain";
+                sourceLabel.Content = "Images from https://www.pinterest.com/pin/431501208017912683/";
             }
             else if (drugListValue == "Cocaine")
             {
                 leftImage.Visibility = Visibility.Hidden;
-                leftImage.Source = new BitmapImage(new Uri("Resources/noncocaine_brain.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_non_cocaine.png", UriKind.Relative));
                 leftImage.Visibility = Visibility.Visible;
 
                 rightImage.Visibility = Visibility.Hidden;
-                rightImage.Source = new BitmapImage(new Uri("Resources/cocaine_brain.png", UriKind.Relative));
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_cocaine.png", UriKind.Relative));
                 rightImage.Visibility = Visibility.Visible;
+
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Cocaine Brain";
+                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
             }
         }
 
         private void Rehab_Button_Click(object sender, RoutedEventArgs e)
         {
-            leftImage.Visibility = Visibility.Hidden;
-            rightImage.Visibility = Visibility.Hidden;
-            drugLabel.Visibility = Visibility.Hidden;
-            rehabButton.Visibility = Visibility.Hidden;
             drugList.Visibility = Visibility.Hidden;
+            rehabButton.Visibility = Visibility.Hidden;
 
             rehabSlider.Visibility = Visibility.Visible;
-            rehabImageRight1.Visibility = Visibility.Visible;
-            rehabImageLeft.Visibility = Visibility.Visible;
-            rehabImageLeft.Source = new BitmapImage(new Uri("Resources/normal_brain.png", UriKind.Relative));
             drugButton.Visibility = Visibility.Visible;
-            rehabLabel.Visibility = Visibility.Visible;
+            sourceLabel.Content = "Images from http://www.recoveryinstitute.com/?lightbox=dataItem-ixhu2s2q2";
+
+            if (rehabSlider.Value == 1)
+            {
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Brain on Meth 1 Month";
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_1month.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
+            } else if (rehabSlider.Value == 2)
+            {
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Brain on Meth 14 Months";
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_14month.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
+            }
 
         }
 
@@ -119,8 +137,11 @@ namespace InteractiveBrain
             {
                 try
                 {
-                      rehabImageRight2.Visibility = Visibility.Hidden;
-                      rehabImageRight1.Visibility = Visibility.Visible;
+                    rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_1month.png", UriKind.Relative));
+                    leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
+
+                    leftImageLabel.Content = "Typical Brain";
+                    rightImageLabel.Content = " Brain on Meth 1 Month";
                 }
                 catch (Exception ex)
                 {
@@ -131,8 +152,11 @@ namespace InteractiveBrain
             {
                 try
                 {
-                      rehabImageRight1.Visibility = Visibility.Hidden;
-                      rehabImageRight2.Visibility = Visibility.Visible;
+                    rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_14month.png", UriKind.Relative));
+                    leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
+
+                    leftImageLabel.Content = "Typical Brain";
+                    rightImageLabel.Content = "Brain on Meth 14 Months";
                 }
                 catch (Exception ex)
                 {
@@ -143,18 +167,35 @@ namespace InteractiveBrain
 
         private void drugButton_Click(object sender, RoutedEventArgs e)
         {
-            leftImage.Visibility = Visibility.Visible;
-            rightImage.Visibility = Visibility.Visible;
-            drugLabel.Visibility = Visibility.Visible;
             rehabButton.Visibility = Visibility.Visible;
             drugList.Visibility = Visibility.Visible;
 
             rehabSlider.Visibility = Visibility.Hidden;
-            rehabImageRight1.Visibility = Visibility.Hidden;
-            rehabImageRight2.Visibility = Visibility.Hidden;
-            rehabImageLeft.Visibility = Visibility.Hidden;
             drugButton.Visibility = Visibility.Hidden;
-            rehabLabel.Visibility = Visibility.Hidden;
+
+            String drugListValue = (drugList.SelectedItem as ComboBoxItem).Content.ToString();
+            if (drugListValue == "Alcohol")
+            {
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Alcoholic Brain";
+                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_alcoholic.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
+            } else if (drugListValue == "Smoker")
+            {
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Smoker Brain";
+                sourceLabel.Content = "Images from https://www.pinterest.com/pin/431501208017912683/";
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_smoker.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_non_smoker.png", UriKind.Relative));
+            } else if (drugListValue == "Cocaine")
+            {
+                leftImageLabel.Content = "Typical Brain";
+                rightImageLabel.Content = "Cocaine Brain";
+                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_cocaine.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_non_cocaine.png", UriKind.Relative));
+            }
         }
     }
 }
