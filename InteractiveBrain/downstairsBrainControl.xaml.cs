@@ -279,11 +279,11 @@ namespace InteractiveBrain
                 case 2:
                     if (defaultHBAFlag)
                     {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors affect the Amygdala: " + defaultHealthyBehaviorsAmygdala;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Amygdala: " + defaultHealthyBehaviorsAmygdala;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors affect the Amygdala: " + changedHealthyBehaviorsAmygdala;
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Amygdala: " + changedHealthyBehaviorsAmygdala;
                         Properties.Settings.Default.defaultHealthyBehaviorsAmygdala = changedHealthyBehaviorsAmygdala;
                         Properties.Settings.Default.Save();
                         defaultHBAFlag = true;
@@ -358,12 +358,12 @@ namespace InteractiveBrain
                 case 2:
                     if (defaultUHBAFlag)
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Amygdala: " + Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Amygdala: " + Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
 
                     }
                     else
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Amygdala: " + changedUnhealthyBehaviorsAmygdala;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Amygdala: " + changedUnhealthyBehaviorsAmygdala;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala = changedUnhealthyBehaviorsAmygdala;
                         Properties.Settings.Default.Save();
                         defaultUHBAFlag = true;
@@ -390,12 +390,12 @@ namespace InteractiveBrain
                 case 4:
                     if (defaultUHBBSFlag)
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Brainstem : " + Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Brainstem : " + Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
 
                     }
                     else
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Brainstem: " + changedUnhealthyBehaviorsBrainstem;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Brainstem: " + changedUnhealthyBehaviorsBrainstem;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem = changedUnhealthyBehaviorsBrainstem;
                         Properties.Settings.Default.Save();
                         defaultUHBBSFlag = true;
@@ -470,6 +470,7 @@ namespace InteractiveBrain
             editFunctionsFlag = true;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = false;
+            editingTextBox.Text = "";
             if (brainPart != null)
             {
                 switch (brainPart)
@@ -496,6 +497,7 @@ namespace InteractiveBrain
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = true;
             editUnhealthyBehaviorsFlag = false;
+            editingTextBox.Text = "";
             if (brainPart != null)
             {
                 switch (brainPart)
@@ -523,6 +525,7 @@ namespace InteractiveBrain
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = true;
+            editingTextBox.Text = "";
             if (brainPart != null)
             {
                 switch (brainPart)

@@ -414,11 +414,11 @@ namespace InteractiveBrain
                 case 3:
                     if (defaultUHBPLFlag)
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Parietal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Parietal Lobe: " + changedUnhealthyBehaviorsParietalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Parietal Lobe: " + changedUnhealthyBehaviorsParietalLobe;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe = changedUnhealthyBehaviorsParietalLobe;
                         Properties.Settings.Default.Save();
                         defaultUHBPLFlag = true;
@@ -427,11 +427,11 @@ namespace InteractiveBrain
                 case 4:
                     if (defaultUHBOLFlag)
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Occipital Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
                     }
                     else
                     {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors that affect the Occipital Lobe: " + changedUnhealthyBehaviorsOccipitalLobe;
+                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Occipital Lobe: " + changedUnhealthyBehaviorsOccipitalLobe;
                         Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe = changedUnhealthyBehaviorsOccipitalLobe;
                         Properties.Settings.Default.Save();
                         defaultUHBOLFlag = true;
@@ -501,7 +501,7 @@ namespace InteractiveBrain
             }
             catch
             {
-
+                editingTextBox.Text = "Select a brain part from the dropdown list";
             }
         }
 
@@ -511,6 +511,7 @@ namespace InteractiveBrain
             editFunctionsFlag = true;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = false;
+            editingTextBox.Text = "";
             if (brainPart != null)
             {
                 editingTextBox.IsReadOnly = false;
@@ -542,6 +543,7 @@ namespace InteractiveBrain
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = true;
             editUnhealthyBehaviorsFlag = false;
+            editingTextBox.Text = "";
             if (brainPart != null)
             {
                 editingTextBox.IsReadOnly = false;
@@ -573,6 +575,7 @@ namespace InteractiveBrain
             editFunctionsFlag = false;
             editHealthyBehaviorsFlag = false;
             editUnhealthyBehaviorsFlag = true;
+            editingTextBox.Text = "";
             if (brainPart != null)
             {
                 editingTextBox.IsReadOnly = false;

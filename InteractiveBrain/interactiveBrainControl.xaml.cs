@@ -205,7 +205,7 @@ namespace InteractiveBrain
                 {
                     System.IO.Directory.CreateDirectory(targetPath);
                 }
-                catch { Console.WriteLine("Couldn't create folder " + targetPath ); }
+                catch { Console.WriteLine("Couldn't create folder " + targetPath); }
             }
             else
             {
@@ -289,7 +289,7 @@ namespace InteractiveBrain
                 //change
                 if (ports == null || ports.Length == 0)
                 {
-                    MessageBox.Show("Check connection, then try again. ");
+                    MessageBox.Show("Check connection, then try again.");
                 }
                 else
                 {
@@ -362,10 +362,10 @@ namespace InteractiveBrain
             catch (UnauthorizedAccessException ex)//The selected comPort is being used by another process
             {
 
-                MessageBox.Show("Wasn't able to connect to chosen port, choose another port for connection");
+                MessageBox.Show("Wasn't able to connect to chosen COM port, choose another port for connection");
                 Console.WriteLine(ex.Message);
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Couldn't successfully connect to selected COM port"); Console.WriteLine(ex.Message); }
             if (selectedPort != null) //now change the background of the connection button to show connected
             {
                 Console.WriteLine("Connected to " + selectedPort);
@@ -442,7 +442,7 @@ namespace InteractiveBrain
             }
             else
             {
-                errorMessageTextBlock.Text = "Select Healthy Behaviors";
+                errorMessageTextBlock.Text = "Select  a healthy behaviors";
             }
 
         }
@@ -640,7 +640,10 @@ namespace InteractiveBrain
                 selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
             }
             catch {
-                MessageBox.Show("No brain part was selected. Select a brain part.");
+                if (selectedHealthyBehaviors == "" || selectedHealthyBehaviors == null)
+                {
+                    MessageBox.Show("No brain part was selected. Select a brain part.");
+                }
             }
             ListBoxSelectionChanged();
         }
@@ -1263,7 +1266,7 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wasn't able to add item to Healthy Behaviors list");
+                MessageBox.Show("Wasn't able to load Healthy Behaviors list");
                 Console.WriteLine(ex);
             }
         }
@@ -1290,7 +1293,7 @@ namespace InteractiveBrain
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.
+                    MessageBox.Show("wasn't able to update selected healthy behavior");
                     Console.WriteLine(ex);
                 }
                 index++;
@@ -1320,6 +1323,7 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Wasn't able to add new healthy behavior");
                 Console.WriteLine(ex);
             }        
             UpdateIndices();
