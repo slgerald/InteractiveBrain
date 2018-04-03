@@ -25,10 +25,8 @@ namespace InteractiveBrain
         public brainDevelopmentControl()
         {
             InitializeComponent();
-            Image2.Visibility = Visibility.Hidden;
-            Image3.Visibility = Visibility.Hidden;
-            Image4.Visibility = Visibility.Hidden;
-            Image5.Visibility = Visibility.Hidden;
+
+            brainDevelopmentText.Text = "Gray matter thins from child age to young adult age in order to 'prune' inefficient synaptic connections. This increases overall brain performance and cognitive function.";
         }
 
         public static brainDevelopmentControl Instance
@@ -55,43 +53,23 @@ namespace InteractiveBrain
 
             if (slValue.Value == 5)
             {
-                Image2.Visibility = Visibility.Hidden;
-                Image3.Visibility = Visibility.Hidden;
-                Image4.Visibility = Visibility.Hidden;
-                Image5.Visibility = Visibility.Hidden;
-                Image1.Visibility = Visibility.Visible;
+                brainDevelopmentImage.Source = new BitmapImage(new Uri("Resources/gray_matter_5_years.png", UriKind.Relative));
             }
             else if (slValue.Value == 8.75)
             {
-                Image1.Visibility = Visibility.Hidden;
-                Image3.Visibility = Visibility.Hidden;
-                Image4.Visibility = Visibility.Hidden;
-                Image5.Visibility = Visibility.Hidden;
-                Image2.Visibility = Visibility.Visible;
+                brainDevelopmentImage.Source = new BitmapImage(new Uri("Resources/gray_matter_early_teen.png", UriKind.Relative));
             }
             else if (slValue.Value == 12.5)
             {
-                Image1.Visibility = Visibility.Hidden;
-                Image2.Visibility = Visibility.Hidden;
-                Image4.Visibility = Visibility.Hidden;
-                Image5.Visibility = Visibility.Hidden;
-                Image3.Visibility = Visibility.Visible;
+                brainDevelopmentImage.Source = new BitmapImage(new Uri("Resources/gray_matter_teen.png", UriKind.Relative));
             }
             else if (slValue.Value == 16.25)
             {
-                Image1.Visibility = Visibility.Hidden;
-                Image2.Visibility = Visibility.Hidden;
-                Image3.Visibility = Visibility.Hidden;
-                Image5.Visibility = Visibility.Hidden;
-                Image4.Visibility = Visibility.Visible;
+                brainDevelopmentImage.Source = new BitmapImage(new Uri("Resources/gray_matter_late_teen.png", UriKind.Relative));
             }
             else if (slValue.Value == 20)
             {
-                Image1.Visibility = Visibility.Hidden;
-                Image2.Visibility = Visibility.Hidden;
-                Image3.Visibility = Visibility.Hidden;
-                Image4.Visibility = Visibility.Hidden;
-                Image5.Visibility = Visibility.Visible;
+                brainDevelopmentImage.Source = new BitmapImage(new Uri("Resources/gray_matter_young_adult.png", UriKind.Relative));
             }
 
         }
