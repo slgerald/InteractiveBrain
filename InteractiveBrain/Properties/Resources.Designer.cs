@@ -73,9 +73,9 @@ namespace InteractiveBrain.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap brain_on_meth_14month {
+        internal static System.Drawing.Bitmap brain_meth_rehab_14month {
             get {
-                object obj = ResourceManager.GetObject("brain_on_meth_14month", resourceCulture);
+                object obj = ResourceManager.GetObject("brain_meth_rehab_14month", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace InteractiveBrain.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap brain_on_meth_1month {
+        internal static System.Drawing.Bitmap brain_meth_rehab_1month {
             get {
-                object obj = ResourceManager.GetObject("brain_on_meth_1month", resourceCulture);
+                object obj = ResourceManager.GetObject("brain_meth_rehab_1month", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
