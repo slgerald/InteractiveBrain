@@ -23,6 +23,11 @@ using Windows.UI.Core;
 using System.Windows.Resources;
 using System.Data;
 using System.Management;
+using System.IO;
+using Windows.Storage;
+using Windows.ApplicationModel;
+using System.Reflection;
+using System.Security.AccessControl;
 //using interactiveBrainModel;
 
 
@@ -34,18 +39,19 @@ namespace InteractiveBrain
     /// 
     public partial class interactiveBrainControl : UserControl
     {
-        //The following variable are for the userControl interaction
+        //The following variables are for the userControl interaction
         private static interactiveBrainControl _instance; //used to instantiate new instance of interactiveBrainControl
 
         string selectedBrainPart;//string to determine which brain part was selected
-        string displayMessage;//What should be displayed above both brain maps
+        string displayMessage;//Text displayed above both brain maps
         string selectedHealthyBehaviors;//string to determine which healthy behavior was selected 
 
         bool brainPart = false; //was a brain part selected?
         bool healthybehaviorBOOL = false; //was a healthy behavior selected?
        
-        Border border;
+        Border border; //The border of the drop down list showing the results of the healthy behavior query
 
+        //Storyboard use to apply scaling and "glowing" animations
         Storyboard storyboard = new Storyboard();
         DoubleAnimation growXAnimation = new DoubleAnimation();
         DoubleAnimation growYAnimation = new DoubleAnimation();
@@ -62,25 +68,34 @@ namespace InteractiveBrain
 
         //The following variables are for the editing function of the interactiveBrainControl
         bool editHealthyBehaviorsFlag = false;//for editPopup, load healthy behaviors from database
-        ListBoxItem newListBoxItem = new ListBoxItem();
         string newListBoxItemContent;
         bool defaultFlag = false;
         bool selectionMade = false;
 
         List<string> col = new List<string>();//Used for the serach AutocompleteTextbox
+        
         //The following array will help determine which parts should illuminate on the app and interactive brain
         //based on the selection of healthy behaviors 
-
         char[] lightingSequenceToDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '\0' }; //Writing to the database
         char[] lightingSequenceFromDatabase = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '\0' };//Reading from the 
         string lightingSequenceString;
         int index;
 
-        //How to change connection string when transferring to local machine
-        //string dbConnectionString = @"data source=C:\Users\Shailicia\source\repos\InteractiveBrain\interactiveBrainDatabase.db";
-        // string dbConnectionString = @"data source=" + System.Environment.CurrentDirectory + "\\interactiveBrainDatabase.db";
-        // string [] appPath = Path.Split
-        string dbConnectionString = @"data source=|DataDirectory|interactiveBrainDatabase.db";
+        //Global connection string used when connecting to local machine    
+        string dbConnectionString;
+
+        //The following variables are used to transfer the database to a place where its writable 
+        //unlike the Program Files
+        Boolean searchResult = false;
+        StorageFile sampleFile;
+        StorageFolder storageFolder;
+        private StorageFolder m_downloadfolder;
+
+        public StorageFolder Download_Folder
+        {
+            get { return m_downloadfolder; }
+            set { m_downloadfolder = value; }
+        }
 
         string query;
         //THis function instantiates a new insteractiveBrainControl when called
@@ -102,16 +117,30 @@ namespace InteractiveBrain
         {
             InitializeComponent();
             GetAvailableComPorts(); //list available serial ports in array of strings
-           
-            //Preparing for possible serial connection
-            try
-            {
-                SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+         
+          //Works in visual studio but write to progam files folder
+          //currentPath= Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+          //dbConnectionString = string.Format(@"DataSource={0}/interactiveBrainDatabase.db", currentPath);
+
+            CopyDatabase();//This function is used to copy the database file to a a location the user can write
+                           //to the database file
+                           //    dbConnectionString = string.Format("DataSource={0}\\InteractiveBrain\\interactiveBrainDatabase.db", AppDomain.CurrentDomain.GetData("DataDirectory"));
+
+            // dbConnectionString = string.Format("DataSource={0}\\Interactive Brain\\interactiveBrainDatabase.db", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
+            dbConnectionString = string.Format("DataSource={0}\\Interactive Brain\\interactiveBrainDatabase.db", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+            // dbConnectionString = "DataSource=C:\\ProgramData\\Interactive Brain\\interactiveBrainDatabase.db";
+            Console.WriteLine(dbConnectionString);
+
+            //Two way communication wasn't used 
+            //Preparing for possible two way serial connection
+            //try
+            //{
+           //  SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
 
             serialDataQueue = new System.Collections.Concurrent.ConcurrentQueue<char>();
 
@@ -120,10 +149,8 @@ namespace InteractiveBrain
                 comPortNumberComboBox.Items.Add(port);
                 Console.WriteLine(port);
             }
-            Console.WriteLine(dbConnectionString);
 
-            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
-            //string query;
+            SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString,true);
 
             //Add healthy behaviors in database to list of strings
             try
@@ -140,26 +167,129 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                Console.WriteLine(ex);
+                MessageBox.Show("Wasn't able to load Healthy Behaviors list");
+
+               // MessageBox.Show(ex.ToString());
             }
             
             //This function is used for the listbox not search autocomplete textbox
             Fill_ListBox();
         }
 
-        
-        private void toggleButton_Click(object sender, RoutedEventArgs e)
+        //This function is used to copy the database file from the installation folder
+        //C:/Program Files/Interactive Brain/ to the app's Application Data Local Folder 
+        //so user is able to write to it.
+        public  void CopyDatabase()
+        {   //Hard coded string for program files and data string works but not  AppDomain.CurrentDomain.GetData("DataDirectory");
+            string fileName = "interactiveBrainDatabase.db";
+            //MessageBox.Show(fileName); //For debugging Purposes
+            string sourcePath = "C:\\Program Files\\Interactive Brain"; //Where original database file was installed
+                                                                        //MessageBox.Show(sourcePath); //For debugging Purposes
+
+            //string targetPath = string.Format("{0}\\Interactive Brain", AppDomain.CurrentDomain.GetData("DataDirectory"));
+            //string targetPath = string.Format("{0}\\Interactive Brain",
+            //Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)); //different than AppDomain.CurrentDomain.GetData("DataDirectory)
+            //string targetPath = "C:\\ProgramData\\Interactive Brain"; 
+            //MessageBox.Show(targetPath); //For debugging purposes
+
+            string targetPath = string.Format("{0}\\Interactive Brain",
+                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+            Console.WriteLine("GetFolderPath: {0}",
+                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+            
+            //To copy a folder's contents to a new location:
+            //Create a new target folder, if necessary.
+            if (!System.IO.Directory.Exists(targetPath))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(targetPath);
+                }
+                catch { Console.WriteLine("Couldn't create folder " + targetPath ); }
+            }
+            else
+            {
+                Console.WriteLine(targetPath + " already exists ");
+            }
+
+            // Determines the path to the database file in the installation folder
+            string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+            if (System.IO.File.Exists(sourceFile))
+            {
+                Console.WriteLine(HasWritePermissionOnDir(sourceFile));//For debugging purposes
+                //MessageBox.Show(sourceFile); //For debugging Purposes
+            }
+            else {
+                Console.WriteLine(sourceFile + "does not exist");
+            }
+            
+            //Determines the path to the database file that has been copied from the 
+            //installation folder to a location with read/write privelages
+            string destFile = System.IO.Path.Combine(targetPath, fileName);
+            if (System.IO.File.Exists(destFile))
+            {
+                Console.WriteLine(HasWritePermissionOnDir(destFile));
+                //MessageBox.Show(destFile); //For debugging purposes
+            }
+            else {
+                Console.WriteLine(destFile + "does not exist");
+            }
+
+            // To copy a file to another location if it doesn't already exists.
+            // Don't overwrite the destination file if it already exists.
+            if (!System.IO.File.Exists(destFile))
+            {     
+                try
+                {
+                    System.IO.File.Copy(sourceFile, destFile, true);
+                }
+                catch { Console.WriteLine("Couldn't copy database file from installation folder C:\\Program Files\\Interactive Brain "); }
+            }
+            else
+            { 
+                Console.WriteLine("Database file already exists, did not copy from installation folder again");
+            }
+            Thread.Sleep(50);
+        }
+        //This function is used to determine if certain folders and file have write
+        //privelages for the database file 
+        public static bool HasWritePermissionOnDir(string path)
         {
+            var writeAllow = false;
+            var writeDeny = false;
+            var accessControlList = Directory.GetAccessControl(path);
+            if (accessControlList == null)
+                return false;
+            var accessRules = accessControlList.GetAccessRules(true, true,
+                                        typeof(System.Security.Principal.SecurityIdentifier));
+            if (accessRules == null)
+                return false;
+
+            foreach (FileSystemAccessRule rule in accessRules)
+            {
+                if ((FileSystemRights.Write & rule.FileSystemRights) != FileSystemRights.Write)
+                    continue;
+
+                if (rule.AccessControlType == AccessControlType.Allow)
+                    writeAllow = true;
+                else if (rule.AccessControlType == AccessControlType.Deny)
+                    writeDeny = true;
+            }
+
+            return writeAllow && !writeDeny;
+        }
+
+        //This function is called when the connection button is pressed 
+        private void connectionButton_Click(object sender, RoutedEventArgs e)
+        {   //The default flag is used to treat button as toggle button
             if (defaultFlag == false)
             {
                 //If there aren't any serial ports to connect to
                 //Display message not able to connect and the togglebutton doesn't
-                //become checked
+                //change
                 if (ports == null || ports.Length == 0)
                 {
-                    selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
-
+                    MessageBox.Show("Check connection, then try again. ");
                 }
                 else
                 {
@@ -171,7 +301,7 @@ namespace InteractiveBrain
                         { connectionPopup.IsOpen = true; }
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message);
-
+                        MessageBox.Show("Couldn't open the pop-up to allow for connection to the Brain");
                         isConnected = false;
                     }
                 }
@@ -180,10 +310,9 @@ namespace InteractiveBrain
             else if (defaultFlag == true)
             {
                 //If the app is connected, change the image of button
-
                 if (isConnected)
                 {
-                    selectionMessageBox.Text = "Disconnected";
+                    MessageBox.Show("Disconnected");
                     try
                     {
                         Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
@@ -191,7 +320,7 @@ namespace InteractiveBrain
                         BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
                         var brush = new ImageBrush();
                         brush.ImageSource = temp;
-                        toggleButton.Background = brush;
+                        connectionButton.Background = brush;
 
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -202,11 +331,11 @@ namespace InteractiveBrain
                 {   //if there aren't any serial ports available
                     if (ports == null || ports.Length == 0)
                     {
-                        selectionMessageBox.Text = "Not able to connect, check connection, then try again. ";
+                        MessageBox.Show("Not able to connect, check connection, then try again.");
                     }
-                    else  //if they are serial ports available that app isn't use
+                    else  //if they are serial ports available that app aren't in use
                     {
-                        selectionMessageBox.Text = "Not connected yet";
+                        MessageBox.Show("The Brain wasn't connected yet.");
                     }
                 }
                 defaultFlag = false;
@@ -218,6 +347,8 @@ namespace InteractiveBrain
         private void CloseConnectionPopupClicked(object sender, RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
+            //Make attempt to keep serail port open a short time to see if it will sucessfully
+            //open before moving forward with the selected com port
             if (connectionPopup.IsOpen) { connectionPopup.IsOpen = false; }
             try
             {
@@ -231,11 +362,11 @@ namespace InteractiveBrain
             catch (UnauthorizedAccessException ex)//The selected comPort is being used by another process
             {
 
-                selectionMessageBox.Text = "Chosen COM Port in use, connect to another";
+                MessageBox.Show("Wasn't able to connect to chosen port, choose another port for connection");
                 Console.WriteLine(ex.Message);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-            if (selectedPort != null)
+            if (selectedPort != null) //now change the background of the connection button to show connected
             {
                 Console.WriteLine("Connected to " + selectedPort);
                 SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
@@ -248,18 +379,20 @@ namespace InteractiveBrain
                 var brush = new ImageBrush();
                 brush.ImageSource = temp;
 
-                toggleButton.Background = brush;
+                connectionButton.Background = brush;
             }
          
-            else  //if there are serial ports available that app isn't use
+            else  //if there are serial ports available that app aren't in use
             {
-                selectionMessageBox.Text = "COM PORTS available, no COM PORT NUMBER chosen";
+                MessageBox.Show("No COM PORT was chosen");
                 isConnected = false;
                 defaultFlag = false;
             }
             // open the Popup if it isn't open already 
         }
        
+
+        //This button opens the editing popup 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             if (!editListsPopup.IsOpen)
@@ -271,10 +404,10 @@ namespace InteractiveBrain
         {
             errorMessageTextBlock.Text = "";
             editHealthyBehaviorsFlag = true; 
-            editingListBox.Items.Clear();
             Fill_ListBox();
         }
 
+        //This function opens the content button to add an item to the healthy behaviors list
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (editHealthyBehaviorsFlag)
@@ -286,6 +419,8 @@ namespace InteractiveBrain
             }
             
         }
+
+        //THis function is used to remove an item from the healthy behaviors list
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             if (editHealthyBehaviorsFlag)
@@ -365,19 +500,19 @@ namespace InteractiveBrain
 
             lightingSequenceString = CharArrayToString(lightingSequenceToDatabase);
 
-            if (!effectsChecked && newListBoxItemContent == null)
+            if (!effectsChecked && string.IsNullOrEmpty(newListBoxItemContent))
             {
                 errorTextBlock.Text = "No content was inserted or effects are checked.";
             }
-            else if (!effectsChecked && newListBoxItemContent != null)
+            else if (!effectsChecked && !string.IsNullOrEmpty(newListBoxItemContent))
             {
                 errorTextBlock.Text = "No effects are checked.";
             }
-            else if (effectsChecked && newListBoxItemContent == null)
+            else if (effectsChecked && string.IsNullOrEmpty(newListBoxItemContent))
             {
                 errorTextBlock.Text = "No content was inserted.";
             }
-            else if (effectsChecked && newListBoxItemContent != null)
+            else if (effectsChecked && !string.IsNullOrEmpty(newListBoxItemContent))
             {
                 AddNewItemToDatabase();
                 listBoxContent.Text = "";
@@ -393,9 +528,9 @@ namespace InteractiveBrain
                 editOccipitalLobeCheckbox.IsChecked = false;
                 errorTextBlock.Text = "Saved.";
             }
-          //  AddNewItemToDatabase();
+         
         }
-        //resest the editListsPopup
+        //reset the editListsPopup 
         private void CloseEditListsPopupClicked(object sender, RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
@@ -420,6 +555,7 @@ namespace InteractiveBrain
             if (contentPopup.IsOpen) { contentPopup.IsOpen = false; }
             listBoxContent.Text = "";
             errorTextBlock.Text = "";
+            editingTabControl.TabIndex = 0;
             editAmygdalaCheckbox.IsChecked = false;
             editParietalLobeCheckbox.IsChecked = false;
             editTemporalLobeCheckbox.IsChecked = false;
@@ -429,21 +565,21 @@ namespace InteractiveBrain
             editPituitaryGlandCheckbox.IsChecked = false;
             editBrainstemCheckbox.IsChecked = false;
             editOccipitalLobeCheckbox.IsChecked = false;
+            Fill_ListBox();
         }
         #endregion
 
         //This function determines what happens when the selection of the brain Part list changes 
         //Set brain part flag true and other flags false 
-        //Make the Examples Button Unavailable 
         //When selection changes stop parts glowing based on the previous selection
 
         private void ListBoxSelectionChanged()
         {
-
+            //Stop each part from flashing
             amygdalaImage.BeginAnimation(OpacityProperty, null);
        
             pituitaryGlandImage.BeginAnimation(OpacityProperty, null);
-          hippocampusImage.BeginAnimation(OpacityProperty, null);
+            hippocampusImage.BeginAnimation(OpacityProperty, null);
        
             brainstemImage.BeginAnimation(OpacityProperty, null);
         
@@ -457,15 +593,17 @@ namespace InteractiveBrain
           
             cerebellumImage.BeginAnimation(OpacityProperty, null);
         
-
+            //end scaling animation
             if (selectionMade) {
                 storyboard.Children.Remove(growXAnimation);
                 storyboard.Children.Remove(growYAnimation);
                 selectionMade = false;
             }
-           brainstemImage.RenderTransform = null;
-           cerebellumImage.RenderTransform = null;
-           hippocampusImage.RenderTransform = null;
+
+            //reset each images render transform to prevent unintentional scaling from previous selection
+            brainstemImage.RenderTransform = null;
+            cerebellumImage.RenderTransform = null;
+            hippocampusImage.RenderTransform = null;
             frontalLobeImage.RenderTransform = null;
             temporalLobeImage.RenderTransform = null;
             occipitalLobeImage.RenderTransform = null;
@@ -487,7 +625,7 @@ namespace InteractiveBrain
                     Thread.Sleep(20);
                     SerialPort1.Close();
                 }
-                catch { }
+                catch { MessageBox.Show("Check connection to Brain"); }
               }
         }
 
@@ -495,131 +633,146 @@ namespace InteractiveBrain
         private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = true;
-            healthybehaviorBOOL = false;
-            healthyBehaviorsListBox.SelectedItem = false;
-            selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
+            // healthybehaviorBOOL = false;
+            //healthyBehaviorsListBox.SelectedItem = false;
+            try
+            {
+                selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
+            }
+            catch {
+                MessageBox.Show("No brain part was selected. Select a brain part.");
+            }
             ListBoxSelectionChanged();
         }
-
-
-        //This function determines what happens when the selection of the brain Part list changes 
         
         //This function determines what happens when the selection of the brain Part list changes 
         //Set activities flag true and other flags false 
         //Make the Examples Button Unavailable
         //When selection changes stop parts glowing based on the previous selection
-
+        //The ListBox for healthy behaviors wasn't used 
         private void HealthyBehaviorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            healthybehaviorBOOL = true;
-          
             brainPart = false;
             brainPartsListBox.SelectedItem = false;
-           
-            selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
+            try
+            {
+                selectedHealthyBehaviors = ((ListBoxItem)healthyBehaviorsListBox.SelectedItem).Content.ToString();
+            }
+            catch
+            {
+              //  MessageBox.Show(selectedBrainPart );
+            }
             Console.WriteLine(selectedHealthyBehaviors);
             ListBoxSelectionChanged();
-
-
         }
       
+        //This function is called when cerebellu is chosen 
         private void Cerebellum_Selected(object sender, RoutedEventArgs e)
         {
             // displayMessage = "Note the LED corresponding to the Cerebellum light up";
             lightingSequenceFromDatabase = "100000000".ToArray();
-            //  WriteLightingSequenceMessage();
         }
+
+        //This function is called when the brainstem is selected
         private void Brainstem_Selected(object sender, RoutedEventArgs e)
         {
            // displayMessage = "Note the LED corresponding to the Brainstem light up";
             lightingSequenceFromDatabase = "010000000".ToArray();
-            //  WriteLightingSequenceMessage();
         }
+
+        //This function is called when the pituitary gland is selected 
         private void PituitaryGland_Selected(object sender, RoutedEventArgs e)
         {
            // displayMessage = "Note the LED corresponding to the Pituitary Gland light up";
             lightingSequenceFromDatabase = "001000000".ToArray();
-            //  WriteLightingSequenceMessage();
         }
+
+        //This function is called when the amygdala is selected 
         private void Amygdala_Selected(object sender, RoutedEventArgs e)
         {
           //  displayMessage = "Note the LED corresponding to the Amygdala light up";
             lightingSequenceFromDatabase = "000100000".ToArray();
-//WriteLightingSequenceMessage();
         }
 
+        //This function is called when the hippocampus is selected 
         private void Hippocampus_Selected(object sender, RoutedEventArgs e)
         {
           //  displayMessage = "Note the LED corresponding to the Hippocampus light up";
             lightingSequenceFromDatabase = "000010000".ToArray();
-            //  WriteLightingSequenceMessage();
         }
+
+        //This function is called when the temporal lobe is selected 
         private void TemporalLobe_Selected(object sender, RoutedEventArgs e)
         {
           //  displayMessage = "Note the LED corresponding to the Temporal Lobe light up";
             lightingSequenceFromDatabase = "000001000".ToArray();
-            //  WriteLightingSequenceMessage();
         }
+
+        //This function is called when the occipital lobe is selected 
         private void OccipitalLobe_Selected(object sender, RoutedEventArgs e)
         {
             //   displayMessage = "Note the LED corresponding to the Occipital Lobe light up";
             lightingSequenceFromDatabase = "000000100".ToArray();
-            //WriteLightingSequenceMessage();
         }
+
+        //This function is called when the parietal lobe is selected 
         private void ParietalLobe_Selected(object sender, RoutedEventArgs e)
         {
            // displayMessage = "Note the LED corresponding to the Parietal Lobe light up";
 
             lightingSequenceFromDatabase = "000000010".ToArray();
-           //   WriteLightingSequenceMessage();
         }
       
-
+        //This function is called when the frontal lobe is selected
         private void FrontalLobe_Selected(object sender, RoutedEventArgs e)
         {
            // displayMessage = "Note the LED corresponding to the Frontal Lobe light up";
             lightingSequenceFromDatabase = "000000001".ToArray();
            
         }
+
         //This function determines what happens when the Go Button is Clicked
-        //Depending on the selection, make affected areas glow 
+        //Depending on the selection, make affected areas glow and scale larger and smaller
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
             selectionMade = true;
 
+            //Initialize the glowing animation
             glowAnimation.From = 1.0;
             glowAnimation.To = 0.4;
             glowAnimation.Duration = new Duration(TimeSpan.FromSeconds(.5));
             glowAnimation.AutoReverse = true;
             glowAnimation.RepeatBehavior = RepeatBehavior.Forever;
-            growXAnimation.Duration = TimeSpan.FromMilliseconds(500);
-           growYAnimation.Duration = TimeSpan.FromMilliseconds(500);
-           growXAnimation.From = 1;
-            growYAnimation.From = 1;
-            growXAnimation.To = 1.1;
-           growYAnimation.To = 1.1;
 
+            //Initialize the scalex animation
+            growXAnimation.Duration = TimeSpan.FromMilliseconds(500);
+            growXAnimation.From = 1;
+            growXAnimation.To = 1.1;
             growXAnimation.AutoReverse = true;
-            growYAnimation.AutoReverse = true;
-           growXAnimation.RepeatBehavior = RepeatBehavior.Forever;
+            growXAnimation.RepeatBehavior = RepeatBehavior.Forever;
+
+            //Initialize the scaley animation
+            growYAnimation.Duration = TimeSpan.FromMilliseconds(500);           
+            growYAnimation.From = 1;            
+            growYAnimation.To = 1.1;            
+            growYAnimation.AutoReverse = true;        
             growYAnimation.RepeatBehavior = RepeatBehavior.Forever;
             
-          storyboard.Children.Add(growXAnimation);
-          storyboard.Children.Add(growYAnimation);
+            //
+            storyboard.Children.Add(growXAnimation);
+            storyboard.Children.Add(growYAnimation);
             Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
             Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
 
+            //If brain part is selected show the name of part selected
             if (brainPart)
-            {
-                
-                selectionMessageBox.Text = selectedBrainPart + " was chosen. ";
-                healthyBehaviorsListBox.SelectedItem = false;
-               
+            {               
+                selectionMessageBox.Text = selectedBrainPart + " was chosen. ";             
                 brainPart = false;
                 //Don't need to look in database because hard coded 
                 LightingSequence();
             }
-           
+            //if the searchtextbox isn't empty
             if(searchTextBox.Text != "")
             {
                 brainPartsListBox.SelectedItem = false;
@@ -650,7 +803,7 @@ namespace InteractiveBrain
                 }
                 if (lightingSequenceString == null)
                 {
-                    selectionMessageBox.Text = "Choose a option available from the drop down list ";
+                    MessageBox.Show( "Choose a option available from the drop down list ");
                 }
                 else
                 {
@@ -665,17 +818,21 @@ namespace InteractiveBrain
             }
 
         }
+
+        //This function converts a string to character array
         public char[] StringToCharArray(string convertString)
         {
             char[] newCharArr = convertString.ToCharArray();
             return newCharArr;
         }
+
+        //This function converts a character array to a string
         public string CharArrayToString(char[] convertArray)
         {
             string newString = new string(convertArray);
             return newString;
         }
-        //This functions deterine which parts of the brain on the app side to illuminate based on
+        //This functions determines which parts of the brain on the app side to illuminate based on
         //selection of healthy behaviors
         private void LightingSequence()
         {
@@ -706,14 +863,18 @@ namespace InteractiveBrain
                 scale.ScaleY = 1.0;
          
                 brainstemImage.BeginAnimation(OpacityProperty, glowAnimation);
-            
-              
+                  
                 storyboard.Stop();
         
                 Storyboard.SetTarget(growXAnimation, brainstemImage);
                 Storyboard.SetTarget(growYAnimation, brainstemImage);
                 storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
+                // Put the image currently being dragged on top of the others
+                Canvas canvas = temporalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas.SetZIndex(brainstemImage, top + 1);
             }
             if (lightingSequenceFromDatabase[2] == '1')
             {
@@ -722,33 +883,39 @@ namespace InteractiveBrain
                 scale.ScaleY = 1.0;
 
                 pituitaryGlandImage.BeginAnimation(OpacityProperty, glowAnimation);
-          
-                
-                storyboard.Stop();
-         
+                         
+                storyboard.Stop();        
                 Storyboard.SetTarget(growXAnimation, pituitaryGlandImage);
                 Storyboard.SetTarget(growYAnimation, pituitaryGlandImage);
                 Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
                 Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
-
                 storyboard.Begin();
-                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
+                // Put the image currently being dragged on top of the others
+                Canvas canvas = temporalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas.SetZIndex(pituitaryGlandImage, top + 1);
             }
             if (lightingSequenceFromDatabase[3] == '1')
             {
                 amygdalaImage.RenderTransform = scale;
+
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
          
                 amygdalaImage.BeginAnimation(OpacityProperty, glowAnimation);
               
-                storyboard.Stop();
-              
+                storyboard.Stop();              
                 Storyboard.SetTarget(growXAnimation, amygdalaImage);
                 Storyboard.SetTarget(growYAnimation, amygdalaImage);
-               
                 storyboard.Begin();
-                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
+                // Put the image currently being dragged on top of the others
+                Canvas canvas = temporalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas.SetZIndex(amygdalaImage, top + 1);
             }
             if (lightingSequenceFromDatabase[4] == '1')
             {
@@ -759,28 +926,29 @@ namespace InteractiveBrain
                 hippocampusImage.BeginAnimation(OpacityProperty, glowAnimation);
       
                 
-                storyboard.Stop();
-
-                Storyboard.SetTarget(storyboard, hippocampusImage);
-       
+                storyboard.Stop();    
                 Storyboard.SetTarget(growXAnimation, hippocampusImage);
-                Storyboard.SetTarget(growYAnimation, hippocampusImage);
-          
+                Storyboard.SetTarget(growYAnimation, hippocampusImage);      
                 storyboard.Begin();
-                  storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
+                // Put the image currently being dragged on top of the others
+                Canvas canvas = temporalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(hippocampusImage);
+                Canvas.SetZIndex(hippocampusImage, top + 1);
             }
             if (lightingSequenceFromDatabase[5] == '1')
             {
                 temporalLobeImage.RenderTransform = scale;
+
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-               temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+
+                temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                
-                storyboard.Stop();
-     
+                storyboard.Stop();    
                 Storyboard.SetTarget(growXAnimation, temporalLobeImage);
-                Storyboard.SetTarget(growYAnimation, temporalLobeImage);
-            
+                Storyboard.SetTarget(growYAnimation, temporalLobeImage);          
                 storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
@@ -793,18 +961,18 @@ namespace InteractiveBrain
             if (lightingSequenceFromDatabase[6] == '1')
             {
                 occipitalLobeImage.RenderTransform = scale;
+
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-               occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
-             
-                
-                storyboard.Stop();
 
-               Storyboard.SetTarget(growXAnimation, occipitalLobeImage);
+                occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+                            
+                storyboard.Stop();
+                Storyboard.SetTarget(growXAnimation, occipitalLobeImage);
                 Storyboard.SetTarget(growYAnimation, occipitalLobeImage);
-           
                 storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
                 Canvas canvas = occipitalLobeImage.Parent as Canvas;
                 int top = Canvas.GetZIndex(temporalLobeImage);
                 Canvas.SetZIndex(occipitalLobeImage, top + 1);
@@ -812,16 +980,18 @@ namespace InteractiveBrain
             if (lightingSequenceFromDatabase[7] == '1')
             {
                 parietalLobeImage.RenderTransform = scale;
+
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-              parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
-           
-                
+
+                 parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+                         
                 storyboard.Stop();
                 Storyboard.SetTarget(growXAnimation, parietalLobeImage);
                 Storyboard.SetTarget(growYAnimation, parietalLobeImage);
-              storyboard.Begin();
+                storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
                 Canvas canvas = parietalLobeImage.Parent as Canvas;
                 int top = Canvas.GetZIndex(temporalLobeImage);
                 Canvas.SetZIndex(parietalLobeImage, top + 1);
@@ -829,16 +999,18 @@ namespace InteractiveBrain
             if (lightingSequenceFromDatabase[8] == '1')
             {
                 frontalLobeImage.RenderTransform = scale;
+
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-            frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
-             
-                
+
+                frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+
                 storyboard.Stop();
-               Storyboard.SetTarget(growXAnimation, frontalLobeImage);
+                Storyboard.SetTarget(growXAnimation, frontalLobeImage);
                 Storyboard.SetTarget(growYAnimation, frontalLobeImage);
-             storyboard.Begin();
-               storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+                storyboard.Begin();
+                storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
+
                 Canvas canvas = temporalLobeImage.Parent as Canvas;
                 int top = Canvas.GetZIndex(temporalLobeImage);
                 Canvas.SetZIndex(parietalLobeImage, top + 1);
@@ -846,7 +1018,8 @@ namespace InteractiveBrain
             WriteLightingSequenceMessage();
         }
 
-
+        //This function is used to write to the serial port so the brain may know what 
+        //parts to illuminate
         private void WriteLightingSequenceMessage()
         {
 
@@ -876,18 +1049,19 @@ namespace InteractiveBrain
                 catch (UnauthorizedAccessException ex)
                 {
 
-                    selectionMessageBox.Text = "Chosen COM Port in use, connect to another";
+                    MessageBox.Show( "Chosen COM Port in use, connect to another");
                     Console.WriteLine(ex.Message);
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show("Wasn't able to successfully connect to Brain");
                     Console.WriteLine(ex.Message);
                 }
 
             }
             else
-            {
-                Console.WriteLine("Not connected to serial port to send selection to Brain");
+            {               
+                Console.WriteLine("Not connected to COM PORT for Brain");
             }
 
         }
@@ -910,6 +1084,7 @@ namespace InteractiveBrain
         }
 
         //This function handles if data is received through the serial port 
+        //NOT USED 
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = sender as SerialPort;
@@ -933,6 +1108,7 @@ namespace InteractiveBrain
             }
         }
         
+        //This function is called when the user begins typing in the healthy behavior search box 
         private void SearchTextBox_KeyUp(object sender, KeyboardEventArgs e)
         {
             ListBoxSelectionChanged();
@@ -971,6 +1147,9 @@ namespace InteractiveBrain
                 }
             }
         }
+
+        //This function is used to add an item to the stackpanel holding 
+        //the items of the healthy behaviors list
         private void addItem(string text, string color)
         {
             TextBlock block = new TextBlock();
@@ -1007,6 +1186,8 @@ namespace InteractiveBrain
             // Add to the panel   
             resultsStack.Children.Add(block);
         }
+
+        //This function determines what happens when a selection is made from the healthy behaviors list
         private void ResultsStackMouseDown(object sender, MouseButtonEventArgs e)
         {
             resultsStack.Children.Clear();
@@ -1015,6 +1196,7 @@ namespace InteractiveBrain
 
         }
         //This function handles what to do with received data
+        //Never used
         private void ReadSerialDataQueue()
         {
             try
@@ -1059,7 +1241,7 @@ namespace InteractiveBrain
                 {
                     string healthyBehaviorListBoxItemContent;
                     ListBoxItem li = new ListBoxItem();
-                    if (editHealthyBehaviorsFlag)
+                    if (editHealthyBehaviorsFlag) //This updates the editingListBox
                     {
                         healthyBehaviorListBoxItemContent = dr.GetString(1);
                         li.Content = healthyBehaviorListBoxItemContent;
@@ -1067,8 +1249,8 @@ namespace InteractiveBrain
                         li.FontFamily = new FontFamily("Calibri");
                         li.FontSize = 16;
                     }
-                     else
-                     {
+                    else  //This updates the editingListBox
+                    {
                         healthyBehaviorListBoxItemContent = dr.GetString(1);
                         li.Content = healthyBehaviorListBoxItemContent;
                         healthyBehaviorsListBox.Items.Add(li);
@@ -1081,6 +1263,7 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Wasn't able to add item to Healthy Behaviors list");
                 Console.WriteLine(ex);
             }
         }
@@ -1107,12 +1290,15 @@ namespace InteractiveBrain
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.
                     Console.WriteLine(ex);
                 }
                 index++;
                 changingIndex++;
             }
         }
+
+        //This function is used to add to the database
         private void AddNewItemToDatabase()
         {
             ListBoxItem li = new ListBoxItem();
@@ -1140,6 +1326,7 @@ namespace InteractiveBrain
             Fill_ListBox();
         }
        
+        //This function is used to remove an item from the database
         private void RemoveItemToDatabase()
         {
             ListBoxItem li = new ListBoxItem();
@@ -1166,6 +1353,10 @@ namespace InteractiveBrain
             Fill_ListBox();
             UpdateIndices();
         }
+
+        //This function was but could be used to update an exiting item in the healthy behaviors
+        //list
+        //NOT USED 
         private void UpdateItemToDatabase()
         {
             ListBoxItem li = new ListBoxItem();

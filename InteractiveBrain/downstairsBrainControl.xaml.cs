@@ -35,7 +35,7 @@ namespace InteractiveBrain
         private object movingObject; //The image being dragged and dropped 
         private double firstXPos, firstYPos;
 
-        //used to save the original position of the brain needed for the rest button 
+        //used to save the original position of the brain needed for the reset button 
         //functionality
         double originalHippocampusX;
         double originalHippocampusY;
@@ -61,7 +61,7 @@ namespace InteractiveBrain
 
         string changedFactsMessageBoxText;//used to save content of textbox in editPopup
 
-        //Initialize texts for Downstairs Brain 
+        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for hippocampus
         string defaultFunctionsHippocampus = Properties.Settings.Default.defaultFunctionsHippocampus;
         string changedFunctionsHippocampus = null;
         bool defaultFunctionsHFlag = true;
@@ -72,6 +72,7 @@ namespace InteractiveBrain
         string defaultUnhealthyBehaviorsHippocampus = Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
         bool defaultUHBHFlag = true;
 
+        // used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for Amygdala
         string changedFunctionsAmygdala = null;
         string defaultFunctionsAmygdala = Properties.Settings.Default.defaultFunctionsAmygdala;
         bool defaultFunctionsAFlag = true;
@@ -82,6 +83,7 @@ namespace InteractiveBrain
         string defaultUnhealthyBehaviorsAmygdala = Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
         bool defaultUHBAFlag = true;
 
+        //Used to initialize text display for the functions, healthy behvaiors, and unhealthy behaviors for Pituitary Glansd 
         string changedFunctionsPituitaryGland = null;
         string defaultFunctionsPituitaryGland = Properties.Settings.Default.defaultFunctionsPituitaryGland;
         bool defaultFunctionsPGFlag = true;
@@ -92,6 +94,7 @@ namespace InteractiveBrain
         string defaultUnhealthyBehaviorsPituitaryGland = Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
         bool defaultUHBPGFlag = true;
 
+        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors
         string changedFunctionsBrainstem = null;
         string defaultFunctionsBrainstem = Properties.Settings.Default.defaultFunctionsBrainstem;
         bool defaultFunctionsBSFlag = true;
@@ -104,8 +107,8 @@ namespace InteractiveBrain
 
         //This is the entry point for the userControl page 
         //This function initializes the userControl with EventHandlers and other characteristics
-        //EventHandlers routed to controls in xaml file
-        //Bind animations for brain parts to instatiated storyboards in the xaml file 
+        //EventHandlers are routed to controls in xaml file
+        //Bind animations for brain parts to declared and defined storyboards in the xaml file 
         public downstairsBrainControl()
         {
             InitializeComponent();
@@ -113,6 +116,7 @@ namespace InteractiveBrain
             hippocampusBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(HippocampusBox_PreviewMouseLeftButtonDown);
             hippocampusBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
             hippocampusBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
+
             pituitaryGlandBox.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(PituitaryGlandBox_PreviewMouseLeftButtonDown);
             pituitaryGlandBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
             pituitaryGlandBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
@@ -125,22 +129,29 @@ namespace InteractiveBrain
             amygdalaBox.PreviewMouseMove += new MouseEventHandler(Img_PreviewMouseMove);
             amygdalaBox.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(Img_PreviewMouseLeftButtonUp);
 
+
+            //Used to get the original position of the images
             originalHippocampusX = Canvas.GetLeft((UIElement)hippocampusBox);
             originalHippocampusY = Canvas.GetTop((UIElement)hippocampusBox);
+
             originalAmygdalaX = Canvas.GetLeft((UIElement)amygdalaBox);
             originalAmygdalaY = Canvas.GetTop((UIElement)amygdalaBox);
+
             originalPituitaryGlandX = Canvas.GetLeft((UIElement)pituitaryGlandBox);
             originalPituitaryGlandY = Canvas.GetTop((UIElement)pituitaryGlandBox);
+
             originalBrainstemX = Canvas.GetLeft((UIElement)brainstemBox);
             originalBrainstemY = Canvas.GetTop((UIElement)brainstemBox);
 
-            //Binding the declared storyboards to storyboards in resources
+            //Binding the declared storyboards(in code behind) to storyboards in user control resources in(xaml)
             sbH = (Storyboard)Resources["zoomingH"];
             sbA = (Storyboard)Resources["zoomingA"];
             sbPG = (Storyboard)Resources["zoomingPG"];
             sbBS = (Storyboard)Resources["zoomingBS"];
 
-            storyboardFlag = 0; // Initiates storyboard flag at zero
+            // Initiates storyboard flag at zero, used to determine 
+            //which storyboard to use
+            storyboardFlag = 0;
         }
 
         public static downstairsBrainControl Instance //This allows a new highSchool User Control to be instantiated 
@@ -156,16 +167,22 @@ namespace InteractiveBrain
 
             }
         }
-        //This function sets flags to true and false
+        //This function is called when the functions radio button is selected. 
+        //It calls the function that determines which brain part's functions to display
         private void FunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             factsMessageBox.Text = "";
             WhichFunction();
 
         }
+
+        //This function is used to determine which brain's part functions to display
+        //If default function flag is true use functions from settings 
+        //else use edited functions for each part then save as default in settings
+        //the storyboard flag determine which brain part
         private void WhichFunction() {
             switch (storyboardFlag)
-            {
+            {   
                 case 1:
                     if (defaultFunctionsHFlag)
                     {
@@ -228,6 +245,20 @@ namespace InteractiveBrain
 
             }
         }
+
+        //This function is called when the healthy behaviors radio button is selected 
+        //It calls the function that determines which brain part's healthy behaviors to display
+        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+            factsMessageBox.Text = "";
+            WhichHealthyBehavior();
+        }
+
+        //This function determines which brain part's healthy behavior to display
+        //If default healthy behavior flag is true use healthy behaviors from settings 
+        //else use edited healthy behaviors for each part then save as default in settings
+        //the storyboard flag determine which brain part
         private void WhichHealthyBehavior() {
             switch (storyboardFlag)
             {
@@ -292,7 +323,22 @@ namespace InteractiveBrain
 
             }
         }
-        private void WhichUnhealthyBehavior() {
+
+
+
+        //This function is called when the unhealthy behaviors radio button is selected 
+        //It calls the function that determines which brain part's unhealthy behaviors to display
+        private void UnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            factsMessageBox.Text = "";
+            WhichUnhealthyBehavior();
+        }
+        //This function is used to determine which brain part's unhealthy behaviors 
+        //If default unhealthy behavior flag is true use unhealthy behaviors from settings 
+        //else use edited unhealthy behaviors for each part then save as default in settings
+        //the storyboard flag determine which brain part
+        private void WhichUnhealthyBehavior()
+        {
             switch (storyboardFlag)
             {
                 case 1:
@@ -359,20 +405,10 @@ namespace InteractiveBrain
 
             }
         }
-        //This function sets flags as true and false 
-        private void HealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
 
-            factsMessageBox.Text = "";
-            WhichHealthyBehavior();
-        }
-        //This function set flags as true and false 
-        private void UnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            factsMessageBox.Text = "";
-            WhichUnhealthyBehavior();
-        }
 
+        //This function is called when the edit button is clicked
+        //It opens the edit popup
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             // open the Popup if it isn't open already 
@@ -382,27 +418,11 @@ namespace InteractiveBrain
 
             }
         }
-        //This function saves the editingTextBox text into a variable to be saved 
-        //as default setting later
-        private void EditingTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            changedFactsMessageBoxText = editingTextBox.Text;
-        }
-        //This function is to save the selected brain part from the drop down list in the 
-        //editPopup into a string to determine the correct message to display when saving
-        private void BrainPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                brainPart = ((ComboBoxItem)brainPartComboBox.SelectedItem).Content.ToString();
-            }
-            catch
-            {
-
-            }
-        }
         //This function resets the editPopUp to its original state after its been closed
+        //Closing the popup, setting the edtingTextBlock.Text to an empty string, 
+        //deselecting radio buttons, resetting the editing flags, deslect the selection
+        //of the brain part combo box, set the editing message block to an empty string,
+        //set the editingTextBox to ReadOnly 
         private void CloseEditPopupClicked(object sender, RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
@@ -420,6 +440,31 @@ namespace InteractiveBrain
             editingTextBox.IsReadOnly = true;
 
         }
+
+        //This function is called when the editing textbox text changes. 
+        //Saves the changes into a global variable that can be used 
+        //to be saved as a default
+        private void EditingTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            changedFactsMessageBoxText = editingTextBox.Text;
+        }
+
+        //This function is to save the selected brain part from the drop down list in the 
+        //editPopup into a string to determine the correct message to display when saving
+        private void BrainPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                brainPart = ((ComboBoxItem)brainPartComboBox.SelectedItem).Content.ToString();
+            }
+            catch
+            {
+                editingMessageBlock.Text = "Select a brain part from the drop down list";
+            }
+        }
+ 
+        //This function is called when the functions radio button of the editing button is selected
         private void EditFunctionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = true;
@@ -445,6 +490,7 @@ namespace InteractiveBrain
             }
         }
 
+        //This function is called when the healthy behavior radio button of the editing pop up
         private void EditHealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
@@ -471,6 +517,7 @@ namespace InteractiveBrain
                 }
             }
         }
+        //This function is called when the unhealthy behaviors radio button is checked 
         private void EditUnhealthyBehaviorsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             editFunctionsFlag = false;
@@ -498,6 +545,10 @@ namespace InteractiveBrain
             }
         }
 
+        //This function is called when the save button of the edit pop up is clicked 
+        //What the editingMessageBlcok.Text displays depend on the brain part selected and 
+        //the radio button selected. the editingTextbox isn't read only when both have been selected
+        //Text for the currrent selection displays before being editable
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (brainPart == null && !(editFunctionsFlag || editHealthyBehaviorsFlag || editUnhealthyBehaviorsFlag))
@@ -587,6 +638,7 @@ namespace InteractiveBrain
                 }
             }
         }
+       
         //This function determines what happens when the hippocampus is clicked on with the mouse's left button
         private void HippocampusBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -594,7 +646,8 @@ namespace InteractiveBrain
             if (e.ClickCount == 1 && !disabled)
             {
                 brainPartsLabel.Text = "Hippocampus"; //Label for the brain part 
-                                                      // In this event, we get the current mouse position on the control to use it in the MouseMove event.
+                
+                // In this event, we get the current mouse position on the control to use it in the MouseMove event.
                 System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
                 Canvas canvas = img.Parent as Canvas;
                 firstXPos = e.GetPosition(img).X;
@@ -609,14 +662,11 @@ namespace InteractiveBrain
                 Canvas.SetZIndex(img, top + 1);
                 Mouse.Capture(img); //So the mouse pointer doesn't "slip" off of image while dragging and dropping 
 
-                //The following determines what to be displayed in factsMessageBox based on
-                //the selected radio button and whether or not the original content has been
-                //changed from the default.
-                //If the content has been changed from the default, display then save to become
-                //the new default
-                //Disable the radio buttons when content is being displayed for individual part
+                
+             
 
-            }//Determines what happens when the image is clicked twice
+            }
+            //This function determines what happens when the hippocampus is clicked on with the mouse's left button
             if (e.ClickCount == 2)
             {
 
@@ -626,6 +676,9 @@ namespace InteractiveBrain
                     ReverseOff(1);
                 }
                 else { ReverseOn(1); }
+
+                //The following determines what to be displayed in factsMessageBox based on
+                //the selected radio button 
                 if (functions.IsChecked == true)
                 {
                     WhichFunction();
@@ -638,6 +691,7 @@ namespace InteractiveBrain
                 {
                     WhichUnhealthyBehavior();
                 }
+
                 //Hide other parts and make facts box and go button visible
                 hippocampusBox.SetValue(Canvas.LeftProperty, originalHippocampusX);
                 hippocampusBox.SetValue(Canvas.TopProperty, originalHippocampusY);
@@ -677,7 +731,7 @@ namespace InteractiveBrain
                 Mouse.Capture(img); //So the mouse pointer doesn't "slip" off image when being dragged and dropped 
 
 
-                //makes the textbox, "Got It" button, and brain parts label visible when this brain part is chosen
+                
             }
 
             //This determines what happens when the amygdala is clicked twice 
@@ -700,6 +754,8 @@ namespace InteractiveBrain
                 {
                     WhichUnhealthyBehavior();
                 }
+
+                //These if statements determine what to display in the textbox
                 amygdalaBox.SetValue(Canvas.LeftProperty, originalAmygdalaX);
                 amygdalaBox.SetValue(Canvas.TopProperty, originalAmygdalaY);
                 brainstemBox.Visibility = System.Windows.Visibility.Hidden;
@@ -714,6 +770,7 @@ namespace InteractiveBrain
                 disabled = true;
             }
         }
+
         //This function determines what happens when the pituitary gland is left clicked 
         private void PituitaryGlandBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -736,7 +793,7 @@ namespace InteractiveBrain
                 Canvas.SetZIndex(img, top + 1);
                 Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
 
-                //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
+                
             }
 
                 if (e.ClickCount == 2) //What happens when the pituitary gland is double clicked 
@@ -746,6 +803,8 @@ namespace InteractiveBrain
                     if (sbPG.AutoReverse)
                     { ReverseOff(3); }
                     else { ReverseOn(3); }
+
+                //These if statements determine what to display in the textbox 
                 if (functions.IsChecked == true)
                 {
                     WhichFunction();
@@ -758,6 +817,8 @@ namespace InteractiveBrain
                 {
                     WhichUnhealthyBehavior();
                 }
+
+                //These if statements determine what to display in the textbox
                 pituitaryGlandBox.SetValue(Canvas.LeftProperty, originalPituitaryGlandX);
                     pituitaryGlandBox.SetValue(Canvas.TopProperty, originalPituitaryGlandY);
                     brainstemBox.Visibility = System.Windows.Visibility.Hidden;
@@ -795,7 +856,7 @@ namespace InteractiveBrain
                 Canvas.SetZIndex(img, top + 1);
                 Mouse.Capture(img);//So the mouse pointer doesn't "slip" off image when being dragged and dropped 
 
-                //These if statements determine what to display in the textbox and disables whichever radio buttons are not being used
+                
 
             }
             if (e.ClickCount == 2) //What happens when the Brainstem is selected 
@@ -807,6 +868,8 @@ namespace InteractiveBrain
                     ReverseOff(4);
                 }
                 else { ReverseOn(4); }
+
+                //These if statements determine what to display in the textbox 
                 if (functions.IsChecked == true)
                 {
                     WhichFunction();
@@ -819,6 +882,8 @@ namespace InteractiveBrain
                 {
                     WhichUnhealthyBehavior();
                 }
+
+                //These if statements determine what to display in the textbox
                 brainstemBox.SetValue(Canvas.LeftProperty, originalBrainstemX);
                 brainstemBox.SetValue(Canvas.TopProperty, originalBrainstemY);
 
@@ -855,9 +920,11 @@ namespace InteractiveBrain
             }
 
             //All images use this function for their "drag" part of their drag and drop operation
+            //The Mouse's cursor is null if the picture goes outside of a certain boundary
             private void Img_PreviewMouseMove(object sender, MouseEventArgs e)
             {
                 Mouse.OverrideCursor = null;
+
                 if (e.LeftButton == MouseButtonState.Pressed && sender == movingObject)
                 {
                     System.Windows.Controls.Image img = sender as System.Windows.Controls.Image;
@@ -908,7 +975,7 @@ namespace InteractiveBrain
                 hippocampusBox.SetValue(Canvas.TopProperty, originalHippocampusY);
 
             }
-            //This function is to randowmly place different brain parts within pictureCanvas
+            //This function is to randomly place different brain parts within pictureCanvas
             private void ScrambleButton_Click(object sender, RoutedEventArgs e)
             {
                 Random rnd = new Random();
@@ -1051,10 +1118,10 @@ namespace InteractiveBrain
 
                 disabled = false;
                 storyboardFlag = 0;
-            factsMessageBox.Text = "";
-            functions.IsChecked = false;
-            healthyBehaviors.IsChecked = false;
-            unhealthyBehaviors.IsChecked = false;
-        }
+                factsMessageBox.Text = "";
+                functions.IsChecked = false;
+                healthyBehaviors.IsChecked = false;
+                unhealthyBehaviors.IsChecked = false;
+            }
         }
     }

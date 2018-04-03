@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="interactiveBrainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=|DataDirectory|interactiveBrainDatabase.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="interactiveBrainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=interactiveBrainDatabase.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="HealthyBehaviors">
           <Key>
             <PropertyRef Name="healthyBehaviors" />
@@ -13,20 +13,10 @@
           <Property Name="healthyBehaviors" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="lightingSequenceArray" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
         </EntityType>
-        <EntityType Name="Substances">
-          <Key>
-            <PropertyRef Name="SubstanceName" />
-          </Key>
-          <Property Name="Id" Type="integer" Nullable="false" />
-          <Property Name="SubstanceName" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
-          <Property Name="lightingSequenceArray" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="interactiveBrainModelStoreContainer">
           <EntitySet Name="HealthyBehaviors" EntityType="Self.HealthyBehaviors" store:Type="Tables" />
-          <EntitySet Name="Substances" EntityType="Self.Substances" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="interactiveBrainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -38,17 +28,8 @@
           <Property Name="healthyBehaviors" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="lightingSequenceArray" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Substance">
-          <Key>
-            <PropertyRef Name="SubstanceName" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="SubstanceName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="lightingSequenceArray" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="interactiveBrainEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="HealthyBehaviors" EntityType="Self.HealthyBehavior" />
-          <EntitySet Name="Substances" EntityType="Self.Substance" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -61,15 +42,6 @@
               <MappingFragment StoreEntitySet="HealthyBehaviors">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="healthyBehaviors" ColumnName="healthyBehaviors" />
-                <ScalarProperty Name="lightingSequenceArray" ColumnName="lightingSequenceArray" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Substances">
-            <EntityTypeMapping TypeName="interactiveBrainModel.Substance">
-              <MappingFragment StoreEntitySet="Substances">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SubstanceName" ColumnName="SubstanceName" />
                 <ScalarProperty Name="lightingSequenceArray" ColumnName="lightingSequenceArray" />
               </MappingFragment>
             </EntityTypeMapping>
