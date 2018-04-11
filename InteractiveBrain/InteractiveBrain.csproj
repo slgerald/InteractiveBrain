@@ -357,38 +357,43 @@
     <None Include="Resources\poecentericon_HCM_icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\alcoholic_brain.PNG" />
-    <Resource Include="Resources\brain_on_meth_1month.PNG" />
-    <Resource Include="Resources\brain_on_meth_14month.PNG" />
-    <Resource Include="Resources\cocaine_brain.PNG" />
     <Resource Include="Resources\brain_activity_none.PNG" />
     <Resource Include="Resources\brain_activity_walking.PNG" />
     <Resource Include="Resources\brain_music_activity.PNG" />
     <Resource Include="Resources\brain_music_none.PNG" />
     <Resource Include="Resources\brain_reading.png" />
+    <Resource Include="Resources\brain_alcoholic.png" />
+    <Resource Include="Resources\brain_cocaine.png" />
+    <Resource Include="Resources\brain_non_meth.png" />
+    <Resource Include="Resources\brain_non_smoker.png" />
+    <Resource Include="Resources\brain_rehab_normal.PNG" />
+    <Resource Include="Resources\brain_smoker.png" />
+    <Resource Include="Resources\brain_before_meth.png" />
+    <Resource Include="Resources\brain_meth.png" />
+    <Resource Include="Resources\brain_normal.png" />
     <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_brain_reward_pathways.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_continuous_dopamine_stimulation.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_dopamine_receptors.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_dopamine_transporters.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_drug_stimulation.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_increased_tolerance.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_neurons.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\gif_tolerance.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -399,11 +404,8 @@
     <Resource Include="Resources\gray_matter_meter.PNG" />
     <Resource Include="Resources\gray_matter_teen.PNG" />
     <Resource Include="Resources\gray_matter_young_adult.PNG" />
-    <Resource Include="Resources\normal_brain.PNG" />
-    <Resource Include="Resources\smoker_brain.PNG" />
-    <Resource Include="Resources\nonalcholic_brain.PNG" />
-    <Resource Include="Resources\noncocaine_brain.PNG" />
-    <Resource Include="Resources\nonsmoker_brain.PNG" />
+    <Resource Include="Resources\if_arrow-dropdown_3017945.png" />
+    <Resource Include="Resources\Icons8-Ios7-Very-Basic-Brain-Filled.ico" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

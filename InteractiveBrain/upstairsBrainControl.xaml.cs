@@ -192,6 +192,8 @@ namespace InteractiveBrain
             sbC = (Storyboard)this.Resources["zoomingC"];
             storyboardFlag = 0; // Initiates storyboard flag at zero
 
+
+
         }
         //When functions radio button is chosen
         //This function sets functions flag to 

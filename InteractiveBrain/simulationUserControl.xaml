@@ -10,20 +10,12 @@
         <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
             <Button x:Name="brainDevelopmentButton" Foreground="Black" Canvas.Left="97" Canvas.Top="162" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="BrainDevelopmentButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" ToolTip="Brain Development">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma" FontSize ="24" Margin="0,15,0,0" Height="90" Width="220" ToolTip="Brain Development">
-                    <Run Text="          Brain"/>
-                    <LineBreak/>
-                    <Run Text="     Development"/>
-                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma" FontSize ="24" Margin="0,15,0,0" Height="90" Width="220" ToolTip="Brain Development" TextAlignment="Center"><Run Text="Brain"/><LineBreak/><Run Text="Development"/></TextBlock>
                 </DockPanel>
             </Button>
             <Button x:Name="dopaminePathwaysButton" Foreground="Black" Canvas.Left="346" Canvas.Top="162" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="DopaminePathwaysButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" ToolTip="Dopamine Pathways">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="80" Width="220" ToolTip="Dopamine Pathways">
-                    <Run Text="        Dopamine"/>
-                    <LineBreak/>
-                    <Run Text="        Pathways"/>
-                    </TextBlock>
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="80" Width="220" ToolTip="Dopamine Pathways" TextAlignment="Center"><Run Text="Dopamine"/><LineBreak/><Run Text="Pathways"/></TextBlock>
                 </DockPanel>
             </Button>
             <Button x:Name="healthyActivitiesButton" Foreground="Black" Canvas.Left="97" Canvas.Top="315" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="HealthyActivitiesButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" ToolTip="Healthy Activities">
@@ -37,18 +29,12 @@
             </Button>
             <Button x:Name="normalVsOnDrugsButton" Foreground="Black" Canvas.Left="346" Canvas.Top="315" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="NormalVsOnDrugsButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" ToolTip="Normal vs. On Drugs">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="90" Width="220">
-                    <Run Text="         Normal"/>
-                    <LineBreak/>
-                    <Run Text="            vs."/>
-                    <LineBreak/>   
-                    <Run Text="        On Drugs"/>
-                    </TextBlock>
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,12,0,13" Height="90" Width="218" TextAlignment="Center"><Run Text="Typical "/><LineBreak/><Run Text="vs."/><LineBreak/><Run Text="Substances"/></TextBlock>
                 </DockPanel>
             </Button>
         </Canvas>
 
-        <Button Content="" Canvas.Left="610" Canvas.Top="550" Width="60" Click="BackButton_Click" Height="40" BorderBrush="{x:Null}" ToolTip="Back">
+        <Button Content="" Canvas.Left="620" Canvas.Top="540" Width="60" Click="BackButton_Click" Height="60" BorderBrush="{x:Null}" ToolTip="Back">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_icon-arrow-left.ico"/>
             </Button.Background>
