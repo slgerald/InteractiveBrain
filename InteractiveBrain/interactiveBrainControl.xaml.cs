@@ -28,7 +28,7 @@ using Windows.Storage;
 using Windows.ApplicationModel;
 using System.Reflection;
 using System.Security.AccessControl;
-//using interactiveBrainModel;
+
 
 
 namespace InteractiveBrain
@@ -171,8 +171,9 @@ namespace InteractiveBrain
 
                // MessageBox.Show(ex.ToString());
             }
-            
+
             //This function is used for the listbox not search autocomplete textbox
+            col = col.OrderBy(q => q).ToList();
             Fill_ListBox();
         }
 
@@ -353,33 +354,58 @@ namespace InteractiveBrain
             try
             {
                 selectedPort = comPortNumberComboBox.SelectedItem.ToString();
-                SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                SerialPort1.Open();
-                Thread.Sleep(10);
-                SerialPort1.Close();
             }
+            catch {
 
-            catch (UnauthorizedAccessException ex)//The selected comPort is being used by another process
-            {
-
-                MessageBox.Show("Wasn't able to connect to chosen COM port, choose another port for connection");
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("No COM Port Chosen");
             }
-            catch (Exception ex) { MessageBox.Show("Couldn't successfully connect to selected COM port"); Console.WriteLine(ex.Message); }
             if (selectedPort != null) //now change the background of the connection button to show connected
             {
-                Console.WriteLine("Connected to " + selectedPort);
-                SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                SerialPort1.ReadTimeout = 500;
-                SerialPort1.WriteTimeout = 500;
-                Uri resourceUri = new Uri("Resources/if_connect_established.ico", UriKind.Relative);
-                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                //COMPortInfo selectedCOMPort = (COMPortInfo)selectedPort;
+                try
+                {
+                    
+                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
+                    SerialPort1.Open();
+                    Thread.Sleep(10);
+                    SerialPort1.Close();
+                    Console.WriteLine("Connected to " + selectedPort);
+                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
+                    SerialPort1.ReadTimeout = 250;
+                    SerialPort1.WriteTimeout =250;
+                    Uri resourceUri = new Uri("Resources/if_connect_established.ico", UriKind.Relative);
+                    StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
 
-                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                var brush = new ImageBrush();
-                brush.ImageSource = temp;
+                    BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                    var brush = new ImageBrush();
+                    brush.ImageSource = temp;
 
-                connectionButton.Background = brush;
+                    connectionButton.Background = brush;
+                }
+
+                catch (UnauthorizedAccessException ex)//The selected comPort is being used by another process
+                {
+
+                    MessageBox.Show("Wasn't able to connect to chosen COM port, choose another port for connection");
+                    Console.WriteLine(ex.Message);
+                    Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
+                    StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                    BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                    var brush = new ImageBrush();
+                    brush.ImageSource = temp;
+                    connectionButton.Background = brush;
+                }
+                catch (Exception ex) { MessageBox.Show("Couldn't successfully connect to selected COM port"); Console.WriteLine(ex.Message);
+                    Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
+                    StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                    BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                    var brush = new ImageBrush();
+                    brush.ImageSource = temp;
+                    connectionButton.Background = brush;
+
+
+                }
+                
             }
          
             else  //if there are serial ports available that app aren't in use
@@ -612,21 +638,21 @@ namespace InteractiveBrain
             pituitaryGlandImage.RenderTransform = null;
 
             
-            if (isConnected)
-              {
+           // if (isConnected)
+           //   {
                 //send serial message for stop
-                try
-                {
+            //    try
+            //    {
                     // lightingSequenceFromDatabase = "0000000000".ToArray();
-                    SerialPort1.DiscardOutBuffer();
-                    SerialPort1.Open();
+            //        SerialPort1.DiscardOutBuffer();
+            //        SerialPort1.Open();
 
-                    SerialPort1.Write("000000000");
-                    Thread.Sleep(20);
-                    SerialPort1.Close();
-                }
-                catch { MessageBox.Show("Check connection to Brain"); }
-              }
+            //        SerialPort1.Write("000000000");
+            //        Thread.Sleep(20);
+            //        SerialPort1.Close();
+            //    }
+            //    catch { MessageBox.Show("Check connection to Brain"); }
+            //  }
         }
 
 
@@ -1142,6 +1168,7 @@ namespace InteractiveBrain
                 {
                     // The word starts with this... Autocomplete must work   
                     addItem(obj, "PeachPuff");
+                    
                   //  found = true;
                 }
                 else
@@ -1150,7 +1177,21 @@ namespace InteractiveBrain
                 }
             }
         }
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e) {
+            border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+            border.Visibility = System.Windows.Visibility.Visible;
+            border.Background = Brushes.White;
+            // Clear the list   
+            resultsStack.Children.Clear();
 
+            // Add the result   
+            foreach (string obj in col)
+            {
+                
+                    addItem(obj, "White");
+               
+            }
+        }
         //This function is used to add an item to the stackpanel holding 
         //the items of the healthy behaviors list
         private void addItem(string text, string color)
@@ -1167,7 +1208,7 @@ namespace InteractiveBrain
             block.FontFamily = new FontFamily("Calibri");
             block.FontSize = 20;
             block.Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush;
-
+            
             // Mouse events   
             block.MouseLeftButtonUp += (sender, e) =>
             {
@@ -1188,6 +1229,11 @@ namespace InteractiveBrain
 
             // Add to the panel   
             resultsStack.Children.Add(block);
+            if (color == "PeachPuff")
+            {
+
+                block.BringIntoView();
+            }
         }
 
         //This function determines what happens when a selection is made from the healthy behaviors list
@@ -1263,10 +1309,16 @@ namespace InteractiveBrain
                     }
                 }
                 sqlitecon.Close();
+                var list = editingListBox.Items.Cast<ListBoxItem>().OrderBy(item => item.Content).ToList();
+                editingListBox.Items.Clear();
+                foreach (ListBoxItem listItem in list)
+                {
+                    editingListBox.Items.Add(listItem);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wasn't able to load Healthy Behaviors list");
+               // MessageBox.Show("Wasn't able to load Healthy Behaviors list");
                 Console.WriteLine(ex);
             }
         }
@@ -1309,6 +1361,7 @@ namespace InteractiveBrain
             //string query;
             index = editingListBox.Items.Count ;
             col.Add(newListBoxItemContent);
+            col = col.OrderBy(q => q).ToList();
             try
             {
                 sqlitecon.Open();
@@ -1337,6 +1390,7 @@ namespace InteractiveBrain
             SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
             index = editingListBox.SelectedIndex;
             col.Remove(((ListBoxItem)editingListBox.SelectedItem).Content.ToString());
+            col = col.OrderBy(q => q).ToList();
             //string query;
             try
             {

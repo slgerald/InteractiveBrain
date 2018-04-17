@@ -69,10 +69,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.10.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.10.6\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data">
@@ -149,13 +145,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="OpaqueClickableImage.cs" />
+    <Compile Include="upstairsBrainControl.xaml.cs">
+      <DependentUpon>upstairsBrainControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="upstairsBrainControl.xaml.cs">
-      <DependentUpon>upstairsBrainControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="serialCommsControl.xaml.cs">
       <DependentUpon>serialCommsControl.xaml</DependentUpon>
@@ -238,7 +234,6 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config">
@@ -367,52 +362,50 @@
     <Resource Include="Resources\brain_music_activity.PNG" />
     <Resource Include="Resources\brain_music_none.PNG" />
     <Resource Include="Resources\brain_reading.png" />
-    <Resource Include="Resources\brain_before_meth.png" />
-    <Resource Include="Resources\brain_non_cocaine.png" />
-    <Resource Include="Resources\brain_non_cocaine %281%29.png" />
     <Resource Include="Resources\brain_alcoholic.png" />
     <Resource Include="Resources\brain_cocaine.png" />
-    <Resource Include="Resources\brain_meth.png" />
     <Resource Include="Resources\brain_non_meth.png" />
     <Resource Include="Resources\brain_non_smoker.png" />
-    <Resource Include="Resources\brain_smoker.png" />
-    <Resource Include="Resources\brain_normal.png" />
-    <Resource Include="Resources\brain_meth_rehab_1month.PNG" />
-    <Resource Include="Resources\brain_meth_rehab_14month.PNG" />
     <Resource Include="Resources\brain_rehab_normal.PNG" />
-    <EmbeddedResource Include="Resources\gif_blocked_dopamine_transporters.mp4">
+    <Resource Include="Resources\brain_smoker.png" />
+    <Resource Include="Resources\brain_before_meth.png" />
+    <Resource Include="Resources\brain_meth.png" />
+    <Resource Include="Resources\brain_normal.png" />
+    <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_brain_reward_pathways.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_continuous_dopamine_stimulation.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_dopamine_receptors.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_dopamine_transporters.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_drug_stimulation.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_increased_tolerance.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_neurons.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gif_tolerance.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_brain_reward_pathways.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_continuous_dopamine_stimulation.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_dopamine_receptors.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_dopamine_transporters.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_drug_stimulation.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_increased_tolerance.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_neurons.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\gif_tolerance.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <Resource Include="Resources\gray_matter_5_years.PNG" />
     <Resource Include="Resources\gray_matter_early_teen.PNG" />
     <Resource Include="Resources\gray_matter_late_teen.PNG" />
     <Resource Include="Resources\gray_matter_meter.PNG" />
     <Resource Include="Resources\gray_matter_teen.PNG" />
     <Resource Include="Resources\gray_matter_young_adult.PNG" />
+    <Resource Include="Resources\if_arrow-dropdown_3017945.png" />
+    <Resource Include="Resources\Icons8-Ios7-Very-Basic-Brain-Filled.ico" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
