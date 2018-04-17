@@ -30,7 +30,7 @@
         <!-- <TextBox x:Name="txtPosition" Height="20" Canvas.Left="275" TextWrapping="Wrap" Text="" Canvas.Top="451" Width="50"/>
         <Button Click="btnSetPosition_Click" Content="Set Position" Canvas.Left="330" Canvas.Top="451" Width="72"/> -->
         <Label x:Name="lblStatus" Content="" Canvas.Top="343" Width="130" Canvas.Left="280" Height="30" FontSize="18" FontFamily="Tahoma" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="dopamineText" Height="162" Canvas.Left="90" TextWrapping="Wrap" Text="" Canvas.Top="378" Width="499" FontSize="20" FontFamily="Calibri" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="dopamineText" Height="162" Canvas.Left="90" TextWrapping="Wrap" Text="" Canvas.Top="378" Width="499" FontSize="20" FontFamily="Calibri" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
         <ComboBox x:Name="videoList" Text="Reward Pathways" Canvas.Left="10" Canvas.Top="10" Width="220" SelectionChanged="videoList_SelectionChanged" FontSize="18" FontFamily="Calibri" BorderBrush="Black">
             <ComboBoxItem>Reward Pathways</ComboBoxItem>
             <ComboBoxItem>Neurotransmitters</ComboBoxItem>
@@ -42,7 +42,7 @@
             <ComboBoxItem>Tolerance</ComboBoxItem>
             <ComboBoxItem>Increased Tolerance</ComboBoxItem>
         </ComboBox>
-        <Label x:Name="videoLabel"  Content="" Canvas.Left="221" Canvas.Top="30" Width="240" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma"/>
+        <Label x:Name="videoLabel"  Content="" Canvas.Left="90" Canvas.Top="30" Width="499" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma"/>
         <Button x:Name="playButton" Content="Play" Canvas.Left="460" Canvas.Top="348" Width="80" Click="playButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Play"/>
         <Button x:Name="pauseButton" Content="Pause" Canvas.Left="154" Canvas.Top="348" Width="80" Click="pauseButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Pause"/>
 
