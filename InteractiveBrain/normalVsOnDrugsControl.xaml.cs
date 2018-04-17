@@ -34,8 +34,8 @@ namespace InteractiveBrain
             rehabButton.Visibility = Visibility.Visible;
             rehabSlider.Visibility = Visibility.Hidden;
             leftImageLabel.Content = "Typical Brain";
-            rightImageLabel.Content = "Alcoholic";
-            sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+            rightImageLabel.Content = "Heavy Alcohol Use";
+            sourceLabel.Content = "Source: http://www.encognitive.com/files/images/brain-scan-alcoholic-drug-addict-obese-normal.preview.jpg";
             rehabText.Text = "Drugs can alter the way people think, feel, and behave by disrupting neurotransmission, the process of communication between neurons.";
         }
 
@@ -72,8 +72,8 @@ namespace InteractiveBrain
                 rightImage.Visibility = Visibility.Visible;
 
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Alcoholic Brain";
-                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+                rightImageLabel.Content = "Heavy Alcohol Use";
+                sourceLabel.Content = "Source: http://www.encognitive.com/files/images/brain-scan-alcoholic-drug-addict-obese-normal.preview.jpg";
             }
             else if (drugListValue == "Smoker")
             {
@@ -86,13 +86,13 @@ namespace InteractiveBrain
                 rightImage.Visibility = Visibility.Visible;
 
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Smoker Brain";
-                sourceLabel.Content = "Images from https://www.pinterest.com/pin/431501208017912683/";
+                rightImageLabel.Content = "Regular Nicotine Use";
+                sourceLabel.Content = "Source: http://selfchec.org/main/wp-content/uploads/2010/04/brain.jpg";
             }
             else if (drugListValue == "Cocaine")
             {
                 leftImage.Visibility = Visibility.Hidden;
-                leftImage.Source = new BitmapImage(new Uri("Resources/brain_non_cocaine.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
                 leftImage.Visibility = Visibility.Visible;
 
                 rightImage.Visibility = Visibility.Hidden;
@@ -100,8 +100,8 @@ namespace InteractiveBrain
                 rightImage.Visibility = Visibility.Visible;
 
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Cocaine Brain";
-                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+                rightImageLabel.Content = "Cocaine Use";
+                sourceLabel.Content = "Source: http://www.encognitive.com/files/images/brain-scan-alcoholic-drug-addict-obese-normal.preview.jpg";
             }
         }
 
@@ -112,18 +112,18 @@ namespace InteractiveBrain
 
             rehabSlider.Visibility = Visibility.Visible;
             drugButton.Visibility = Visibility.Visible;
-            sourceLabel.Content = "Images from http://www.recoveryinstitute.com/?lightbox=dataItem-ixhu2s2q2";
+            sourceLabel.Content = "Source: The Journal of Neuroscience, 21(23):9414-9418. 2001";
 
             if (rehabSlider.Value == 1)
             {
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Brain on Meth 1 Month";
+                rightImageLabel.Content = "Brain off Meth 1 Month";
                 rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_1month.png", UriKind.Relative));
                 leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
             } else if (rehabSlider.Value == 2)
             {
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Brain on Meth 14 Months";
+                rightImageLabel.Content = "Brain off Meth 14 Months";
                 rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_14month.png", UriKind.Relative));
                 leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
             }
@@ -141,7 +141,7 @@ namespace InteractiveBrain
                     leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
 
                     leftImageLabel.Content = "Typical Brain";
-                    rightImageLabel.Content = " Brain on Meth 1 Month";
+                    rightImageLabel.Content = "Brain off Meth 1 Month";
                 }
                 catch (Exception ex)
                 {
@@ -156,7 +156,7 @@ namespace InteractiveBrain
                     leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
 
                     leftImageLabel.Content = "Typical Brain";
-                    rightImageLabel.Content = "Brain on Meth 14 Months";
+                    rightImageLabel.Content = "Brain off Meth 14 Months";
                 }
                 catch (Exception ex)
                 {
@@ -177,24 +177,24 @@ namespace InteractiveBrain
             if (drugListValue == "Alcohol")
             {
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Alcoholic Brain";
-                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+                rightImageLabel.Content = "Heavy Alcohol Use";
+                sourceLabel.Content = "Source: http://www.encognitive.com/files/images/brain-scan-alcoholic-drug-addict-obese-normal.preview.jpg";
                 rightImage.Source = new BitmapImage(new Uri("Resources/brain_alcoholic.png", UriKind.Relative));
                 leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
             } else if (drugListValue == "Smoker")
             {
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Smoker Brain";
-                sourceLabel.Content = "Images from https://www.pinterest.com/pin/431501208017912683/";
+                rightImageLabel.Content = "Regular Nicotine Use";
+                sourceLabel.Content = "Source: http://selfchec.org/main/wp-content/uploads/2010/04/brain.jpg";
                 rightImage.Source = new BitmapImage(new Uri("Resources/brain_smoker.png", UriKind.Relative));
                 leftImage.Source = new BitmapImage(new Uri("Resources/brain_non_smoker.png", UriKind.Relative));
             } else if (drugListValue == "Cocaine")
             {
                 leftImageLabel.Content = "Typical Brain";
-                rightImageLabel.Content = "Cocaine Brain";
-                sourceLabel.Content = "Images from http://www.biggiesboxers.com/obese-people-cant-help-it-their-brains-are-hard-wired-to-eat-in-the-same-way-drug-addicts-crave-their-fix-scientists-say/";
+                rightImageLabel.Content = "Cocaine Use";
+                sourceLabel.Content = "Source: http://www.encognitive.com/files/images/brain-scan-alcoholic-drug-addict-obese-normal.preview.jpg";
                 rightImage.Source = new BitmapImage(new Uri("Resources/brain_cocaine.png", UriKind.Relative));
-                leftImage.Source = new BitmapImage(new Uri("Resources/brain_non_cocaine.png", UriKind.Relative));
+                leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
             }
         }
     }
