@@ -29,7 +29,7 @@ namespace InteractiveBrain
             activityList.SelectedIndex = 0;
             leftLabel.Content = "Brain at Rest";
             rightLabel.Content = "Brain after Walking";
-            imageSourceLabel.Content = "Image from https://www.yesware.com/blog/how-exercise-can-boost-your-sales-performance/";
+            imageSourceLabel.Content = "Source: Dr.Chuck Hillman, University of Illinois";
             imageText.Text = "Exercising can help strengthen learning, improve memory, and enhance motivation.";
         }
 
@@ -67,7 +67,7 @@ namespace InteractiveBrain
                 rightActivity.Source = new BitmapImage(new Uri("Resources/brain_activity_walking.png", UriKind.Relative));
                 leftLabel.Content = "Brain at Rest";
                 rightLabel.Content = "Brain after Walking";
-                imageSourceLabel.Content = "Image from https://www.yesware.com/blog/how-exercise-can-boost-your-sales-performance/";
+                imageSourceLabel.Content = "Source: Dr.Chuck Hillman, University of Illinois";
                 imageText.Text = "Exercising can help strengthen learning, improve memory, and enhance motivation.";
             } else if (activityListValue == "Listening to Music")
             {
@@ -81,7 +81,7 @@ namespace InteractiveBrain
                 rightActivity.Source = new BitmapImage(new Uri("Resources/brain_music_activity.png", UriKind.Relative));
                 leftLabel.Content = "Brain before Music";
                 rightLabel.Content = "Brain after Music";
-                imageSourceLabel.Content = "Image from http://www.tourmorgantown.com/four-therapeutic-benefits-music/";
+                imageSourceLabel.Content = "Source: https://drjockers.com/3-ways-music-improves-brain-function/";
                 imageText.Text = "Music stimulates more parts of the brain than any other human function. Faster music makes people more alert, while slower music makes them feel relaxed.";
             } else if (activityListValue == "Reading a Book")
             {
@@ -92,7 +92,7 @@ namespace InteractiveBrain
                 rightLabel.Visibility = Visibility.Hidden;
                 readingLabel.Visibility = Visibility.Visible;
                 readingLabel.Content = "Brain after Reading";
-                imageSourceLabel.Content = "Image from https://www.booksinc.net/blog/booksinckids/tandem%C2%AE-loves%E2%80%A6-picture-books-build-brains";
+                imageSourceLabel.Content = "Source: Marcus E. Raichle, Department of Radiology, Washington University School of Medicine, St. Louis, Missouri";
                 imageText.Text = "Reading can improve memory, increase brain power, and enhance empathic skills.";
             }
         }

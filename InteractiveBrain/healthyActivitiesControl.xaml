@@ -14,14 +14,11 @@
         </ComboBox>
         <Image x:Name="leftActivity" Height="250" Canvas.Left="52" Canvas.Top="75" Width="200" Source="Resources/brain_activity_none.png" Stretch="Fill"/>
         <Image x:Name="rightActivity" Height="250" Width="200" Canvas.Left="312" Canvas.Top="75" Source="Resources/brain_activity_walking.png" Stretch="Fill"/>
-        <TextBox x:Name="imageText" Height="125" Canvas.Left="52" TextWrapping="Wrap" Canvas.Top="354" Width="460" Text=""  FontSize="20" FontFamily="Calibri" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="imageText" Height="125" Canvas.Left="52" TextWrapping="Wrap" Canvas.Top="354" Width="460" Text=""  FontSize="20" FontFamily="Calibri" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
         <Label x:Name="leftLabel" Content="" Canvas.Left="52" Canvas.Top="41" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Width="200"/>
         <Label x:Name="rightLabel" Content="" Canvas.Left="312" Canvas.Top="41" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Width="200"/>
-        <Label x:Name="imageSourceLabel" Content="" Canvas.Left="86" Canvas.Top="484" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" FontFamily="Tahoma" Width="442"/>
+        <Label x:Name="imageSourceLabel" Content="" Canvas.Top="484" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="10" FontFamily="Tahoma" Width="670"/>
         <Image x:Name="readingBook" Height="247" Canvas.Left="86" Canvas.Top="75" Width="442" Source="Resources/brain_reading.png" Visibility="Hidden"/>
         <Label x:Name="readingLabel" Content="" Canvas.Left="86" Canvas.Top="36" Width="442" Height="31" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Visibility="Hidden"/>
-
-
-
     </Canvas>
 </UserControl>
