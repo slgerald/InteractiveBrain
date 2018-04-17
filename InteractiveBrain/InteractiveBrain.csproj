@@ -154,10 +154,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Substance.cs">
-      <DependentUpon>InteractiveBrainModel.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="upstairsBrainControl.xaml.cs">
       <DependentUpon>upstairsBrainControl.xaml</DependentUpon>
     </Compile>
@@ -384,33 +380,33 @@
     <Resource Include="Resources\brain_meth_rehab_1month.PNG" />
     <Resource Include="Resources\brain_meth_rehab_14month.PNG" />
     <Resource Include="Resources\brain_rehab_normal.PNG" />
-    <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
+    <EmbeddedResource Include="Resources\gif_blocked_dopamine_transporters.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_brain_reward_pathways.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_brain_reward_pathways.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_continuous_dopamine_stimulation.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_continuous_dopamine_stimulation.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_dopamine_receptors.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_dopamine_receptors.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_dopamine_transporters.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_dopamine_transporters.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_drug_stimulation.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_drug_stimulation.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_increased_tolerance.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_increased_tolerance.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_neurons.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_neurons.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\gif_tolerance.mp4">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gif_tolerance.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <Resource Include="Resources\gray_matter_5_years.PNG" />
     <Resource Include="Resources\gray_matter_early_teen.PNG" />
     <Resource Include="Resources\gray_matter_late_teen.PNG" />
