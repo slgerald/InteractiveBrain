@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:ui="http://schemas.microsoft.com/wix/UIExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-	<Product Id="*" Name="Interactive Brain" Language="1033" Version="1.0.4" Manufacturer="ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
+	<Product Id="*" Name="Interactive Brain" Language="1033" Version="1.0.5" Manufacturer="ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -25,6 +25,7 @@
       <ComponentGroupRef Id="ProductMenuComponents" />
       <ComponentGroupRef Id="x86_files" />
       <ComponentGroupRef Id="x64_files" />
+      <ComponentGroupRef Id="resources_files" />
 		</Feature>
 	</Product>
 
@@ -35,6 +36,7 @@
           <Directory Id="INSTALLFOLDER" Name="Interactive Brain" >
             <Directory Id="x86_dir" Name="x86"/>
             <Directory Id="x64_dir" Name="x64"/>
+            <Directory Id="resources_dir" Name="Resources" />
           </Directory>
         </Directory>
         <Directory Id="ProgramMenuFolder">
@@ -60,6 +62,35 @@
       <Component Id="SQLite_x86.Interop.dll" Win64="yes" >
         <File Id="SQLite_x86.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x86\SQLite.Interop.dll" />
       </Component>
+    </ComponentGroup>
+    <ComponentGroup Id="resources_files" Directory="resources_dir" >
+      <Component Id="gif_blocked_dopamine_transporters.mp4" Win64="yes" >
+        <File Id="gif_blocked_dopamine_transporters.mp4" Name="gif_blocked_dopamine_transporters.mp4" Source="$(var.TargetDir)\Resources\gif_blocked_dopamine_transporters.mp4" />
+      </Component>
+      <Component Id="gif_brain_reward_pathways.mp4" Win64="yes" >
+        <File Id="gif_brain_reward_pathways.mp4" Name="gif_brain_reward_pathways.mp4" Source="$(var.TargetDir)\Resources\gif_brain_reward_pathways.mp4" />
+      </Component>
+      <Component Id="gif_continuous_dopamine_stimulation.mp4" Win64="yes" >
+        <File Id="gif_continuous_dopamine_stimulation.mp4" Name="gif_continuous_dopamine_stimulation.mp4" Source="$(var.TargetDir)\Resources\gif_continuous_dopamine_stimulation.mp4" />
+      </Component>
+      <Component Id="gif_dopamine_receptors.mp4" Win64="yes" >
+        <File Id="gif_dopamine_receptors.mp4" Name="gif_dopamine_receptors.mp4" Source="$(var.TargetDir)\Resources\gif_dopamine_receptors.mp4" />
+      </Component>
+       <Component Id="gif_dopamine_transporters.mp4" Win64="yes" >
+        <File Id="gif_dopamine_transporters.mp4" Name="gif_dopamine_transporters.mp4" Source="$(var.TargetDir)\Resources\gif_dopamine_transporters.mp4" />
+      </Component>
+        <Component Id="gif_drug_stimulation.mp4" Win64="yes" >
+        <File Id="gif_drug_stimulation.mp4" Name="gif_drug_stimulation.mp4" Source="$(var.TargetDir)\Resources\gif_drug_stimulation.mp4" />
+      </Component>
+      <Component Id="gif_incresed_tolerance.mp4" Win64="yes" >
+        <File Id="gif_increased_tolerance.mp4" Name="gif_increased_tolerance.mp4" Source="$(var.TargetDir)\Resources\gif_increased_tolerance.mp4" />
+      </Component>
+    <Component Id="gif_neurons.mp4" Win64="yes" >
+      <File Id="gif_neurons.mp4" Name="gif_neurons.mp4" Source="$(var.TargetDir)\Resources\gif_neurons.mp4" />
+    </Component>
+    <Component Id="gif_tolerance.mp4" Win64="yes" >
+      <File Id="gif_tolerance.mp4" Name="gif_tolerance.mp4" Source="$(var.TargetDir)\Resources\gif_tolerance.mp4" />
+    </Component>
     </ComponentGroup>
     <ComponentGroup Id="ProductMenuComponents" Directory="ApplicationProgramsFolder">
       <Component Id="ApplicationShortcut" Guid="{B6E07F8F-29FE-410A-ACE7-DD40F84F26FF}">

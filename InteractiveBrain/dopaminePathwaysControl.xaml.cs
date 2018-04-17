@@ -35,8 +35,10 @@ namespace InteractiveBrain
             // Uri resourceUri = new Uri("\\Resources\\gif_brain_reward_pathways.mp4", UriKind.Relative);
             // StreamResourceInfo streamInfo = Application.GetContentStream(resourceUri);
             Gif1.Source = new Uri(string.Format(@"{0}Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            if (File.Exists(string.Format(@"{0}Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)))) {
+                MessageBox.Show(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            }
             //Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName)
-            MessageBox.Show(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
             // Console.WriteLine(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
             // Gif1.Source = new Uri(@"./Resources/gif_brain_reward_pathways.mp4", UriKind.Relative);
             Gif1.Play();

@@ -96,7 +96,7 @@
         </Popup>
 
         <TextBox x:Name="selectionMessageBox" Visibility="Visible" IsReadOnly="True" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" VerticalAlignment="Top" Width="660" FontSize="24" BorderBrush="{x:Null}" Background="{x:Null}" Canvas.Left="10" Canvas.Top="10" TextAlignment="Center" FontFamily="Calibri" IsTabStop="False" Focusable="False" SelectionBrush="{x:Null}" IsHitTestVisible="False" Foreground="{x:Null}" />
-        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="182" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="93" Canvas.Top="404" BorderBrush="Black">
+        <ListBox x:Name="brainPartsListBox" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="182" SelectionChanged="BrainPartsListBox_SelectionChanged" Canvas.Left="45" Canvas.Top="404" BorderBrush="Black">
             <ListBoxItem x:Name="cerebellum" Content="Cerebellum" FontSize="20" Selected="Cerebellum_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="frontalLobe" Content="Frontal Lobe" FontSize="20" Selected="FrontalLobe_Selected" FontFamily="Calibri" />
             <ListBoxItem x:Name="occipitalLobe" Content="Occipital Lobe" FontSize="20"   Selected="OccipitalLobe_Selected" FontFamily="Calibri"/>
@@ -110,8 +110,8 @@
 
         <ListBox x:Name="healthyBehaviorsListBox" Visibility="Hidden" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="190" SelectionChanged="HealthyBehaviorsListBox_SelectionChanged" Canvas.Left="260" Canvas.Top="400">
         </ListBox>
-        <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="120" Canvas.Top="359" FontFamily="Tahoma"/>
-        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="210" FontSize="24" Canvas.Left="395" Canvas.Top="359" FontFamily="Tahoma"/>
+        <Label Content="Brain Parts" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="155" FontSize="24" Canvas.Left="72" Canvas.Top="359" FontFamily="Tahoma"/>
+        <Label Content="Healthy Behaviors" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="210" FontSize="24" Canvas.Left="356" Canvas.Top="359" FontFamily="Tahoma"/>
         <Image Height="235" Width="250" Canvas.Top="85" x:Name="cutoutLowerBrain" Canvas.Left="405">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -250,8 +250,8 @@
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="400" TextWrapping="Wrap" Canvas.Top="404" Width="190" FontSize="20" FontFamily="Calibri" BorderBrush="Black" />
-        <Border x:Name ="panelBorder" Width="190" Height="113" BorderBrush="Black" Canvas.Left="400" Canvas.Top="432" Visibility="Collapsed" PreviewMouseUp="ResultsStackMouseDown" ScrollViewer.CanContentScroll="True">
+        <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="320" TextWrapping="Wrap" Canvas.Top="404" Width="270" FontSize="20" FontFamily="Calibri" BorderBrush="Black" />
+        <Border x:Name ="panelBorder" Width="270" Height="113" BorderBrush="Black" Canvas.Left="320" Canvas.Top="432" Visibility="Visible" PreviewMouseUp="ResultsStackMouseDown" ScrollViewer.CanContentScroll="True">
 
             <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
                 <StackPanel x:Name="resultsStack">
@@ -260,7 +260,7 @@
             </ScrollViewer>
 
         </Border>
-        <Image MouseDown="Image_MouseDown" Height="28" Canvas.Left="593" Canvas.Top="404" Width="28" Source="Resources/if_arrow-dropdown_3017945.png"/>
+        <Image x:Name="dropDown" MouseDown="Image_MouseDown" Height="28" Canvas.Left="593" Canvas.Top="404" Width="28" Source="Resources/if_arrow-dropdown_3017945.png"/>
     </Canvas>
 
 </UserControl>

@@ -48,8 +48,10 @@ namespace InteractiveBrain
 
         bool brainPart = false; //was a brain part selected?
         bool healthybehaviorBOOL = false; //was a healthy behavior selected?
+
        
         Border border; //The border of the drop down list showing the results of the healthy behavior query
+        bool dropDownFlag = false; //determine which arrow to show for the drop down list(up or down
 
         //Storyboard use to apply scaling and "glowing" animations
         Storyboard storyboard = new Storyboard();
@@ -341,6 +343,7 @@ namespace InteractiveBrain
                 }
                 defaultFlag = false;
             }
+            ListBoxSelectionChanged();
         }
         //if com port is selected Check if selected port is being used by another process,Instantiate the serial port,
         //and change the connection button otherwise don't change connection button image
@@ -423,6 +426,7 @@ namespace InteractiveBrain
         {
             if (!editListsPopup.IsOpen)
             { editListsPopup.IsOpen = true; }
+            ListBoxSelectionChanged();
         }
         //This function loads the listbox in the editListPopup with the current
         //items for the healthyBehaviors table in the database
@@ -659,6 +663,7 @@ namespace InteractiveBrain
         private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = true;
+            selectionMade = true;
             // healthybehaviorBOOL = false;
             //healthyBehaviorsListBox.SelectedItem = false;
             try
@@ -666,7 +671,7 @@ namespace InteractiveBrain
                 selectedBrainPart = ((ListBoxItem)brainPartsListBox.SelectedItem).Content.ToString();
             }
             catch {
-                if (selectedHealthyBehaviors == "" || selectedHealthyBehaviors == null)
+                if (selectedBrainPart == "" || selectedBrainPart == null)
                 {
                     MessageBox.Show("No brain part was selected. Select a brain part.");
                 }
@@ -764,88 +769,94 @@ namespace InteractiveBrain
         //Depending on the selection, make affected areas glow and scale larger and smaller
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
-            selectionMade = true;
-
-            //Initialize the glowing animation
-            glowAnimation.From = 1.0;
-            glowAnimation.To = 0.4;
-            glowAnimation.Duration = new Duration(TimeSpan.FromSeconds(.5));
-            glowAnimation.AutoReverse = true;
-            glowAnimation.RepeatBehavior = RepeatBehavior.Forever;
-
-            //Initialize the scalex animation
-            growXAnimation.Duration = TimeSpan.FromMilliseconds(500);
-            growXAnimation.From = 1;
-            growXAnimation.To = 1.1;
-            growXAnimation.AutoReverse = true;
-            growXAnimation.RepeatBehavior = RepeatBehavior.Forever;
-
-            //Initialize the scaley animation
-            growYAnimation.Duration = TimeSpan.FromMilliseconds(500);           
-            growYAnimation.From = 1;            
-            growYAnimation.To = 1.1;            
-            growYAnimation.AutoReverse = true;        
-            growYAnimation.RepeatBehavior = RepeatBehavior.Forever;
             
-            //
-            storyboard.Children.Add(growXAnimation);
-            storyboard.Children.Add(growYAnimation);
-            Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
-            Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
-
-            //If brain part is selected show the name of part selected
-            if (brainPart)
-            {               
-                selectionMessageBox.Text = selectedBrainPart + " was chosen. ";             
-                brainPart = false;
-                //Don't need to look in database because hard coded 
-                LightingSequence();
-            }
-            //if the searchtextbox isn't empty
-            if(searchTextBox.Text != "")
+            if ( string.IsNullOrEmpty(selectedBrainPart) && string.IsNullOrEmpty(searchTextBox.Text))
             {
-                brainPartsListBox.SelectedItem = false;
-                selectedHealthyBehaviors = searchTextBox.Text;
-                selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
-                healthybehaviorBOOL = false;
-                
-                SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
-                
-                try
+
+                MessageBox.Show("Select a brain part or healthy behavior before pressing the go button");
+            }
+            else
+            {
+                //Initialize the glowing animation
+                glowAnimation.From = 1.0;
+                glowAnimation.To = 0.4;
+                glowAnimation.Duration = new Duration(TimeSpan.FromSeconds(.5));
+                glowAnimation.AutoReverse = true;
+                glowAnimation.RepeatBehavior = RepeatBehavior.Forever;
+
+                //Initialize the scalex animation
+                growXAnimation.Duration = TimeSpan.FromMilliseconds(500);
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growXAnimation.AutoReverse = true;
+                growXAnimation.RepeatBehavior = RepeatBehavior.Forever;
+
+                //Initialize the scaley animation
+                growYAnimation.Duration = TimeSpan.FromMilliseconds(500);
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
+                growYAnimation.AutoReverse = true;
+                growYAnimation.RepeatBehavior = RepeatBehavior.Forever;
+
+                //
+                storyboard.Children.Add(growXAnimation);
+                storyboard.Children.Add(growYAnimation);
+                Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
+                Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
+
+                //If brain part is selected show the name of part selected
+                if (brainPart)
                 {
-                    string Query;
-                    sqlitecon.Open();
-                    Query = "select * from HealthyBehaviors where healthyBehaviors='" + selectedHealthyBehaviors + "' ";
-                    SQLiteCommand createCommand = new SQLiteCommand(Query, sqlitecon);
-                    SQLiteDataReader dr = createCommand.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        string receivedString = dr.GetString(2);
-                        lightingSequenceString = receivedString;
-                        Console.WriteLine(lightingSequenceString);
-                    }
-                    sqlitecon.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-                if (lightingSequenceString == null)
-                {
-                    MessageBox.Show( "Choose a option available from the drop down list ");
-                }
-                else
-                {
-                    searchTextBox.Text = "";
-                    resultsStack.Children.Clear();
-                    border.Visibility = System.Windows.Visibility.Collapsed;
-                    border.Background = Brushes.Transparent;
-                    lightingSequenceFromDatabase = lightingSequenceString.ToArray();
+                    selectionMessageBox.Text = selectedBrainPart + " was chosen. ";
+                    brainPart = false;
+                    //Don't need to look in database because hard coded 
                     LightingSequence();
                 }
+                //if the searchtextbox isn't empty
+                if (!string.IsNullOrEmpty(searchTextBox.Text))
+                {
+                    brainPartsListBox.SelectedItem = false;
+                    selectedHealthyBehaviors = searchTextBox.Text;
+                    selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
+                    healthybehaviorBOOL = false;
 
+                    SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
+
+                    try
+                    {
+                        string Query;
+                        sqlitecon.Open();
+                        Query = "select * from HealthyBehaviors where healthyBehaviors='" + selectedHealthyBehaviors + "' ";
+                        SQLiteCommand createCommand = new SQLiteCommand(Query, sqlitecon);
+                        SQLiteDataReader dr = createCommand.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            string receivedString = dr.GetString(2);
+                            lightingSequenceString = receivedString;
+                            Console.WriteLine(lightingSequenceString);
+                        }
+                        sqlitecon.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    if (lightingSequenceString == null)
+                    {
+                        MessageBox.Show("Choose a option available from the drop down list ");
+                    }
+                    else
+                    {
+                        searchTextBox.Text = "";
+                        resultsStack.Children.Clear();
+                        border.Visibility = System.Windows.Visibility.Collapsed;
+                        border.Background = Brushes.Transparent;
+                        lightingSequenceFromDatabase = lightingSequenceString.ToArray();
+                        LightingSequence();
+                    }
+
+                }
             }
-
         }
 
         //This function converts a string to character array
@@ -870,7 +881,10 @@ namespace InteractiveBrain
                 cerebellumImage.RenderTransform = scale;
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-      
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
                 cerebellumImage.BeginAnimation(OpacityProperty, glowAnimation);
                 
                 storyboard.Stop();
@@ -890,7 +904,10 @@ namespace InteractiveBrain
                 brainstemImage.RenderTransform = scale;
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-         
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
                 brainstemImage.BeginAnimation(OpacityProperty, glowAnimation);
                   
                 storyboard.Stop();
@@ -901,8 +918,8 @@ namespace InteractiveBrain
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
                 // Put the image currently being dragged on top of the others
-                Canvas canvas = temporalLobeImage.Parent as Canvas;
-                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas canvas = brainstemImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(brainstemImage);
                 Canvas.SetZIndex(brainstemImage, top + 1);
             }
             if (lightingSequenceFromDatabase[2] == '1')
@@ -910,7 +927,10 @@ namespace InteractiveBrain
                 pituitaryGlandImage.RenderTransform = scale;
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.5;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.5;
                 pituitaryGlandImage.BeginAnimation(OpacityProperty, glowAnimation);
                          
                 storyboard.Stop();        
@@ -922,8 +942,8 @@ namespace InteractiveBrain
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
                 // Put the image currently being dragged on top of the others
-                Canvas canvas = temporalLobeImage.Parent as Canvas;
-                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas canvas = pituitaryGlandImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(pituitaryGlandImage);
                 Canvas.SetZIndex(pituitaryGlandImage, top + 1);
             }
             if (lightingSequenceFromDatabase[3] == '1')
@@ -932,7 +952,10 @@ namespace InteractiveBrain
 
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-         
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.5;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.5;
                 amygdalaImage.BeginAnimation(OpacityProperty, glowAnimation);
               
                 storyboard.Stop();              
@@ -942,8 +965,8 @@ namespace InteractiveBrain
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
                 // Put the image currently being dragged on top of the others
-                Canvas canvas = temporalLobeImage.Parent as Canvas;
-                int top = Canvas.GetZIndex(temporalLobeImage);
+                Canvas canvas = amygdalaImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(amygdalaImage);
                 Canvas.SetZIndex(amygdalaImage, top + 1);
             }
             if (lightingSequenceFromDatabase[4] == '1')
@@ -951,7 +974,10 @@ namespace InteractiveBrain
                 hippocampusImage.RenderTransform = scale;
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-        
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
                 hippocampusImage.BeginAnimation(OpacityProperty, glowAnimation);
       
                 
@@ -962,7 +988,7 @@ namespace InteractiveBrain
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
                 // Put the image currently being dragged on top of the others
-                Canvas canvas = temporalLobeImage.Parent as Canvas;
+                Canvas canvas = hippocampusImage.Parent as Canvas;
                 int top = Canvas.GetZIndex(hippocampusImage);
                 Canvas.SetZIndex(hippocampusImage, top + 1);
             }
@@ -972,7 +998,10 @@ namespace InteractiveBrain
 
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
                 temporalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                
                 storyboard.Stop();    
@@ -993,7 +1022,10 @@ namespace InteractiveBrain
 
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
                 occipitalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                             
                 storyboard.Stop();
@@ -1003,7 +1035,7 @@ namespace InteractiveBrain
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
                 Canvas canvas = occipitalLobeImage.Parent as Canvas;
-                int top = Canvas.GetZIndex(temporalLobeImage);
+                int top = Canvas.GetZIndex(occipitalLobeImage);
                 Canvas.SetZIndex(occipitalLobeImage, top + 1);
             }
             if (lightingSequenceFromDatabase[7] == '1')
@@ -1012,8 +1044,11 @@ namespace InteractiveBrain
 
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-
-                 parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
+                parietalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
                          
                 storyboard.Stop();
                 Storyboard.SetTarget(growXAnimation, parietalLobeImage);
@@ -1022,7 +1057,7 @@ namespace InteractiveBrain
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
                 Canvas canvas = parietalLobeImage.Parent as Canvas;
-                int top = Canvas.GetZIndex(temporalLobeImage);
+                int top = Canvas.GetZIndex(parietalLobeImage);
                 Canvas.SetZIndex(parietalLobeImage, top + 1);
             }
             if (lightingSequenceFromDatabase[8] == '1')
@@ -1031,7 +1066,10 @@ namespace InteractiveBrain
 
                 scale.ScaleX = 1.0;
                 scale.ScaleY = 1.0;
-
+                growXAnimation.From = 1;
+                growXAnimation.To = 1.1;
+                growYAnimation.From = 1;
+                growYAnimation.To = 1.1;
                 frontalLobeImage.BeginAnimation(OpacityProperty, glowAnimation);
 
                 storyboard.Stop();
@@ -1040,9 +1078,9 @@ namespace InteractiveBrain
                 storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 
-                Canvas canvas = temporalLobeImage.Parent as Canvas;
-                int top = Canvas.GetZIndex(temporalLobeImage);
-                Canvas.SetZIndex(parietalLobeImage, top + 1);
+                Canvas canvas = frontalLobeImage.Parent as Canvas;
+                int top = Canvas.GetZIndex(frontalLobeImage);
+                Canvas.SetZIndex(frontalLobeImage, top + 1);
             }
             WriteLightingSequenceMessage();
         }
@@ -1178,18 +1216,44 @@ namespace InteractiveBrain
             }
         }
         private void Image_MouseDown(object sender, MouseButtonEventArgs e) {
-            border = (resultsStack.Parent as ScrollViewer).Parent as Border;
-            border.Visibility = System.Windows.Visibility.Visible;
-            border.Background = Brushes.White;
-            // Clear the list   
-            resultsStack.Children.Clear();
-
-            // Add the result   
-            foreach (string obj in col)
+            if (dropDownFlag == false)
             {
-                
+                border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+                border.Visibility = System.Windows.Visibility.Visible;
+                border.Background = Brushes.White;
+                // Clear the list   
+                resultsStack.Children.Clear();
+
+                Uri resourceUri = new Uri("Resources/if_arrow_sans_up_103304.png", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                // var brush = new ImageBrush();
+                // brush.ImageSource = temp;
+
+                dropDown.Source = temp;
+
+                // Add the result   
+                foreach (string obj in col)
+                {
+
                     addItem(obj, "White");
-               
+
+                }
+                dropDownFlag = true;
+            }
+            else {
+                Uri resourceUri = new Uri("Resources/if_arrow-dropdown_3017945.png", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+               // var brush = new ImageBrush();
+               // brush.ImageSource = temp;
+
+                dropDown.Source = temp;
+                border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+                border.Visibility = System.Windows.Visibility.Collapsed;
+                dropDownFlag = false;
             }
         }
         //This function is used to add an item to the stackpanel holding 
