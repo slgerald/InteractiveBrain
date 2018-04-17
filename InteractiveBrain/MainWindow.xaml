@@ -14,13 +14,24 @@
     <Viewbox Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" MaxHeight="700" MaxWidth="1375">
         <Canvas Margin="0,0,0,0" Height=" 600" Width="900">
             <Viewbox x:Name="buttonViewbox" Height="600" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
-                <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="525" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Background="#FFB4B4B4">
+                <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="525" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Background="#FF0078D7">
                     <Button x:Name="interactiveBrainButton" Foreground="Black" Height="100" Click="InteractiveBrainButton_Click" Width="220" Canvas.Top ="125" RenderTransformOrigin="0.5,0.5" FontSize="24" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" FontFamily="Tahoma" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Interactive Brain" Background="{x:Null}">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF428AC3"/>
+                                </Trigger>
+                            </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        
                         <DockPanel Height="100" LastChildFill="False" Width="220">
                             <Image  HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Source="Resources/Icons8-Ios7-Very-Basic-Brain-Filled.ico" ToolTip="Interactive Brain"/>
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Tahoma" FontSize="24" Margin="0,21" Width="151" ToolTip="Interactive Brain" ><Run Text="    Interactive "/><LineBreak/><Run Text="        Brain"/></TextBlock>
+                            
                         </DockPanel>
-
+                        
                     </Button>
                     <Button x:Name="simulationButton"  Foreground="Black"  Height="100" Click="SimulationButton_Click" Canvas.Top="225" Width="220" FontSize="24" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Tahoma" ToolTip="Animations">
                         <DockPanel Height="100" LastChildFill="False" Width="220">
@@ -55,7 +66,7 @@
 
             <Viewbox x:Name="myCanvasViewbox" Stretch="Fill" Height="600" Canvas.Top="0" Canvas.Left="220" Width="690" StretchDirection="Both" >
                 <ScrollViewer x:Name="myCanvasScrollbar" VerticalScrollBarVisibility="Auto" Canvas.Left="220"  Width="690" Height="600">
-                    <Canvas x:Name="myCanvas" Panel.ZIndex="1"  Height="600"  Width="690" RenderTransformOrigin="0.5,0.5" Background="White" ClipToBounds="True" />
+                    <Canvas x:Name="myCanvas" Panel.ZIndex="1"  Height="600"  Width="690" RenderTransformOrigin="0.5,0.5" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" ClipToBounds="True" />
                 </ScrollViewer>
             </Viewbox>
 
