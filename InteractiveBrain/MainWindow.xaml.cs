@@ -169,12 +169,13 @@ namespace InteractiveBrain
                 margin = myCanvasViewbox.Margin;
                 margin.Left = -175;
                 myCanvasViewbox.Margin = margin;
-           
-             
-                
-             
-                
-                
+
+
+                poeCenterIcon.Visibility = System.Windows.Visibility.Hidden;
+
+
+
+
 
             }
             else
@@ -190,6 +191,8 @@ namespace InteractiveBrain
                 myCanvasViewbox.Height = 600;
                 myCanvas.Height = 600;
                 myCanvasViewbox.Width = 690;
+
+                poeCenterIcon.Visibility = System.Windows.Visibility.Visible;
             }
 
         }
