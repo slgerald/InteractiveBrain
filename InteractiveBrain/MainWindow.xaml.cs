@@ -49,14 +49,14 @@ namespace InteractiveBrain
                 pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             myCanvas.Children.Clear();
-            if (!myCanvas.Children.Contains(interactiveBrainControl.Instance))
+            if (!myCanvas.Children.Contains(InteractiveBrainControl.Instance))
                {
                 
                  
-                 myCanvas.Children.Add(interactiveBrainControl.Instance);
+                 myCanvas.Children.Add(InteractiveBrainControl.Instance);
              }
              else
-                myCanvas.Children.Add(interactiveBrainControl.Instance);
+                myCanvas.Children.Add(InteractiveBrainControl.Instance);
         }
 
 
@@ -96,13 +96,13 @@ namespace InteractiveBrain
                 pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             myCanvas.Children.Clear();
-            if (!myCanvas.Children.Contains(serialCommsControl.Instance))
+            if (!myCanvas.Children.Contains(SerialCommsControl.Instance))
             {
                 
-                myCanvas.Children.Add(serialCommsControl.Instance);
+                myCanvas.Children.Add(SerialCommsControl.Instance);
             }
             else
-                myCanvas.Children.Add(serialCommsControl.Instance);
+                myCanvas.Children.Add(SerialCommsControl.Instance);
 
         }
 
@@ -142,12 +142,12 @@ namespace InteractiveBrain
                 pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             myCanvas.Children.Clear();
-            if (!myCanvas.Children.Contains(downstairsBrainControl.Instance))
+            if (!myCanvas.Children.Contains(DownstairsBrainControl.Instance))
             {
-                myCanvas.Children.Add(downstairsBrainControl.Instance);
+                myCanvas.Children.Add(DownstairsBrainControl.Instance);
             }
             else
-                myCanvas.Children.Add(downstairsBrainControl.Instance);
+                myCanvas.Children.Add(DownstairsBrainControl.Instance);
         }
 
         

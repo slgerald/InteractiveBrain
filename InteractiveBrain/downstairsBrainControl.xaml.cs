@@ -22,9 +22,9 @@ namespace InteractiveBrain
     /// </summary>
     /// 
 
-    public partial class downstairsBrainControl : UserControl
+    public partial class DownstairsBrainControl : UserControl
     {
-        private static downstairsBrainControl _instance; //render userControl based on button pressed
+        private static DownstairsBrainControl _instance; //render userControl based on button pressed
 
 
         //flags used to determine which radio button has been used on the editPopup
@@ -109,7 +109,7 @@ namespace InteractiveBrain
         //This function initializes the userControl with EventHandlers and other characteristics
         //EventHandlers are routed to controls in xaml file
         //Bind animations for brain parts to declared and defined storyboards in the xaml file 
-        public downstairsBrainControl()
+        public DownstairsBrainControl()
         {
             InitializeComponent();
             //Event handlers for the images and gotItButton
@@ -154,15 +154,15 @@ namespace InteractiveBrain
             storyboardFlag = 0;
         }
 
-        public static downstairsBrainControl Instance //This allows a new highSchool User Control to be instantiated 
+        public static DownstairsBrainControl Instance //This allows a new highSchool User Control to be instantiated 
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new downstairsBrainControl();
+                    _instance = new DownstairsBrainControl();
                 }
-                _instance = new downstairsBrainControl();
+                _instance = new DownstairsBrainControl();
                 return _instance;
 
             }

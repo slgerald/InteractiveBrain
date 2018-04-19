@@ -37,19 +37,16 @@ namespace InteractiveBrain
     /// Interaction logic for interactiveBrainControl.xaml
     /// </summary>
     /// 
-    public partial class interactiveBrainControl : UserControl
+    public partial class InteractiveBrainControl : UserControl
     {
         //The following variables are for the userControl interaction
-        private static interactiveBrainControl _instance; //used to instantiate new instance of interactiveBrainControl
+        private static InteractiveBrainControl _instance; //used to instantiate new instance of interactiveBrainControl
 
         string selectedBrainPart;//string to determine which brain part was selected
-        string displayMessage;//Text displayed above both brain maps
+       // string displayMessage;//Text displayed above both brain maps
         string selectedHealthyBehaviors;//string to determine which healthy behavior was selected 
 
         bool brainPart = false; //was a brain part selected?
-        bool healthybehaviorBOOL = false; //was a healthy behavior selected?
-
-       
         Border border; //The border of the drop down list showing the results of the healthy behavior query
         bool dropDownFlag = false; //determine which arrow to show for the drop down list(up or down
 
@@ -86,36 +83,23 @@ namespace InteractiveBrain
         //Global connection string used when connecting to local machine    
         string dbConnectionString;
 
-        //The following variables are used to transfer the database to a place where its writable 
-        //unlike the Program Files
-        Boolean searchResult = false;
-        StorageFile sampleFile;
-        StorageFolder storageFolder;
-        private StorageFolder m_downloadfolder;
-
-        public StorageFolder Download_Folder
-        {
-            get { return m_downloadfolder; }
-            set { m_downloadfolder = value; }
-        }
-
         string query;
         //THis function instantiates a new insteractiveBrainControl when called
-        public static interactiveBrainControl Instance
+        public static InteractiveBrainControl Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new interactiveBrainControl();
+                    _instance = new InteractiveBrainControl();
                 }
-                _instance = new interactiveBrainControl();
+                _instance = new InteractiveBrainControl();
                 return _instance;
             }
         }
 
         //This function determines how the interactiveBrainCintrol is initialized
-        public interactiveBrainControl()
+        public InteractiveBrainControl()
         {
             InitializeComponent();
             GetAvailableComPorts(); //list available serial ports in array of strings
@@ -171,7 +155,7 @@ namespace InteractiveBrain
             {
                 MessageBox.Show("Wasn't able to load Healthy Behaviors list");
 
-               // MessageBox.Show(ex.ToString());
+               Console.WriteLine(ex.ToString());
             }
 
             //This function is used for the listbox not search autocomplete textbox
@@ -283,7 +267,7 @@ namespace InteractiveBrain
         }
 
         //This function is called when the connection button is pressed 
-        private void connectionButton_Click(object sender, RoutedEventArgs e)
+        private void ConnectionButton_Click(object sender, RoutedEventArgs e)
         {   //The default flag is used to treat button as toggle button
             if (defaultFlag == false)
             {
@@ -321,8 +305,10 @@ namespace InteractiveBrain
                         Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
                         StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
                         BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                        var brush = new ImageBrush();
-                        brush.ImageSource = temp;
+                        var brush = new ImageBrush
+                        {
+                            ImageSource = temp
+                        };
                         connectionButton.Background = brush;
 
                     }
@@ -373,15 +359,19 @@ namespace InteractiveBrain
                     Thread.Sleep(10);
                     SerialPort1.Close();
                     Console.WriteLine("Connected to " + selectedPort);
-                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                    SerialPort1.ReadTimeout = 250;
-                    SerialPort1.WriteTimeout =250;
+                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One)
+                    {
+                        ReadTimeout = 250,
+                        WriteTimeout = 250
+                    };
                     Uri resourceUri = new Uri("Resources/if_connect_established.ico", UriKind.Relative);
                     StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
 
                     BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                    var brush = new ImageBrush();
-                    brush.ImageSource = temp;
+                    var brush = new ImageBrush
+                    {
+                        ImageSource = temp
+                    };
 
                     connectionButton.Background = brush;
                 }
@@ -394,16 +384,20 @@ namespace InteractiveBrain
                     Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
                     StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
                     BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                    var brush = new ImageBrush();
-                    brush.ImageSource = temp;
+                    var brush = new ImageBrush
+                    {
+                        ImageSource = temp
+                    };
                     connectionButton.Background = brush;
                 }
                 catch (Exception ex) { MessageBox.Show("Couldn't successfully connect to selected COM port"); Console.WriteLine(ex.Message);
                     Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
                     StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
                     BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                    var brush = new ImageBrush();
-                    brush.ImageSource = temp;
+                    var brush = new ImageBrush
+                    {
+                        ImageSource = temp
+                    };
                     connectionButton.Background = brush;
 
 
@@ -817,8 +811,7 @@ namespace InteractiveBrain
                 {
                     brainPartsListBox.SelectedItem = false;
                     selectedHealthyBehaviors = searchTextBox.Text;
-                    selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
-                    healthybehaviorBOOL = false;
+                  //  selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
 
                     SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
 
@@ -1103,8 +1096,6 @@ namespace InteractiveBrain
                 try
                 {
                     SerialPort1.Open();
-                    string id = "9999";
-                    string ending = "n";
                     Console.WriteLine("Serial Port just opened");
                     // string concatenateArray = id + lightingSequenceFromDatabase.ToArray() + ending;
 
@@ -1205,13 +1196,13 @@ namespace InteractiveBrain
                 if (obj.ToLower().StartsWith(query_Two.ToLower()))
                 {
                     // The word starts with this... Autocomplete must work   
-                    addItem(obj, "PeachPuff");
+                    AddItem(obj, "PeachPuff");
                     
                   //  found = true;
                 }
                 else
                 {
-                    addItem(obj, "White");
+                    AddItem(obj, "White");
                 }
             }
         }
@@ -1237,7 +1228,7 @@ namespace InteractiveBrain
                 foreach (string obj in col)
                 {
 
-                    addItem(obj, "White");
+                    AddItem(obj, "White");
 
                 }
                 dropDownFlag = true;
@@ -1258,21 +1249,23 @@ namespace InteractiveBrain
         }
         //This function is used to add an item to the stackpanel holding 
         //the items of the healthy behaviors list
-        private void addItem(string text, string color)
+        private void AddItem(string text, string color)
         {
-            TextBlock block = new TextBlock();
+            TextBlock block = new TextBlock
+            {
 
 
-            // Add the text   
-            block.Text = text;
+                // Add the text   
+                Text = text,
 
-            // A little style...   
-            block.Margin = new Thickness(2, 3, 2, 3);
-            block.Cursor = Cursors.Hand;
-            block.FontFamily = new FontFamily("Calibri");
-            block.FontSize = 20;
-            block.Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush;
-            
+                // A little style...   
+                Margin = new Thickness(2, 3, 2, 3),
+                Cursor = Cursors.Hand,
+                FontFamily = new FontFamily("Calibri"),
+                FontSize = 20,
+                Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush
+            };
+
             // Mouse events   
             block.MouseLeftButtonUp += (sender, e) =>
             {

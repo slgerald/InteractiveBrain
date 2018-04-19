@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:ui="http://schemas.microsoft.com/wix/UIExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-	<Product Id="*" Name="Interactive Brain" Language="1033" Version="1.0.5" Manufacturer="ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
+	<Product Id="*" Name="WhatSUP Desktop App" Language="1033" Version="1.0.5" Manufacturer="Shailicia Gerald and Travis Martin of NCSU ECE 485 Team 16: Interactive Brain Spring 2018" UpgradeCode="e2a36e56-fe3a-4157-aca4-2742aa0e5a97">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -20,7 +20,7 @@
             Value="WelcomeDlg"
             Order="2">1</Publish>
     </UI>
-		<Feature Id="ProductFeature" Title="InteractiveBrain" Level="1">
+		<Feature Id="ProductFeature" Title="WhatSUP Desktop App" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="ProductMenuComponents" />
       <ComponentGroupRef Id="x86_files" />
@@ -33,7 +33,7 @@
     <!-- Step 1: Define the directory structure -->
       <Directory Id="TARGETDIR" Name="SourceDir">
         <Directory Id="ProgramFiles64Folder">
-          <Directory Id="INSTALLFOLDER" Name="Interactive Brain" >
+          <Directory Id="INSTALLFOLDER" Name="WhatSUP Desktop App" >
             <Directory Id="x86_dir" Name="x86"/>
             <Directory Id="x64_dir" Name="x64"/>
             <Directory Id="resources_dir" Name="Resources" />
@@ -48,8 +48,10 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      
       <Component Id="InteractiveBrain.exe" Win64="yes">
         <File Id="InteractiveBrain.exe" Source="$(var.InteractiveBrain.TargetPath)" KeyPath="yes" Checksum="yes" />
+        <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
       </Component>
       <Component Id="interactiveBrainDatabase.db" Win64="yes">
         <File Id="interactiveBrainDatabase.db" Source="$(var.TargetDir)\interactiveBrainDatabase.db" KeyPath="yes" />
@@ -58,6 +60,11 @@
         <File Id='System.Data.SQLite' Name='System.Data.SQLite.dll' Source='$(var.TargetDir)\System.Data.SQLite.dll' KeyPath='yes' />
       </Component>
 		</ComponentGroup>
+    <ComponentGroup Id="x64_files" Directory="x64_dir">
+      <Component Id="SQLite_x64.Interop.dll" Win64="yes">
+        <File Id="SQLite_x64.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x64\SQLite.Interop.dll" />
+      </Component>
+    </ComponentGroup>
     <ComponentGroup Id="x86_files" Directory="x86_dir" >
       <Component Id="SQLite_x86.Interop.dll" Win64="yes" >
         <File Id="SQLite_x86.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x86\SQLite.Interop.dll" />
@@ -96,8 +103,8 @@
       <Component Id="ApplicationShortcut" Guid="{B6E07F8F-29FE-410A-ACE7-DD40F84F26FF}">
         <Shortcut
             Id="ApplicationStartMenuShortcut"
-            Name="Interactive Brain"
-            Description="Interactive Brain - Designed for the Poe Health Center"
+            Name="WhatSUP Desktop App"
+            Description="whatSUP Desktop App"
             Target="[#InteractiveBrain.exe]"
             WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
@@ -108,10 +115,6 @@
             KeyPath="yes" />
       </Component>
     </ComponentGroup>
-    <ComponentGroup Id="x64_files" Directory="x64_dir">
-      <Component Id="SQLite_x64.Interop.dll" Win64="yes">
-        <File Id="SQLite_x64.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x64\SQLite.Interop.dll" />
-      </Component>
-    </ComponentGroup>
+    
     </Fragment>
 </Wix>

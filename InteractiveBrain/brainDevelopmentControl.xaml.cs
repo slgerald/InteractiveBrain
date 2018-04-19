@@ -26,7 +26,7 @@ namespace InteractiveBrain
         {
             InitializeComponent();
 
-            brainDevelopmentText.Text = "Gray matter thins from child age to young adult age in order to 'prune' inefficient synaptic connections. This increases overall brain performance and cognitive function.";
+            brainDevelopmentText.Text = "Gray matter is the thin, folding, outer layer of the brain, known as the cortex. The cortex is where we form thoughts and memories. The amount of gray matter increases during childhood, peaks in adolescence, and then declines. Gray matter helps strengthen learning, and it declines as we age, pruning back connections to make the brain more efficient. ";
         }
 
         public static brainDevelopmentControl Instance

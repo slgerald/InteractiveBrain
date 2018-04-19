@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="InteractiveBrain.interactiveBrainControl"
+﻿<UserControl x:Class="InteractiveBrain.InteractiveBrainControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -240,7 +240,7 @@
                 <ImageBrush ImageSource="Resources/if_Play.ico"/>
             </Button.Background>
         </Button>
-        <Button x:Name="connectionButton" Canvas.Left="595" Canvas.Top="559" FontSize="18" Height="41" Width="40" ToolTip="Use to connect to Interactive Brain" FontWeight="Bold" Foreground="#FF074D07" BorderBrush="{x:Null}" Click="connectionButton_Click">
+        <Button x:Name="connectionButton" Canvas.Left="595" Canvas.Top="559" FontSize="18" Height="41" Width="40" ToolTip="Use to connect to Interactive Brain" FontWeight="Bold" Foreground="#FF074D07" BorderBrush="{x:Null}" Click="ConnectionButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_connect_no.ico"/>
             </Button.Background>
@@ -253,9 +253,8 @@
         <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="320" TextWrapping="Wrap" Canvas.Top="404" Width="270" FontSize="20" FontFamily="Calibri" BorderBrush="Black" />
         <Border x:Name ="panelBorder" Width="270" Height="113" BorderBrush="Black" Canvas.Left="320" Canvas.Top="432" Visibility="Visible" PreviewMouseUp="ResultsStackMouseDown" ScrollViewer.CanContentScroll="True">
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
-                <StackPanel x:Name="resultsStack">
-                </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" BorderBrush="Black">
+                <StackPanel x:Name="resultsStack"/>
 
             </ScrollViewer>
 

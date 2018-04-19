@@ -22,36 +22,34 @@ namespace InteractiveBrain
     /// <summary>
     /// Interaction logic for serialCommsControl.xaml
     /// </summary>
-    public partial class serialCommsControl : UserControl
+    public partial class SerialCommsControl : UserControl
     {
         SerialPort SerialPort1;
         bool isConnected = false;
         String[] ports;
         static ConcurrentQueue<char> serialDataQueue;
-        private static serialCommsControl _instance;
+        private static SerialCommsControl _instance;
         string selectedPort;
-        string append;
-        string id = "9999";
         string[] lightingSequenceFromDatabase = {"","","","","","","","","" };
         
             
         
-        public static serialCommsControl Instance 
+        public static SerialCommsControl Instance 
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new serialCommsControl();
+                    _instance = new SerialCommsControl();
     }
                     return _instance;
                
             }
         }
-        public serialCommsControl()
+        public SerialCommsControl()
         {
             InitializeComponent();
-            getAvailableComPorts();
+            GetAvailableComPorts();
             try
             {
                 SerialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
@@ -159,7 +157,7 @@ private void CloseSerialOnExit(){
     }
 }
 
-        private void connectButton_Click(object sender, RoutedEventArgs e)
+        private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             
 
@@ -195,7 +193,7 @@ private void CloseSerialOnExit(){
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
-        private void disconnectButton_Click(object sender, RoutedEventArgs e)
+        private void DisconnectButton_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("This is the disconnect button");
             if (isConnected)
@@ -213,17 +211,7 @@ private void CloseSerialOnExit(){
            
         }
 
-        private void messageTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-          
-        }
-
-        private void comPortNumberComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        void getAvailableComPorts()
+        void GetAvailableComPorts()
         {
             
             ports = SerialPort.GetPortNames();
@@ -256,13 +244,12 @@ private void CloseSerialOnExit(){
                 Console.WriteLine(ex.Message);
             }
         }
-        private void readSerialDataQueue()
+        private void ReadSerialDataQueue()
         {
-            char ch;
 
             try
             {
-                while (serialDataQueue.TryDequeue(out ch))
+                while (serialDataQueue.TryDequeue(out char ch))
                 {
                     // do something with ch, add it to a textbox 
                     // for example to see that it actually works

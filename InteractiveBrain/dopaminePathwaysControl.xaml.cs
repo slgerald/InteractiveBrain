@@ -151,7 +151,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 3;
                 videoLabel.Content = "4/9 Dopamine Transporters";
-                dopamineText.Text = "After the dopamine binds to the receptors, pleasurable feelings or rewarding effects are produced. A special protein, called a dopamine transporter, then removes the dopamine from the synaptic clift and transports them back to the transmitting neuron.";
+                dopamineText.Text = "After the dopamine binds to the receptors, pleasurable feelings or rewarding effects are produced. A special protein, called a dopamine transporter, then removes the dopamine from the synaptic cleft and transports them back to the sending neuron.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_blocked_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -288,7 +288,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 8;
                 videoLabel.Content = "9/9 Increased Tolerance";
-                dopamineText.Text = "Eventually, even the drug loses its ability to reward and higher doses are required to achieve the rewarding effect. This leads to drug overdose.";
+                dopamineText.Text = "Eventually, even the drug loses its ability to reward and higher doses are required to achieve the rewarding effect. This may lead to drug overdose.";
             }
         }
 
