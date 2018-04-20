@@ -36,7 +36,7 @@ namespace InteractiveBrain
             leftImageLabel.Content = "Typical Brain";
             rightImageLabel.Content = "Heavy Alcohol Use";
             sourceLabel.Content = "Source: http://www.encognitive.com/files/images/brain-scan-alcoholic-drug-addict-obese-normal.preview.jpg";
-            rehabText.Text = "Drugs can alter the way people think, feel, and behave by disrupting neurotransmission, the process of communication between neurons.";
+            rehabText.Text = "Substances can alter the way people think, feel, and behave by disrupting neurotransmission, the process of communication between neurons.";
         }
 
         public static normalVsOnDrugsControl Instance

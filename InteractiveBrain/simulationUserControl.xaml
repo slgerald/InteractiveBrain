@@ -37,18 +37,12 @@
             </Button>
             <Button x:Name="normalVsOnDrugsButton" Foreground="Black" Canvas.Left="346" Canvas.Top="315" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="NormalVsOnDrugsButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" ToolTip="Normal vs. On Drugs">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="90" Width="220">
-                    <Run Text="         Typical"/>
-                    <LineBreak/>
-                    <Run Text="            vs."/>
-                    <LineBreak/>   
-                    <Run Text="        Drug Use"/>
-                    </TextBlock>
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="90" Width="220" TextAlignment="Center"><Run Text="Typical"/><LineBreak/><Run Text=" Vs. "/><LineBreak/><Run Text="Substances"/></TextBlock>
                 </DockPanel>
             </Button>
         </Canvas>
 
-        <Button Content="" Canvas.Left="610" Canvas.Top="550" Width="60" Click="BackButton_Click" Height="40" BorderBrush="{x:Null}" ToolTip="Back">
+        <Button Content="" Canvas.Left="640" Canvas.Top="560" Width="40" Click="BackButton_Click" Height="40" BorderBrush="{x:Null}" ToolTip="Back">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_icon-arrow-left.ico"/>
             </Button.Background>

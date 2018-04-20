@@ -371,6 +371,8 @@
     <Resource Include="Resources\brain_before_meth.png" />
     <Resource Include="Resources\brain_meth.png" />
     <Resource Include="Resources\brain_normal.png" />
+    <Resource Include="Resources\brain_meth_rehab_1month.PNG" />
+    <Resource Include="Resources\brain_meth_rehab_14month.PNG" />
     <Content Include="Resources\gif_blocked_dopamine_transporters.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

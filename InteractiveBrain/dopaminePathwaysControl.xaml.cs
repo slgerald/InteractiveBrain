@@ -140,7 +140,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 2;
                 videoLabel.Content = "3/9 Dopamine Receptors";
-                dopamineText.Text = "The action impulse triggers the release of neurotransmitters in the synaptic clift, a space between neurons. The neurotransmitters then bind to receptors of a neighboring neuron, generating a signal in it, thereby transmitting the information to that neuron.";
+                dopamineText.Text = "The action impulse triggers the release of neurotransmitters in the synaptic cleft, a space between neurons. The neurotransmitters then bind to receptors of a neighboring neuron, generating a signal in it, thereby sending the information to that neuron.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_drug_stimulation.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -162,7 +162,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 4;
                 videoLabel.Content = "5/9 Action Potential";
-                dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some drugs, such as alcohol, heroine, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
+                dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some substances, such as alcohol, heroin, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_continuous_dopamine_stimulation.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -172,8 +172,8 @@ namespace InteractiveBrain
                 Gif1.Source = new Uri(@".\Resources\gif_blocked_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
                 videoList.SelectedIndex = 5;
-                videoLabel.Content = "6/9 Drug Binding";
-                dopamineText.Text = "Drugs, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
+                videoLabel.Content = "6/9 Substance Binding";
+                dopamineText.Text = "Substance, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_tolerance.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -184,7 +184,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 6;
                 videoLabel.Content = "7/9 Overstimulation";
-                dopamineText.Text = "Different drugs act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by drug users. ";
+                dopamineText.Text = "Different substances act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by substance users. ";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_increased_tolerance.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -195,7 +195,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 7;
                 videoLabel.Content = "8/9 Tolerance";
-                dopamineText.Text = "Drugs will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the drug.";
+                dopamineText.Text = "Substances will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the substance.";
             }
         }
 
@@ -222,7 +222,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 2;
                 videoLabel.Content = "3/9 Dopamine Receptors";
-                dopamineText.Text = "The action impulse triggers the release of neurotransmitters in the synaptic clift, a space between neurons. The neurotransmitters then bind to receptors of a neighboring neuron, generating a signal in it, thereby transmitting the information to that neuron.";
+                dopamineText.Text = "The action impulse triggers the release of neurotransmitters in the synaptic clift, a space between neurons. The neurotransmitters then bind to receptors of a neighboring neuron, generating a signal in it, thereby sending the information to that neuron.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_dopamine_receptors.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -233,7 +233,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 3;
                 videoLabel.Content = "4/9 Dopamine Transporters";
-                dopamineText.Text = "After the dopamine binds to the receptors, pleasurable feelings or rewarding effects are produced. A special protein, called a dopamine transporter, then removes the dopamine from the synaptic clift and transports them back to the transmitting neuron.";
+                dopamineText.Text = "After the dopamine binds to the receptors, pleasurable feelings or rewarding effects are produced. A special protein, called a dopamine transporter, then removes the dopamine from the synaptic cleft and transports them back to the sending neuron.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -244,7 +244,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 4;
                 videoLabel.Content = "5/9 Action Potential";
-                dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some drugs, such as alcohol, heroine, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
+                dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some substances, such as alcohol, heroin, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_drug_stimulation.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -254,8 +254,8 @@ namespace InteractiveBrain
                 Gif1.Source = new Uri(@".\Resources\gif_blocked_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
                 videoList.SelectedIndex = 5;
-                videoLabel.Content = "6/9 Drug Binding";
-                dopamineText.Text = "Drugs, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
+                videoLabel.Content = "6/9 Substance Binding";
+                dopamineText.Text = "Substances, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_blocked_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -266,7 +266,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 6;
                 videoLabel.Content = "7/9 Overstimulation";
-                dopamineText.Text = "Different drugs act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by drug users. ";
+                dopamineText.Text = "Different substances act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by substance users. ";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_continuous_dopamine_stimulation.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -277,7 +277,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 7;
                 videoLabel.Content = "8/9 Tolerance";
-                dopamineText.Text = "Drugs will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the drug.";
+                dopamineText.Text = "Substances will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the substances.";
             }
             else if (Gif1.Source == new Uri(@".\Resources\gif_tolerance.mp4", UriKind.RelativeOrAbsolute))
             {
@@ -288,7 +288,7 @@ namespace InteractiveBrain
                 Gif1.Play();
                 videoList.SelectedIndex = 8;
                 videoLabel.Content = "9/9 Increased Tolerance";
-                dopamineText.Text = "Eventually, even the drug loses its ability to reward and higher doses are required to achieve the rewarding effect. This may lead to drug overdose.";
+                dopamineText.Text = "Eventually, even the substance loses its ability to reward and higher doses are required to achieve the rewarding effect. This may lead to drug overdose.";
             }
         }
 
@@ -343,17 +343,17 @@ namespace InteractiveBrain
                 Gif1.Source = new Uri(@".\Resources\gif_drug_stimulation.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
                 videoLabel.Content = "5/9 Action Potential";
-                dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some drugs, such as alcohol, heroine, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
+                dopamineText.Text = "The major reward pathways involve transmission of dopamine from the ventral tegmental area (VTA) of the midbrain to the limbic system in the frontal cortex. Some substances, such as alcohol, heroin, and nicotine, indirectly excite dopamine-producing neurons in the VTA so that more action potentials are generated.";
             }
-            else if (videoListValue == "Drug Binding")
+            else if (videoListValue == "Substance Binding")
             {
                 Gif1.Stop();
                 nextButton.Visibility = Visibility.Visible;
                 previousButton.Visibility = Visibility.Visible;
                 Gif1.Source = new Uri(@".\Resources\gif_blocked_dopamine_transporters.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
-                videoLabel.Content = "6/9 Drug Binding";
-                dopamineText.Text = "Drugs, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
+                videoLabel.Content = "6/9 Substance Binding";
+                dopamineText.Text = "Substances, such as meth, bind to the dopamine transporter and block the reuptake of dopamine. In addition, they can enter the neruron into the dopamine-containing vesticles, where they trigger dopamine release, even in the absence of action potentials.";
             }
             else if (videoListValue == "Overstimulation")
             {
@@ -363,7 +363,7 @@ namespace InteractiveBrain
                 Gif1.Source = new Uri(@".\Resources\gif_continuous_dopamine_stimulation.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
                 videoLabel.Content = "7/9 OverStimulation";
-                dopamineText.Text = "Different drugs act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by drug users. ";
+                dopamineText.Text = "Different substances act in different ways, but the common outcome is that dopamine builds up in the synapse to a much greater amount than normal. This results in overstimulation in receiving neurons and is responsible for prolonged and intense euphoria experienced by substance users. ";
             }
             else if (videoListValue == "Tolerance")
             {
@@ -373,7 +373,7 @@ namespace InteractiveBrain
                 Gif1.Source = new Uri(@".\Resources\gif_tolerance.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
                 videoLabel.Content = "8/9 Tolerance";
-                dopamineText.Text = "Drugs will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the drug.";
+                dopamineText.Text = "Substances will desensitize the reward system. The system is no longer responsive to everyday stimuli. The only thing that is rewarding is the substance.";
             }
             else if (videoListValue == "Increased Tolerance")
             {
@@ -383,7 +383,7 @@ namespace InteractiveBrain
                 Gif1.Source = new Uri(@".\Resources\gif_increased_tolerance.mp4", UriKind.RelativeOrAbsolute);
                 Gif1.Play();
                 videoLabel.Content = "9/9 Increased Tolerance";
-                dopamineText.Text = "Eventually, even the drug loses its ability to reward and higher doses are required to achieve the rewarding effect. This leads to drug overdose.";
+                dopamineText.Text = "Eventually, even the substance loses its ability to reward and higher doses are required to achieve the rewarding effect. This leads to drug overdose.";
             }
 
         }
