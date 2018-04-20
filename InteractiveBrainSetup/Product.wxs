@@ -40,7 +40,7 @@
           </Directory>
         </Directory>
         <Directory Id="ProgramMenuFolder">
-          <Directory Id="ApplicationProgramsFolder" Name="Interactive Brain"/>
+          <Directory Id="ApplicationProgramsFolder" Name="WhatSUP Desktop App"/>
         </Directory>
       </Directory>  
 	</Fragment>

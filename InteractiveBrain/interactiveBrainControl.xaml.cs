@@ -84,6 +84,8 @@ namespace InteractiveBrain
         string dbConnectionString;
 
         string query;
+
+        int errorCount = 0;
         //THis function instantiates a new insteractiveBrainControl when called
         public static InteractiveBrainControl Instance
         {
@@ -113,9 +115,9 @@ namespace InteractiveBrain
                            //    dbConnectionString = string.Format("DataSource={0}\\InteractiveBrain\\interactiveBrainDatabase.db", AppDomain.CurrentDomain.GetData("DataDirectory"));
 
             // dbConnectionString = string.Format("DataSource={0}\\Interactive Brain\\interactiveBrainDatabase.db", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
-            dbConnectionString = string.Format("DataSource={0}\\Interactive Brain\\interactiveBrainDatabase.db", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+            dbConnectionString = string.Format("DataSource={0}\\WhatSUP Desktop App\\interactiveBrainDatabase.db", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
             // dbConnectionString = "DataSource=C:\\ProgramData\\Interactive Brain\\interactiveBrainDatabase.db";
-            Console.WriteLine(dbConnectionString);
+            Console.WriteLine("this is the connection string: " + dbConnectionString);
 
             //Two way communication wasn't used 
             //Preparing for possible two way serial connection
@@ -153,14 +155,18 @@ namespace InteractiveBrain
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wasn't able to load Healthy Behaviors list");
-
+                errorCount++;
+                if (errorCount == 1)
+                {
+                    MessageBox.Show("Wasn't able to load Healthy Behaviors list");
+                }
                Console.WriteLine(ex.ToString());
             }
 
             //This function is used for the listbox not search autocomplete textbox
             col = col.OrderBy(q => q).ToList();
             Fill_ListBox();
+            errorCount = 0;
         }
 
         //This function is used to copy the database file from the installation folder
@@ -170,7 +176,7 @@ namespace InteractiveBrain
         {   //Hard coded string for program files and data string works but not  AppDomain.CurrentDomain.GetData("DataDirectory");
             string fileName = "interactiveBrainDatabase.db";
             //MessageBox.Show(fileName); //For debugging Purposes
-            string sourcePath = "C:\\Program Files\\Interactive Brain"; //Where original database file was installed
+            string sourcePath = "C:\\Program Files\\WhatSUP Desktop App"; //Where original database file was installed
                                                                         //MessageBox.Show(sourcePath); //For debugging Purposes
 
             //string targetPath = string.Format("{0}\\Interactive Brain", AppDomain.CurrentDomain.GetData("DataDirectory"));
@@ -179,7 +185,7 @@ namespace InteractiveBrain
             //string targetPath = "C:\\ProgramData\\Interactive Brain"; 
             //MessageBox.Show(targetPath); //For debugging purposes
 
-            string targetPath = string.Format("{0}\\Interactive Brain",
+            string targetPath = string.Format("{0}\\WhatSUP Desktop App",
                  Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
             Console.WriteLine("GetFolderPath: {0}",
                  Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
@@ -203,8 +209,8 @@ namespace InteractiveBrain
             string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
             if (System.IO.File.Exists(sourceFile))
             {
-                Console.WriteLine(HasWritePermissionOnDir(sourceFile));//For debugging purposes
-                //MessageBox.Show(sourceFile); //For debugging Purposes
+                Console.WriteLine(HasWritePermissionOnDir(sourceFile).ToString());//For debugging purposes
+                Console.WriteLine(sourceFile); //For debugging Purposes
             }
             else {
                 Console.WriteLine(sourceFile + "does not exist");
@@ -215,8 +221,8 @@ namespace InteractiveBrain
             string destFile = System.IO.Path.Combine(targetPath, fileName);
             if (System.IO.File.Exists(destFile))
             {
-                Console.WriteLine(HasWritePermissionOnDir(destFile));
-                //MessageBox.Show(destFile); //For debugging purposes
+                Console.WriteLine(HasWritePermissionOnDir(destFile).ToString());
+                Console.WriteLine(destFile); //For debugging purposes
             }
             else {
                 Console.WriteLine(destFile + "does not exist");
@@ -230,7 +236,7 @@ namespace InteractiveBrain
                 {
                     System.IO.File.Copy(sourceFile, destFile, true);
                 }
-                catch { Console.WriteLine("Couldn't copy database file from installation folder C:\\Program Files\\Interactive Brain "); }
+                catch { MessageBox.Show("Couldn't copy database file from installation folder C:\\Program Files\\WhatSUP Desktop App "); }
             }
             else
             { 
