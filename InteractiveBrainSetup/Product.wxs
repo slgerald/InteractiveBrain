@@ -49,9 +49,9 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
       
-      <Component Id="InteractiveBrain.exe" Win64="yes">
-        <File Id="InteractiveBrain.exe" Source="$(var.InteractiveBrain.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
+      <Component Id="WhatSUPDesktopApp.exe" Win64="yes">
+        <File Id="WhatSUPDesktopApp.exe" Source="$(var.WhatSUPDesktopApp.TargetPath)" KeyPath="yes" Checksum="yes" />
+        <RemoveFolder Id="ProgramFiles64Folder" On="uninstall"/>
       </Component>
       <Component Id="interactiveBrainDatabase.db" Win64="yes">
         <File Id="interactiveBrainDatabase.db" Source="$(var.TargetDir)\interactiveBrainDatabase.db" KeyPath="yes" />
@@ -63,16 +63,19 @@
     <ComponentGroup Id="x64_files" Directory="x64_dir">
       <Component Id="SQLite_x64.Interop.dll" Win64="yes">
         <File Id="SQLite_x64.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x64\SQLite.Interop.dll" />
+        <RemoveFolder Id="x64_dir" On="uninstall"/>
       </Component>
     </ComponentGroup>
     <ComponentGroup Id="x86_files" Directory="x86_dir" >
       <Component Id="SQLite_x86.Interop.dll" Win64="yes" >
         <File Id="SQLite_x86.Interop.dll" Name="SQLite.Interop.dll" Source="$(var.TargetDir)\x86\SQLite.Interop.dll" />
+        <RemoveFolder Id="x86_dir" On="uninstall"/>
       </Component>
     </ComponentGroup>
     <ComponentGroup Id="resources_files" Directory="resources_dir" >
       <Component Id="gif_blocked_dopamine_transporters.mp4" Win64="yes" >
         <File Id="gif_blocked_dopamine_transporters.mp4" Name="gif_blocked_dopamine_transporters.mp4" Source="$(var.TargetDir)\Resources\gif_blocked_dopamine_transporters.mp4" />
+        <RemoveFolder Id="resources_dir" On="uninstall"/>
       </Component>
       <Component Id="gif_brain_reward_pathways.mp4" Win64="yes" >
         <File Id="gif_brain_reward_pathways.mp4" Name="gif_brain_reward_pathways.mp4" Source="$(var.TargetDir)\Resources\gif_brain_reward_pathways.mp4" />
@@ -104,13 +107,13 @@
         <Shortcut
             Id="ApplicationStartMenuShortcut"
             Name="WhatSUP Desktop App"
-            Description="whatSUP Desktop App"
-            Target="[#InteractiveBrain.exe]"
+            Description="WhatSUP Desktop App"
+            Target="[#WhatSUPDesktopApp.exe]"
             WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
-        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RemoveFolder Id="ProgramMenuFolder" On="uninstall"/>
         <RegistryValue
             Root="HKCU"
-            Key="Software\ECE485_TEAM16_SPRING2018\InteractiveBrain"
+            Key="Software\ECE485_TEAM16_SPRING2018\WhatSUP Desktop App"
             Name="installed" Type="integer" Value="1"
             KeyPath="yes" />
       </Component>
