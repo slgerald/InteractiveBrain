@@ -1,0 +1,243 @@
+﻿<UserControl x:Class="WhatSUPDesktopApp.DownstairsBrainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhatSUPDesktopApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="680" >
+    <UserControl.Resources>
+        <Storyboard x:Key="zoomingH">
+            <DoubleAnimation Storyboard.TargetName="scaleTransformH"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                        />
+            <DoubleAnimation Storyboard.TargetName="scaleTransformH"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <!--The translate formula is -->
+            <DoubleAnimation Storyboard.TargetName="translateTransformH"
+                                         Storyboard.TargetProperty="X"
+                                         From="0" To="-188" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <DoubleAnimation Storyboard.TargetName="translateTransformH"
+                                         Storyboard.TargetProperty="Y"
+                                           From="0" To="-26" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+        </Storyboard>
+        <Storyboard x:Key="zoomingA">
+            <DoubleAnimation Storyboard.TargetName="scaleTransformA"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                        />
+            <DoubleAnimation Storyboard.TargetName="scaleTransformA"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <DoubleAnimation Storyboard.TargetName="translateTransformA"
+                                         Storyboard.TargetProperty="X"
+                                         From="0.0" To="-193" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <DoubleAnimation Storyboard.TargetName="translateTransformA"
+                                         Storyboard.TargetProperty="Y"
+                                           From="0.0" To="-23" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+        </Storyboard>
+
+        <Storyboard x:Key="zoomingPG">
+            <DoubleAnimation Storyboard.TargetName="scaleTransformPG"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                        />
+            <DoubleAnimation Storyboard.TargetName="scaleTransformPG"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <DoubleAnimation Storyboard.TargetName="translateTransformPG"
+                                         Storyboard.TargetProperty="X"
+                                         From="0.0" To="-103" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <DoubleAnimation Storyboard.TargetName="translateTransformPG"
+                                         Storyboard.TargetProperty="Y"
+                                           From="0.0" To="-52" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+        </Storyboard>
+        <Storyboard x:Key="zoomingBS">
+            <DoubleAnimation Storyboard.TargetName="scaleTransformBS"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                        />
+            <DoubleAnimation Storyboard.TargetName="scaleTransformBS"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="1.0" To="2" Duration="0:0:1"
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <DoubleAnimation Storyboard.TargetName="translateTransformBS"
+                                         Storyboard.TargetProperty="X"
+                                         From="0.0" To="-200" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+            <DoubleAnimation Storyboard.TargetName="translateTransformBS"
+                                         Storyboard.TargetProperty="Y"
+                                           From="0.0" To="-80" 
+                                         AutoReverse="False" RepeatBehavior="1x"
+                                             />
+        </Storyboard>
+    </UserControl.Resources>
+    <Canvas x:Name="myCanvas" AllowDrop="False" Background="Transparent">
+        <Popup PlacementTarget="{Binding ElementName=functions}" x:Name="editPopup" >
+            <Border BorderBrush="#FF000000" 
+                Background="#FF0072BB"
+                BorderThickness="2" Width="560" Height="315" Canvas.Top="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                </Border.Effect>
+                <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="315" Margin="-2" Width="560">
+                    <ComboBox x:Name="brainPartComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Height="30" Canvas.Left="135" Canvas.Top="20" SelectionChanged="BrainPartComboBox_SelectionChanged" FontFamily="Calibri" FontSize="18" BorderBrush="Black" >
+                        <ComboBoxItem x:Name="hippocampus" Content="Hippocampus"></ComboBoxItem>
+                        <ComboBoxItem x:Name="pituitaryGland" Content="Pituitary Gland"></ComboBoxItem>
+                        <ComboBoxItem x:Name="brainstem" Content="Brainstem"></ComboBoxItem>
+                        <ComboBoxItem x:Name="amygdala" Content="Amygdala"></ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="brainPartLabel" Content="Brain Part" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="30" Canvas.Left="30" Canvas.Top="20" FontFamily="Calibri" FontSize="20"/>
+                    <TextBox x:Name ="editingTextBox" IsReadOnly="True" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black" TextWrapping="Wrap"/>
+                    <Button x:Name="closeButton" Content="" Click="CloseEditPopupClicked" HorizontalAlignment="Center" Height="25" Width="25" Canvas.Left="535" Canvas.Top="290" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Close">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/if_exit.ico"/>
+                        </Button.Background>
+                    </Button>
+                    <RadioButton x:Name ="editFunctionsRadioButton" Content="Functions" Canvas.Left="345" Canvas.Top="10" IsChecked="False" Checked="EditFunctionsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <RadioButton x:Name ="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="345" Canvas.Top="28" IsChecked="False" Checked="EditHealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <RadioButton x:Name="editUnhealthyBehaviorsRadioButton" Content="Unhealthy Behaviors" Canvas.Left="345" Canvas.Top="48" IsChecked="False" Checked="EditUnhealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="18" BorderBrush="Black"/>
+                    <Button Content="" Canvas.Left="475" Canvas.Top="246" Width="40" Height="40" RenderTransformOrigin="1.154,0.556" Click="SaveButton_Click" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Save">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/if_save.ico"/>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock x:Name="editingMessageBlock"  TextWrapping="Wrap" Canvas.Top="246" Height="59" Width="415" FontFamily="Calibri" FontSize="18" Canvas.Left="30"/>
+                </Canvas>
+            </Border>
+        </Popup>
+        <TextBox x:Name="brainPartsLabel" IsReadOnly="True" Canvas.Left="211" TextWrapping="Wrap" Canvas.Top="55" Height="50" Width="260" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Tahoma" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"  Focusable="False" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="40" Canvas.Top="15" Checked="FunctionsRadioButton_Checked" FontSize="20" FontFamily="Calibri"/>
+        <RadioButton x:Name ="healthyBehaviors"  Checked="HealthyBehaviorsRadioButton_Checked" Content="Healthy Behaviors" Canvas.Left="220" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
+        <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="459" Checked="UnhealthyBehaviorsRadioButton_Checked" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
+        <TextBox x:Name="factsMessageBox" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="335" Canvas.Left="335" TextWrapping="Wrap"  Canvas.Top="105" Width="310" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsTabStop="False" Visibility="Hidden"/>
+       
+        <Canvas    Height="435" Width="660" Canvas.Left="10" Canvas.Top="105" x:Name="pictureCanvas" Background="Transparent" AllowDrop="True" >
+
+            <local:OpaqueClickableImage Height="336" Width="660" x:Name="cutoutLowerBrain">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property= "Source" Value="Resources/cutoutLowerBrain.png"/>
+                    </Style>
+                </Image.Style>
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="hippocampusBox" AllowDrop="True" Source ="Resources/hippocampus.png" Height="103" Canvas.Left="291" Canvas.Top="120" Width="95" RenderTransformOrigin="0.5,0.5" >
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="scaleTransformH" ScaleX="1.0" ScaleY="1.0"/>
+                        <TranslateTransform x:Name="translateTransformH" Y="0" X="0"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="brainstemBox" Height="135" Canvas.Left="297" Canvas.Top="201" Width="106" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property= "Source" Value="Resources/secondBrainstem.png"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </Image.Style>
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="scaleTransformBS" ScaleX="1.0" ScaleY="1.0"/>
+                        <TranslateTransform x:Name="translateTransformBS" Y="0" X="0"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </local:OpaqueClickableImage>
+
+            <local:OpaqueClickableImage x:Name="pituitaryGlandBox" Height="35" Canvas.Left="258" Canvas.Top="205" Width="30" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property= "Source" Value="Resources/pituitaryGland.png"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </Image.Style>
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="scaleTransformPG" ScaleX="1.0" ScaleY="1.0"/>
+                        <TranslateTransform x:Name="translateTransformPG" Y="0" X="0"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </local:OpaqueClickableImage>
+            <local:OpaqueClickableImage x:Name="amygdalaBox" Height="20" Canvas.Left="311" Canvas.Top="189" Width="23" AllowDrop="True" RenderTransformOrigin="0.5,0.5">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property= "Source" Value="Resources/amygdala.png"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="scaleTransformA" ScaleX="1.0" ScaleY="1.0"/>
+                        <TranslateTransform x:Name="translateTransformA" Y="0" X="0"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </local:OpaqueClickableImage>
+        </Canvas>
+        <Button x:Name="scrambleButton" Content="SCRAMBLE" Canvas.Left="480" Canvas.Top="560" Width="115" Height="40" Click="ScrambleButton_Click" BorderBrush="{x:Null}" Background="#FF0072BB" FontSize="18" FontWeight="Bold" FontFamily="Tahoma" ToolTip="Scamble Parts"/>
+        <Button x:Name="resetButton" Content="" Canvas.Left="600" Canvas.Top="560" Width="40" Height="40" Click="ResetImages" BorderBrush="{x:Null}" ToolTip="Reset parts">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/reset.ico"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="gotItButton" Content="" Visibility="Hidden" Canvas.Left="323" Canvas.Top="480" Width="40" Click="GotItButton_Click" Height="40" FontSize="18" BorderBrush="{x:Null}" RenderTransformOrigin="0.125,0.25">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/if_thumbs-up_1608950.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="editButton"  Canvas.Left="640" Canvas.Top="560" Width="40" Height="40" Click="EditButton_Click" BorderBrush="{x:Null}" ToolTip="Edit">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/if_pensil.ico"/>
+            </Button.Background>
+        </Button>
+       
+    </Canvas>
+</UserControl>
