@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.Concurrent;
-using System.Windows.Media.Animation;
 
 namespace InteractiveBrain
 {
     /// <summary>
-    /// Interaction logic for simulationUserControl.xaml
+    /// The simulation userControl page is used as a hub to get to the 4 animations pages:
+    /// brainDevelopment, dopaminePathways, healthyActivities, and normalVsOnDrugs.
     /// </summary>
     public partial class simulationUserControl : UserControl
     {
-        private static simulationUserControl _instance; //render userControl based on button pressed
+        //render userControl based on button pressed
+        private static simulationUserControl _instance; 
+
+        //Used to get location value of buttons 
         double buttonTopValue;
+
+        //This method serves as the entry point to the simulation userControl page.
         public simulationUserControl()
         {
             InitializeComponent();
 
         }
+
+        //This method allows the simulation usrControl to be rendered when called.
         public static simulationUserControl Instance
         {
             get
@@ -43,6 +37,8 @@ namespace InteractiveBrain
             }
         }
 
+        //This method loads the page for the brainDevelopment userControl when the 
+        //'Brain Development' button is clicked.
         private void BrainDevelopmentButton_Click(object sender, RoutedEventArgs e)
         {
             buttonTopValue = Canvas.GetTop(brainDevelopmentButton);
@@ -65,6 +61,8 @@ namespace InteractiveBrain
                 buttonPanel.Children.Add(brainDevelopmentControl.Instance);
         }
 
+        //This method loads the page for the dopaminePathways userControl when the 
+        //'Dopamine Pathways' button is clicked.
         private void DopaminePathwaysButton_Click(object sender, RoutedEventArgs e)
         {
             buttonTopValue = Canvas.GetTop(dopaminePathwaysButton);
@@ -87,6 +85,8 @@ namespace InteractiveBrain
                 buttonPanel.Children.Add(dopaminePathwaysControl.Instance);
         }
 
+        //This method loads the page for the healthyActivities userControl when the 
+        //'Healthy Activities button is clicked.
         private void HealthyActivitiesButton_Click(object sender, RoutedEventArgs e)
         {
             buttonTopValue = Canvas.GetTop(healthyActivitiesButton);
@@ -109,6 +109,8 @@ namespace InteractiveBrain
                 buttonPanel.Children.Add(healthyActivitiesControl.Instance);
         }
 
+        //This method loads the page for the normalVsOnDrugs userControl when the 
+        //'Typical vs. Drug Use' button is clicked.
         private void NormalVsOnDrugsButton_Click(object sender, RoutedEventArgs e)
         {
             buttonTopValue = Canvas.GetTop(normalVsOnDrugsButton);
@@ -131,6 +133,9 @@ namespace InteractiveBrain
                 buttonPanel.Children.Add(normalVsOnDrugsControl.Instance);
         }
 
+        //This button loads the simulation userControl page when clicked. It appears
+        //at the bottom of the brainDevelopment, dopaminePathways, healthyActivities, and
+        //normalVsOnDrugs pages.
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             //buttonPanel.Children.Remove(brainDevelopmentControl.Instance);
@@ -139,10 +144,6 @@ namespace InteractiveBrain
 
 
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
-
-        }
     }
     }

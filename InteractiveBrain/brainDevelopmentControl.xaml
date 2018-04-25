@@ -17,9 +17,6 @@
                 Height="267" VerticalAlignment="Top" Width="101" 
                 RenderTransformOrigin="0.5,0.5" 
                 Source="Resources/gray_matter_meter.png" IsEnabled="False"/>
-        <!--<TextBox x:Name="textbox" 
-                 Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
-                 DockPanel.Dock="Right" TextAlignment="Right" Width="37" Height="20" Canvas.Left="519" Canvas.Top="395"/>-->
         <Slider Name="slValue"
                 Minimum="5" Maximum="20" 
                 TickFrequency="3.75" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Foreground="Blue"

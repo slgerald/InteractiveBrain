@@ -1,34 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InteractiveBrain
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// The brainDevelopmentControl is an animation utlizing a slider which allows the user
+    /// to slide through several images of the developing brain from childhood to adulthood.
     /// </summary>
     public partial class brainDevelopmentControl : UserControl
     {
+        //render userControl based on button pressed
+        private static brainDevelopmentControl _instance; 
 
-        private static brainDevelopmentControl _instance; //render userControl based on button pressed
+       //This function serves as the entry point to the brainDevelopment userControl page.
+       //The userControl is initialized and the description text for the pictures is written.
         public brainDevelopmentControl()
         {
             InitializeComponent();
-
+            
+            //Description for pictures on the brainDevelopment page
             brainDevelopmentText.Text = "Gray matter thins from child age to young adult age in order to 'prune' inefficient synaptic connections. This increases overall brain performance and cognitive function.";
         }
 
+        //This method allows the brainDevelopmentControl to be rendered when called
         public static brainDevelopmentControl Instance
         {
             get
@@ -43,11 +39,8 @@ namespace InteractiveBrain
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //This method keeps track of the sliders current value so that it can switch between
+        //5 pictures when the value is changed.
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 

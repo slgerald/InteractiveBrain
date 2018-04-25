@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InteractiveBrain
 {
     /// <summary>
-    /// Interaction logic for UserControl2.xaml
+    /// The normalVsOnDrugs userControl is used to show the user examples of the effects
+    /// of substance abuse on the brain as well as the damage that remains even after rehab.
     /// </summary>
     public partial class normalVsOnDrugsControl : UserControl
     {
-        private static normalVsOnDrugsControl _instance; //render userControl based on button pressed
+        //render userControl based on button pressed
+        private static normalVsOnDrugsControl _instance; 
 
+        //This method serves as the entry point to the normalVsOnDrugs userControl page.
+        //This method also loads the default pictures and description text for an example of
+        //the effects substance abuse on the brain.
         public normalVsOnDrugsControl()
         {
             InitializeComponent();
@@ -39,6 +34,7 @@ namespace InteractiveBrain
             rehabText.Text = "Drugs can alter the way people think, feel, and behave by disrupting neurotransmission, the process of communication between neurons.";
         }
 
+        //This method allows the normalVsOnDrugs userControl to be rendered when called.
         public static normalVsOnDrugsControl Instance
         {
             get
@@ -53,11 +49,8 @@ namespace InteractiveBrain
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //This method loads the substance abuse example the user chooses through a combobox list.
+        //This includes the pictures along with the description text and labels for those pictures.
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String drugListValue = (drugList.SelectedItem as ComboBoxItem).Content.ToString();
@@ -105,6 +98,10 @@ namespace InteractiveBrain
             }
         }
 
+        //This method clears the current page and loads the content for the lasting 
+        //effects of substance abuse even after rehab when the 'Rehab' button is clicked. 
+        //This includes pictures, a slider to switch between pictures, 
+        //and the description text for those pictures.
         private void Rehab_Button_Click(object sender, RoutedEventArgs e)
         {
             drugList.Visibility = Visibility.Hidden;
@@ -113,6 +110,7 @@ namespace InteractiveBrain
             rehabSlider.Visibility = Visibility.Visible;
             drugButton.Visibility = Visibility.Visible;
             sourceLabel.Content = "Source: The Journal of Neuroscience, 21(23):9414-9418. 2001";
+            rehabText.Text = "Even after rehab, the effects of substance abuse on the brain are never completely healed.";
 
             if (rehabSlider.Value == 1)
             {
@@ -130,6 +128,7 @@ namespace InteractiveBrain
 
         }
 
+        //This method allows the user to switch between pictures in the rehab page.
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
            
@@ -165,6 +164,9 @@ namespace InteractiveBrain
             }
         }
 
+        //This method clears the rehab page and loads content for the substance abuse page when the 
+        //'Substances' button is clicked. This includes a combobox list to switch between pictures, 
+        //the picture that was last loaded, and the description text for this page.
         private void drugButton_Click(object sender, RoutedEventArgs e)
         {
             rehabButton.Visibility = Visibility.Visible;
@@ -172,6 +174,7 @@ namespace InteractiveBrain
 
             rehabSlider.Visibility = Visibility.Hidden;
             drugButton.Visibility = Visibility.Hidden;
+            rehabText.Text = "Drugs can alter the way people think, feel, and behave by disrupting neurotransmission, the process of communication between neurons.";
 
             String drugListValue = (drugList.SelectedItem as ComboBoxItem).Content.ToString();
             if (drugListValue == "Alcohol")

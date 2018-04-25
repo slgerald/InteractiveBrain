@@ -1,44 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Resources;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace InteractiveBrain
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// The dopaminePathways userControl is an animation page in which a series of 
+    /// gifs can be viewd in order to explain how the dopamine pathways in the brain work.
+    /// Each gif is accompanied by its own description text so that the user can better understand
+    /// what is going on in the video.
     /// </summary>
     public partial class dopaminePathwaysControl : UserControl
     {
 
+        //render userControl based on button pressed
+        private static dopaminePathwaysControl _instance;
 
-        private static dopaminePathwaysControl _instance; //render userControl based on button pressed
-        private DispatcherTimer timer; // A timer to display the video's location
+        // A timer to display the video's location
+        private DispatcherTimer timer; 
 
+        //This method serves as the entry point to the dopaminePathways userControl page.
+        //The default gif is uploaded and begins to play while the description text for the gif
+        //is also uploaded. The video's timer is initiated and begins to run.
         public dopaminePathwaysControl()
         {
             InitializeComponent();
-            // Uri resourceUri = new Uri("\\Resources\\gif_brain_reward_pathways.mp4", UriKind.Relative);
-            // StreamResourceInfo streamInfo = Application.GetContentStream(resourceUri);
+
+            //This block of text loads the default gif, plays it, and loads the default description text
             Gif1.Source = new Uri(string.Format(@"{0}Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
-            //Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName)
             MessageBox.Show(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
-            // Console.WriteLine(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
-            // Gif1.Source = new Uri(@"./Resources/gif_brain_reward_pathways.mp4", UriKind.Relative);
             Gif1.Play();
             videoList.SelectedIndex = 0;
             videoLabel.Content = "1/9 Reward Pathways";
@@ -46,15 +38,26 @@ namespace InteractiveBrain
             previousButton.Visibility = Visibility.Hidden;
             nextButton.Visibility = Visibility.Visible;
 
+            //---------------------------------------------------------------------------------------------------------------------------------------------------------------
+            /*
+            // Uri resourceUri = new Uri("\\Resources\\gif_brain_reward_pathways.mp4", UriKind.Relative);
+            // StreamResourceInfo streamInfo = Application.GetContentStream(resourceUri);
+            //Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName)
+            // Console.WriteLine(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            // Gif1.Source = new Uri(@"./Resources/gif_brain_reward_pathways.mp4", UriKind.Relative);
+            */
+            //---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            //This block of text loads and initializes the timer for the video
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(0.1);
-            //timer.Tick += timer_Tick;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
 
 
         }
 
+        //This method allows the dopaminePathways userControl to be rendered when called
         public static dopaminePathwaysControl Instance
         {
             get
@@ -69,6 +72,8 @@ namespace InteractiveBrain
             }
         }
 
+        //This method defines the min and max position of the scrollbar under the video based on the 
+        //total duration of the video.
         private void Gif1_MediaOpened(object sender, RoutedEventArgs e)
         {
             sbarPosition.Minimum = 0;
@@ -77,14 +82,16 @@ namespace InteractiveBrain
             sbarPosition.Visibility = Visibility.Visible;
         }
 
-        // Show the play position in the ScrollBar and TextBox.
+        //This method shows the current position of the scrollbar based on the current
+        //time/position of the video.
         private void ShowPosition()
         {
             sbarPosition.Value = Gif1.Position.TotalSeconds;
             // txtPosition.Text = Gif1.Position.TotalSeconds.ToString("0.0");
         }
 
-
+        //This method is used to get the total time and current time of the current video playing. 
+        //This is place under the video as a label and updates in real time.
         private void timer_Tick(object sender, EventArgs e)
         {
             ShowPosition();
@@ -96,17 +103,18 @@ namespace InteractiveBrain
             else
                 lblStatus.Content = "No file selected...";
         }
-
+        
+        //This method just defines when the current video ends.
         private void Gif1_MediaEnded(object sender, RoutedEventArgs e)
         {
             Gif1.Position = TimeSpan.FromSeconds(0);
 
         }
 
-
+        //This method loads the previous video and description text when the 'previous'
+        //button is clicked.
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            int videoListIndex;
             if (Gif1.Source == new Uri(@".\Resources\gif_neurons.mp4", UriKind.Relative))
             {
                 Gif1.Stop();
@@ -197,6 +205,8 @@ namespace InteractiveBrain
             }
         }
 
+        //This method loads the next video and description text when the 'next' 
+        //button is clicked.
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -290,6 +300,8 @@ namespace InteractiveBrain
             }
         }
 
+        //This method allows the user to select any video/gif they want to play from a 
+        //combobox list. After one is selected, that video and description text is loaded.
         private void videoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String videoListValue = (videoList.SelectedItem as ComboBoxItem).Content.ToString();
@@ -386,80 +398,19 @@ namespace InteractiveBrain
 
         }
 
+        //This method is used to allow the video to play when the 'Play' button is
+        //clicked.
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             Gif1.Play();
         }
 
+        //This method is used to pause the video when the 'Pause' button is 
+        //clicked.
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             Gif1.Pause();
         }
-
-        /*
-        private void btnSetPosition_Click(object sender, RoutedEventArgs e)
-        {
-
-            TimeSpan timespan =
-                TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
-            Gif1.Position = timespan;
-            ShowPosition();
-        }
-        */
-
-        /*
-        public void PlayVideo(object sender, RoutedEventArgs e)
-
-
-        {
-
-           // VideoPreview.Visibility = Visibility.Collapsed;
-
-
-           // dopaminePathwaysVideo.Visibility = Visibility.Visible;
-
-
-           // dopaminePathwaysVideo.Play();
-
-
-        }
-
-        
-        public void PauseVideo(object sender, RoutedEventArgs e)
-
-
-        {
-
-
-            VideoPreview.Visibility = Visibility.Collapsed;
-
-
-            dopaminePathwaysVideo.Visibility = Visibility.Visible;
-
-
-            dopaminePathwaysVideo.Pause();
-
-
-        }
-
-
-        public void StopVideo(object sender, RoutedEventArgs e)
-
-
-        {
-
-
-            VideoPreview.Visibility = Visibility.Collapsed;
-
-
-            dopaminePathwaysVideo.Visibility = Visibility.Visible;
-
-
-            dopaminePathwaysVideo.Stop();
-
-
-        }
-        */
 
     }
 }
