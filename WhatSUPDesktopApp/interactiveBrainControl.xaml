@@ -250,16 +250,21 @@
                 <ImageBrush ImageSource="Resources/if_pensil.ico"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="320" TextWrapping="Wrap" Canvas.Top="404" Width="270" FontSize="20" FontFamily="Calibri" BorderBrush="Black" />
-        <Border x:Name ="panelBorder" Width="270" Height="113" BorderBrush="Black" Canvas.Left="320" Canvas.Top="432" Visibility="Visible"  ScrollViewer.CanContentScroll="True">
+        <TextBox x:Name="searchTextBox"  KeyUp="SearchTextBox_KeyUp" Height="28" Canvas.Left="310" TextWrapping="Wrap" Canvas.Top="404" Width="280" FontSize="20" FontFamily="Calibri" BorderBrush="Black" />
+        <Border x:Name ="panelBorder" Width="282" Height="113" BorderBrush="Black" Canvas.Left="309" Canvas.Top="432" Visibility="Visible"  ScrollViewer.CanContentScroll="True">
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" BorderBrush="Black">
-                <StackPanel x:Name="resultsStack" PreviewMouseUp="ResultsStackMouseDown" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" BorderBrush="Black" Width="280">
+                <StackPanel x:Name="resultsStack"  PreviewMouseUp="ResultsStackMouseDown" />
 
             </ScrollViewer>
 
         </Border>
         <Image x:Name="dropDown" MouseDown="Image_MouseDown" Height="28" Canvas.Left="593" Canvas.Top="404" Width="28" Source="Resources/if_arrow-dropdown_3017945.png"/>
+        <Button x:Name="StopButton" Height="40" Canvas.Left="512" Canvas.Top="559" Width="35"  Click="StopButtonClick" BorderBrush="{x:Null}" >
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/if_Stop_playing_131789.png"/>
+            </Button.Background>
+        </Button>
     </Canvas>
 
 </UserControl>

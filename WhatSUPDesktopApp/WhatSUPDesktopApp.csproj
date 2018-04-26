@@ -407,6 +407,7 @@
     <Resource Include="Resources\if_arrow-dropdown_3017945.png" />
     <Resource Include="Resources\Icons8-Ios7-Very-Basic-Brain-Filled.ico" />
     <Resource Include="Resources\if_arrow_sans_up_103304.png" />
+    <Resource Include="Resources\if_Stop_playing_131789.png" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

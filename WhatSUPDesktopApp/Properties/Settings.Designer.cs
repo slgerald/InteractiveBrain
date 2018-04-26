@@ -39,7 +39,9 @@ namespace WhatSUPDesktopApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Substance use can negatively impact all of these tasks, making it harder to think" +
+            ", make decisions, and set goals. Using substances may also cause slurred speech." +
+            " ")]
         public string defaultUnhealthyBehaviorsFrontalLobe {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsFrontalLobe"]));
@@ -51,7 +53,7 @@ namespace WhatSUPDesktopApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Hearing, processing short term memory (hippocampus located in this lobe)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("helps to process memory(the hippocampus is located in this lobe) and hearing.")]
         public string defaultFunctionsTemporalLobe {
             get {
                 return ((string)(this["defaultFunctionsTemporalLobe"]));
@@ -77,7 +79,9 @@ namespace WhatSUPDesktopApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" Substances, like marijuana and depressants, impair memory and learning. These su" +
+            "bstances make it harder for the person to stay focused on tasks and remember inf" +
+            "ormation.")]
         public string defaultUnhealthyBehaviorsTemporalLobe {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsTemporalLobe"]));
@@ -89,7 +93,8 @@ namespace WhatSUPDesktopApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sensory processing such as temperature, pressure, touch, & pain")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" helps humans process sensations (think the 5 senses), and understand where the b" +
+            "ody is in space.")]
         public string defaultFunctionsParietalLobe {
             get {
                 return ((string)(this["defaultFunctionsParietalLobe"]));
@@ -116,7 +121,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nLong term alcohol use has been shown to decrease gray matter in the parietal lo" +
+            "be, which causes the person to have difficulty processing spatial relationships." +
+            "")]
         public string defaultUnhealthyBehaviorsParietalLobe {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsParietalLobe"]));
@@ -128,7 +135,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Visual Processing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("is responsible for visual processing")]
         public string defaultFunctionsOccipitalLobe {
             get {
                 return ((string)(this["defaultFunctionsOccipitalLobe"]));
@@ -153,7 +160,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Long term alcohol use has been shown to decrease gray matter in the occipital lob" +
+            "e, which would cause problems in visual processing and perception. \r\n")]
         public string defaultUnhealthyBehaviorsOccipitalLobe {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsOccipitalLobe"]));
@@ -165,7 +173,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Balance & coordination")]
+        [global::System.Configuration.DefaultSettingValueAttribute("is responsible for balance, coordination, and posture. This brain part contains 8" +
+            "0% of the brain’s neurons. The cerebellum also transmits signals to the rest of " +
+            "the body. ")]
         public string defaultFunctionsCerebellum {
             get {
                 return ((string)(this["defaultFunctionsCerebellum"]));
@@ -192,7 +202,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("People with substance use disorder showed more changes in the cerebellum than tho" +
+            "se without substance use disorder. Addiction had a negative impact on the storag" +
+            "e, processing, and regenerating capacity of the brain. \r\n")]
         public string defaultUnhealthyBehaviorsCerebellum {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsCerebellum"]));
@@ -204,8 +216,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("processes short-term memory to convert into long term memory, in limbic system (n" +
-            "ote long term memories are stored all over the brain)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("processes short term memory (STM), sometimes called “working memory”.")]
         public string defaultFunctionsHippocampus {
             get {
                 return ((string)(this["defaultFunctionsHippocampus"]));
@@ -230,7 +241,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"STM only holds about 7-9 digits and lasts 15-30 seconds before the information is either forgotten or sent to long term memory. Substance use impairs STM. For instance, someone who is intoxicated may not remember details of an event they would otherwise remember sober. ")]
         public string defaultUnhealthyBehaviorsHippocampus {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsHippocampus"]));
@@ -242,8 +253,10 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("responsible for emotions, particularly survival instincts (fear & aggression), hy" +
-            "persensitive to stress, role in storing emotional memories, in Limbic System")]
+        [global::System.Configuration.DefaultSettingValueAttribute("triggers emotionally charged reactions, particularly survival instincts (fear & a" +
+            "ggression), hypersensitive to stress, has a role in storing emotional memories, " +
+            "in the Limbic System, and makes associations between the emotion and the environ" +
+            "ment.")]
         public string defaultFunctionsAmygdala {
             get {
                 return ((string)(this["defaultFunctionsAmygdala"]));
@@ -270,7 +283,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("After the high of an addictive substance, the neurotransmitter dopamine floods th" +
+            "e brain, causing the amygdala creates an emotionally charged memory. This memory" +
+            " increases the likelihood that the person will use the drug again. ")]
         public string defaultUnhealthyBehaviorsAmygdala {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsAmygdala"]));
@@ -282,8 +297,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("regulates growth hormone, triggers onset of puberty. Attached to the hypothalamus" +
-            ", in Limbic System")]
+        [global::System.Configuration.DefaultSettingValueAttribute("regulates growth hormones and hormones that stimulate the thyroid,Ttriggers onset" +
+            " of puberty. Attached to the hypothalamus, in the Limbic System ")]
         public string defaultFunctionsPituitaryGland {
             get {
                 return ((string)(this["defaultFunctionsPituitaryGland"]));
@@ -309,7 +324,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Research has shown that THC, the chemical in marijuana that causes a high, suppre" +
+            "sses hormone production in the pituitary. This hormone reduction particularly af" +
+            "fects males and can lead to infertility later in life. \r\n")]
         public string defaultUnhealthyBehaviorsPituitaryGland {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsPituitaryGland"]));
@@ -321,9 +338,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("controls flow of messages between the brain and the rest of the body. Also contro" +
-            "ls basic body function like breathing, swallowing, heartbeat (medulla), sleep re" +
-            "gulation (pons), etc.")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"controls flow of messages between the brain and the rest of the body. Also controls basic body function like breathing, swallowing, heartbeat (medulla), sleep regulation (pons), etc. Serves as a connection between the central nervous system (cns) and the brain.")]
         public string defaultFunctionsBrainstem {
             get {
                 return ((string)(this["defaultFunctionsBrainstem"]));
@@ -349,7 +364,8 @@ Impulse control (practicing small acts of self-control--  controlling the urge t
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Substances, like depressants, slow down the communication between the cns and the brain. Also, the brainstem helps trigger the survival functions of the brain. As the body develops tolerance to the substance, the brain and body react as if the substance is needed for survival. (ie. if the body doesn’t get a drink, it will die.)
+")]
         public string defaultUnhealthyBehaviorsBrainstem {
             get {
                 return ((string)(this["defaultUnhealthyBehaviorsBrainstem"]));
@@ -361,9 +377,7 @@ Impulse control (practicing small acts of self-control--  controlling the urge t
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("planning, reasoning, speech, voluntary movement (motor cortex is in the frontal l" +
-            "obe), problem solving, regulating emotions (the frontal lobe doesn’t initiate th" +
-            "e emotion, but it helps us control our emotions)")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"helps with planning, reasoning, voluntary movement (motor cortex is in the frontal lobe), problem solving, regulating emotions (the frontal lobe doesn’t initiate the emotion, but it helps us control our emotions), making judgements, planning for the future, and controlling the motor functions for speech.")]
         public string defaultFunctionsFrontalLobe {
             get {
                 return ((string)(this["defaultFunctionsFrontalLobe"]));

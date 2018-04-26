@@ -69,7 +69,7 @@ namespace WhatSUPDesktopApp
         bool editHealthyBehaviorsFlag = false;//for editPopup, load healthy behaviors from database
         string newListBoxItemContent;
         bool defaultFlag = false;
-        bool selectionMade = false;
+       
 
         List<string> col = new List<string>();//Used for the serach AutocompleteTextbox
         
@@ -271,7 +271,13 @@ namespace WhatSUPDesktopApp
 
             return writeAllow && !writeDeny;
         }
+        //This function is called when the stop button is pressed
+        private void StopButtonClick(object sender, RoutedEventArgs e) {
+            ListBoxSelectionChanged();
 
+
+
+        }
         //This function is called when the connection button is pressed 
         private void ConnectionButton_Click(object sender, RoutedEventArgs e)
         {   //The default flag is used to treat button as toggle button
@@ -622,13 +628,10 @@ namespace WhatSUPDesktopApp
             occipitalLobeImage.BeginAnimation(OpacityProperty, null);
           
             cerebellumImage.BeginAnimation(OpacityProperty, null);
-        
+
             //end scaling animation
-            if (selectionMade) {
-                storyboard.Children.Remove(growXAnimation);
-                storyboard.Children.Remove(growYAnimation);
-                selectionMade = false;
-            }
+            storyboard.Children.Clear();
+         
 
             //reset each images render transform to prevent unintentional scaling from previous selection
             brainstemImage.RenderTransform = null;
@@ -641,13 +644,13 @@ namespace WhatSUPDesktopApp
             amygdalaImage.RenderTransform = null;
             pituitaryGlandImage.RenderTransform = null;
 
-            
-           // if (isConnected)
-           //   {
-                //send serial message for stop
+          //  lightingSequenceFromDatabase = "000000000".ToArray();
+            // if (isConnected)
+            //   {
+            //send serial message for stop
             //    try
             //    {
-                    // lightingSequenceFromDatabase = "0000000000".ToArray();
+            // lightingSequenceFromDatabase = "0000000000".ToArray();
             //        SerialPort1.DiscardOutBuffer();
             //        SerialPort1.Open();
 
@@ -663,7 +666,7 @@ namespace WhatSUPDesktopApp
         private void BrainPartsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             brainPart = true;
-            selectionMade = true;
+            
             // healthybehaviorBOOL = false;
             //healthyBehaviorsListBox.SelectedItem = false;
             try
@@ -799,6 +802,7 @@ namespace WhatSUPDesktopApp
                 growYAnimation.RepeatBehavior = RepeatBehavior.Forever;
 
                 //
+               
                 storyboard.Children.Add(growXAnimation);
                 storyboard.Children.Add(growYAnimation);
                 Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
@@ -809,6 +813,7 @@ namespace WhatSUPDesktopApp
                 {
                     selectionMessageBox.Text = selectedBrainPart + " was chosen. ";
                     brainPart = false;
+                    Console.WriteLine(lightingSequenceFromDatabase);
                     //Don't need to look in database because hard coded 
                     LightingSequence();
                 }
@@ -816,9 +821,14 @@ namespace WhatSUPDesktopApp
                 if (!string.IsNullOrEmpty(searchTextBox.Text))
                 {
                     brainPartsListBox.SelectedItem = false;
+                    
                     selectedHealthyBehaviors = searchTextBox.Text;
-                  //  selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
-
+                    //  selectionMessageBox.Text = selectedHealthyBehaviors + " was chosen. " + displayMessage;
+                    ListBoxSelectionChanged();
+                    storyboard.Children.Add(growXAnimation);
+                    storyboard.Children.Add(growYAnimation);
+                    Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
+                    Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
                     SQLiteConnection sqlitecon = new SQLiteConnection(dbConnectionString);
 
                     try
@@ -935,8 +945,8 @@ namespace WhatSUPDesktopApp
                 storyboard.Stop();        
                 Storyboard.SetTarget(growXAnimation, pituitaryGlandImage);
                 Storyboard.SetTarget(growYAnimation, pituitaryGlandImage);
-                Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
-                Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
+               // Storyboard.SetTargetProperty(growXAnimation, new PropertyPath("RenderTransform.ScaleX"));
+               // Storyboard.SetTargetProperty(growYAnimation, new PropertyPath("RenderTransform.ScaleY"));
                 storyboard.Begin();
                 storyboard.Seek(this, new TimeSpan(0, 0, 0), TimeSeekOrigin.BeginTime);
 

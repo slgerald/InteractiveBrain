@@ -42,12 +42,12 @@
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformTL"
                                          Storyboard.TargetProperty="X"
-                                         From="0.0" To="-184" 
+                                         From="0.0" To="-190" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
             <DoubleAnimation Storyboard.TargetName="translateTransformTL"
                                          Storyboard.TargetProperty="Y"
-                                           From="0.0" To="-14" 
+                                           From="0.0" To="-20" 
                                          AutoReverse="False" RepeatBehavior="1x"
                                              />
         </Storyboard>

@@ -66,7 +66,7 @@
 
             <Viewbox x:Name="myCanvasViewbox" Stretch="Fill" Height="600" Canvas.Top="0" Canvas.Left="220" Width="690" StretchDirection="Both" >
                 <ScrollViewer x:Name="myCanvasScrollbar" VerticalScrollBarVisibility="Auto" Canvas.Left="220"  Width="690" Height="600">
-                    <Canvas x:Name="myCanvas" Panel.ZIndex="1"  Height="600"  Width="690" RenderTransformOrigin="0.5,0.5" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" ClipToBounds="True" />
+                    <Canvas x:Name="myCanvas" Panel.ZIndex="1"  Height="600"  Width="690" RenderTransformOrigin="0.5,0.5" Background="#FFE3E3E3" ClipToBounds="True" />
                 </ScrollViewer>
             </Viewbox>
 
