@@ -118,13 +118,13 @@ namespace WhatSUPDesktopApp
             {
                 leftImageLabel.Content = "Typical Brain";
                 rightImageLabel.Content = "Brain off Meth 1 Month";
-                rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_1month.png", UriKind.Relative));
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_1month.PNG", UriKind.Relative));
                 leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
             } else if (rehabSlider.Value == 2)
             {
                 leftImageLabel.Content = "Typical Brain";
                 rightImageLabel.Content = "Brain off Meth 14 Months";
-                rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_14month.png", UriKind.Relative));
+                rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_14month.PNG", UriKind.Relative));
                 leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
             }
 
@@ -137,7 +137,7 @@ namespace WhatSUPDesktopApp
             {
                 try
                 {
-                    rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_1month.png", UriKind.Relative));
+                    rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_1month.PNG", UriKind.Relative));
                     leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
 
                     leftImageLabel.Content = "Typical Brain";
@@ -152,7 +152,7 @@ namespace WhatSUPDesktopApp
             {
                 try
                 {
-                    rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_14month.png", UriKind.Relative));
+                    rightImage.Source = new BitmapImage(new Uri("Resources/brain_meth_rehab_14month.PNG", UriKind.Relative));
                     leftImage.Source = new BitmapImage(new Uri("Resources/brain_normal.png", UriKind.Relative));
 
                     leftImageLabel.Content = "Typical Brain";

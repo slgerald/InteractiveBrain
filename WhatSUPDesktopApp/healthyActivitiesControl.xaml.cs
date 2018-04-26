@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WhatSUPDesktopApp
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Ths healthActivities userContol is used in order to give the user examples of 
+    /// healthy activities and how they affect the brain by using pictures. 
     /// </summary>
     public partial class healthyActivitiesControl : UserControl
     {
-        private static healthyActivitiesControl _instance; //render userControl based on button pressed
+        //render userControl based on button pressed
+        private static healthyActivitiesControl _instance; 
 
+        //This method is used as an entry point to the healthyActivities userControl page.
+        //The default labels, pictures, and description text are loaded for the first 
+        //healthy activity example.
         public healthyActivitiesControl()
         {
             InitializeComponent();
@@ -33,6 +28,7 @@ namespace WhatSUPDesktopApp
             imageText.Text = "Exercising can help strengthen learning, improve memory, and enhance motivation.";
         }
 
+        //This method allows the healthyActivities userControl to be rendered when called.
         public static healthyActivitiesControl Instance
         {
             get
@@ -47,11 +43,8 @@ namespace WhatSUPDesktopApp
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //This methood allows the user to select a healthy activity from a combobox list.
+        //This activity, along with its description text and lables, is then loaded.
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String activityListValue = (activityList.SelectedItem as ComboBoxItem).Content.ToString();
@@ -97,9 +90,5 @@ namespace WhatSUPDesktopApp
             }
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
