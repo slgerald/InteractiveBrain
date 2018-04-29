@@ -9,17 +9,17 @@
     <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Width="680" Height="560">
         <Image x:Name="leftImage" Height="260" Canvas.Left="70" Canvas.Top="58" Width="240" Source="Resources/brain_normal.png" Stretch="Fill" Visibility="Visible"/>
         <Image x:Name="rightImage" Height="260" Canvas.Left="370" Canvas.Top="58" Width="242" Source="Resources/brain_alcoholic.png" Stretch="Fill" Visibility="Visible"/>
-        <ComboBox x:Name="drugList" Text="Alcohol" Canvas.Left="284" Canvas.Top="350" Width="120" SelectionChanged="ComboBox_SelectionChanged" FontSize="18" FontFamily="Calibri" BorderBrush="Black">
+        <ComboBox x:Name="drugList" Text="Alcohol" Canvas.Left="284" Canvas.Top="350" Width="120" SelectionChanged="ComboBox_SelectionChanged" FontSize="18" FontFamily="Calibri" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <ComboBoxItem>Alcohol</ComboBoxItem>
             <ComboBoxItem>Smoker</ComboBoxItem>
             <ComboBoxItem>Cocaine</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="rehabButton" Content="Rehab" Canvas.Left="70" Canvas.Top="350" Width="80" Click="Rehab_Button_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Rehab"/>
+        <Button x:Name="rehabButton" Content="Rehab" Canvas.Left="70" Canvas.Top="350" Width="80" Click="Rehab_Button_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="Black" ToolTip="Rehab" IsHitTestVisible="True" Background="White"/>
         <Slider x:Name="rehabSlider" Canvas.Left="70" Canvas.Top="323" Width="542" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Cursor="Hand" Minimum="1" Maximum="2" Foreground="Blue" Visibility="Visible"/>
-        <Label x:Name="sourceLabel" Content="" Canvas.Left="10" Canvas.Top="538" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="10" FontFamily="Tahoma" Width="660"/>
-        <Button x:Name="drugButton" Content="Substances" Canvas.Left="510" Canvas.Top="350" Width="102" Click="DrugButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Drugs"/>
-        <Label x:Name="leftImageLabel" Content="" Canvas.Left="70" Canvas.Top="10" Width="240" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Height="43"/>
-        <Label x:Name="rightImageLabel" Content="" Canvas.Left="373" Canvas.Top="10" Width="239" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Height="43"/>
-        <TextBox x:Name="rehabText" Height="125" Canvas.Left="70" TextWrapping="Wrap" Text="" Canvas.Top="395" Width="542" FontSize="20" FontFamily="Calibri" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
+        <Label x:Name="sourceLabel" Content="" Canvas.Left="10" Canvas.Top="538" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="10" FontFamily="Tahoma" Width="660" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Button x:Name="drugButton" Content="Substances" Canvas.Left="510" Canvas.Top="350" Width="102" Click="DrugButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="Black" ToolTip="Drugs" Background="White"/>
+        <Label x:Name="leftImageLabel" Content="" Canvas.Left="70" Canvas.Top="10" Width="240" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Height="43" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Label x:Name="rightImageLabel" Content="" Canvas.Left="373" Canvas.Top="10" Width="239" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Height="43" Background="{x:Null}" IsHitTestVisible="False"/>
+        <TextBox x:Name="rehabText" Height="125" Canvas.Left="70" TextWrapping="Wrap" Text="" Canvas.Top="395" Width="542" FontSize="20" FontFamily="Calibri" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" SelectionBrush="{x:Null}" IsTabStop="False" IsHitTestVisible="False" Focusable="False"/>
     </Canvas>
 </UserControl>

@@ -113,8 +113,8 @@
                         <ComboBoxItem x:Name="brainstem" Content="Brainstem"></ComboBoxItem>
                         <ComboBoxItem x:Name="amygdala" Content="Amygdala"></ComboBoxItem>
                     </ComboBox>
-                    <Label x:Name="brainPartLabel" Content="Brain Part" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="30" Canvas.Left="30" Canvas.Top="20" FontFamily="Calibri" FontSize="20"/>
-                    <TextBox x:Name ="editingTextBox" IsReadOnly="True" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black" TextWrapping="Wrap"/>
+                    <Label x:Name="brainPartLabel" Focusable="False" Content="Brain Part" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="30" Canvas.Left="30" Canvas.Top="20" FontFamily="Calibri" FontSize="20"/>
+                    <TextBox Focusable="False" x:Name ="editingTextBox" IsReadOnly="True" Text="" FontSize="18" HorizontalAlignment="Center" Canvas.Left="30" Canvas.Top="75" Height="160" Width="485" VerticalScrollBarVisibility="Auto" TextChanged="EditingTextBox_TextChanged" FontFamily="Calibri" BorderBrush="Black" TextWrapping="Wrap"/>
                     <Button x:Name="closeButton" Content="" Click="CloseEditPopupClicked" HorizontalAlignment="Center" Height="25" Width="25" Canvas.Left="535" Canvas.Top="290" FontFamily="Calibri" FontSize="18" BorderBrush="{x:Null}" ToolTip="Close">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
@@ -128,15 +128,15 @@
                             <ImageBrush ImageSource="Resources/if_save.ico"/>
                         </Button.Background>
                     </Button>
-                    <TextBlock x:Name="editingMessageBlock"  TextWrapping="Wrap" Canvas.Top="246" Height="59" Width="415" FontFamily="Calibri" FontSize="18" Canvas.Left="30"/>
+                    <TextBlock x:Name="editingMessageBlock" TextWrapping="Wrap" Canvas.Top="246" Height="59" Width="415" FontFamily="Calibri" FontSize="18" Canvas.Left="30" IsHitTestVisible="False"/>
                 </Canvas>
             </Border>
         </Popup>
-        <TextBox x:Name="brainPartsLabel" IsReadOnly="True" Canvas.Left="211" TextWrapping="Wrap" Canvas.Top="55" Height="50" Width="260" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Tahoma" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"  Focusable="False" IsTabStop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="brainPartsLabel"  Focusable="False" IsReadOnly="True" Canvas.Left="211" TextWrapping="Wrap" Canvas.Top="55" Height="50" Width="260" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Tahoma" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsHitTestVisible="False" Foreground="Black" SelectionBrush="{x:Null}" IsTabStop="False"/>
         <RadioButton x:Name ="functions" Content="Functions" Canvas.Left="40" Canvas.Top="15" Checked="FunctionsRadioButton_Checked" FontSize="20" FontFamily="Calibri"/>
         <RadioButton x:Name ="healthyBehaviors"  Checked="HealthyBehaviorsRadioButton_Checked" Content="Healthy Behaviors" Canvas.Left="220" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
         <RadioButton x:Name ="unhealthyBehaviors" Content="Unhealthy Behaviors" Canvas.Left="459" Checked="UnhealthyBehaviorsRadioButton_Checked" Canvas.Top="15" FontSize="20" FontFamily="Calibri"/>
-        <TextBox x:Name="factsMessageBox" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="335" Canvas.Left="335" TextWrapping="Wrap"  Canvas.Top="105" Width="310" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsTabStop="False" Visibility="Hidden"/>
+        <TextBox x:Name="factsMessageBox" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="335" Canvas.Left="335" TextWrapping="Wrap"  Canvas.Top="105" Width="310" FontSize="18" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsTabStop="False" Visibility="Hidden" IsHitTestVisible="False" Foreground="Black" SelectionBrush="{x:Null}" Focusable="False"/>
        
         <Canvas    Height="435" Width="660" Canvas.Left="10" Canvas.Top="105" x:Name="pictureCanvas" Background="Transparent" AllowDrop="True" >
 

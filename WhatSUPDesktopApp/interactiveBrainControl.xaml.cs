@@ -190,6 +190,8 @@ namespace WhatSUPDesktopApp
             Console.WriteLine("GetFolderPath: {0}",
                  Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
             
+         
+
             //To copy a folder's contents to a new location:
             //Create a new target folder, if necessary.
             if (!System.IO.Directory.Exists(targetPath))
@@ -362,7 +364,17 @@ namespace WhatSUPDesktopApp
             }
             if (selectedPort != null) //now change the background of the connection button to show connected
             {
-                //COMPortInfo selectedCOMPort = (COMPortInfo)selectedPort;
+                foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
+
+                {
+                    if(comPort.Name == selectedPort)
+                    {
+                        if(comPort.Description != "")
+                        {
+                            MessageBox.Show("This COM Port does not connect to the brain model.");
+                        }
+                    }
+                }
                 try
                 {
                     
@@ -433,6 +445,9 @@ namespace WhatSUPDesktopApp
             if (!editListsPopup.IsOpen)
             { editListsPopup.IsOpen = true; }
             ListBoxSelectionChanged();
+            errorMessageTextBlock.Text = "";
+            editHealthyBehaviorsFlag = true;
+            Fill_ListBox();
         }
         //This function loads the listbox in the editListPopup with the current
         //items for the healthyBehaviors table in the database
@@ -814,6 +829,10 @@ namespace WhatSUPDesktopApp
                     selectionMessageBox.Text = selectedBrainPart + " was chosen. ";
                     brainPart = false;
                     Console.WriteLine(lightingSequenceFromDatabase);
+                `    searchTextBox.Text = "";
+                    resultsStack.Children.Clear();
+                    border.Visibility = System.Windows.Visibility.Collapsed;
+                    border.Background = Brushes.Transparent;
                     //Don't need to look in database because hard coded 
                     LightingSequence();
                 }
@@ -852,7 +871,7 @@ namespace WhatSUPDesktopApp
                     }
                     if (lightingSequenceString == null)
                     {
-                        MessageBox.Show("Choose a option available from the drop down list ");
+                        MessageBox.Show("Choose an option available from the provided healthy behavior list ");
                     }
                     else
                     {
@@ -1494,9 +1513,10 @@ namespace WhatSUPDesktopApp
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }    
-            Fill_ListBox();
+            }
             UpdateIndices();
+            Fill_ListBox();
+            
         }
 
         //This function was but could be used to update an exiting item in the healthy behaviors

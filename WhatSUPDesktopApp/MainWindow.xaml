@@ -11,8 +11,8 @@
         Title="WhatSUP Desktop App" Height="600" Width="900" SizeToContent="WidthAndHeight" ResizeMode="CanResizeWithGrip" VerticalAlignment="Center" HorizontalAlignment="Center">
 
 
-    <Viewbox Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" MaxHeight="700" MaxWidth="1375">
-        <Canvas Margin="0,0,0,0" Height=" 600" Width="900">
+    <Viewbox x:Name="mainWindow" Margin="0,0,0,0" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  StretchDirection="Both" >
+        <Canvas Margin="0,0,0,0" Height="600" Width="900">
             <Viewbox x:Name="buttonViewbox" Height="600" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
                 <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="525" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" Background="#FF0078D7">
                     <Button x:Name="interactiveBrainButton" Foreground="Black" Height="100" Click="InteractiveBrainButton_Click" Width="220" Canvas.Top ="125" RenderTransformOrigin="0.5,0.5" FontSize="24" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" FontFamily="Tahoma" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Interactive Brain" Background="{x:Null}">

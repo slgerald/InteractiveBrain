@@ -34,17 +34,17 @@
                     <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
                 </Border.Effect>
                 <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" Height="245" Margin="0,-2,-2,-2" Width="308">
-                    <TextBlock x:Name ="errorMessageTextBlock" FontSize="14" Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="26" Width="247" Canvas.Left="33" Canvas.Top="209"/>
+                    <TextBlock x:Name ="errorMessageTextBlock" FontSize="18" Text="" FontFamily ="Calibri" HorizontalAlignment="Center" Height="31" Width="285" Canvas.Left="3" Canvas.Top="204" Foreground="Black" IsHitTestVisible="False"/>
                     <Button Click="CloseEditListsPopupClicked" HorizontalAlignment="Center" Height="20" Width="20" Canvas.Left="288" Canvas.Top="225" BorderBrush="{x:Null}">
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/if_exit.ico"/>
                         </Button.Background>
                     </Button>
 
-                    <RadioButton  x:Name="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="159" Canvas.Top="10" Checked="EditHealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="14"/>
-                    <ListBox x:Name="editingListBox" Height="160" Canvas.Left="33" Canvas.Top="40" Width="155" BorderBrush="Black"/>
-                    <Button x:Name="addButton" Content="Add Item" Canvas.Left="200" Canvas.Top="40" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="AddButton_Click" FontSize="14"/>
-                    <Button x:Name="removeButton" Content="Remove Item" Canvas.Left="200" Canvas.Top="59" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="RemoveButton_Click" FontSize="14"/>
+                    <RadioButton  x:Name="editHealthyBehaviorsRadioButton" Content="Healthy Behaviors" Canvas.Left="159" Canvas.Top="10" Checked="EditHealthyBehaviorsRadioButton_Checked" FontFamily="Calibri" FontSize="14" Visibility="Hidden"/>
+                    <ListBox x:Name="editingListBox" Height="199" Canvas.Left="3" Canvas.Top="5" Width="210" BorderBrush="Black"/>
+                    <Button x:Name="addButton" Content="Add Item" Canvas.Left="218" Canvas.Top="38" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="AddButton_Click" FontSize="14"/>
+                    <Button x:Name="removeButton" Content="Remove Item" Canvas.Left="218" Canvas.Top="59" Width="80" BorderBrush="Black" FontFamily="Calibri" Click="RemoveButton_Click" FontSize="14"/>
                 </Canvas>
             </Border>
         </Popup>
@@ -235,7 +235,7 @@
         <Image Height="97" Canvas.Left="174" Canvas.Top="230" Width="100" Source="Resources/brainstem.png">
 
         </Image>
-        <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="552" Canvas.Top="559" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41" ToolTip="Initiate lighting sequence">
+        <Button x:Name="goButton" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Click="GoButton_Click" FontSize="20" Canvas.Left="512" Canvas.Top="558" RenderTransformOrigin="0.467,-0.129" BorderBrush="{x:Null}" Height="41" ToolTip="Initiate lighting sequence">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_Play.ico"/>
             </Button.Background>
@@ -260,7 +260,7 @@
 
         </Border>
         <Image x:Name="dropDown" MouseDown="Image_MouseDown" Height="28" Canvas.Left="593" Canvas.Top="404" Width="28" Source="Resources/if_arrow-dropdown_3017945.png"/>
-        <Button x:Name="StopButton" Height="40" Canvas.Left="512" Canvas.Top="559" Width="35"  Click="StopButtonClick" BorderBrush="{x:Null}" >
+        <Button x:Name="StopButton" Height="40" Canvas.Left="555" Canvas.Top="559" Width="35"  Click="StopButtonClick" BorderBrush="{x:Null}" ToolTip="Terminate lighting sequence" >
             <Button.Background>
                 <ImageBrush ImageSource="Resources/if_Stop_playing_131789.png"/>
             </Button.Background>

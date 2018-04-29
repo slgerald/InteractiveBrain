@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhatSUPDesktopApp"
              mc:Ignorable="d" d:DesignWidth="300" Height="540" Width="680">
-    <Canvas x:Name="dopaminePathways" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="680">
+    <Canvas x:Name="dopaminePathways" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="680" Margin="0,0,0,-20">
 
         <MediaElement x:Name="Gif1"
                       Canvas.Left="90" Canvas.Top="64" 
@@ -15,8 +15,8 @@
                       Source="Resources/gif_neurons.mp4" Canvas.Left="53" Canvas.Top="90" 
                       IsMuted="True" IsEnabled="True" LoadedBehavior="Play" MediaEnded="Gif2_MediaEnded" MediaOpened="Gif2_MediaOpened"
                       Height="310" Width="557"/> -->
-        <Button x:Name="previousButton" Click="PreviousButton_Click" Content="Previous" Width="80" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Previous" Canvas.Left="5"/>
-        <Button x:Name="nextButton" Click="NextButton_Click" Content="Next" Width="80" Canvas.Left="594" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Next"/>
+        <Button x:Name="previousButton" Click="PreviousButton_Click" Content="Previous" Width="80" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" ToolTip="Previous" Canvas.Left="5" BorderBrush="Black" Background="White"/>
+        <Button x:Name="nextButton" Click="NextButton_Click" Content="Next" Width="80" Canvas.Left="594" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" BorderBrush="Black" ToolTip="Next" Background="White"/>
         <ScrollBar x:Name="sbarPosition" Canvas.Left="92" Canvas.Top="324" Width="498" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" RenderTransformOrigin="0.5,0.5" Orientation="Horizontal" Height="17">
             <ScrollBar.RenderTransform>
                 <TransformGroup>
@@ -30,8 +30,8 @@
         <!-- <TextBox x:Name="txtPosition" Height="20" Canvas.Left="275" TextWrapping="Wrap" Text="" Canvas.Top="451" Width="50"/>
         <Button Click="btnSetPosition_Click" Content="Set Position" Canvas.Left="330" Canvas.Top="451" Width="72"/> -->
         <Label x:Name="lblStatus" Content="" Canvas.Top="343" Width="130" Canvas.Left="280" Height="30" FontSize="18" FontFamily="Tahoma" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="dopamineText" Height="162" Canvas.Left="90" TextWrapping="Wrap" Text="" Canvas.Top="378" Width="499" FontSize="20" FontFamily="Calibri" Background="Transparent" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
-        <ComboBox x:Name="videoList" Text="Reward Pathways" Canvas.Left="10" Canvas.Top="10" Width="200" SelectionChanged="VideoList_SelectionChanged" FontSize="18" FontFamily="Calibri" BorderBrush="Black">
+        <TextBox x:Name="dopamineText" Height="162" Canvas.Left="90" TextWrapping="Wrap" Text="" Canvas.Top="378" Width="499" FontSize="20" FontFamily="Calibri" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" SelectionBrush="{x:Null}" Focusable="False" IsHitTestVisible="False" IsTabStop="False"/>
+        <ComboBox x:Name="videoList" Text="Reward Pathways" Canvas.Left="10" Canvas.Top="10" Width="200" SelectionChanged="VideoList_SelectionChanged" FontSize="18" FontFamily="Calibri" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <ComboBoxItem>Reward Pathways</ComboBoxItem>
             <ComboBoxItem>Neurotransmitters</ComboBoxItem>
             <ComboBoxItem>Dopamine Receptors</ComboBoxItem>
@@ -42,9 +42,9 @@
             <ComboBoxItem>Tolerance</ComboBoxItem>
             <ComboBoxItem>Increased Tolerance</ComboBoxItem>
         </ComboBox>
-        <Label x:Name="videoLabel"  Content="" Canvas.Left="90" Canvas.Top="30" Width="499" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma"/>
-        <Button x:Name="playButton" Content="Play" Canvas.Left="460" Canvas.Top="348" Width="80" Click="PlayButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Play"/>
-        <Button x:Name="pauseButton" Content="Pause" Canvas.Left="154" Canvas.Top="348" Width="80" Click="PauseButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="{x:Null}" ToolTip="Pause"/>
+        <Label x:Name="videoLabel"  Content="" Canvas.Left="90" Canvas.Top="30" Width="499" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Tahoma" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Button x:Name="playButton" Content="Play" Canvas.Left="460" Canvas.Top="348" Width="80" Click="PlayButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="Black" ToolTip="Play" Background="White"/>
+        <Button x:Name="pauseButton" Content="Pause" Canvas.Left="154" Canvas.Top="348" Width="80" Click="PauseButton_Click" FontSize="18" FontFamily="Tahoma" BorderBrush="Black" ToolTip="Pause" Background="White"/>
 
 
         <!--<Grid Height="420" Width="628" Canvas.Left="28" Canvas.Top="55">

@@ -62,62 +62,6 @@ namespace WhatSUPDesktopApp
         
         string changedFactsMessageBoxText;//used to save content of textbox in editPopup
 
-        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for Frontal Lobe
-        string changedFunctionsFrontalLobe = null;
-        string defaultFunctionsFrontalLobe = Properties.Settings.Default.defaultFunctionsFrontalLobe;
-        bool defaultFunctionsFLFlag = true;
-        string defaultHealthyBehaviorsFrontalLobe = Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe;
-        string changedHealthyBehaviorsFrontalLobe = null;
-        bool defaultHBFLFlag = true;
-        string changedUnhealthyBehaviorsFrontalLobe = null;
-        string defaultUnhealthyBehaviorsFrontalLobe = Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe;
-        bool defaultUHBFLFlag = true;
-
-        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for Temporal Lobe
-        string changedFunctionsTemporalLobe = null;
-        string defaultFunctionsTemporalLobe = Properties.Settings.Default.defaultFunctionsTemporalLobe;
-        bool defaultFunctionsTLFlag=true;
-        string changedHealthyBehaviorsTemporalLobe = null;
-        string defaultHealthyBehaviorsTemporalLobe = Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
-        bool defaultHBTLFlag = true;
-        string changedUnhealthyBehaviorsTemporalLobe = null;
-        string defaultUnhealthyBehaviorsTemporalLobe = Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
-        bool defaultUHBTLFlag = true;
-
-        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for Parietal Lobe
-        string changedFunctionsParietalLobe = null;
-        string defaultFunctionsParietalLobe = Properties.Settings.Default.defaultFunctionsParietalLobe;
-        bool defaultFunctionsPLFlag = true;
-        string changedHealthyBehaviorsParietalLobe = null;
-        string defaultHealthyBehaviorsParietalLobe = Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
-        bool defaultHBPLFlag = true;
-        string changedUnhealthyBehaviorsParietalLobe = null;
-        string defaultUnhealthyBehaviorsParietalLobe = Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
-        bool defaultUHBPLFlag = true;
-
-        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for Occipital Lobe
-        string changedFunctionsOccipitalLobe = null;
-        string defaultFunctionsOccipitalLobe = Properties.Settings.Default.defaultFunctionsOccipitalLobe;
-        bool defaultFunctionsOLFlag = true;
-        string changedHealthyBehaviorsOccipitalLobe = null;
-        string defaultHealthyBehaviorsOccipitalLobe = Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
-        bool defaultHBOLFlag = true;
-        string changedUnhealthyBehaviorsOccipitalLobe = null;
-        string defaultUnhealthyBehaviorsOccipitalLobe = Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
-        bool defaultUHBOLFlag = true;
-
-        ////Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for Cerebellum
-        string changedFunctionsCerebellum = null;
-        string defaultFunctionsCerebellum = Properties.Settings.Default.defaultFunctionsCerebellum;
-        bool defaultFunctionsCFlag = true;
-        string changedHealthyBehaviorsCerebellum = null;
-        string defaultHealthyBehaviorsCerebellum = Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
-        bool defaultHBCFlag = true;
-        string changedUnhealthyBehaviorsCerebellum = null;
-        string defaultUnhealthyBehaviorsCerebellum = Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
-        bool defaultUHBCFlag = true;
-
-
 
         //This method allows the middle school UserControl to be rendered when called
         public static UpstairsBrainControl Instance
@@ -214,70 +158,30 @@ namespace WhatSUPDesktopApp
             switch (storyboardFlag)
             {
                 case 1:
-                    if (defaultFunctionsFLFlag)
-                    {
+                   
                         factsMessageBox.Text = "Functions of the Frontal Lobe: " + Properties.Settings.Default.defaultFunctionsFrontalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Frontal Lobe: " + changedFunctionsFrontalLobe;
-                        Properties.Settings.Default.defaultFunctionsFrontalLobe = changedFunctionsFrontalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsFLFlag = true;
-                    }
+                 
                     break;
                 case 2:
-                    if (defaultFunctionsTLFlag)
-                    {
+                  
                         factsMessageBox.Text = "Functions of the Temporal Lobe: " + Properties.Settings.Default.defaultFunctionsTemporalLobe;
 
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of Temporal Lobe: " + changedFunctionsTemporalLobe;
-                        Properties.Settings.Default.defaultFunctionsTemporalLobe = changedFunctionsTemporalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsTLFlag = true;
-                    }
                     break;
                 case 3:
-                    if (defaultFunctionsPLFlag)
-                    {
+                   
                         factsMessageBox.Text = "Functions of the Parietal Lobe: " + Properties.Settings.Default.defaultFunctionsParietalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Parietal Lobe: " + changedFunctionsParietalLobe;
-                        Properties.Settings.Default.defaultFunctionsParietalLobe = changedFunctionsParietalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsPLFlag = true;
-                    }
+                  
+                
                     break;
                 case 4:
-                    if (defaultFunctionsOLFlag)
-                    {
+                   
                         factsMessageBox.Text = "Functions of the Occipital Lobe: " + Properties.Settings.Default.defaultFunctionsOccipitalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Occipital Lobe: " + changedFunctionsOccipitalLobe;
-                        Properties.Settings.Default.defaultFunctionsOccipitalLobe = changedFunctionsOccipitalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsOLFlag = true;
-                    }
+                  
                     break;
                 case 5:
-                    if (defaultFunctionsCFlag)
-                    {
+                    
                         factsMessageBox.Text = "Functions of the Cerebellum: " + Properties.Settings.Default.defaultFunctionsCerebellum;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Cerebellum: " + changedFunctionsCerebellum;
-                        Properties.Settings.Default.defaultFunctionsCerebellum = changedFunctionsCerebellum;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsCFlag = true;
-                    }
+                   
                     break;
             }
 
@@ -301,71 +205,29 @@ namespace WhatSUPDesktopApp
             {
 
                 case 1:
-                    if (defaultHBFLFlag)
-                    {
-                        factsMessageBox.Text = "Examples Healthy Behaviors that affect the Frontal Lobe: " + defaultHealthyBehaviorsFrontalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples Healthy Behaviors that affect the Frontal Lobe: " + changedHealthyBehaviorsFrontalLobe;
-                        Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe = changedHealthyBehaviorsFrontalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultHBFLFlag = true;
-                    }
-
+                   
+                        factsMessageBox.Text = "Examples Healthy Behaviors that affect the Frontal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe;
+                  
                     break;
                 case 2:
-                    if (defaultHBTLFlag)
-                    {
+                  
                         factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Temporal Lobe: " + changedHealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe = changedHealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultHBTLFlag = true;
-                    }
-
+                
                     break;
                 case 3:
-                    if (defaultHBPLFlag)
-                    {
+                  
                         factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Parietal Lobe: " + changedHealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe = changedHealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultHBPLFlag = true;
-                    }
+                  
                     break;
                 case 4:
-                    if (defaultHBOLFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Occipital Lobe: " + changedHealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe = changedHealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultHBOLFlag = true;
-                    }
+                  
                     break;
                 case 5:
-                    if (defaultHBCFlag)
-                    {
+                    
                         factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Cerebellum: " + changedHealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.defaultHealthyBehaviorsCerebellum = changedHealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.Save();
-                        defaultHBCFlag = true;
-                    }
+                 
                     break;
             }
 
@@ -386,71 +248,30 @@ namespace WhatSUPDesktopApp
             switch (storyboardFlag)
             {
                 case 1:
-                    if (defaultUHBFLFlag)
-                    {
+                
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Frontal Lobe : " + Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Frontal Lobe: " + changedUnhealthyBehaviorsFrontalLobe;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe = changedUnhealthyBehaviorsFrontalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultUHBFLFlag = true;
-                    }
-
+                   
                     break;
                 case 2:
-                    if (defaultUHBTLFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Temporal Lobe: " + changedUnhealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe = changedUnhealthyBehaviorsTemporalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultUHBTLFlag = true;
-                    }
-
+                  
                     break;
                 case 3:
-                    if (defaultUHBPLFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Parietal Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Parietal Lobe: " + changedUnhealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe = changedUnhealthyBehaviorsParietalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultUHBPLFlag = true;
-                    }
+                 
                     break;
                 case 4:
-                    if (defaultUHBOLFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Occipital Lobe: " + Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Occipital Lobe: " + changedUnhealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe = changedUnhealthyBehaviorsOccipitalLobe;
-                        Properties.Settings.Default.Save();
-                        defaultUHBOLFlag = true;
-                    }
+                  
                     break;
                 case 5:
-                    if (defaultUHBCFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Cerebellum: " + changedUnhealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum = changedUnhealthyBehaviorsCerebellum;
-                        Properties.Settings.Default.Save();
-                        defaultUHBCFlag = true;
-                    }
+                   
+                
                     break;
             }
 
@@ -477,6 +298,7 @@ namespace WhatSUPDesktopApp
             //reset the popup
             if (editPopup.IsOpen) { editPopup.IsOpen = false; }
             editingTextBox.Text = "";
+            editingMessageBlock.Text = "";
             editFunctionsRadioButton.IsChecked = false;
             editFunctionsFlag = false;
             editHealthyBehaviorsRadioButton.IsChecked = false;
@@ -485,7 +307,7 @@ namespace WhatSUPDesktopApp
             editUnhealthyBehaviorsFlag = false;
             brainPartComboBox.SelectedItem = null;
             editingTextBox.IsReadOnly = true;
-
+            brainPart = null;
         }
         //This function saves the editingTextBox text into a variable to be saved 
         //as default setting later
@@ -503,7 +325,76 @@ namespace WhatSUPDesktopApp
             }
             catch
             {
-                editingTextBox.Text = "Select a brain part from the dropdown list";
+              //  editingTextBox.Text = "Select a brain part from the dropdown list";
+            }
+            if (editFunctionsFlag) {
+                editingTextBox.IsReadOnly = false;
+                switch (brainPart)
+                {
+                    case "Cerebellum":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsCerebellum;
+                        break;
+                    case "Occipital Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsOccipitalLobe;
+                        break;
+                    case "Parietal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsParietalLobe;
+                        break;
+                    case "Temporal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsTemporalLobe;
+                        break;
+                    case "Frontal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsFrontalLobe;
+
+                        break;
+
+                }
+            }
+            if (editHealthyBehaviorsFlag) {
+                editingTextBox.IsReadOnly = false;
+                switch (brainPart)
+                {
+                    case "Cerebellum":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
+                        break;
+                    case "Occipital Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
+                        break;
+                    case "Parietal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
+                        break;
+                    case "Temporal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
+                        break;
+                    case "Frontal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe;
+
+                        break;
+
+                }
+            }
+            if (editUnhealthyBehaviorsFlag) {
+                editingTextBox.IsReadOnly = false;
+                switch (brainPart)
+                {
+                    case "Cerebellum":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
+                        break;
+                    case "Occipital Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
+                        break;
+                    case "Parietal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
+                        break;
+                    case "Temporal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
+                        break;
+                    case "Frontal Lobe":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe;
+
+                        break;
+
+                }
             }
         }
 
@@ -520,19 +411,19 @@ namespace WhatSUPDesktopApp
                 switch (brainPart)
                 {
                     case "Cerebellum":
-                        editingTextBox.Text = defaultFunctionsCerebellum;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsCerebellum;
                         break;
                     case "Occipital Lobe":
-                        editingTextBox.Text = defaultFunctionsOccipitalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsOccipitalLobe;
                         break;
                     case "Parietal Lobe":
-                        editingTextBox.Text = defaultFunctionsParietalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsParietalLobe;
                         break;
                     case "Temporal Lobe":
-                        editingTextBox.Text = defaultFunctionsTemporalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsTemporalLobe;
                         break;
                     case "Frontal Lobe":
-                        editingTextBox.Text = defaultFunctionsFrontalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsFrontalLobe;
 
                         break;
 
@@ -546,25 +437,26 @@ namespace WhatSUPDesktopApp
             editHealthyBehaviorsFlag = true;
             editUnhealthyBehaviorsFlag = false;
             editingTextBox.Text = "";
+      
             if (brainPart != null)
             {
                 editingTextBox.IsReadOnly = false;
                 switch (brainPart)
                 {
                     case "Cerebellum":
-                        editingTextBox.Text = defaultHealthyBehaviorsCerebellum;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsCerebellum;
                         break;
                     case "Occipital Lobe":
-                        editingTextBox.Text = defaultHealthyBehaviorsOccipitalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe;
                         break;
                     case "Parietal Lobe":
-                        editingTextBox.Text = defaultHealthyBehaviorsParietalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe;
                         break;
                     case "Temporal Lobe":
-                        editingTextBox.Text = defaultHealthyBehaviorsTemporalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe;
                         break;
                     case "Frontal Lobe":
-                        editingTextBox.Text = defaultHealthyBehaviorsFrontalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe;
 
                         break;
 
@@ -584,19 +476,19 @@ namespace WhatSUPDesktopApp
                 switch (brainPart)
                 {
                     case "Cerebellum":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsCerebellum;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum;
                         break;
                     case "Occipital Lobe":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsOccipitalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe;
                         break;
                     case "Parietal Lobe":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsParietalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe;
                         break;
                     case "Temporal Lobe":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsTemporalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe;
                         break;
                     case "Frontal Lobe":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsFrontalLobe;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe;
 
                         break;
 
@@ -630,24 +522,83 @@ namespace WhatSUPDesktopApp
                     switch (brainPart)
                     {
                         case "Cerebellum":
-                            changedFunctionsCerebellum = changedFactsMessageBoxText;
-                            defaultFunctionsCFlag = false;
+                           
+                           
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsCerebellum)
+                            {
+
+                                Properties.Settings.Default.defaultFunctionsCerebellum = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+                      
                         case "Occipital Lobe":
-                            changedFunctionsOccipitalLobe = changedFactsMessageBoxText;
-                            defaultFunctionsOLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsOccipitalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultFunctionsOccipitalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+                         
                         case "Parietal Lobe":
-                            changedFunctionsParietalLobe = changedFactsMessageBoxText;
-                            defaultFunctionsPLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsParietalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultFunctionsParietalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Temporal Lobe":
-                            changedFunctionsTemporalLobe = changedFactsMessageBoxText;
-                            defaultFunctionsTLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsTemporalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultFunctionsTemporalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Frontal Lobe":
-                            changedFunctionsFrontalLobe = changedFactsMessageBoxText;
-                            defaultFunctionsFLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsFrontalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultFunctionsFrontalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
 
                     }
@@ -658,27 +609,81 @@ namespace WhatSUPDesktopApp
                     switch (brainPart)
                     {
                         case "Cerebellum":
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsCerebellum)
+                            {
 
-                            changedHealthyBehaviorsCerebellum = changedFactsMessageBoxText;
-                            defaultHBCFlag = false;
+                                Properties.Settings.Default.defaultHealthyBehaviorsCerebellum = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Occipital Lobe":
-                            changedHealthyBehaviorsOccipitalLobe = changedFactsMessageBoxText;
-                            defaultHBOLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultHealthyBehaviorsOccipitalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Parietal Lobe":
-                            changedHealthyBehaviorsParietalLobe = changedFactsMessageBoxText;
-                            defaultHBPLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Temporal Lobe":
-                            changedHealthyBehaviorsTemporalLobe = changedFactsMessageBoxText;
-                            defaultHBTLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Frontal Lobe":
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe)
+                            {
 
-                            changedHealthyBehaviorsFrontalLobe = changedFactsMessageBoxText;
-                            defaultHBFLFlag = false;
+                                Properties.Settings.Default.defaultHealthyBehaviorsFrontalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+                            
                     }
                 }
                 if (editUnhealthyBehaviorsFlag)
@@ -686,26 +691,85 @@ namespace WhatSUPDesktopApp
                     switch (brainPart)
                     {
                         case "Cerebellum":
-                            changedUnhealthyBehaviorsCerebellum = changedFactsMessageBoxText;
-                            defaultUHBCFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum)
+                            {
 
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsCerebellum = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+
                         case "Occipital Lobe":
-                            changedUnhealthyBehaviorsOccipitalLobe = changedFactsMessageBoxText;
-                            defaultUHBOLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsOccipitalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+
                         case "Parietal Lobe":
-                            changedUnhealthyBehaviorsParietalLobe = changedFactsMessageBoxText;
-                            defaultUHBPLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsParietalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsParietalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+
                         case "Temporal Lobe":
-                            changedUnhealthyBehaviorsTemporalLobe = changedFactsMessageBoxText;
-                            defaultUHBTLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsTemporalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsTemporalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+
                         case "Frontal Lobe":
-                            changedUnhealthyBehaviorsFrontalLobe = changedFactsMessageBoxText;
-                            defaultUHBFLFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe)
+                            {
+
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsFrontalLobe = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
+
                     }
 
                 }

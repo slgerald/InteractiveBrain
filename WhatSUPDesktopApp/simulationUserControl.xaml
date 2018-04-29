@@ -8,36 +8,36 @@
              d:DesignHeight="300" d:DesignWidth="300" Width="680" Height="600">
     <Canvas>
         <Canvas x:Name="buttonPanel" HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="680">
-            <Button x:Name="brainDevelopmentButton" Foreground="Black" Canvas.Left="97" Canvas.Top="162" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="BrainDevelopmentButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Brain Development" Background="#FFDDDDDD">
+            <Button x:Name="brainDevelopmentButton" Foreground="Black" Canvas.Left="97" Canvas.Top="162" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="BrainDevelopmentButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Brain Development" Background="White">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma" FontSize ="24" Margin="0,15,0,0" Height="90" Width="220" ToolTip="Brain Development">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma" FontSize ="24" Margin="0,15,0,0" Height="90" Width="220" ToolTip="Brain Development" DockPanel.Dock="Top">
                     <Run Text="          Brain"/>
                     <LineBreak/>
                     <Run Text="     Development"/>
                     </TextBlock>
                 </DockPanel>
             </Button>
-            <Button x:Name="dopaminePathwaysButton" Foreground="Black" Canvas.Left="346" Canvas.Top="162" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="DopaminePathwaysButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Dopamine Pathways">
+            <Button x:Name="dopaminePathwaysButton" Foreground="Black" Canvas.Left="346" Canvas.Top="162" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="DopaminePathwaysButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Dopamine Pathways" Background="White">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="80" Width="220" ToolTip="Dopamine Pathways">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="80" Width="220" ToolTip="Dopamine Pathways" DockPanel.Dock="Top">
                     <Run Text="        Dopamine"/>
                     <LineBreak/>
                     <Run Text="        Pathways"/>
                     </TextBlock>
                 </DockPanel>
             </Button>
-            <Button x:Name="healthyActivitiesButton" Foreground="Black" Canvas.Left="97" Canvas.Top="315" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="HealthyActivitiesButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Healthy Activities">
+            <Button x:Name="healthyActivitiesButton" Foreground="Black" Canvas.Left="97" Canvas.Top="315" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="HealthyActivitiesButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Healthy Activities" Background="White">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="80" Width="220" ToolTip="Healthy Activities">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="63" Width="220" ToolTip="Healthy Activities" DockPanel.Dock="Top">
                     <Run Text="         Healthy"/>
                     <LineBreak/>
                     <Run Text="        Activities"/>
                     </TextBlock>
                 </DockPanel>
             </Button>
-            <Button x:Name="normalVsOnDrugsButton" Foreground="Black" Canvas.Left="346" Canvas.Top="315" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="NormalVsOnDrugsButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Normal vs. On Drugs">
+            <Button x:Name="normalVsOnDrugsButton" Foreground="Black" Canvas.Left="346" Canvas.Top="315" Width="220" Height="115" FontSize="24" FontFamily="Tahoma" Click="NormalVsOnDrugsButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" ToolTip="Normal vs. On Drugs" Background="White">
                 <DockPanel Height="115" LastChildFill="False" Width="220">
-                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="90" Width="220" TextAlignment="Center"><Run Text="Typical"/><LineBreak/><Run Text=" VS. "/><LineBreak/><Run Text="Substances"/></TextBlock>
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tahoma"  FontSize ="24" Margin="0,15" Height="88" Width="220" TextAlignment="Center" DockPanel.Dock="Top"><Run Text="Typical"/><LineBreak/><Run Text=" vs. "/><LineBreak/><Run Text="Substances"/></TextBlock>
                 </DockPanel>
             </Button>
         </Canvas>

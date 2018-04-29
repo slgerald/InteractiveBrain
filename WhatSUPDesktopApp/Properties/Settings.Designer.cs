@@ -26,8 +26,8 @@ namespace WhatSUPDesktopApp.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Reading, Problem-Solving games, choreography (like for ballet, Zumba), meditation" +
-            "\r\n, creative writing, speaking a foreign language (actual motor movements of the" +
-            " mouth)")]
+            ", creative writing, speaking a foreign language (actual motor movements of the m" +
+            "outh)")]
         public string defaultHealthyBehaviorsFrontalLobe {
             get {
                 return ((string)(this["defaultHealthyBehaviorsFrontalLobe"]));
@@ -135,7 +135,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("is responsible for visual processing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("is responsible for visual processing.")]
         public string defaultFunctionsOccipitalLobe {
             get {
                 return ((string)(this["defaultFunctionsOccipitalLobe"]));
@@ -147,8 +147,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Visual recognition (ie. identifying faces in a yearbook, \r\ndistinguishing differe" +
-            "nt features in pictures, jigsaw puzzles, recognizing visual patterns)\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Visual recognition (ie. identifying faces in a yearbook, distinguishing different" +
+            " features in pictures, jigsaw puzzles, recognizing visual patterns)\r\n")]
         public string defaultHealthyBehaviorsOccipitalLobe {
             get {
                 return ((string)(this["defaultHealthyBehaviorsOccipitalLobe"]));
@@ -188,9 +188,8 @@ distinguishing coins by how the edges feel to the skin)
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Any type of physical exercise, activities that help improve improve balance and c" +
-            "oordination\r\nPairing physical exercise with a mental exercise (ie. dancing and s" +
-            "inging simultaneously; \r\nstanding on a balance board while reciting the alphabet" +
-            ")")]
+            "oordination. Pairing physical exercise with a mental exercise (ie. dancing and s" +
+            "inging simultaneously; standing on a balance board while reciting the alphabet)")]
         public string defaultHealthyBehaviorsCerebellum {
             get {
                 return ((string)(this["defaultHealthyBehaviorsCerebellum"]));
@@ -228,7 +227,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Repeating a phone number to help you remember it\r\nMatching games, doing mental ma" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Repeating a phone number to help you remember it, Matching games, doing mental ma" +
             "th problems (without using paper)\r\n")]
         public string defaultHealthyBehaviorsHippocampus {
             get {
@@ -268,9 +267,9 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Breathing exercises when you feel stressed, anxious or angry\r\nRecognizing when yo" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Breathing exercises when you feel stressed, anxious or angry, Recognizing when yo" +
             "u feel angry/stressed/fearful and being able to minimize those feelings-- thinki" +
-            "ng logically\r\nAny healthy behaviors that will help you de-escalate stressful fee" +
+            "ng logically, Any healthy behaviors that will help you de-escalate stressful fee" +
             "lings\r\n")]
         public string defaultHealthyBehaviorsAmygdala {
             get {
@@ -297,7 +296,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("regulates growth hormones and hormones that stimulate the thyroid,Ttriggers onset" +
+        [global::System.Configuration.DefaultSettingValueAttribute("regulates growth hormones and hormones that stimulate the thyroid, Triggers onset" +
             " of puberty. Attached to the hypothalamus, in the Limbic System ")]
         public string defaultFunctionsPituitaryGland {
             get {
@@ -310,8 +309,8 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Eating high protein foods (eggs, fish, poultry, etc)\r\nEating foods with vitamin A" +
-            " & E\r\nGetting enough vitamin D (the best way is getting outside for sunshine!)\r\n" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Eating high protein foods (eggs, fish, poultry, etc), Eating foods with vitamin A" +
+            " & E, Getting enough vitamin D (the best way is getting outside for sunshine!)\r\n" +
             "")]
         public string defaultHealthyBehaviorsPituitaryGland {
             get {
@@ -350,8 +349,7 @@ distinguishing coins by how the edges feel to the skin)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"Good sleep routine (going to sleep the same time each night, avoiding screens hour before bed, getting adequate sleep, etc)
-Impulse control (practicing small acts of self-control--  controlling the urge to punch someone :) or controlling road rage, or reaching for that extra cookie)
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Good sleep routine (going to sleep the same time each night, avoiding screens hour before bed, getting adequate sleep, etc). Impulse control (practicing small acts of self-control--  controlling the urge to punch someone or controlling road rage, or reaching for that extra cookie)
 ")]
         public string defaultHealthyBehaviorsBrainstem {
             get {

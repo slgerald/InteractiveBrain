@@ -61,49 +61,8 @@ namespace WhatSUPDesktopApp
 
         string changedFactsMessageBoxText;//used to save content of textbox in editPopup
 
-        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for hippocampus
-        string defaultFunctionsHippocampus = Properties.Settings.Default.defaultFunctionsHippocampus;
-        string changedFunctionsHippocampus = null;
-        bool defaultFunctionsHFlag = true;
-        string defaultHealthyBehaviorsHippocampus = Properties.Settings.Default.defaultHealthyBehaviorsHippocampus;
-        string changedHealthyBehaviorsHippocampus = null;
-        bool defaultHBHFlag = true;
-        string changedUnhealthyBehaviorsHippocampus = null;
-        string defaultUnhealthyBehaviorsHippocampus = Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
-        bool defaultUHBHFlag = true;
-
-        // used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors for Amygdala
-        string changedFunctionsAmygdala = null;
-        string defaultFunctionsAmygdala = Properties.Settings.Default.defaultFunctionsAmygdala;
-        bool defaultFunctionsAFlag = true;
-        string changedHealthyBehaviorsAmygdala = null;
-        string defaultHealthyBehaviorsAmygdala = Properties.Settings.Default.defaultHealthyBehaviorsAmygdala;
-        bool defaultHBAFlag = true;
-        string changedUnhealthyBehaviorsAmygdala = null;
-        string defaultUnhealthyBehaviorsAmygdala = Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
-        bool defaultUHBAFlag = true;
-
-        //Used to initialize text display for the functions, healthy behvaiors, and unhealthy behaviors for Pituitary Glansd 
-        string changedFunctionsPituitaryGland = null;
-        string defaultFunctionsPituitaryGland = Properties.Settings.Default.defaultFunctionsPituitaryGland;
-        bool defaultFunctionsPGFlag = true;
-        string changedHealthyBehaviorsPituitaryGland = null;
-        string defaultHealthyBehaviorsPituitaryGland = Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland;
-        bool defaultHBPGFlag = true;
-        string changedUnhealthyBehaviorsPituitaryGland = null;
-        string defaultUnhealthyBehaviorsPituitaryGland = Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
-        bool defaultUHBPGFlag = true;
-
-        //Used to initialize text display for the functions, healthy behaviors, and unhealthy behaviors
-        string changedFunctionsBrainstem = null;
-        string defaultFunctionsBrainstem = Properties.Settings.Default.defaultFunctionsBrainstem;
-        bool defaultFunctionsBSFlag = true;
-        string changedHealthyBehaviorsBrainstem = null;
-        string defaultHealthyBehaviorsBrainstem = Properties.Settings.Default.defaultHealthyBehaviorsBrainstem;
-        bool defaultHBBSFlag = true;
-        string changedUnhealthyBehaviorsBrainstem = null;
-        string defaultUnhealthyBehaviorsBrainstem = Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
-        bool defaultUHBBSFlag = true;
+    
+      
 
         //This is the entry point for the userControl page 
         //This function initializes the userControl with EventHandlers and other characteristics
@@ -184,63 +143,21 @@ namespace WhatSUPDesktopApp
             switch (storyboardFlag)
             {   
                 case 1:
-                    if (defaultFunctionsHFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Hippocampus: " + defaultFunctionsHippocampus;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Hippocampus: " + changedFunctionsHippocampus;
-                        defaultFunctionsHippocampus = changedFunctionsHippocampus;
-                        Properties.Settings.Default.defaultFunctionsHippocampus = changedFunctionsHippocampus;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsHFlag = true;
-                    }
-
+                        factsMessageBox.Text = "Functions of the Hippocampus: " + Properties.Settings.Default.defaultFunctionsHippocampus;
                     break;
                 case 2:
-                    if (defaultFunctionsAFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Amygdala: " + defaultFunctionsAmygdala;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Amygdala: " + changedFunctionsAmygdala;
-                        defaultFunctionsAmygdala = changedFunctionsAmygdala;
-                        Properties.Settings.Default.defaultFunctionsAmygdala = changedFunctionsAmygdala;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsAFlag = true;
-                    }
-
+                    
+                        factsMessageBox.Text = "Functions of the Amygdala: " + Properties.Settings.Default.defaultFunctionsAmygdala;
                     break;
                 case 3:
-                    if (defaultFunctionsPGFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Pituitary Gland: " + defaultFunctionsPituitaryGland;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Pituitary Gland: " + changedFunctionsPituitaryGland;
-                        defaultFunctionsPituitaryGland = changedFunctionsPituitaryGland;
-                        Properties.Settings.Default.defaultFunctionsPituitaryGland = changedFunctionsPituitaryGland;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsPGFlag = true;
-                    }
+                   
+                        factsMessageBox.Text = "Functions of the Pituitary Gland: " + Properties.Settings.Default.defaultFunctionsPituitaryGland;
+                    
                     break;
                 case 4:
-                    if (defaultFunctionsBSFlag)
-                    {
-                        factsMessageBox.Text = "Functions of the Brainstem: " + defaultFunctionsBrainstem;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Functions of the Brainstem: " + changedFunctionsBrainstem;
-                        defaultFunctionsBrainstem = changedFunctionsBrainstem;
-                        Properties.Settings.Default.defaultFunctionsBrainstem = changedFunctionsBrainstem;
-                        Properties.Settings.Default.Save();
-                        defaultFunctionsBSFlag = true;
-                    }
-
+                    
+                        factsMessageBox.Text = "Functions of the Brainstem: " + Properties.Settings.Default.defaultFunctionsBrainstem;
+               
                     break;
 
             }
@@ -263,62 +180,24 @@ namespace WhatSUPDesktopApp
             switch (storyboardFlag)
             {
                 case 1:
-                    if (defaultHBHFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Hippocampus: " + defaultHealthyBehaviorsHippocampus;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Hippocampus: " + changedHealthyBehaviorsHippocampus;
-                        Properties.Settings.Default.defaultHealthyBehaviorsHippocampus = changedHealthyBehaviorsHippocampus;
-                        Properties.Settings.Default.Save();
-                        defaultHBHFlag = true;
-                    }
-
+                  
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Hippocampus: " + Properties.Settings.Default.defaultHealthyBehaviorsHippocampus;
+                 
                     break;
                 case 2:
-                    if (defaultHBAFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Amygdala: " + defaultHealthyBehaviorsAmygdala;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Amygdala: " + changedHealthyBehaviorsAmygdala;
-                        Properties.Settings.Default.defaultHealthyBehaviorsAmygdala = changedHealthyBehaviorsAmygdala;
-                        Properties.Settings.Default.Save();
-                        defaultHBAFlag = true;
-                    }
-
+                   
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Amygdala: " + Properties.Settings.Default.defaultHealthyBehaviorsAmygdala;
+               
                     break;
                 case 3:
-                    if (defaultHBPGFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Pituitary Gland: " + defaultHealthyBehaviorsPituitaryGland;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Pituitary Gland: " + changedHealthyBehaviorsPituitaryGland;
-                        Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland = changedHealthyBehaviorsPituitaryGland;
-                        Properties.Settings.Default.Save();
-                        defaultHBPGFlag = true;
-                    }
-
-
+                    
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Pituitary Gland: " + Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland;
+                    
                     break;
                 case 4:
-                    if (defaultHBBSFlag)
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Brainstem: " + defaultHealthyBehaviorsBrainstem;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Brainstem: " + changedHealthyBehaviorsBrainstem;
-                        Properties.Settings.Default.defaultHealthyBehaviorsBrainstem = changedHealthyBehaviorsBrainstem;
-                        Properties.Settings.Default.Save();
-                        defaultHBBSFlag = true;
-                    }
-
-
+                   
+                        factsMessageBox.Text = "Examples of Healthy Behaviors that affect the Brainstem: " + Properties.Settings.Default.defaultHealthyBehaviorsBrainstem;
+               
                     break;
 
             }
@@ -342,64 +221,24 @@ namespace WhatSUPDesktopApp
             switch (storyboardFlag)
             {
                 case 1:
-                    if (defaultUHBHFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Hippocampus : " + Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Hipocampus: " + changedUnhealthyBehaviorsHippocampus;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus = changedUnhealthyBehaviorsHippocampus;
-                        Properties.Settings.Default.Save();
-                        defaultUHBHFlag = true;
-                    }
-
+                  
                     break;
                 case 2:
-                    if (defaultUHBAFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Amygdala: " + Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
-
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Amygdala: " + changedUnhealthyBehaviorsAmygdala;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala = changedUnhealthyBehaviorsAmygdala;
-                        Properties.Settings.Default.Save();
-                        defaultUHBAFlag = true;
-                    }
 
                     break;
                 case 3:
-                    if (defaultUHBPGFlag)
-                    {
+                    
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Pituitary Gland : " + Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
 
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Pituitary Gland: " + changedUnhealthyBehaviorsPituitaryGland;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland = changedUnhealthyBehaviorsPituitaryGland;
-                        Properties.Settings.Default.Save();
-                        defaultUHBPGFlag = true;
-                    }
-
-
-
+             
                     break;
                 case 4:
-                    if (defaultUHBBSFlag)
-                    {
+                   
                         factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Brainstem : " + Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
-
-                    }
-                    else
-                    {
-                        factsMessageBox.Text = "Examples of ways Unhealthy Behaviors affect the Brainstem: " + changedUnhealthyBehaviorsBrainstem;
-                        Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem = changedUnhealthyBehaviorsBrainstem;
-                        Properties.Settings.Default.Save();
-                        defaultUHBBSFlag = true;
-                    }
 
                     break;
 
@@ -438,6 +277,7 @@ namespace WhatSUPDesktopApp
             brainPartComboBox.SelectedItem = null;
             editingMessageBlock.Text = "";
             editingTextBox.IsReadOnly = true;
+        
 
         }
 
@@ -460,7 +300,68 @@ namespace WhatSUPDesktopApp
             }
             catch
             {
-                editingMessageBlock.Text = "Select a brain part from the drop down list";
+               // editingMessageBlock.Text = "Select a brain part from the drop down list";
+            }
+            if (editFunctionsFlag)
+            {
+                editingTextBox.IsReadOnly = false;
+                switch (brainPart)
+                {
+                    case "Hippocampus":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsHippocampus;
+                        break;
+                    case "Brainstem":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsBrainstem;
+                        break;
+                    case "Pituitary Gland":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsPituitaryGland;
+                        break;
+                    case "Amygdala":
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsAmygdala;
+                        break;
+                }
+            }
+            if (editHealthyBehaviorsFlag)
+            {
+                editingTextBox.IsReadOnly = false;
+                switch (brainPart)
+                {
+                    case "Hippocampus":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsHippocampus;
+                        break;
+                    case "Brainstem":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsBrainstem;
+                        break;
+                    case "Pituitary Gland":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland;
+                        break;
+                    case "Amygdala":
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsAmygdala;
+                        break;
+
+
+                }
+            }
+            if (editUnhealthyBehaviorsFlag)
+            {
+                editingTextBox.IsReadOnly = false;
+                switch (brainPart)
+                {
+                    case "Hippocampus":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
+                        break;
+                    case "Amygdala":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
+                        break;
+                    case "Pituitary Gland":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
+                        break;
+                    case "Brainstem":
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
+                        break;
+
+
+                }
             }
         }
  
@@ -473,19 +374,20 @@ namespace WhatSUPDesktopApp
             editingTextBox.Text = "";
             if (brainPart != null)
             {
+                editingTextBox.IsReadOnly = false;
                 switch (brainPart)
                 {
                     case "Hippocampus":
-                        editingTextBox.Text = defaultFunctionsHippocampus;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsHippocampus;
                         break;
                     case "Brainstem":
-                        editingTextBox.Text = defaultFunctionsBrainstem;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsBrainstem;
                         break;
                     case "Pituitary Gland":
-                        editingTextBox.Text = defaultFunctionsPituitaryGland;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsPituitaryGland;
                         break;
                     case "Amygdala":
-                        editingTextBox.Text = defaultFunctionsAmygdala;
+                        editingTextBox.Text = Properties.Settings.Default.defaultFunctionsAmygdala;
                         break;
                 }
             }
@@ -500,19 +402,20 @@ namespace WhatSUPDesktopApp
             editingTextBox.Text = "";
             if (brainPart != null)
             {
+                editingTextBox.IsReadOnly = false;
                 switch (brainPart)
                 {
                     case "Hippocampus":
-                        editingTextBox.Text = defaultHealthyBehaviorsHippocampus;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsHippocampus;
                         break;
                     case "Brainstem":
-                        editingTextBox.Text = defaultHealthyBehaviorsBrainstem;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsBrainstem;
                         break;
                     case "Pituitary Gland":
-                        editingTextBox.Text = defaultHealthyBehaviorsPituitaryGland;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland;
                         break;
                     case "Amygdala":
-                        editingTextBox.Text = defaultHealthyBehaviorsAmygdala;
+                        editingTextBox.Text = Properties.Settings.Default.defaultHealthyBehaviorsAmygdala;
                         break;
 
 
@@ -528,19 +431,20 @@ namespace WhatSUPDesktopApp
             editingTextBox.Text = "";
             if (brainPart != null)
             {
+                editingTextBox.IsReadOnly = false;
                 switch (brainPart)
                 {
                     case "Hippocampus":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsHippocampus;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus;
                         break;
                     case "Amygdala":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsAmygdala;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala;
                         break;
                     case "Pituitary Gland":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsPituitaryGland;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland;
                         break;
                     case "Brainstem":
-                        editingTextBox.Text = defaultUnhealthyBehaviorsBrainstem;
+                        editingTextBox.Text = Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem;
                         break;
 
 
@@ -573,20 +477,63 @@ namespace WhatSUPDesktopApp
                     switch (brainPart)
                     {
                         case "Hippocampus":
-                            changedFunctionsHippocampus = changedFactsMessageBoxText;
-                            defaultFunctionsHFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsHippocampus)
+                            {
+                          
+                                Properties.Settings.Default.defaultFunctionsHippocampus = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                        
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Amygdala":
-                            changedFunctionsAmygdala = changedFactsMessageBoxText;
-                            defaultFunctionsAFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsAmygdala)
+                            {
+                                Properties.Settings.Default.defaultFunctionsAmygdala = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                                
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Pituitary Gland":
-                            changedFunctionsPituitaryGland = changedFactsMessageBoxText;
-                            defaultFunctionsPGFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsPituitaryGland)
+                            {
+                              
+                                Properties.Settings.Default.defaultFunctionsPituitaryGland = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                              
+                            editingMessageBlock.Text = "Saved";
+                    }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Brainstem":
-                            changedFunctionsBrainstem = changedFactsMessageBoxText;
-                            defaultFunctionsBSFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultFunctionsBrainstem)
+                            {
+                           
+                                Properties.Settings.Default.defaultFunctionsBrainstem = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                             
+                    editingMessageBlock.Text = "Saved";
+                }
+                else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                     }
                 }
@@ -596,21 +543,64 @@ namespace WhatSUPDesktopApp
                     switch (brainPart)
                     {
                         case "Hippocampus":
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsHippocampus)
+                            {
+                               
+                                Properties.Settings.Default.defaultHealthyBehaviorsHippocampus = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                               
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
 
-                            changedHealthyBehaviorsHippocampus = changedFactsMessageBoxText;
-                            defaultHBHFlag = false;
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Amygdala":
-                            changedHealthyBehaviorsAmygdala = changedFactsMessageBoxText;
-                            defaultHBAFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsAmygdala)
+                            {
+                                
+                                Properties.Settings.Default.defaultHealthyBehaviorsAmygdala = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                              
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Pituitary Gland":
-                            changedHealthyBehaviorsPituitaryGland = changedFactsMessageBoxText;
-                            defaultHBPGFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland)
+                            {
+                       
+                                Properties.Settings.Default.defaultHealthyBehaviorsPituitaryGland = changedFactsMessageBoxText; ;
+                                Properties.Settings.Default.Save();
+                            
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Brainstem":
-                            changedHealthyBehaviorsBrainstem = changedFactsMessageBoxText;
-                            defaultHBBSFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultHealthyBehaviorsBrainstem)
+                            {
+                                
+                                Properties.Settings.Default.defaultHealthyBehaviorsBrainstem = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                            
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
 
                     }
@@ -620,25 +610,69 @@ namespace WhatSUPDesktopApp
                     switch (brainPart)
                     {
                         case "Hippocampus":
-                            changedUnhealthyBehaviorsHippocampus = changedFactsMessageBoxText;
-                            defaultUHBHFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus)
+                            {
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsHippocampus = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                        
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Amygdala":
-                            changedUnhealthyBehaviorsAmygdala = changedFactsMessageBoxText;
-                            defaultUHBAFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala)
+                            {
+                                
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsAmygdala = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                              
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Pituitary Gland":
-                            changedUnhealthyBehaviorsPituitaryGland = changedFactsMessageBoxText;
-                            defaultUHBPGFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland)
+                            {
+                             
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsPituitaryGland = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                        
+                                 editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
                         case "Brainstem":
-                            changedUnhealthyBehaviorsBrainstem = changedFactsMessageBoxText;
-                            defaultUHBBSFlag = false;
+                            if (changedFactsMessageBoxText != Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem)
+                            {
+                               
+                                Properties.Settings.Default.defaultUnhealthyBehaviorsBrainstem = changedFactsMessageBoxText;
+                                Properties.Settings.Default.Save();
+                             
+                                editingMessageBlock.Text = "Saved";
+                            }
+                            else
+                            {
+
+                                editingMessageBlock.Text = "No edits were made";
+                            }
                             break;
 
                     }
 
                 }
+                
             }
         }
        

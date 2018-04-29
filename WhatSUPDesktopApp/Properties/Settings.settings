@@ -3,8 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="defaultHealthyBehaviorsFrontalLobe" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Reading, Problem-Solving games, choreography (like for ballet, Zumba), meditation
-, creative writing, speaking a foreign language (actual motor movements of the mouth)</Value>
+      <Value Profile="(Default)">Reading, Problem-Solving games, choreography (like for ballet, Zumba), meditation, creative writing, speaking a foreign language (actual motor movements of the mouth)</Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsFrontalLobe" Type="System.String" Scope="User">
       <Value Profile="(Default)">Substance use can negatively impact all of these tasks, making it harder to think, make decisions, and set goals. Using substances may also cause slurred speech. </Value>
@@ -34,11 +33,10 @@ distinguishing coins by how the edges feel to the skin)
 Long term alcohol use has been shown to decrease gray matter in the parietal lobe, which causes the person to have difficulty processing spatial relationships.</Value>
     </Setting>
     <Setting Name="defaultFunctionsOccipitalLobe" Type="System.String" Scope="User">
-      <Value Profile="(Default)">is responsible for visual processing</Value>
+      <Value Profile="(Default)">is responsible for visual processing.</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsOccipitalLobe" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Visual recognition (ie. identifying faces in a yearbook, 
-distinguishing different features in pictures, jigsaw puzzles, recognizing visual patterns)
+      <Value Profile="(Default)">Visual recognition (ie. identifying faces in a yearbook, distinguishing different features in pictures, jigsaw puzzles, recognizing visual patterns)
 </Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsOccipitalLobe" Type="System.String" Scope="User">
@@ -49,9 +47,7 @@ distinguishing different features in pictures, jigsaw puzzles, recognizing visua
       <Value Profile="(Default)">is responsible for balance, coordination, and posture. This brain part contains 80% of the brain’s neurons. The cerebellum also transmits signals to the rest of the body. </Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsCerebellum" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Any type of physical exercise, activities that help improve improve balance and coordination
-Pairing physical exercise with a mental exercise (ie. dancing and singing simultaneously; 
-standing on a balance board while reciting the alphabet)</Value>
+      <Value Profile="(Default)">Any type of physical exercise, activities that help improve improve balance and coordination. Pairing physical exercise with a mental exercise (ie. dancing and singing simultaneously; standing on a balance board while reciting the alphabet)</Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsCerebellum" Type="System.String" Scope="User">
       <Value Profile="(Default)">People with substance use disorder showed more changes in the cerebellum than those without substance use disorder. Addiction had a negative impact on the storage, processing, and regenerating capacity of the brain. 
@@ -61,8 +57,7 @@ standing on a balance board while reciting the alphabet)</Value>
       <Value Profile="(Default)">processes short term memory (STM), sometimes called “working memory”.</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsHippocampus" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Repeating a phone number to help you remember it
-Matching games, doing mental math problems (without using paper)
+      <Value Profile="(Default)">Repeating a phone number to help you remember it, Matching games, doing mental math problems (without using paper)
 </Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsHippocampus" Type="System.String" Scope="User">
@@ -72,21 +67,17 @@ Matching games, doing mental math problems (without using paper)
       <Value Profile="(Default)">triggers emotionally charged reactions, particularly survival instincts (fear &amp; aggression), hypersensitive to stress, has a role in storing emotional memories, in the Limbic System, and makes associations between the emotion and the environment.</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsAmygdala" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Breathing exercises when you feel stressed, anxious or angry
-Recognizing when you feel angry/stressed/fearful and being able to minimize those feelings-- thinking logically
-Any healthy behaviors that will help you de-escalate stressful feelings
+      <Value Profile="(Default)">Breathing exercises when you feel stressed, anxious or angry, Recognizing when you feel angry/stressed/fearful and being able to minimize those feelings-- thinking logically, Any healthy behaviors that will help you de-escalate stressful feelings
 </Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsAmygdala" Type="System.String" Scope="User">
       <Value Profile="(Default)">After the high of an addictive substance, the neurotransmitter dopamine floods the brain, causing the amygdala creates an emotionally charged memory. This memory increases the likelihood that the person will use the drug again. </Value>
     </Setting>
     <Setting Name="defaultFunctionsPituitaryGland" Type="System.String" Scope="User">
-      <Value Profile="(Default)">regulates growth hormones and hormones that stimulate the thyroid,Ttriggers onset of puberty. Attached to the hypothalamus, in the Limbic System </Value>
+      <Value Profile="(Default)">regulates growth hormones and hormones that stimulate the thyroid, Triggers onset of puberty. Attached to the hypothalamus, in the Limbic System </Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsPituitaryGland" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Eating high protein foods (eggs, fish, poultry, etc)
-Eating foods with vitamin A &amp; E
-Getting enough vitamin D (the best way is getting outside for sunshine!)
+      <Value Profile="(Default)">Eating high protein foods (eggs, fish, poultry, etc), Eating foods with vitamin A &amp; E, Getting enough vitamin D (the best way is getting outside for sunshine!)
 </Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsPituitaryGland" Type="System.String" Scope="User">
@@ -97,8 +88,7 @@ Getting enough vitamin D (the best way is getting outside for sunshine!)
       <Value Profile="(Default)">controls flow of messages between the brain and the rest of the body. Also controls basic body function like breathing, swallowing, heartbeat (medulla), sleep regulation (pons), etc. Serves as a connection between the central nervous system (cns) and the brain.</Value>
     </Setting>
     <Setting Name="defaultHealthyBehaviorsBrainstem" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Good sleep routine (going to sleep the same time each night, avoiding screens hour before bed, getting adequate sleep, etc)
-Impulse control (practicing small acts of self-control--  controlling the urge to punch someone :) or controlling road rage, or reaching for that extra cookie)
+      <Value Profile="(Default)">Good sleep routine (going to sleep the same time each night, avoiding screens hour before bed, getting adequate sleep, etc). Impulse control (practicing small acts of self-control--  controlling the urge to punch someone or controlling road rage, or reaching for that extra cookie)
 </Value>
     </Setting>
     <Setting Name="defaultUnhealthyBehaviorsBrainstem" Type="System.String" Scope="User">
