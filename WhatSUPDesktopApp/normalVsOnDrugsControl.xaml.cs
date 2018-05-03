@@ -16,48 +16,67 @@ using System.Windows.Shapes;
 namespace WhatSUPDesktopApp
 {
     /// <summary>
-    /// Interaction logic for UserControl2.xaml
+    /// The normalVsOnDrugsControl is used to give the user examples of drugs and how
+    /// they effect brain activity. It also shows how the brain recovers after being off
+    /// drugs for prolonged periods of time.
     /// </summary>
-    public partial class normalVsOnDrugsControl : UserControl
+    public partial class NormalVsOnDrugsControl : UserControl
     {
-        private static normalVsOnDrugsControl _instance; //render userControl based on button pressed
 
-        public normalVsOnDrugsControl()
+        //render userControl based on button pressed
+        private static NormalVsOnDrugsControl _instance; 
+
+        //This method serves as the entry point to the normalVsOnDrugsControl.
+        //It loads the default picture, label, description text, and combo box list item.
+        public NormalVsOnDrugsControl()
         {
             InitializeComponent();
 
-
-            //Can set Initial visibility in .xaml file
+            //Selects defuault combo box list item to load
             drugList.SelectedIndex = 0;
+
+            //Make label containing the source of the pictures visible
             sourceLabel.Visibility = Visibility.Visible;
+
+            //Hides the 'Substances' button because the substances page is loaded by default
             drugButton.Visibility = Visibility.Hidden;
+
+            //Makes the 'Rehab' button visible in order to go to the rehab page
             rehabButton.Visibility = Visibility.Visible;
+
+            //Hides the slider for the rehab page
             rehabSlider.Visibility = Visibility.Hidden;
+
+            //Loads initial typical brain image
             leftImageLabel.Content = "Typical Brain";
+
+            //Loads initial substance abuse image
             rightImageLabel.Content = "Heavy Alcohol Use";
+
+            //Sets the source for the initial pictures
             sourceLabel.Content = "Source: http://www.encognitive.com/files/images/brain-scan-alcoholic-drug-addict-obese-normal.preview.jpg";
+
+            //Sets the initial description text
             rehabText.Text = "Substances can alter the way people think, feel, and behave by disrupting neurotransmission, the process of communication between neurons.";
         }
 
-        public static normalVsOnDrugsControl Instance
+        //This method allows the normalVsOnDrugsControl to be rendered when called
+        public static NormalVsOnDrugsControl Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new normalVsOnDrugsControl();
+                    _instance = new NormalVsOnDrugsControl();
                 }
-                _instance = new normalVsOnDrugsControl();
+                _instance = new NormalVsOnDrugsControl();
                 return _instance;
 
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //Loads the pictures, labels, and description text based on which combo box item that was 
+        //chosen from the drop down list
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String drugListValue = (drugList.SelectedItem as ComboBoxItem).Content.ToString();
@@ -105,6 +124,8 @@ namespace WhatSUPDesktopApp
             }
         }
 
+        //Sets everything on the 'Substances' page to hidden and sets everything on the 
+        //'Rehab' page to visible by clicking the 'Rehab' button
         private void Rehab_Button_Click(object sender, RoutedEventArgs e)
         {
             drugList.Visibility = Visibility.Hidden;
@@ -130,6 +151,8 @@ namespace WhatSUPDesktopApp
 
         }
 
+        //Changes the picture, label, and description text based on the value/position of the slider.
+        //This slider is located on the 'Rehab' page.
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
            
@@ -165,6 +188,8 @@ namespace WhatSUPDesktopApp
             }
         }
 
+        //Sets everything on the 'Rehab' page to hidden and sets everything on the 
+        //'Substances' page to visible by clicking the 'Substances' button
         private void DrugButton_Click(object sender, RoutedEventArgs e)
         {
             rehabButton.Visibility = Visibility.Visible;

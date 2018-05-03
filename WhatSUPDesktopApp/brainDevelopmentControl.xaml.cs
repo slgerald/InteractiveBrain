@@ -16,38 +16,41 @@ using System.Windows.Shapes;
 namespace WhatSUPDesktopApp
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// The brainDevelopmentControl provides an animation consisting of a slider and 
+    /// multiple pictures which informs the user that gray matter thins out as the brain
+    /// ages and matures
     /// </summary>
-    public partial class brainDevelopmentControl : UserControl
+    public partial class BrainDevelopmentControl : UserControl
     {
 
-        private static brainDevelopmentControl _instance; //render userControl based on button pressed
-        public brainDevelopmentControl()
+        //render userControl based on button pressed
+        private static BrainDevelopmentControl _instance; 
+
+        //This function serves as the entry point for the brainDevelopmentControl.
+        public BrainDevelopmentControl()
         {
             InitializeComponent();
 
+            //Sets default text for pictures description text
             brainDevelopmentText.Text = "Gray matter is the thin, folding, outer layer of the brain, known as the cortex. The cortex is where we form thoughts and memories. The amount of gray matter increases during childhood, peaks in adolescence, and then declines. Gray matter helps strengthen learning, and it declines as we age, pruning back connections to make the brain more efficient. ";
         }
 
-        public static brainDevelopmentControl Instance
+        //This method allows the brainDevelopmentControl to be rendered when called
+        public static BrainDevelopmentControl Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new brainDevelopmentControl();
+                    _instance = new BrainDevelopmentControl();
                 }
-                _instance = new brainDevelopmentControl();
+                _instance = new BrainDevelopmentControl();
                 return _instance;
 
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //This method switches between pictures depending on the value/position of the slider
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
