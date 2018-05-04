@@ -73,13 +73,13 @@ namespace WhatSUPDesktopApp
                 pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             myCanvas.Children.Clear();
-            if (!myCanvas.Children.Contains(simulationUserControl.Instance))
+            if (!myCanvas.Children.Contains(SimulationUserControl.Instance))
             {
 
-                myCanvas.Children.Add(simulationUserControl.Instance);
+                myCanvas.Children.Add(SimulationUserControl.Instance);
             }
             else
-                myCanvas.Children.Add(simulationUserControl.Instance);
+                myCanvas.Children.Add(SimulationUserControl.Instance);
         }
 
         private void SerialCommsButton_Click(object sender, RoutedEventArgs e)
