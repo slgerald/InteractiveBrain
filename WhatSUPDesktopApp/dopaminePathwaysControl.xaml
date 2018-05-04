@@ -8,16 +8,16 @@
     <Canvas x:Name="dopaminePathways" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="680" Margin="0,0,0,-20">
 
         <MediaElement x:Name="Gif1"
-                      Canvas.Left="90" Canvas.Top="64" 
+                      Canvas.Left="107" Canvas.Top="64" 
                       IsMuted="True" IsEnabled="True" LoadedBehavior="Manual" MediaEnded="Gif1_MediaEnded" MediaOpened="Gif1_MediaOpened"
-                      Height="260" Width="499" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                      Height="260" Width="470" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
         <!-- <MediaElement x:Name="Gif2"
                       Source="Resources/gif_neurons.mp4" Canvas.Left="53" Canvas.Top="90" 
                       IsMuted="True" IsEnabled="True" LoadedBehavior="Play" MediaEnded="Gif2_MediaEnded" MediaOpened="Gif2_MediaOpened"
                       Height="310" Width="557"/> -->
-        <Button x:Name="previousButton" Click="PreviousButton_Click" Content="Previous" Width="80" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" ToolTip="Previous" Canvas.Left="5" BorderBrush="Black" Background="White"/>
-        <Button x:Name="nextButton" Click="NextButton_Click" Content="Next" Width="80" Canvas.Left="594" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" BorderBrush="Black" ToolTip="Next" Background="White"/>
-        <ScrollBar x:Name="sbarPosition" Canvas.Left="92" Canvas.Top="324" Width="498" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" RenderTransformOrigin="0.5,0.5" Orientation="Horizontal" Height="17">
+        <Button x:Name="previousButton" Click="PreviousButton_Click" Content="Previous" Width="80" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" ToolTip="Previous" Canvas.Left="19" BorderBrush="Black" Background="White"/>
+        <Button x:Name="nextButton" Click="NextButton_Click" Content="Next" Width="80" Canvas.Left="585" Canvas.Top="188" FontSize="18" FontFamily="Tahoma" BorderBrush="Black" ToolTip="Next" Background="White"/>
+        <ScrollBar x:Name="sbarPosition" Canvas.Left="107" Canvas.Top="324" Width="470" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" RenderTransformOrigin="0.5,0.5" Orientation="Horizontal" Height="17">
             <ScrollBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
