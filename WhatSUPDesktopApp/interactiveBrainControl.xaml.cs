@@ -86,6 +86,8 @@ namespace WhatSUPDesktopApp
         string query;
 
         int errorCount = 0;
+
+        //bool correctPort;
         //THis function instantiates a new insteractiveBrainControl when called
         public static InteractiveBrainControl Instance
         {
@@ -276,7 +278,8 @@ namespace WhatSUPDesktopApp
         //This function is called when the stop button is pressed
         private void StopButtonClick(object sender, RoutedEventArgs e) {
             ListBoxSelectionChanged();
-
+            lightingSequenceFromDatabase = "000000000".ToArray();
+            LightingSequence();
 
 
         }
@@ -290,7 +293,7 @@ namespace WhatSUPDesktopApp
                 //change
                 if (ports == null || ports.Length == 0)
                 {
-                    MessageBox.Show("Check connection, then try again.");
+                    MessageBox.Show("There aren't any ports available.");
                 }
                 else
                 {
@@ -316,6 +319,9 @@ namespace WhatSUPDesktopApp
                     MessageBox.Show("Disconnected");
                     try
                     {
+                       // lightingSequenceFromDatabase = "000000000".ToArray();
+                        lightingSequenceFromDatabase = "STOP00000".ToArray();
+                        WriteLightingSequenceMessage();
                         Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
                         StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
                         BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
@@ -324,21 +330,22 @@ namespace WhatSUPDesktopApp
                             ImageSource = temp
                         };
                         connectionButton.Background = brush;
-
+                        
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
                     isConnected = false;
+                  //  selectedPort = null;
                 }
                 //If there wasn't already successful connection
                 else
                 {   //if there aren't any serial ports available
                     if (ports == null || ports.Length == 0)
                     {
-                        MessageBox.Show("Not able to connect, check connection, then try again.");
+                        MessageBox.Show("There aren't any ports available.");
                     }
-                    else  //if they are serial ports available that app aren't in use
+                    else  //if there are serial ports available that app aren't in use
                     {
-                        MessageBox.Show("The Brain wasn't connected yet.");
+                        MessageBox.Show("The brain model wasn't connected yet.");
                     }
                 }
                 defaultFlag = false;
@@ -364,30 +371,37 @@ namespace WhatSUPDesktopApp
             }
             if (selectedPort != null) //now change the background of the connection button to show connected
             {
-                foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
+            //    foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
 
-                {
-                    if(comPort.Name == selectedPort)
-                    {
-                        if(comPort.Description != "")
-                        {
-                            MessageBox.Show("This COM Port does not connect to the brain model.");
-                        }
-                    }
-                }
+              //  {
+              //      if (comPort.Name == selectedPort)
+                //   {
+                  //      if (comPort.Description == "Silicon Labs CP210x USB to UART Bridge (COM6)")
+                    //    {
+                      //      correctPort = true;
+                        //}
+                        //else {
+
+                          //  MessageBox.Show("This COM Port does not connect to the brain model.");
+                           // correctPort = false;
+                       // }
+                    //}
+               //}
+            
+         //   if (selectedPort != null && correctPort == true) {
                 try
                 {
-                    
-                    SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                    SerialPort1.Open();
-                    Thread.Sleep(10);
-                    SerialPort1.Close();
-                    Console.WriteLine("Connected to " + selectedPort);
+
                     SerialPort1 = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One)
                     {
                         ReadTimeout = 250,
                         WriteTimeout = 250
                     };
+                    SerialPort1.Open();
+                    Thread.Sleep(20);
+                    SerialPort1.Close();
+                    Console.WriteLine("Connected to " + selectedPort);
+                    
                     Uri resourceUri = new Uri("Resources/if_connect_established.ico", UriKind.Relative);
                     StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
 
@@ -403,7 +417,7 @@ namespace WhatSUPDesktopApp
                 catch (UnauthorizedAccessException ex)//The selected comPort is being used by another process
                 {
 
-                    MessageBox.Show("Wasn't able to connect to chosen COM port, choose another port for connection");
+                    MessageBox.Show("Couldn't successfully connect to selected COM port");
                     Console.WriteLine(ex.Message);
                     Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
                     StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
@@ -413,6 +427,8 @@ namespace WhatSUPDesktopApp
                         ImageSource = temp
                     };
                     connectionButton.Background = brush;
+                    isConnected = false;
+                    defaultFlag = false;
                 }
                 catch (Exception ex) { MessageBox.Show("Couldn't successfully connect to selected COM port"); Console.WriteLine(ex.Message);
                     Uri resourceUri = new Uri("Resources/if_connect_no.ico", UriKind.Relative);
@@ -423,19 +439,20 @@ namespace WhatSUPDesktopApp
                         ImageSource = temp
                     };
                     connectionButton.Background = brush;
-
+                    isConnected = false;
+                    defaultFlag = false;
 
                 }
-                
             }
-         
-            else  //if there are serial ports available that app aren't in use
+         else
+           // if(selectedPort == null || !(selectedPort != null && correctPort == true))  //if there are serial ports available that app aren't in use
             {
                 MessageBox.Show("No COM PORT was chosen");
                 isConnected = false;
                 defaultFlag = false;
             }
             // open the Popup if it isn't open already 
+            comPortNumberComboBox.SelectedItem = null;
         }
        
 
@@ -476,20 +493,16 @@ namespace WhatSUPDesktopApp
         {
             if (editHealthyBehaviorsFlag)
             {
-                if (editHealthyBehaviorsFlag)
-                {
 
                     if (editingListBox.SelectedItem == null)
                     {
-                        errorMessageTextBlock.Text = "First select an item in the list";
+                        errorMessageTextBlock.Text = "First select an item on the list";
                     }
                     else
                     {
                         errorMessageTextBlock.Text = "";
                         RemoveItemToDatabase();
                     }
-
-                }
             }
             else
             {
@@ -553,7 +566,7 @@ namespace WhatSUPDesktopApp
 
             if (!effectsChecked && string.IsNullOrEmpty(newListBoxItemContent))
             {
-                errorTextBlock.Text = "No content was inserted or effects are checked.";
+                errorTextBlock.Text = "No content is inserted or effects are checked.";
             }
             else if (!effectsChecked && !string.IsNullOrEmpty(newListBoxItemContent))
             {
@@ -659,7 +672,8 @@ namespace WhatSUPDesktopApp
             amygdalaImage.RenderTransform = null;
             pituitaryGlandImage.RenderTransform = null;
 
-          //  lightingSequenceFromDatabase = "000000000".ToArray();
+           // lightingSequenceFromDatabase = "000000000".ToArray();
+           // LightingSequence();
             // if (isConnected)
             //   {
             //send serial message for stop
@@ -791,7 +805,7 @@ namespace WhatSUPDesktopApp
             if ( string.IsNullOrEmpty(selectedBrainPart) && string.IsNullOrEmpty(searchTextBox.Text))
             {
 
-                MessageBox.Show("Select a brain part or healthy behavior before pressing the go button");
+                MessageBox.Show("Select a brain part or healthy behavior before clicking the go button");
             }
             else
             {
@@ -829,10 +843,14 @@ namespace WhatSUPDesktopApp
                     selectionMessageBox.Text = selectedBrainPart + " was chosen. ";
                     brainPart = false;
                     Console.WriteLine(lightingSequenceFromDatabase);
-                `    searchTextBox.Text = "";
-                    resultsStack.Children.Clear();
-                    border.Visibility = System.Windows.Visibility.Collapsed;
-                    border.Background = Brushes.Transparent;
+                    searchTextBox.Text = "";
+                    if (border != null)
+                    {
+                        resultsStack.Children.Clear();
+
+                        border.Visibility = System.Windows.Visibility.Collapsed;
+                        border.Background = Brushes.Transparent;
+                    }
                     //Don't need to look in database because hard coded 
                     LightingSequence();
                 }
@@ -872,14 +890,23 @@ namespace WhatSUPDesktopApp
                     if (lightingSequenceString == null)
                     {
                         MessageBox.Show("Choose an option available from the provided healthy behavior list ");
+                        searchTextBox.Text = "";
+                        if (border != null)
+                        {
+                            resultsStack.Children.Clear();
+                            border.Visibility = System.Windows.Visibility.Collapsed;
+                            border.Background = Brushes.Transparent;
+                        }
                     }
                     else
                     {
                         searchTextBox.Text = "";
-                        resultsStack.Children.Clear();
-                        border.Visibility = System.Windows.Visibility.Collapsed;
-                        border.Background = Brushes.Transparent;
-                        lightingSequenceFromDatabase = lightingSequenceString.ToArray();
+                        if (border != null) {
+                            resultsStack.Children.Clear();
+                            border.Visibility = System.Windows.Visibility.Collapsed;
+                            border.Background = Brushes.Transparent;
+                        }
+                            lightingSequenceFromDatabase = lightingSequenceString.ToArray();
                         LightingSequence();
                     }
 
@@ -1130,6 +1157,7 @@ namespace WhatSUPDesktopApp
             {
                 try
                 {
+                  
                     SerialPort1.Open();
                     Console.WriteLine("Serial Port just opened");
                     // string concatenateArray = id + lightingSequenceFromDatabase.ToArray() + ending;
@@ -1138,6 +1166,7 @@ namespace WhatSUPDesktopApp
                     SerialPort1.Write(CharArrayToString(lightingSequenceFromDatabase));
                     Thread.Sleep(20);
                     SerialPort1.Close();
+                    Console.WriteLine("Serial Port just closed");
                 }
                 catch (UnauthorizedAccessException ex)
                 {
@@ -1147,14 +1176,14 @@ namespace WhatSUPDesktopApp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Wasn't able to successfully connect to Brain");
+                    MessageBox.Show("Wasn't able to successfully connect to brain model");
                     Console.WriteLine(ex.Message);
                 }
 
             }
             else
             {               
-                Console.WriteLine("Not connected to COM PORT for Brain");
+                Console.WriteLine("Not connected to COM PORT for brain model");
             }
 
         }
@@ -1332,11 +1361,13 @@ namespace WhatSUPDesktopApp
 
         //This function determines what happens when a selection is made from the healthy behaviors list
         private void ResultsStackMouseDown(object sender, MouseButtonEventArgs e)
-        {
-              resultsStack.Children.Clear();
+        {     if (border != null)
+            {
+                resultsStack.Children.Clear();
                 border.Visibility = System.Windows.Visibility.Collapsed;
                 border.Background = Brushes.Transparent;
-            Uri resourceUri = new Uri("Resources/if_arrow-dropdown_3017945.png", UriKind.Relative);
+            }
+                Uri resourceUri = new Uri("Resources/if_arrow-dropdown_3017945.png", UriKind.Relative);
             StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
 
             BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
@@ -1346,9 +1377,12 @@ namespace WhatSUPDesktopApp
             };
 
             dropDown.Source = temp;
-            border = (resultsStack.Parent as ScrollViewer).Parent as Border;
-            border.Visibility = System.Windows.Visibility.Collapsed;
-            dropDownFlag = false;
+            if (border != null)
+            {
+                border = (resultsStack.Parent as ScrollViewer).Parent as Border;
+                border.Visibility = System.Windows.Visibility.Collapsed;
+            }
+                dropDownFlag = false;
         }
         //This function handles what to do with received data
         //Never used
@@ -1451,7 +1485,7 @@ namespace WhatSUPDesktopApp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("wasn't able to update selected healthy behavior");
+                    Console.WriteLine("Index may be out of range for the last iteration when adjusting indices");
                     Console.WriteLine(ex);
                 }
                 index++;
