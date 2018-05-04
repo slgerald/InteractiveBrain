@@ -4,40 +4,40 @@ using System.Windows.Controls;
 namespace WhatSUPDesktopApp
 {
     /// <summary>
-    /// The simulation userControl page is used as a hub to get to the 4 animations pages:
+    /// The simulationUserControl page is used as a hub to get to the 4 animations pages:
     /// brainDevelopment, dopaminePathways, healthyActivities, and normalVsOnDrugs.
     /// </summary>
-    public partial class simulationUserControl : UserControl
+    public partial class SimulationUserControl : UserControl
     {
         //render userControl based on button pressed
-        private static simulationUserControl _instance; 
+        private static SimulationUserControl _instance; 
 
         //Used to get location value of buttons 
         double buttonTopValue;
 
-        //This method serves as the entry point to the simulation userControl page.
-        public simulationUserControl()
+        //This method serves as the entry point to the simulationUserControl page.
+        public SimulationUserControl()
         {
             InitializeComponent();
 
         }
 
-        //This method allows the simulation usrControl to be rendered when called.
-        public static simulationUserControl Instance
+        //This method allows the simulationUserControl to be rendered when called.
+        public static SimulationUserControl Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new simulationUserControl();
+                    _instance = new SimulationUserControl();
                 }
-                _instance = new simulationUserControl();
+                _instance = new SimulationUserControl();
                 return _instance;
 
             }
         }
 
-        //This method loads the page for the brainDevelopment userControl when the 
+        //This method loads the page for the brainDevelopmentControl when the 
         //'Brain Development' button is clicked.
         private void BrainDevelopmentButton_Click(object sender, RoutedEventArgs e)
         {
@@ -51,17 +51,17 @@ namespace WhatSUPDesktopApp
                 //pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             buttonPanel.Children.Clear();
-            if (!buttonPanel.Children.Contains(brainDevelopmentControl.Instance))
+            if (!buttonPanel.Children.Contains(BrainDevelopmentControl.Instance))
             {
 
 
-                buttonPanel.Children.Add(brainDevelopmentControl.Instance);
+                buttonPanel.Children.Add(BrainDevelopmentControl.Instance);
             }
             else
-                buttonPanel.Children.Add(brainDevelopmentControl.Instance);
+                buttonPanel.Children.Add(BrainDevelopmentControl.Instance);
         }
 
-        //This method loads the page for the dopaminePathways userControl when the 
+        //This method loads the page for the dopaminePathwaysControl when the 
         //'Dopamine Pathways' button is clicked.
         private void DopaminePathwaysButton_Click(object sender, RoutedEventArgs e)
         {
@@ -75,17 +75,17 @@ namespace WhatSUPDesktopApp
                 //pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             buttonPanel.Children.Clear();
-            if (!buttonPanel.Children.Contains(dopaminePathwaysControl.Instance))
+            if (!buttonPanel.Children.Contains(DopaminePathwaysControl.Instance))
             {
 
 
-                buttonPanel.Children.Add(dopaminePathwaysControl.Instance);
+                buttonPanel.Children.Add(DopaminePathwaysControl.Instance);
             }
             else
-                buttonPanel.Children.Add(dopaminePathwaysControl.Instance);
+                buttonPanel.Children.Add(DopaminePathwaysControl.Instance);
         }
 
-        //This method loads the page for the healthyActivities userControl when the 
+        //This method loads the page for the healthyActivitiesControl when the 
         //'Healthy Activities button is clicked.
         private void HealthyActivitiesButton_Click(object sender, RoutedEventArgs e)
         {
@@ -99,17 +99,17 @@ namespace WhatSUPDesktopApp
                 //pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             buttonPanel.Children.Clear();
-            if (!buttonPanel.Children.Contains(healthyActivitiesControl.Instance))
+            if (!buttonPanel.Children.Contains(HealthyActivitiesControl.Instance))
             {
 
 
-                buttonPanel.Children.Add(healthyActivitiesControl.Instance);
+                buttonPanel.Children.Add(HealthyActivitiesControl.Instance);
             }
             else
-                buttonPanel.Children.Add(healthyActivitiesControl.Instance);
+                buttonPanel.Children.Add(HealthyActivitiesControl.Instance);
         }
 
-        //This method loads the page for the normalVsOnDrugs userControl when the 
+        //This method loads the page for the normalVsOnDrugsControl when the 
         //'Typical vs. Drug Use' button is clicked.
         private void NormalVsOnDrugsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -123,27 +123,24 @@ namespace WhatSUPDesktopApp
                 //pageMarker.Visibility = System.Windows.Visibility.Hidden;
             }
             buttonPanel.Children.Clear();
-            if (!buttonPanel.Children.Contains(normalVsOnDrugsControl.Instance))
+            if (!buttonPanel.Children.Contains(NormalVsOnDrugsControl.Instance))
             {
 
 
-                buttonPanel.Children.Add(normalVsOnDrugsControl.Instance);
+                buttonPanel.Children.Add(NormalVsOnDrugsControl.Instance);
             }
             else
-                buttonPanel.Children.Add(normalVsOnDrugsControl.Instance);
+                buttonPanel.Children.Add(NormalVsOnDrugsControl.Instance);
         }
 
-        //This button loads the simulation userControl page when clicked. It appears
+        //This button loads the simulationUserControl page when clicked. It appears
         //at the bottom of the brainDevelopment, dopaminePathways, healthyActivities, and
         //normalVsOnDrugs pages.
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            //buttonPanel.Children.Remove(brainDevelopmentControl.Instance);
             buttonPanel.Children.Clear();
-            buttonPanel.Children.Add(simulationUserControl.Instance);
-
-
+            buttonPanel.Children.Add(SimulationUserControl.Instance);
         }
 
     }
-    }
+ }

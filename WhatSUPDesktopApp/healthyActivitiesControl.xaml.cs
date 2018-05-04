@@ -6,18 +6,18 @@ using System.Windows.Media.Imaging;
 namespace WhatSUPDesktopApp
 {
     /// <summary>
-    /// Ths healthActivities userContol is used in order to give the user examples of 
+    /// Ths healthActivitiesContol is used in order to give the user examples of 
     /// healthy activities and how they affect the brain by using pictures. 
     /// </summary>
-    public partial class healthyActivitiesControl : UserControl
+    public partial class HealthyActivitiesControl : UserControl
     {
         //render userControl based on button pressed
-        private static healthyActivitiesControl _instance; 
+        private static HealthyActivitiesControl _instance;
 
-        //This method is used as an entry point to the healthyActivities userControl page.
-        //The default labels, pictures, and description text are loaded for the first 
-        //healthy activity example.
-        public healthyActivitiesControl()
+        //This method is used as an entry point to the healthyActivitiesControl page.
+        //The default labels, pictures, description text, and combo box list item are 
+        //loaded for the first healthy activity example.
+        public HealthyActivitiesControl()
         {
             InitializeComponent();
 
@@ -28,23 +28,23 @@ namespace WhatSUPDesktopApp
             imageText.Text = "Exercising can help strengthen learning, improve memory, and enhance motivation.";
         }
 
-        //This method allows the healthyActivities userControl to be rendered when called.
-        public static healthyActivitiesControl Instance
+        //This method allows the healthyActivitiesControl to be rendered when called.
+        public static HealthyActivitiesControl Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new healthyActivitiesControl();
+                    _instance = new HealthyActivitiesControl();
                 }
-                _instance = new healthyActivitiesControl();
+                _instance = new HealthyActivitiesControl();
                 return _instance;
 
             }
         }
 
-        //This methood allows the user to select a healthy activity from a combobox list.
-        //This activity, along with its description text and lables, is then loaded.
+        //This methood allows the user to select a healthy activity from a combo box list.
+        //This activity, along with its description text and labels, is then loaded.
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String activityListValue = (activityList.SelectedItem as ComboBoxItem).Content.ToString();

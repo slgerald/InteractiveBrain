@@ -20,59 +20,78 @@ using System.Windows.Threading;
 namespace WhatSUPDesktopApp
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// The dopaminePathwaysControl consists of 9 gifs which effectly show the user the 
+    /// effects of drugs on dopamine pathways such that tolerance occurs and the drug
+    /// user is addicted
     /// </summary>
-    public partial class dopaminePathwaysControl : UserControl
+    public partial class DopaminePathwaysControl : UserControl
     {
 
+        //render userControl based on button pressed
+        private static DopaminePathwaysControl _instance;
 
-        private static dopaminePathwaysControl _instance; //render userControl based on button pressed
-        private DispatcherTimer timer; // A timer to display the video's location
+        // A timer to display the video's location
+        private DispatcherTimer timer; 
 
-        public dopaminePathwaysControl()
+        //This method serves as the entry point to the dopaminePathwaysControl.
+        //It sets the defualt gif, description text, label, and combo box list item.
+        public DopaminePathwaysControl()
         {
             InitializeComponent();
-            // Uri resourceUri = new Uri("\\Resources\\gif_brain_reward_pathways.mp4", UriKind.Relative);
-            // StreamResourceInfo streamInfo = Application.GetContentStream(resourceUri);
+            
+            //Sets the defualt gif
             Gif1.Source = new Uri(string.Format(@"{0}Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+
             if (File.Exists(string.Format(@"{0}Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)))) {
                 MessageBox.Show(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
             }
-            //Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName)
-            // Console.WriteLine(string.Format(@"{0}\Resources\gif_brain_reward_pathways.mp4", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
-            // Gif1.Source = new Uri(@"./Resources/gif_brain_reward_pathways.mp4", UriKind.Relative);
+            
+            //Initializes video to play
             Gif1.Play();
+
+            //Selects default 'name of gif' for the combo box
             videoList.SelectedIndex = 0;
+
+            //Sets defualt gif label
             videoLabel.Content = "1/9 Reward Pathways";
+
+            //Sets default gif description text
             dopamineText.Text = "In a healthy person, the brain's reward system reinforces healthy behaviors, such as eating. The reward system ensures that you eat, because it knows that after eating, you will feel good.";
+
+            //Hides the 'Previous' button to switch between gifs
             previousButton.Visibility = Visibility.Hidden;
+
+            //Shows the 'Next' button to switch between gifs
             nextButton.Visibility = Visibility.Visible;
 
+            //This block of code initializes the video timer
             timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromSeconds(0.1)
             };
-            //timer.Tick += timer_Tick;
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
 
 
         }
 
-        public static dopaminePathwaysControl Instance
+        //This method allows the dopaminePathwaysControl to be rendered when called
+        public static DopaminePathwaysControl Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new dopaminePathwaysControl();
+                    _instance = new DopaminePathwaysControl();
                 }
-                _instance = new dopaminePathwaysControl();
+                _instance = new DopaminePathwaysControl();
                 return _instance;
 
             }
         }
 
+        //This method ties the scrollbar to the gif and allows it to accurately move
+        //with the timing of the gif
         private void Gif1_MediaOpened(object sender, RoutedEventArgs e)
         {
             sbarPosition.Minimum = 0;
@@ -81,14 +100,14 @@ namespace WhatSUPDesktopApp
             sbarPosition.Visibility = Visibility.Visible;
         }
 
-        // Show the play position in the ScrollBar and TextBox.
+        // Show the current play position of the gif in seconds
         private void ShowPosition()
         {
             sbarPosition.Value = Gif1.Position.TotalSeconds;
-            // txtPosition.Text = Gif1.Position.TotalSeconds.ToString("0.0");
         }
 
-
+        //Sets a label for the gif and prints out the current time and total duration of 
+        //the gif in the label
         private void Timer_Tick(object sender, EventArgs e)
         {
             ShowPosition();
@@ -101,13 +120,17 @@ namespace WhatSUPDesktopApp
                 lblStatus.Content = "No file selected...";
         }
 
+        //This method determines whether or not the gif ended by comparing its current
+        //time position to the gifs total duration
         private void Gif1_MediaEnded(object sender, RoutedEventArgs e)
         {
             Gif1.Position = TimeSpan.FromSeconds(0);
 
         }
 
-
+        //This method allows the user to go back to the previous gif by clicking the 
+        //'Previous' button. The previous gif, description text, label, and combo box
+        //list item will all be loaded.
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
             
@@ -201,6 +224,9 @@ namespace WhatSUPDesktopApp
             }
         }
 
+        //This method takes the user to the next gif when the 'Next' button is clicked. 
+        //The description text, label, and combo box list item for that gif are loaded
+        //as well.
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -294,6 +320,8 @@ namespace WhatSUPDesktopApp
             }
         }
 
+        //This method defines which gif, description text, and label is loaded depending on
+        //which combo box list item is selected from the drop down list
         private void VideoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String videoListValue = (videoList.SelectedItem as ComboBoxItem).Content.ToString();
@@ -390,80 +418,17 @@ namespace WhatSUPDesktopApp
 
         }
 
+        //This function plays the gif when the 'Play' button is clicked
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             Gif1.Play();
         }
 
+        //This function pauses the gif when the 'Pause' button is clicked
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
             Gif1.Pause();
         }
-
-        /*
-        private void btnSetPosition_Click(object sender, RoutedEventArgs e)
-        {
-
-            TimeSpan timespan =
-                TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
-            Gif1.Position = timespan;
-            ShowPosition();
-        }
-        */
-
-        /*
-        public void PlayVideo(object sender, RoutedEventArgs e)
-
-
-        {
-
-           // VideoPreview.Visibility = Visibility.Collapsed;
-
-
-           // dopaminePathwaysVideo.Visibility = Visibility.Visible;
-
-
-           // dopaminePathwaysVideo.Play();
-
-
-        }
-
-        
-        public void PauseVideo(object sender, RoutedEventArgs e)
-
-
-        {
-
-
-            VideoPreview.Visibility = Visibility.Collapsed;
-
-
-            dopaminePathwaysVideo.Visibility = Visibility.Visible;
-
-
-            dopaminePathwaysVideo.Pause();
-
-
-        }
-
-
-        public void StopVideo(object sender, RoutedEventArgs e)
-
-
-        {
-
-
-            VideoPreview.Visibility = Visibility.Collapsed;
-
-
-            dopaminePathwaysVideo.Visibility = Visibility.Visible;
-
-
-            dopaminePathwaysVideo.Stop();
-
-
-        }
-        */
 
     }
 }
